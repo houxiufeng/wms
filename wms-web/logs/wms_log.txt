@@ -1,0 +1,231 @@
+2018-01-18 20:35:52 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-01-18 20:35:53 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-01-18 20:35:53 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL query
+2018-01-18 20:35:53 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [select id,email,address,created_at,name from company where id =  ? ]
+2018-01-18 20:35:53 [com.ktanx.jdbc.springjdbc.persist.JdbcRowMapper]-[DEBUG] - Mapping column 'id' to property 'id' of type [java.lang.Long]
+2018-01-18 20:35:53 [com.ktanx.jdbc.springjdbc.persist.JdbcRowMapper]-[DEBUG] - Mapping column 'email' to property 'email' of type [java.lang.String]
+2018-01-18 20:35:53 [com.ktanx.jdbc.springjdbc.persist.JdbcRowMapper]-[DEBUG] - Mapping column 'address' to property 'address' of type [java.lang.String]
+2018-01-18 20:35:53 [com.ktanx.jdbc.springjdbc.persist.JdbcRowMapper]-[DEBUG] - Mapping column 'created_at' to property 'createdAt' of type [java.util.Date]
+2018-01-18 20:35:53 [com.ktanx.jdbc.springjdbc.persist.JdbcRowMapper]-[DEBUG] - Mapping column 'name' to property 'name' of type [java.lang.String]
+2018-01-18 20:35:53 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} enter cache
+2018-01-18 20:35:53 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} exit cache
+2018-01-18 20:35:53 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed
+2018-01-18 20:43:59 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-01-18 20:43:59 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-01-18 20:43:59 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL query
+2018-01-18 20:43:59 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [select count(*) from (select id,email,address,created_at,name from company) tmp_count]
+2018-01-18 20:43:59 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} enter cache
+2018-01-18 20:43:59 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL query
+2018-01-18 20:43:59 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [select id,email,address,created_at,name from company limit 10,10]
+2018-01-18 20:43:59 [com.ktanx.jdbc.springjdbc.persist.JdbcRowMapper]-[DEBUG] - Mapping column 'id' to property 'id' of type [java.lang.Long]
+2018-01-18 20:43:59 [com.ktanx.jdbc.springjdbc.persist.JdbcRowMapper]-[DEBUG] - Mapping column 'email' to property 'email' of type [java.lang.String]
+2018-01-18 20:43:59 [com.ktanx.jdbc.springjdbc.persist.JdbcRowMapper]-[DEBUG] - Mapping column 'address' to property 'address' of type [java.lang.String]
+2018-01-18 20:43:59 [com.ktanx.jdbc.springjdbc.persist.JdbcRowMapper]-[DEBUG] - Mapping column 'created_at' to property 'createdAt' of type [java.util.Date]
+2018-01-18 20:43:59 [com.ktanx.jdbc.springjdbc.persist.JdbcRowMapper]-[DEBUG] - Mapping column 'name' to property 'name' of type [java.lang.String]
+2018-01-18 20:43:59 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20001} enter cache
+2018-01-18 20:43:59 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} exit cache
+2018-01-18 20:43:59 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20001} exit cache
+2018-01-18 20:43:59 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed
+2018-01-18 20:55:57 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-01-18 20:55:57 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-01-18 20:55:57 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed
+2018-01-18 20:58:00 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-01-18 20:58:00 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-01-18 20:58:00 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL update
+2018-01-18 20:58:00 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [update user set age = ? where id = ? ]
+2018-01-18 20:58:00 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} enter cache
+2018-01-18 20:58:00 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} exit cache
+2018-01-18 20:58:00 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed
+2018-01-18 20:59:34 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-01-18 20:59:34 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-01-18 20:59:34 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL update
+2018-01-18 20:59:34 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [update user set age = ? where id = ? ]
+2018-01-18 20:59:34 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} enter cache
+2018-01-18 20:59:34 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} exit cache
+2018-01-18 20:59:34 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed
+2018-01-18 21:00:13 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-01-18 21:00:13 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-01-18 21:00:13 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL update
+2018-01-18 21:00:13 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [update user set age = ? where id = ? ]
+2018-01-18 21:00:13 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} enter cache
+2018-01-18 21:00:13 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} exit cache
+2018-01-18 21:00:13 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed
+2018-01-18 21:01:47 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-01-18 21:01:47 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-01-18 21:01:47 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL update
+2018-01-18 21:01:47 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [update user set age = age + 1 where id = ? ]
+2018-01-18 21:01:47 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - SQL update affected 1 rows
+2018-01-18 21:01:47 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} enter cache
+2018-01-18 21:01:47 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} exit cache
+2018-01-18 21:01:47 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed
+2018-01-18 21:02:33 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-01-18 21:02:33 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-01-18 21:02:33 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL update
+2018-01-18 21:02:33 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [update user set age = age + 1 where id = ? ]
+2018-01-18 21:02:33 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - SQL update affected 1 rows
+2018-01-18 21:02:33 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} enter cache
+2018-01-18 21:02:33 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} exit cache
+2018-01-18 21:02:33 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed
+2018-01-18 21:03:23 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-01-18 21:03:23 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-01-18 21:03:23 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL update
+2018-01-18 21:03:23 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [update user set age = age + 1 where id = ? ]
+2018-01-18 21:03:24 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - SQL update affected 1 rows
+2018-01-18 21:03:24 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} enter cache
+2018-01-18 21:03:24 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} exit cache
+2018-01-18 21:03:24 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed
+2018-01-18 21:20:48 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-01-18 21:20:48 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-01-18 21:20:48 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL query
+2018-01-18 21:20:48 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [select a.id, a.name, a.age, b.phone from user a left join user_phone b on a.id = b.user_id where a.id = ?]
+2018-01-18 21:20:49 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} enter cache
+2018-01-18 21:20:49 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} exit cache
+2018-01-18 21:20:49 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed
+2018-01-18 23:06:39 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-01-18 23:06:39 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-01-18 23:06:39 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL query
+2018-01-18 23:06:39 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [select a.id, a.name, a.age, b.phone from user a left join user_phone b on a.id = b.user_id where a.id = ?]
+2018-01-18 23:06:39 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} enter cache
+2018-01-18 23:06:39 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} exit cache
+2018-01-18 23:06:39 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed
+2018-01-18 23:14:26 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-01-18 23:14:26 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-01-18 23:14:26 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL query
+2018-01-18 23:14:26 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [select a.id, a.name, a.age, b.phone from user a left join user_phone b on a.id = b.user_id where a.id = ?]
+2018-01-18 23:14:26 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} enter cache
+2018-01-18 23:14:26 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} exit cache
+2018-01-18 23:14:26 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed
+2018-01-18 23:16:03 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-01-18 23:16:03 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-01-18 23:16:03 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL query
+2018-01-18 23:16:03 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [select a.id, a.name, a.age, b.phone from user a left join user_phone b on a.id = b.user_id where a.id = ?]
+2018-01-18 23:16:03 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} enter cache
+2018-01-18 23:16:03 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} exit cache
+2018-01-18 23:16:03 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed
+2018-01-18 23:20:06 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-01-18 23:20:06 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-01-18 23:20:06 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL query
+2018-01-18 23:20:06 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [select a.id, a.name, a.age, b.phone from user a left join user_phone b on a.id = b.user_id where a.id = ?]
+2018-01-18 23:20:06 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} enter cache
+2018-01-18 23:20:06 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} exit cache
+2018-01-18 23:20:06 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed
+2018-01-18 23:21:44 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-01-18 23:21:44 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-01-18 23:21:44 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL query
+2018-01-18 23:21:44 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [select a.id, a.name, a.age, b.phone from user a left join user_phone b on a.id = b.user_id where a.id = ?]
+2018-01-18 23:21:44 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} enter cache
+2018-01-18 23:21:44 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} exit cache
+2018-01-18 23:21:44 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed
+2018-01-18 23:26:56 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-01-18 23:26:56 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-01-18 23:26:56 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing SQL update and returning generated keys
+2018-01-18 23:26:56 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement
+2018-01-18 23:26:56 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - SQL update affected 1 rows and returned 1 keys
+2018-01-18 23:26:56 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} enter cache
+2018-01-18 23:26:56 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} exit cache
+2018-01-18 23:26:56 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed
+2018-01-18 23:36:29 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-01-18 23:36:29 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-01-18 23:36:29 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL query
+2018-01-18 23:36:29 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [select a.id, a.name, a.age, b.phone from user a left join user_phone b on a.id = b.user_id where a.id = ?]
+2018-01-18 23:36:29 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} enter cache
+2018-01-18 23:36:29 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} exit cache
+2018-01-18 23:36:29 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed
+2018-01-18 23:47:38 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-01-18 23:47:38 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-01-18 23:47:39 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL query
+2018-01-18 23:47:39 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [select a.id, a.name, b.phone from user a left join user_phone b on a.id = b.user_id where a.id = ?]
+2018-01-18 23:47:39 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} enter cache
+2018-01-18 23:47:39 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} exit cache
+2018-01-18 23:47:39 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed
+2018-01-18 23:49:03 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-01-18 23:49:03 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-01-18 23:49:03 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL query
+2018-01-18 23:49:03 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [select a.id, a.name, a.age, b.phone from user a left join user_phone b on a.id = b.user_id where a.id = ?]
+2018-01-18 23:49:03 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} enter cache
+2018-01-18 23:49:03 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} exit cache
+2018-01-18 23:49:03 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed
+2018-01-18 23:50:49 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-01-18 23:50:49 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-01-18 23:50:49 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL query
+2018-01-18 23:50:49 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [select a.id, a.name, a.age, b.phone from user a left join user_phone b on a.id = b.user_id where a.id = ?]
+2018-01-18 23:50:49 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} enter cache
+2018-01-18 23:50:49 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} exit cache
+2018-01-18 23:50:49 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed
+2018-01-18 23:52:31 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-01-18 23:52:31 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-01-18 23:52:31 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL query
+2018-01-18 23:52:31 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [select a.id, a.name, a.age, b.phone from user a left join user_phone b on a.id = b.user_id where a.id = ?]
+2018-01-18 23:52:31 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} enter cache
+2018-01-18 23:52:31 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} exit cache
+2018-01-18 23:52:31 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed
+2018-01-19 14:52:02 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-01-19 14:52:02 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-01-19 14:52:02 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL query
+2018-01-19 14:52:02 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [select id,email,address,created_at,name from company where id =  ? ]
+2018-01-19 14:52:02 [com.ktanx.jdbc.springjdbc.persist.JdbcRowMapper]-[DEBUG] - Mapping column 'id' to property 'id' of type [java.lang.Long]
+2018-01-19 14:52:02 [com.ktanx.jdbc.springjdbc.persist.JdbcRowMapper]-[DEBUG] - Mapping column 'email' to property 'email' of type [java.lang.String]
+2018-01-19 14:52:02 [com.ktanx.jdbc.springjdbc.persist.JdbcRowMapper]-[DEBUG] - Mapping column 'address' to property 'address' of type [java.lang.String]
+2018-01-19 14:52:02 [com.ktanx.jdbc.springjdbc.persist.JdbcRowMapper]-[DEBUG] - Mapping column 'created_at' to property 'createdAt' of type [java.util.Date]
+2018-01-19 14:52:02 [com.ktanx.jdbc.springjdbc.persist.JdbcRowMapper]-[DEBUG] - Mapping column 'name' to property 'name' of type [java.lang.String]
+2018-01-19 14:52:02 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} enter cache
+2018-01-19 14:52:02 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} exit cache
+2018-01-19 14:52:02 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed
+2018-01-19 15:44:13 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-01-19 15:44:13 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-01-19 15:44:13 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL query
+2018-01-19 15:44:13 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [select a.id, a.name, a.age, b.phone from user a left join user_phone b on a.id = b.user_id where a.id = ?]
+2018-01-19 15:44:13 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} enter cache
+2018-01-19 15:44:14 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} exit cache
+2018-01-19 15:44:14 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed
+2018-02-23 17:35:45 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-02-23 17:35:45 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-02-23 17:35:45 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL query
+2018-02-23 17:35:45 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [select count(*) from (select a.*, (select b.name from permission b where b.id = a.pid) pname from permission a where a.status = 1 and a.pid in(?)) tmp_count]
+2018-02-23 17:35:45 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - SQLWarning ignored: SQL state '22007', error code '1292', message [Truncated incorrect DOUBLE value: '5,6,7,8']
+2018-02-23 17:35:45 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} enter cache
+2018-02-23 17:35:45 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL query
+2018-02-23 17:35:45 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [select a.*, (select b.name from permission b where b.id = a.pid) pname from permission a where a.status = 1 and a.pid in(?) limit 0,10]
+2018-02-23 17:35:45 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - SQLWarning ignored: SQL state '22007', error code '1292', message [Truncated incorrect DOUBLE value: '5,6,7,8']
+2018-02-23 17:35:45 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20001} enter cache
+2018-02-23 17:35:45 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} exit cache
+2018-02-23 17:35:45 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20001} exit cache
+2018-02-23 17:35:45 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed
+2018-02-23 17:36:34 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-02-23 17:36:34 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-02-23 17:36:34 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL query
+2018-02-23 17:36:34 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [select count(*) from (select a.*, (select b.name from permission b where b.id = a.pid) pname from permission a where a.status = 1 and a.pid in(5,6,7,8)) tmp_count]
+2018-02-23 17:36:34 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} enter cache
+2018-02-23 17:36:34 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL query
+2018-02-23 17:36:34 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [select a.*, (select b.name from permission b where b.id = a.pid) pname from permission a where a.status = 1 and a.pid in(5,6,7,8) limit 0,10]
+2018-02-23 17:36:34 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20001} enter cache
+2018-02-23 17:36:34 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} exit cache
+2018-02-23 17:36:34 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20001} exit cache
+2018-02-23 17:36:34 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed
+2018-02-23 17:40:02 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-02-23 17:40:02 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-02-23 17:40:02 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL query
+2018-02-23 17:40:02 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [select count(*) from (select a.*, (select b.name from permission b where b.id = a.pid) pname from permission a where a.status = 1 and a.pid in ?) tmp_count]
+2018-02-23 17:40:03 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} enter cache
+2018-02-23 17:40:03 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} exit cache
+2018-02-23 17:40:03 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed
+2018-02-23 17:43:24 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-02-23 17:43:25 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-02-23 17:43:25 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL query
+2018-02-23 17:43:25 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [select count(*) from (select a.*, (select b.name from permission b where b.id = a.pid) pname from permission a where a.status = 1 and a.pid in  (?) ) tmp_count]
+2018-02-23 17:43:25 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - SQLWarning ignored: SQL state '22007', error code '1292', message [Truncated incorrect DOUBLE value: '5,6,7,8']
+2018-02-23 17:43:25 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} enter cache
+2018-02-23 17:43:25 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL query
+2018-02-23 17:43:25 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [select a.*, (select b.name from permission b where b.id = a.pid) pname from permission a where a.status = 1 and a.pid in  (?)  limit 0,10]
+2018-02-23 17:43:25 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - SQLWarning ignored: SQL state '22007', error code '1292', message [Truncated incorrect DOUBLE value: '5,6,7,8']
+2018-02-23 17:43:25 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20001} enter cache
+2018-02-23 17:43:25 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} exit cache
+2018-02-23 17:43:25 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20001} exit cache
+2018-02-23 17:43:25 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed
+2018-02-28 14:15:53 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} inited
+2018-02-28 14:15:54 [com.ktanx.common.spring.PathMatchingResourcePatternResolver]-[DEBUG] - Resolved location pattern [classpath*:batis/*.xml] to resources []
+2018-02-28 14:15:54 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL query
+2018-02-28 14:15:54 [org.springframework.jdbc.core.JdbcTemplate]-[DEBUG] - Executing prepared SQL statement [select max(seq) from permission]
+2018-02-28 14:15:54 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} enter cache
+2018-02-28 14:15:54 [com.alibaba.druid.pool.PreparedStatementPool]-[DEBUG] - {conn-10003, pstmt-20000} exit cache
+2018-02-28 14:15:54 [com.alibaba.druid.pool.DruidDataSource]-[INFO] - {dataSource-1} closed

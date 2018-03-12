@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.home</groupId>
+    <artifactId>wms</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  
+  <artifactId>wms-web</artifactId>
+  <packaging>war</packaging>
+  
+  <name>wms-web Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  
+  <dependencies>
+    <!-- provided表明该包只在编译和测试的时候用,因为tomcat 本身也有servlet-api的包，这样就可以防止冲突 -->
+    <dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>servlet-api</artifactId>
+	    <scope>provided</scope>
+	</dependency>
+    <dependency>
+       <groupId>com.home</groupId>
+       <artifactId>wms-service</artifactId>
+       <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+    </dependency>
+  </dependencies>
+  <build>
+    <finalName>wms-web</finalName>
+  </build>
+</project>
