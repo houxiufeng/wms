@@ -107,7 +107,7 @@ var BranchProduct = {
         if (!_isNull(poi)) {
             var latlng = poi.split(",");
             var myCenter=new google.maps.LatLng(latlng[1],latlng[0]);
-            placeMarker(gMap, myCenter);
+            placeMarker(BranchProduct.gMap, myCenter);
         } else {
             if (!_isNull(marker)) {
                 marker.setMap(null);

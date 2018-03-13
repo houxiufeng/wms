@@ -86,8 +86,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/app/branchProduct.js"></script>
 
 <script>
-    var gMap;
     jQuery(function ($) {
+        var gMap;
         BranchProduct.getTableData();
         $("#productName").change(function () {
             $.ajax({
@@ -115,6 +115,7 @@
         $("#productName").trigger("change");
         if (_isNull(gMap)) {
             gMap = initializeMap("googleMap");
+            BranchProduct.gMap = gMap;
         }
 
     })
