@@ -4,6 +4,7 @@ package com.home.wms.dto;
  * Created by fitz on 2018/2/26.
  */
 public class QueryBranchProductParams {
+	private Long branchId;
 	private Long organizationId;
 	private Integer iDisplayStart = 0;
 	private Integer iDisplayLength = 10;
@@ -30,5 +31,13 @@ public class QueryBranchProductParams {
 
 	public void setiDisplayLength(Integer iDisplayLength) {
 		this.iDisplayLength = iDisplayLength;
+	}
+
+	public Long getBranchId() {
+		return branchId;
+	}
+
+	public void setBranchId(Long branchId) {
+		this.branchId = branchId;
 	}
 }

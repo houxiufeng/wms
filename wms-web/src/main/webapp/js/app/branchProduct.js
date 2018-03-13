@@ -17,7 +17,7 @@ var BranchProduct = {
 		        //sPaginationType: "bootstrap",
 		        sDom: '<"top">rt<"tableFooter"lip<"clear">',
 		        fnServerParams : function (aoData) {
-		            aoData.push({"name": "name", "value":jQuery("#name").val()});
+		            aoData.push({"name": "branchId", "value":jQuery("#branchId").val()});
 		        },
 		        aoColumns:[{
 		            mData : "productName",

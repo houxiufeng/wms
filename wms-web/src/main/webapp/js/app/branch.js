@@ -20,6 +20,10 @@ var Branch = {
 		            aoData.push({"name": "name", "value":jQuery("#name").val()});
 		        },
 		        aoColumns:[{
+                    mData : "customerName",
+                    sDefaultContent : "",
+                    sTitle : "客户名"
+                },{
 		            mData : "name",
 		            sDefaultContent : "",
 		            sTitle : "店名称"

@@ -1,6 +1,7 @@
 package com.home.wms.web.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.home.wms.dto.BranchVo;
 import com.home.wms.dto.QueryBranchParams;
 import com.home.wms.dto.QueryCustomerParams;
 import com.home.wms.entity.Branch;
@@ -42,7 +43,7 @@ public class BranchController {
 	public JSONObject loadData(QueryBranchParams params, Model model){
 		JSONObject json = new JSONObject();
 		params.setOrganizationId(AppContextManager.getCurrentUserInfo().getOrganizationId());
-		PageList<Branch> pageList = branchService.findPageBranchs(params);
+		PageList<BranchVo> pageList = branchService.findPageBranchs(params);
 		json.put("aaData", pageList);
 		json.put("iTotalRecords", pageList.getPager().getTotalItems());
 		json.put("iTotalDisplayRecords", pageList.getPager().getTotalItems());

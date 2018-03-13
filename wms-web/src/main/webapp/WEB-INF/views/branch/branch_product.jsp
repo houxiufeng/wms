@@ -21,7 +21,7 @@
         <div class="span5" style="margin-bottom: 20px;">
             <form id="branchProductForm">
                 <input name="id" type="hidden" value="">
-                <input name="branchId" type="hidden" value="${branch.id}">
+                <input id="branchId" name="branchId" type="hidden" value="${branchId}">
                 <div class="form_row">
                     <div class="span12">
                         <label class="field_name align_right"><span style="color: red">*</span>产品名称:</label>

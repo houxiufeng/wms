@@ -1,18 +1,21 @@
 package com.home.wms.service.impl;
 
+import cn.hutool.core.util.StrUtil;
+import com.google.common.collect.Lists;
+import com.home.wms.dto.BranchVo;
 import com.home.wms.dto.CurrentUserInfo;
 import com.home.wms.dto.QueryBranchParams;
 import com.home.wms.entity.Branch;
 import com.home.wms.service.BranchService;
 import com.home.wms.utils.AppContextManager;
 import com.ktanx.common.model.PageList;
-import com.ktanx.jdbc.command.entity.Select;
 import com.ktanx.jdbc.persist.JdbcDao;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by fitz on 2018/3/6.
@@ -24,15 +27,22 @@ public class BranchServiceImpl implements BranchService{
 	private static Logger LOGGER = LoggerFactory.getLogger(BranchServiceImpl.class);
 
 	@Override
-	public PageList<Branch> findPageBranchs(QueryBranchParams params) {
-		Select<Branch> s = jdbcDao.createSelect(Branch.class);
+	public PageList<BranchVo> findPageBranchs(QueryBranchParams params) {
+
+		StringBuffer sql =  new StringBuffer("select a.*, (select b.name from customer b where b.id = a.customer_id) customer_name from branch a where 1");
+		List<Object> paramList = Lists.newArrayList();
+		if (StrUtil.isNotBlank(params.getName())) {
+			sql.append(" and a.name like ?");
+			paramList.add("%" + params.getName().trim() + "%");
+		}
 		if (params.getOrganizationId() != null) {
-			s.and("organizationId",params.getOrganizationId());
+			sql.append(" and a.organization_id = ?");
+			paramList.add(params.getOrganizationId());
 		}
-		if (StringUtils.isNotBlank(params.getName())) {
-			s.and("name","like",new Object[]{"%"+params.getName().trim()+"%"});
-		}
-		return s.orderBy("id").desc().pageList(params.getiDisplayStart()/params.getiDisplayLength() + 1, params.getiDisplayLength());
+		sql.append(" order by a.id desc");
+
+
+		return (PageList<BranchVo>)jdbcDao.createNativeExecutor().resultClass(BranchVo.class).command(sql.toString()).parameters(paramList.toArray()).pageList(params.getiDisplayStart()/params.getiDisplayLength() + 1, params.getiDisplayLength());
 	}
 
 	@Override
