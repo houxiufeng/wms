@@ -20,6 +20,18 @@
 <script src="${pageContext.request.contextPath}/js/moment.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/crypto-js.js"></script>
 <script src="${pageContext.request.contextPath}/js/app.js"></script>
+
+<script>
+var appCtx = "${pageContext.request.contextPath}";
+var currentUserInfo = JSON.parse('${currentUserInfo}');
+jQuery(document).on('click','a.treeNode', function(){//菜单高亮显示
+    jQuery("#main_navigation").find('.current_menu').removeClass('current_menu');
+    jQuery("#main_navigation").find('.subOpened').removeClass('subOpened');
+    jQuery(this).addClass("current_menu");
+
+});
+</script>
+
 <script type="text/javascript">
     var google_map_url = "http://maps.googleapis.com/maps/api/js?key=AIzaSyBzE9xAESye6Kde-3hT-6B90nfwUkcS8Yw&sensor=false";
     var mapJson;
@@ -68,17 +80,6 @@
         jQuery("#point_y").val(location.lat());
         jQuery("#point_x").val(location.lng());
     }
-</script>
-
-<script>
-var appCtx = "${pageContext.request.contextPath}";
-var currentUserInfo = JSON.parse('${currentUserInfo}');
-jQuery(document).on('click','a.treeNode', function(){//菜单高亮显示
-    jQuery("#main_navigation").find('.current_menu').removeClass('current_menu');
-    jQuery("#main_navigation").find('.subOpened').removeClass('subOpened');
-    jQuery(this).addClass("current_menu");
-
-});
 </script>
 
 
