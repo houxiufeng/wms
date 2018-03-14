@@ -73,7 +73,7 @@ var BranchProduct = {
     
     save: function() {
         var data = jQuery("#branchProductForm").serialize();
-        if (!_isNull(jQuery("#point_x")) && !_isNull(jQuery("#point_y"))) {
+        if (!_isNull(jQuery("#point_x").val()) && !_isNull(jQuery("#point_y").val())) {
             data += "&poi=" + jQuery("#point_x").val() + "," + jQuery("#point_y").val();
         }
         jQuery.ajax({
@@ -165,6 +165,7 @@ var BranchProduct = {
 
     reset : function(){
         jQuery("#branchProductForm")[0].reset();
+        jQuery("#branchProductForm").find(":input[name='id']").val("");
         jQuery("#productName option:first").attr("selected",true);
         jQuery("#productName").trigger("change");
         if (!_isNull(marker)) {
