@@ -5,6 +5,7 @@ package com.home.wms.dto;
  */
 public class QueryBranchParams {
 	private String name;
+	private Long customerId;
 	private Long organizationId;
 	private Integer iDisplayStart = 0;
 	private Integer iDisplayLength = 10;
@@ -15,6 +16,14 @@ public class QueryBranchParams {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Long getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
 	}
 
 	public Long getOrganizationId() {

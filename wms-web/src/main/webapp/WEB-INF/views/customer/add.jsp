@@ -141,8 +141,8 @@
                 <div class="span4">
                     <label class="field_name align_right">合同有效期:</label>
                     <div class="field">
-                        <input name="contractFrom" type="text" class="datetimepicker" style="width:140px;"> —
-                        <input name="contractTo" type="text" class="datetimepicker" style="width:140px;" >
+                        <input name="contractFrom" type="text" class="datetimepicker" style="width:135px;" readonly> —
+                        <input name="contractTo" type="text" class="datetimepicker" style="width:135px;" readonly>
                     </div>
                 </div>
             </div>

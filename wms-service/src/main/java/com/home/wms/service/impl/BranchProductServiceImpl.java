@@ -1,12 +1,15 @@
 package com.home.wms.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
 import com.google.common.collect.Lists;
+import com.home.wms.dto.BranchProductInfo;
 import com.home.wms.dto.BranchProductVo;
 import com.home.wms.dto.CurrentUserInfo;
 import com.home.wms.dto.QueryBranchProductParams;
 import com.home.wms.entity.Branch;
 import com.home.wms.entity.BranchProduct;
 import com.home.wms.entity.Permission;
+import com.home.wms.entity.Product;
 import com.home.wms.service.BranchProductService;
 import com.home.wms.utils.AppContextManager;
 import com.ktanx.common.model.PageList;
@@ -29,16 +32,6 @@ public class BranchProductServiceImpl implements BranchProductService{
 	@Autowired
 	private JdbcDao jdbcDao;
 	private static Logger LOGGER = LoggerFactory.getLogger(BranchProductServiceImpl.class);
-
-//	@Override
-//	public PageList<BranchProduct> findPageBranchProducts(QueryBranchProductParams params) {
-//		Select<BranchProduct> s = jdbcDao.createSelect(BranchProduct.class);
-//		if (params.getOrganizationId() != null) {
-//			s.and("organizationId",params.getOrganizationId());
-//		}
-//		return s.orderBy("id").desc().pageList(params.getiDisplayStart()/params.getiDisplayLength() + 1, params.getiDisplayLength());
-//	}
-
 	@Override
 	public PageList<BranchProductVo> findPageBranchProducts(QueryBranchProductParams params) {
 		StringBuffer sql =  new StringBuffer("select a.*, b.name product_name, b.model product_model from branch_product a");
@@ -81,4 +74,14 @@ public class BranchProductServiceImpl implements BranchProductService{
 	public BranchProduct getBranchProductById(Long id) {
 		return jdbcDao.get(BranchProduct.class, id);
 	}
+	@Override
+	public BranchProductInfo getBranchProductInfoById(Long id) {
+		BranchProduct bp = jdbcDao.get(BranchProduct.class, id);
+		BranchProductInfo bpInfo = new BranchProductInfo();
+		BeanUtil.copyProperties(bp, bpInfo);
+		bpInfo.setBranch(jdbcDao.get(Branch.class, bp.getBranchId()));
+		bpInfo.setProduct(jdbcDao.get(Product.class, bp.getProductId()));
+		return bpInfo;
+	}
+
 }

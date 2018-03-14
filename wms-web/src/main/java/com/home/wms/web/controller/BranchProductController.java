@@ -16,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Created by fitz on 2018/3/4.
  */
@@ -115,5 +117,25 @@ public class BranchProductController {
 			LOG.error(e.getMessage());
 		}
 		return "/branch/branch_product_detail";
+	}
+
+	@RequestMapping(value="/findByConditions", method = RequestMethod.GET)
+	@ResponseBody
+	public JSONObject findByConditions(QueryBranchProductParams params){
+		JSONObject result = new JSONObject();
+		try {
+			params.setOrganizationId(AppContextManager.getCurrentUserInfo().getOrganizationId());
+			params.setiDisplayStart(0);
+			params.setiDisplayLength(Integer.MAX_VALUE);
+			PageList<BranchProductVo> pageList = branchProductService.findPageBranchProducts(params);
+			result.put("code", 0);
+			result.put("data", pageList);
+		} catch(Exception e) {
+			e.printStackTrace();
+			LOG.error(e.getMessage());
+			result.put("code", 1);
+			result.put("message", e.getMessage());
+		}
+		return result;
 	}
 }

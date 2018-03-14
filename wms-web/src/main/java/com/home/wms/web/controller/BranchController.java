@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 /**
  * Created by fitz on 2018/3/4.
  */
@@ -110,6 +112,23 @@ public class BranchController {
 		try {
 			branchService.deleteBranch(id);
 			result.put("code", 0);
+		} catch(Exception e) {
+			e.printStackTrace();
+			LOG.error(e.getMessage());
+			result.put("code", 1);
+			result.put("message", e.getMessage());
+		}
+		return result;
+	}
+
+	@RequestMapping(value="/findByConditions", method = RequestMethod.GET)
+	@ResponseBody
+	public JSONObject findByConditions(QueryBranchParams params){
+		JSONObject result = new JSONObject();
+		try {
+			List<Branch> branches = branchService.findByConditions(params);
+			result.put("code", 0);
+			result.put("data", branches);
 		} catch(Exception e) {
 			e.printStackTrace();
 			LOG.error(e.getMessage());

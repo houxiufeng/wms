@@ -32,8 +32,8 @@
         success: function(json) {
             if(json.countryCode == 'CN') {
                 google_map_url = "http://ditu.google.cn/maps/api/js?key=AIzaSyBzE9xAESye6Kde-3hT-6B90nfwUkcS8Yw&sensor=false&language=zh-CN";
-                mapJson = json;
             }
+            mapJson = json;
         },
         error: function(xhr, textStatus, errorThrown){}
     });
