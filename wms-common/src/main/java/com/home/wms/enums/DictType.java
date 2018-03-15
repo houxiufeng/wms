@@ -6,11 +6,10 @@ package com.home.wms.enums;
 public enum DictType {
 	CUSTOMER_LEVEL((short)1,"客户级别"),
 	CUSTOMER_CREDIT((short)2,"客户信用"),
-	CONFIRM_PROBLEM((short)3,"确认问题"),
-	PROBLEM_TYPE((short)4,"问题类型"),
-	VENDOR_LEVEL((short)5,"供应商级别"),
-	MAINTAIN_SKILL((short)6,"产品维修能力"),
-	PRODUCT_BRAND((short)7,"产品名称");
+	PROBLEM_TYPE((short)3,"问题类型"),
+	VENDOR_LEVEL((short)4,"供应商级别"),
+	MAINTAIN_SKILL((short)5,"产品维修能力"),
+	PRODUCT_BRAND((short)6,"产品名称");
 
 	DictType(Short value, String desc) {
 		this.value = value;
