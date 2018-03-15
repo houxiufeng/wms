@@ -50,4 +50,14 @@ public class DictServiceImpl implements DictService{
         jdbcDao.delete(Dict.class, id);
 	}
 
+	@Override
+	public List<Dict> findByType(Short type) {
+		QueryDictParams dictParams = new QueryDictParams();
+		dictParams.setOrganizationId(AppContextManager.getCurrentUserInfo().getOrganizationId());
+		dictParams.setType(type);
+		dictParams.setiDisplayStart(0);
+		dictParams.setiDisplayLength(Integer.MAX_VALUE);
+		return findPageDicts(dictParams);
+	}
+
 }

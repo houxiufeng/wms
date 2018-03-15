@@ -68,8 +68,8 @@
             <div class="form_row">
                 <div class="span6">
                     <label class="field_name align_right"><span style="color: red">*</span>问题描述:</label>
-                    <div class="field">
-                        <textarea name="remark" style="resize:none;width: 83%;height: 150px;">${order.remark}</textarea>
+                    <div class="field" style="margin-top: 5px">
+                        <span style="display: inline-block; width: 85%">${order.description}</span>
                     </div>
                 </div>
             </div>

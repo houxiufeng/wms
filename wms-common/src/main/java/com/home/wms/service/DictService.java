@@ -13,4 +13,5 @@ public interface DictService {
 	PageList<Dict> findPageDicts(QueryDictParams params);
 	void saveDict(Dict dict);
 	void deleteDict(Long id);
+	List<Dict> findByType(Short type);
 }

@@ -16,6 +16,7 @@ public class Torder {
 	private String remark;
 	private Long organizationId;
 	private Long vendorId;
+	private String description;
 	private Long createdBy;
 	private Date createdTime;
 	private Date updatedTime;
@@ -122,5 +123,13 @@ public class Torder {
 
 	public void setUpdatedTime(Date updatedTime) {
 		this.updatedTime = updatedTime;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

@@ -3,7 +3,6 @@
 <div class="well light_gray">
     <div class="well-content">
         <div class="dataTables_wrapper">
-            <input id="orderId" type="hidden" value="${orderId}">
             <table id="vendorTable" class="table table-striped table-bordered table-hover datatable"></table>
         </div>
     </div>

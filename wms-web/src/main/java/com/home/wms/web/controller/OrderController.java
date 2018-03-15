@@ -1,6 +1,7 @@
 package com.home.wms.web.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.google.common.collect.Lists;
 import com.home.wms.dto.OrderVo;
 import com.home.wms.dto.QueryCustomerParams;
 import com.home.wms.dto.QueryDictParams;
@@ -42,7 +43,7 @@ public class OrderController {
 
 	@RequestMapping("loadData")
 	@ResponseBody
-	public JSONObject loadData(QueryOrderParams params, Model model){
+	public JSONObject loadData(QueryOrderParams params){
 		JSONObject json = new JSONObject();
 		params.setOrganizationId(AppContextManager.getCurrentUserInfo().getOrganizationId());
 		PageList<OrderVo> pageList = orderService.findPageOrders(params);
@@ -59,18 +60,13 @@ public class OrderController {
 		params.setiDisplayLength(Integer.MAX_VALUE);
 		params.setiDisplayStart(0);
 		model.addAttribute("customers", customerService.findPageCustomers(params));
-		QueryDictParams dictParams = new QueryDictParams();
-		dictParams.setOrganizationId(AppContextManager.getCurrentUserInfo().getOrganizationId());
-		dictParams.setType(DictType.PROBLEM_TYPE.getValue());
-		dictParams.setiDisplayStart(0);
-		dictParams.setiDisplayLength(Integer.MAX_VALUE);
-		model.addAttribute("types", dictService.findPageDicts(dictParams));
+		model.addAttribute("types",dictService.findByType(DictType.PROBLEM_TYPE.getValue()));
 		return "/order/add";
 	}
 
 	@RequestMapping(value="/create", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject create(Torder order, Model model){
+	public JSONObject create(Torder order){
 		JSONObject result = new JSONObject();
 		try {
 			orderService.saveOrder(order);
@@ -86,7 +82,7 @@ public class OrderController {
 
 	@RequestMapping(value="/cancel/{id}", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject update(@PathVariable Long id, Model model){
+	public JSONObject update(@PathVariable Long id){
 		JSONObject result = new JSONObject();
 		Torder order = new Torder();
 		order.setStatus(OrderStatus.CANCEL.getValue());
@@ -116,19 +112,91 @@ public class OrderController {
 	}
 
 	@RequestMapping(value="/assign/{id}", method = RequestMethod.GET)
-	public String assign(@PathVariable Long id, Model model){
-		model.addAttribute("orderId", id);
+	public String assign(@PathVariable Long id){
 		return "/order/assign_vendor";
 	}
 
 	@RequestMapping(value="/assign/vendor", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject assignVendor(@RequestParam Long orderId,@RequestParam Long vendorId, Model model){
+	public JSONObject assignVendor(@RequestParam Long orderId,@RequestParam Long vendorId){
 		JSONObject result = new JSONObject();
 		Torder order = new Torder();
 		order.setStatus(OrderStatus.CHECKING.getValue());
 		order.setId(orderId);
 		order.setVendorId(vendorId);
+		try {
+			orderService.updateOrder(order);
+			result.put("code", 0);
+		} catch(Exception e) {
+			e.printStackTrace();
+			LOG.error(e.getMessage());
+			result.put("code", 1);
+			result.put("message", e.getMessage());
+		}
+		return result;
+	}
+
+	@RequestMapping(value="/check/{id}", method = RequestMethod.GET)
+	public String check(@PathVariable Long id, Model model){
+		model.addAttribute("order",orderService.getOrderById(id));
+		model.addAttribute("types",dictService.findByType(DictType.PROBLEM_TYPE.getValue()));
+		return "/order/check";
+	}
+
+	@RequestMapping(value="/checked", method = RequestMethod.POST)
+	@ResponseBody
+	public JSONObject checked(@RequestParam Long orderId,@RequestParam Integer type,@RequestParam String description, Model model){
+		JSONObject result = new JSONObject();
+		Torder order = new Torder();
+		order.setStatus(OrderStatus.FIXING.getValue());
+		order.setId(orderId);
+		order.setType(type);
+		order.setDescription(description);
+		try {
+			orderService.updateOrder(order);
+			result.put("code", 0);
+		} catch(Exception e) {
+			e.printStackTrace();
+			LOG.error(e.getMessage());
+			result.put("code", 1);
+			result.put("message", e.getMessage());
+		}
+		return result;
+	}
+
+	@RequestMapping(value="/fix/{id}", method = RequestMethod.GET)
+	public String fix(@PathVariable Long id, Model model){
+		model.addAttribute("order",orderService.getOrderVoById(id));
+		return "/order/fix";
+	}
+
+	@RequestMapping(value="/fixed", method = RequestMethod.POST)
+	@ResponseBody
+	public JSONObject fixed(@RequestParam Long orderId){
+		JSONObject result = new JSONObject();
+		Torder order = new Torder();
+		order.setStatus(OrderStatus.AUDITING.getValue());
+		order.setId(orderId);
+		try {
+			orderService.updateOrder(order);
+			result.put("code", 0);
+		} catch(Exception e) {
+			e.printStackTrace();
+			LOG.error(e.getMessage());
+			result.put("code", 1);
+			result.put("message", e.getMessage());
+		}
+		return result;
+	}
+
+	@RequestMapping(value="/audited", method = RequestMethod.POST)
+	@ResponseBody
+	public JSONObject audited(@RequestParam Long orderId, @RequestParam String remark){
+		JSONObject result = new JSONObject();
+		Torder order = new Torder();
+		order.setStatus(OrderStatus.FEEDBACK.getValue());
+		order.setRemark(remark);
+		order.setId(orderId);
 		try {
 			orderService.updateOrder(order);
 			result.put("code", 0);

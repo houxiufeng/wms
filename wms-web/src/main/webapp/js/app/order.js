@@ -56,7 +56,7 @@ var Order = {
                 sDefaultContent : "",
                 sTitle : "问题类型"
             },{
-                mData : "remark",
+                mData : "description",
                 sDefaultContent : "",
                 sTitle : "问题描述"
             },{
@@ -191,7 +191,7 @@ var Order = {
     },
     assign: function (id) {
         jQuery.confirm({
-            title: '供应商',
+            title: '派单中',
             columnClass: 'col-md-8 col-md-offset-2',
             content: 'url:'+appCtx+"/order/assign/"+id,
             confirmButton: '确定',
@@ -203,16 +203,110 @@ var Order = {
                     return false;
                 }
                 var vendorId = checkedObj.val();
-                var orderId = jQuery("#orderId").val();
                 jQuery.ajax({
                     url: appCtx + "/order/assign/vendor",
                     type: 'post',
-                    data: {"orderId":orderId, "vendorId":vendorId},
+                    data: {"orderId":id, "vendorId":vendorId},
                     dataType:'json',
                     success: function(json) {
                         if (json.code == "0") {
                             Order.queryList();
                             App.alert("委派成功");
+                        } else {
+                            App.alert(json.message);
+                        }
+                    },
+                    error: function(xhr, textStatus, errorThrown){
+                        alert(errorThrown);
+                    }
+                });
+
+            }
+        });
+    },
+    
+    checked: function (id) {
+        jQuery.confirm({
+            title: '检查中',
+            columnClass: 'col-md-6 col-md-offset-3',
+            content: 'url:'+appCtx+"/order/check/"+id,
+            confirmButton: '确定',
+            cancelButton: '关闭',
+            confirm: function(){
+                var description = jQuery("#description").val();
+                var type = jQuery("#type").val();
+                if (_isNull(description)) {
+                    App.alert("描述信息必填");
+                    return false;
+                }
+                jQuery.ajax({
+                    url: appCtx + "/order/checked",
+                    type: 'post',
+                    data: {"orderId":id, "type":type, "description":description},
+                    dataType:'json',
+                    success: function(json) {
+                        if (json.code == "0") {
+                            Order.queryList();
+                            App.alert("确认完成");
+                        } else {
+                            App.alert(json.message);
+                        }
+                    },
+                    error: function(xhr, textStatus, errorThrown){
+                        alert(errorThrown);
+                    }
+                });
+
+            }
+        });
+    },
+
+    fixed: function (id) {
+        jQuery.confirm({
+            title: '维修中',
+            columnClass: 'col-md-6 col-md-offset-3',
+            content: 'url:'+appCtx+"/order/fix/"+id,
+            confirmButton: '确定',
+            cancelButton: '关闭',
+            confirm: function(){
+                jQuery.ajax({
+                    url: appCtx + "/order/fixed",
+                    type: 'post',
+                    data: {"orderId":id},
+                    dataType:'json',
+                    success: function(json) {
+                        if (json.code == "0") {
+                            Order.queryList();
+                            App.alert("维修完成");
+                        } else {
+                            App.alert(json.message);
+                        }
+                    },
+                    error: function(xhr, textStatus, errorThrown){
+                        alert(errorThrown);
+                    }
+                });
+
+            }
+        });
+    },
+    audited: function (id) {
+        jQuery.confirm({
+            title: '审核中',
+            columnClass: 'col-md-6 col-md-offset-3',
+            content: '完成备注:<textarea id="remark" style="resize:none;width: 100%;height: 150px;"></textarea>',
+            confirmButton: '通过',
+            cancelButton: '关闭',
+            confirm: function(){
+                jQuery.ajax({
+                    url: appCtx + "/order/audited",
+                    type: 'post',
+                    data: {"orderId":id, "remark":jQuery.trim(jQuery("#remark").val())},
+                    dataType:'json',
+                    success: function(json) {
+                        if (json.code == "0") {
+                            Order.queryList();
+                            App.alert("审核完成");
                         } else {
                             App.alert(json.message);
                         }

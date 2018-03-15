@@ -59,7 +59,7 @@
                 <div class="span6">
                     <label class="field_name align_right"><span style="color: red">*</span>问题描述:</label>
                     <div class="field">
-                        <textarea name="remark" style="resize:none;width: 83%;height: 150px;"></textarea>
+                        <textarea name="description" style="resize:none;width: 83%;height: 150px;"></textarea>
                     </div>
                 </div>
             </div>
