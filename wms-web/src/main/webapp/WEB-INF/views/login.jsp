@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>wms zoo</title>
+    <title>wms</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -29,7 +29,7 @@
 
     <div class="login-container">
         <div class="login-header blue">
-            <h4>WMS ZOO</h4>
+            <h4>WMS</h4>
         </div>
         <form id="loginForm">
             <div class="login-field">

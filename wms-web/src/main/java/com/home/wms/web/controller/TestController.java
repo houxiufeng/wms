@@ -22,12 +22,9 @@ import java.io.IOException;
 @RequestMapping("/test")
 public class TestController {
 
-	@RequestMapping("/t1")
-	@ResponseBody
-	public User test() {
-		User user = new User();
-		user.setName("allen");
-		return user;
+	@RequestMapping("/mobile")
+	public String test() {
+		return "mobile";
 	}
 	
 	@RequestMapping("/t12")
