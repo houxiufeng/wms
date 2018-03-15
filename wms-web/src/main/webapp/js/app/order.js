@@ -60,6 +60,10 @@ var Order = {
                 sDefaultContent : "",
                 sTitle : "问题描述"
             },{
+                mData : "vendorName",
+                sDefaultContent : "",
+                sTitle : "维修人员"
+            },{
                 mData : "id",
                 sDefaultContent : "",
                 sTitle : "操作",
@@ -183,6 +187,42 @@ var Order = {
             title: '订单详情',
             columnClass: 'col-md-6 col-md-offset-3',
             content: 'url:'+appCtx+"/order/detail/"+id
+        });
+    },
+    assign: function (id) {
+        jQuery.confirm({
+            title: '供应商',
+            columnClass: 'col-md-8 col-md-offset-2',
+            content: 'url:'+appCtx+"/order/assign/"+id,
+            confirmButton: '确定',
+            cancelButton: '关闭',
+            confirm: function(){
+                var checkedObj = jQuery("#vendorTable").find(":checkbox:checked[name='vendorId']");
+                if (checkedObj.length == 0) {
+                    App.alert("请选择一个供应商");
+                    return false;
+                }
+                var vendorId = checkedObj.val();
+                var orderId = jQuery("#orderId").val();
+                jQuery.ajax({
+                    url: appCtx + "/order/assign/vendor",
+                    type: 'post',
+                    data: {"orderId":orderId, "vendorId":vendorId},
+                    dataType:'json',
+                    success: function(json) {
+                        if (json.code == "0") {
+                            Order.queryList();
+                            App.alert("委派成功");
+                        } else {
+                            App.alert(json.message);
+                        }
+                    },
+                    error: function(xhr, textStatus, errorThrown){
+                        alert(errorThrown);
+                    }
+                });
+
+            }
         });
     }
 

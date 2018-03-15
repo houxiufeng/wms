@@ -15,6 +15,7 @@ public class Torder {
 	private Integer type;
 	private String remark;
 	private Long organizationId;
+	private Long vendorId;
 	private Long createdBy;
 	private Date createdTime;
 	private Date updatedTime;
@@ -89,6 +90,14 @@ public class Torder {
 
 	public void setOrganizationId(Long organizationId) {
 		this.organizationId = organizationId;
+	}
+
+	public Long getVendorId() {
+		return vendorId;
+	}
+
+	public void setVendorId(Long vendorId) {
+		this.vendorId = vendorId;
 	}
 
 	public Long getCreatedBy() {

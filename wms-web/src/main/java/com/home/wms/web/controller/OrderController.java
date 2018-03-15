@@ -115,4 +115,30 @@ public class OrderController {
 		return "/order/detail";
 	}
 
+	@RequestMapping(value="/assign/{id}", method = RequestMethod.GET)
+	public String assign(@PathVariable Long id, Model model){
+		model.addAttribute("orderId", id);
+		return "/order/assign_vendor";
+	}
+
+	@RequestMapping(value="/assign/vendor", method = RequestMethod.POST)
+	@ResponseBody
+	public JSONObject assignVendor(@RequestParam Long orderId,@RequestParam Long vendorId, Model model){
+		JSONObject result = new JSONObject();
+		Torder order = new Torder();
+		order.setStatus(OrderStatus.CHECKING.getValue());
+		order.setId(orderId);
+		order.setVendorId(vendorId);
+		try {
+			orderService.updateOrder(order);
+			result.put("code", 0);
+		} catch(Exception e) {
+			e.printStackTrace();
+			LOG.error(e.getMessage());
+			result.put("code", 1);
+			result.put("message", e.getMessage());
+		}
+		return result;
+	}
+
 }

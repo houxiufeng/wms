@@ -42,6 +42,9 @@ public class VendorServiceImpl implements VendorService {
 		if (StringUtils.isNotBlank(params.getName())) {
 			s.and("name","like",new Object[]{"%"+params.getName().trim()+"%"});
 		}
+		if (params.getStatus() != null) {
+			s.and("status",params.getStatus());
+		}
 		PageList<Vendor> list =  s.orderBy("id").desc().pageList(params.getiDisplayStart()/params.getiDisplayLength() + 1, params.getiDisplayLength());
 	    List<VendorVo> vos = Lists.newArrayListWithCapacity(list.size());
 

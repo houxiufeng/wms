@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,6 +36,7 @@ public class OrderServiceImpl implements OrderService {
 		sql.append("(select c.name from customer c where c.id = t.customer_id) customer_name,");
 		sql.append("(select b.name from branch b where b.id = t.branch_id) branch_name,");
 		sql.append("(select d.name from dict d where t.type = d.id) type_name,");
+		sql.append("(select v.name from vendor v where t.vendor_id = v.id) vendor_name,");
 		sql.append("(select p.model from product p where bp.product_id = p.id) product_model,");
 		sql.append("(select p.name from product p where bp.product_id = p.id) product_name from torder t ");
 		sql.append("left join branch_product bp on t.branch_product_id = bp.id where 1");
@@ -60,6 +62,10 @@ public class OrderServiceImpl implements OrderService {
 			sql.append(" and t.created_time <= ?");
 			paramList.add(params.getEndTime() + " 23:59:59");
 		}
+		if (params.getVendorId() != null) {
+			sql.append(" and t.vendor_id = ?");
+			paramList.add(params.getVendorId());
+		}
         sql.append(" order by t.id desc");
 		return (PageList<OrderVo>)jdbcDao.createNativeExecutor().resultClass(OrderVo.class)
 				.command(sql.toString()).parameters(paramList.toArray())
@@ -82,6 +88,7 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public void updateOrder(Torder order) {
+		order.setUpdatedTime(new Date());
 		jdbcDao.update(order);
 	}
 

@@ -5,6 +5,7 @@ package com.home.wms.dto;
  */
 public class QueryVendorParams {
 	private String name;
+	private Integer status;
 	private Long organizationId;
 	private Integer iDisplayStart = 0;
 	private Integer iDisplayLength = 10;
@@ -39,5 +40,13 @@ public class QueryVendorParams {
 
 	public void setiDisplayLength(Integer iDisplayLength) {
 		this.iDisplayLength = iDisplayLength;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 }

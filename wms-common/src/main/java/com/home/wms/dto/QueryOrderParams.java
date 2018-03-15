@@ -9,6 +9,7 @@ public class QueryOrderParams {
 	private String endTime;
 	private Long organizationId;
 	private Integer status;
+	private Long vendorId;
 	private Integer iDisplayStart = 0;
 	private Integer iDisplayLength = 10;
 
@@ -66,5 +67,13 @@ public class QueryOrderParams {
 
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+
+	public Long getVendorId() {
+		return vendorId;
+	}
+
+	public void setVendorId(Long vendorId) {
+		this.vendorId = vendorId;
 	}
 }

@@ -11,6 +11,7 @@ public class OrderVo extends Torder{
 	private String productName;
 	private String productModel;
 	private String typeName;
+	private String vendorName;
 
 	public String getCustomerName() {
 		return customerName;
@@ -50,5 +51,13 @@ public class OrderVo extends Torder{
 
 	public void setTypeName(String typeName) {
 		this.typeName = typeName;
+	}
+
+	public String getVendorName() {
+		return vendorName;
+	}
+
+	public void setVendorName(String vendorName) {
+		this.vendorName = vendorName;
 	}
 }
