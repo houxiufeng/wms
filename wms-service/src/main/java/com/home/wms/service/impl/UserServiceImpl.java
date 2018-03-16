@@ -67,4 +67,10 @@ public class UserServiceImpl implements UserService{
         user.setPassword(password);
         return jdbcDao.querySingleResult(user);
     }
+
+    public User findByToken(String token) {
+    	User user = new User();
+    	user.setToken(token);
+    	return jdbcDao.querySingleResult(user);
+    }
 }

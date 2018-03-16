@@ -17,10 +17,7 @@
     <header class="blue"> <!-- Header start -->
         <a href="#" class="logo_image"><span class="hidden-480">WMS ZOO</span></a>
         <ul class="header_actions">
-            <li class="dropdown"><a href="#"><img src="${ctx}/flatpoint/demo/avatar_06.png" alt="User image" class="avatar"> ${CURRENT_USER.name} <i class="icon-angle-down"></i></a>
-                <ul>
-                    <li><a href="#"><i class="icon-user"></i>个人中心</a></li>
-                </ul>
+            <li class="dropdown"><a href="#"><img src="${ctx}/flatpoint/demo/avatar_06.png" alt="User image" class="avatar"> ${CURRENT_USER.name}</a>
             </li>
             <li><a id="logout" href="javascript:logout()"><i class="icon-signout"></i> <span class="hidden-768 hidden-480">Logout</span></a></li>
         </ul>

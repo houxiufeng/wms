@@ -1,5 +1,7 @@
 package com.home.wms.entity;
 
+import cn.hutool.crypto.SecureUtil;
+
 import java.util.Date;
 
 public class User {
@@ -12,6 +14,7 @@ public class User {
     private String address;
     private String email;
     private String description;
+    private String token;
     private Date createdAt;
     private Date updatedAt;
     
@@ -79,4 +82,13 @@ public class User {
 	public void setOrganizationId(Long organizationId) {
 		this.organizationId = organizationId;
 	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
 }

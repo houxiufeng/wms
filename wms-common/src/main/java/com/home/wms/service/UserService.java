@@ -7,15 +7,18 @@ import com.ktanx.common.model.PageList;
 
 public interface UserService {
     
-    public PageList<UserVo> findUsers(QueryUserParams params);
+    PageList<UserVo> findUsers(QueryUserParams params);
     
-    public void save(User user);
+    void save(User user);
     
-    public void delete(long id);
+    void delete(long id);
     
-    public void update(User user);
+    void update(User user);
     
-    public User getById(long id);
+    User getById(long id);
     
-    public User findByEmailAndPwd(String name, String password);
+    User findByEmailAndPwd(String name, String password);
+
+    User findByToken(String token);
+
 }

@@ -7,10 +7,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.CellReference;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,9 +19,9 @@ import java.io.IOException;
 @RequestMapping("/test")
 public class TestController {
 
-	@RequestMapping("/mobile")
-	public String test() {
-		return "mobile";
+	@RequestMapping("/{pageName}/show")
+	public String test(@PathVariable String pageName) {
+		return "/test/" + pageName;
 	}
 	
 	@RequestMapping("/t12")

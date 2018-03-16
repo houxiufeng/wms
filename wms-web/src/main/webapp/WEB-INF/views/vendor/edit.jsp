@@ -123,7 +123,7 @@
 					<label class="field_name align_right">累计评分:</label>
 					<div class="field" style="margin-top: 5px;">
 						<span style="color: green">好评</span>:${vendor.goodScore}
-						<span style="color: lightseagreen;">中评</span>:${vendor.moderateScore}
+						<span style="color: darkslategrey;">中评</span>:${vendor.moderateScore}
 						<span style="color:red">差评</span>:${vendor.badScore}
 					</div>
 				</div>

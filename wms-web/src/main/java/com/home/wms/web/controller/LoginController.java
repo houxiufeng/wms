@@ -1,6 +1,7 @@
 package com.home.wms.web.controller;
 
 
+import cn.hutool.crypto.SecureUtil;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.home.wms.dto.CurrentUserInfo;
@@ -18,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -44,9 +46,19 @@ public class LoginController {
 
     @RequestMapping(value="/login", method = RequestMethod.POST)
     @ResponseBody
-    public WMSResponse login(LoginDto loginDto, HttpSession session, HttpServletResponse res) {
+    public WMSResponse login(@RequestHeader(required = false) String token, LoginDto loginDto, HttpSession session, HttpServletResponse res) {
         WMSResponse response = new WMSResponse();
-        User user = userService.findByEmailAndPwd(loginDto.getEmail(), loginDto.getPassword());
+        User user = null;
+        if (StringUtils.isNotBlank(token)) {
+            user = userService.findByToken(token);
+            if (user == null) {
+                response.setCode(1);
+                response.setMsg("请重新登录！");
+                return response;
+            }
+        } else {
+            user = userService.findByEmailAndPwd(loginDto.getEmail(), loginDto.getPassword());
+        }
         if (user != null) {
             Organization organization = null;
             if (user.getOrganizationId() != null) {
@@ -64,6 +76,12 @@ public class LoginController {
                 return response;
             }
 
+            if (StringUtils.isBlank(user.getToken())) {
+                String newToken = generateToken(user.getEmail(), user.getPassword(), user.getOrganizationId());
+                user.setToken(newToken);
+                userService.update(user);
+            }
+
             CurrentUserInfo currentUserInfo = new CurrentUserInfo();
             currentUserInfo.setId(user.getId());
             currentUserInfo.setName(user.getName());
@@ -76,6 +94,12 @@ public class LoginController {
                 currentUserInfo.setOrganizationName(organization.getName());
             }
             session.setAttribute(AppConstants.CURRENT_USER, currentUserInfo);
+            // 设置crm登录token的cookie
+            Cookie cookie = new Cookie("wms_token", user.getToken());
+//            cookie.setDomain("");
+            cookie.setMaxAge(Integer.MAX_VALUE);
+            cookie.setPath("/");
+            res.addCookie(cookie);
         } else {
             response.setCode(1);
             response.setMsg("用户名或者密码不正确！");
@@ -111,4 +135,13 @@ public class LoginController {
         WMSResponse response = new WMSResponse();
         return response;
     }
+
+    private static String generateToken(String email, String password, Long organizationId) {
+        String s = email + password;
+        if (organizationId != null) {
+            s += organizationId;
+        }
+        return SecureUtil.md5(s);
+    }
+
 }
