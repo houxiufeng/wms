@@ -87,11 +87,7 @@
                     rules:params.rules,
                     messages: params.messages
                 });
-                var b = isPC();
                 var data = {"email":$.trim($("#email").val()), "password":pwdMd5};
-                if (!b) {
-                    data = {"email":$.trim($("#email").val()), "password":pwdMd5, "mobile":1};
-                }
                 if (params.form.valid()) {
                     $.ajax({
                         url:  "${ctx}/login",

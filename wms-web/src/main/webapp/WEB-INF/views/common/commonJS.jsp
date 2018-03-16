@@ -16,6 +16,7 @@
 <script src="${pageContext.request.contextPath}/flatpoint/js/flatpoint_core.js"></script>
 
 <script src="${pageContext.request.contextPath}/js/jquery-confirm.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
 <script src="${pageContext.request.contextPath}/js/datatables.js"></script>
 <script src="${pageContext.request.contextPath}/js/moment.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/crypto-js.js"></script>
