@@ -1,9 +1,12 @@
 package com.home.wms.web.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.home.wms.dto.CustomerVo;
 import com.home.wms.dto.QueryCustomerParams;
 import com.home.wms.entity.Customer;
+import com.home.wms.enums.DictType;
 import com.home.wms.service.CustomerService;
+import com.home.wms.service.DictService;
 import com.home.wms.utils.AppContextManager;
 import com.ktanx.common.model.PageList;
 import org.slf4j.Logger;
@@ -24,6 +27,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
+	@Autowired
+	private DictService dictService;
 
 	private static final Logger LOG = LoggerFactory.getLogger(CustomerController.class);
 
@@ -37,7 +42,7 @@ public class CustomerController {
 	public JSONObject loadData(QueryCustomerParams params, Model model){
 		JSONObject json = new JSONObject();
 		params.setOrganizationId(AppContextManager.getCurrentUserInfo().getOrganizationId());
-		PageList<Customer> pageList = customerService.findPageCustomers(params);
+		PageList<CustomerVo> pageList = customerService.findPageCustomers(params);
 		json.put("aaData", pageList);
 		json.put("iTotalRecords", pageList.getPager().getTotalItems());
 		json.put("iTotalDisplayRecords", pageList.getPager().getTotalItems());
@@ -46,6 +51,8 @@ public class CustomerController {
 
 	@RequestMapping(value="/add", method = RequestMethod.GET)
 	public String add(Model model){
+		model.addAttribute("types", dictService.findByType(DictType.CUSTOMER_LEVEL.getValue()));
+		model.addAttribute("creditStatus", dictService.findByType(DictType.CUSTOMER_CREDIT.getValue()));
 		return "/customer/add";
 	}
 
@@ -67,6 +74,8 @@ public class CustomerController {
 
 	@RequestMapping(value="/edit/{id}", method = RequestMethod.GET)
 	public String edit(@PathVariable Long id, Model model){
+		model.addAttribute("types", dictService.findByType(DictType.CUSTOMER_LEVEL.getValue()));
+		model.addAttribute("creditStatus", dictService.findByType(DictType.CUSTOMER_CREDIT.getValue()));
 		model.addAttribute("customer", customerService.getCustomerById(id));
 		return "/customer/edit";
 	}

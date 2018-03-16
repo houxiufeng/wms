@@ -105,9 +105,9 @@
                     <label class="field_name align_right">客户级别:</label>
                     <div class="field">
                         <select name="type">
-                            <option value="1">长期合作</option>
-                            <option value="2">短期合作</option>
-                            <option value="3">临时合作</option>
+                            <c:forEach items="${types}" var="item">
+                                <option value="${item.id}">${item.name}</option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>
@@ -116,9 +116,9 @@
                     <label class="field_name align_right">客户信用:</label>
                     <div class="field">
                         <select name="creditStatus">
-                            <option value="1">良好</option>
-                            <option value="2">中等</option>
-                            <option value="3">一般</option>
+                            <c:forEach items="${creditStatus}" var="item">
+                                <option value="${item.id}">${item.name}</option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>

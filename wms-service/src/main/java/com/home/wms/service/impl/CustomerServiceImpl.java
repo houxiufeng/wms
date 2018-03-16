@@ -1,6 +1,8 @@
 package com.home.wms.service.impl;
 
+import com.google.common.collect.Lists;
 import com.home.wms.dto.CurrentUserInfo;
+import com.home.wms.dto.CustomerVo;
 import com.home.wms.dto.QueryBranchParams;
 import com.home.wms.dto.QueryCustomerParams;
 import com.home.wms.entity.Customer;
@@ -16,6 +18,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by fitz on 2018/2/26.
  */
@@ -26,15 +30,24 @@ public class CustomerServiceImpl implements CustomerService {
 	private static Logger LOGGER = LoggerFactory.getLogger(CustomerServiceImpl.class);
 
 	@Override
-	public PageList<Customer> findPageCustomers(QueryCustomerParams params) {
-		Select<Customer> s = jdbcDao.createSelect(Customer.class);
+	public PageList<CustomerVo> findPageCustomers(QueryCustomerParams params) {
+		List<Object> paramList = Lists.newArrayList();
+		StringBuffer sql =  new StringBuffer("select c.*,");
+		sql.append("(select d.name from dict d where c.type = d.id) type_name,");
+		sql.append("(select d.name from dict d where c.credit_status = d.id) credit_status_name ");
+		sql.append("from customer c where 1 ");
 		if (params.getOrganizationId() != null) {
-			s.and("organizationId",params.getOrganizationId());
+			sql.append("and c.organization_id = ? ");
+			paramList.add(params.getOrganizationId());
 		}
 		if (StringUtils.isNotBlank(params.getName())) {
-			s.and("name","like",new Object[]{"%"+params.getName().trim()+"%"});
+			sql.append("and c.name like ? ");
+			paramList.add("%"+params.getName().trim()+"%");
 		}
-		return s.orderBy("id").desc().pageList(params.getiDisplayStart()/params.getiDisplayLength() + 1, params.getiDisplayLength());
+		sql.append(" order by c.id desc");
+		return (PageList<CustomerVo>)jdbcDao.createNativeExecutor().resultClass(CustomerVo.class)
+				.command(sql.toString()).parameters(paramList.toArray())
+				.pageList(params.getiDisplayStart()/params.getiDisplayLength() + 1, params.getiDisplayLength());
 	}
 
 

@@ -109,9 +109,9 @@
 			        <label class="field_name align_right">客户级别:</label>
 			        <div class="field">
 				        <select name="type">
-					        <option value="1" <c:if test="${customer.type == 1}">selected</c:if>>长期合作</option>
-					        <option value="2" <c:if test="${customer.type == 2}">selected</c:if>>短期合作</option>
-					        <option value="3" <c:if test="${customer.type == 3}">selected</c:if>>临时合作</option>
+					        <c:forEach items="${types}" var="item">
+						        <option value="${item.id}" <c:if test="${customer.type == item.id}">selected</c:if>>${item.name}</option>
+					        </c:forEach>
 				        </select>
 			        </div>
 		        </div>
@@ -120,9 +120,9 @@
 			        <label class="field_name align_right">客户信用:</label>
 			        <div class="field">
 				        <select name="creditStatus">
-					        <option value="1" <c:if test="${customer.creditStatus == 1}">selected</c:if>>良好</option>
-					        <option value="2" <c:if test="${customer.creditStatus == 2}">selected</c:if>>中等</option>
-					        <option value="3" <c:if test="${customer.creditStatus == 3}">selected</c:if>>一般</option>
+					        <c:forEach items="${creditStatus}" var="item">
+					        <option value="${item.id}" <c:if test="${customer.creditStatus == item.id}">selected</c:if>>${item.name}</option>
+					        </c:forEach>
 				        </select>
 			        </div>
 		        </div>
@@ -145,8 +145,8 @@
 		        <div class="span4">
 			        <label class="field_name align_right">合同有效期:</label>
 			        <div class="field">
-				        <input name="contractFrom" type="text" class="datetimepicker" style="width:140px;" value='<fmt:formatDate value="${customer.contractFrom}" pattern="yyyy-MM-dd"/>' readonly> —
-				        <input name="contractTo" type="text" class="datetimepicker" style="width:140px;" value='<fmt:formatDate value="${customer.contractTo}" pattern="yyyy-MM-dd"/>' readonly>
+				        <input name="contractFrom" type="text" class="datetimepicker" style="width:135px;" value='<fmt:formatDate value="${customer.contractFrom}" pattern="yyyy-MM-dd"/>' readonly> —
+				        <input name="contractTo" type="text" class="datetimepicker" style="width:135px;" value='<fmt:formatDate value="${customer.contractTo}" pattern="yyyy-MM-dd"/>' readonly>
 			        </div>
 		        </div>
 	        </div>

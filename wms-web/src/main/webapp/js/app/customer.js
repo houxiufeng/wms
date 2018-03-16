@@ -26,41 +26,19 @@ var Customer = {
 		        },{
                     mData : "code",
                     sDefaultContent : "",
-                    sTitle : "客户ID"
+                    sTitle : "客户Code"
                 },{
                     mData : "phone",
                     sDefaultContent : "",
                     sTitle : "客户电话"
                 },{
-                    mData : "type",
+                    mData : "typeName",
                     sDefaultContent : "",
-                    sTitle : "客户级别",
-                    mRender: function(value, type ,data){
-                        var result = '';
-                        if (value == 1) {
-                            result = '长期合作';
-                        } else if (value == 2) {
-                            result = '短期合作';
-                        } else if (value == 3) {
-                            result = '临时合作';
-                        }
-                        return result;
-                    }
+                    sTitle : "客户级别"
                 },{
-                    mData : "creditStatus",
+                    mData : "creditStatusName",
                     sDefaultContent : "",
-                    sTitle : "客户信用",
-                    mRender: function(value, type ,data){
-                        var result = '';
-                        if (value == 1) {
-                            result = '良好';
-                        } else if (value == 2) {
-                            result = '中等';
-                        } else if (value == 3) {
-                            result = '一般';
-                        }
-                        return result;
-                    }
+                    sTitle : "客户信用"
                 },{
                     mData : "contractName",
                     sDefaultContent : "",

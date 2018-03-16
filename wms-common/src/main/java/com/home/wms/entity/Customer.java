@@ -19,8 +19,8 @@ public class Customer {
 	private String legalPhone;
 	private String contactPerson;
 	private String contactPhone;
-	private Short type;
-	private Short creditStatus;
+	private Integer type;
+	private Integer creditStatus;
 	private String contractName;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date contractFrom;
@@ -127,19 +127,19 @@ public class Customer {
 		this.contactPhone = contactPhone;
 	}
 
-	public Short getType() {
+	public Integer getType() {
 		return type;
 	}
 
-	public void setType(Short type) {
+	public void setType(Integer type) {
 		this.type = type;
 	}
 
-	public Short getCreditStatus() {
+	public Integer getCreditStatus() {
 		return creditStatus;
 	}
 
-	public void setCreditStatus(Short creditStatus) {
+	public void setCreditStatus(Integer creditStatus) {
 		this.creditStatus = creditStatus;
 	}
 
