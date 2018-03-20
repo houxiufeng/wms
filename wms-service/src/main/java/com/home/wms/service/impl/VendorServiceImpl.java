@@ -94,6 +94,13 @@ public class VendorServiceImpl implements VendorService {
 	public Vendor getVendorById(Long id) {
 		return jdbcDao.get(Vendor.class, id);
 	}
+    @Override
+    public Vendor getVendorByUserId(Long userId) {
+		Vendor vendor = new Vendor();
+		vendor.setUserId(userId);
+		return jdbcDao.querySingleResult(vendor);
+    }
+
 
 	private String findDictName(List<Dict> levelList, Long dictId) {
 		for (Dict dict : levelList) {

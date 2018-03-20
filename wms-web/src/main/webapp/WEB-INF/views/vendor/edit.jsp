@@ -90,6 +90,16 @@
 						</select>
 					</div>
 				</div>
+				<div class="span6">
+					<label class="field_name align_right">关联用户:</label>
+					<div class="field">
+						<select name="userId" class="span12">
+							<c:forEach items="${users}" var="item">
+							<option value="${item.id}" <c:if test="${item.id == vendor.userId}">selected</c:if>>${item.name}</option>
+							</c:forEach>
+						</select>
+					</div>
+				</div>
 			</div>
 
 			<div class="form_row">

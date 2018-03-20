@@ -26,10 +26,8 @@
 	    <div id="main" class="row-fluid">
             <div style="margin-top: 40px; padding: 10px;">
                 <form id="orderForm">
-                    <div class="form_row">
-                        <div class="field">
-                            <span style="font-size: 14px;font-weight: 600">李先生维修公司:你好刘德华</span>
-                        </div>
+                    <div class="form_row" style="text-align: center">
+                        <span style="font-size: 16px;font-weight: 600">李先生维修公司:你好刘德华</span>
                     </div>
                     <div class="form_row">
                         <div class="field">
@@ -37,39 +35,21 @@
                         </div>
                     </div>
                     <div class="form_row">
-                        <div class="col-xs-4">
-                            <label class="field_name align_right" style="width: 50%">接单中:</label>
-                            <div class="field" style="margin-left: 55%; margin-top: 5px;">
-                                0
-                            </div>
-                        </div>
-                        <div class="col-xs-4">
-                            <label class="field_name align_right" style="width: 50%">已完结:</label>
-                            <div class="field" style="margin-left: 55%; margin-top: 5px;">
-                                1
-                            </div>
+                        <label class="field_name align_right" style="width: 50%">检查中订单:</label>
+                        <div class="field" style="margin-left: 55%; margin-top: 5px;">
+                            0
                         </div>
                     </div>
                     <div class="form_row">
-                        <div class="col-xs-4">
-                            <label class="field_name align_right" style="width: 50%">检修中:</label>
-                            <div class="field" style="margin-left: 55%; margin-top: 5px;">
-                                0
-                            </div>
-                        </div>
-                        <div class="col-xs-4">
-                            <label class="field_name align_right" style="width: 50%">已拒绝:</label>
-                            <div class="field" style="margin-left: 55%; margin-top: 5px;">
-                                2
-                            </div>
+                        <label class="field_name align_right" style="width: 50%">维修中订单:</label>
+                        <div class="field" style="margin-left: 55%; margin-top: 5px;">
+                            0
                         </div>
                     </div>
                     <div class="form_row">
-                        <div class="col-xs-4">
-                            <label class="field_name align_right" style="width: 50%">维修中:</label>
-                            <div class="field" style="margin-left: 55%; margin-top: 5px;">
-                                1
-                            </div>
+                        <label class="field_name align_right" style="width: 50%">已完成订单:</label>
+                        <div class="field" style="margin-left: 55%; margin-top: 5px;">
+                            0
                         </div>
                     </div>
 
@@ -87,10 +67,9 @@
 
                     <div class="form_row">
                         <div class="field">
-                            <a href="javascript:;" class="btn light_blue">首页</a>
-                            <a href="javascript:;" class="btn light_blue">接单中</a>
-                            <a href="javascript:;" class="btn light_blue">检查中</a>
-                            <a href="javascript:;" class="btn light_blue">维修中</a>
+                            <a href="javascript:;" class="btn light_blue btn-large">首页</a>
+                            <a href="javascript:;" class="btn light_blue btn-large">检查中</a>
+                            <a href="javascript:;" class="btn light_blue btn-large">维修中</a>
                         </div>
                     </div>
 

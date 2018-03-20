@@ -8,7 +8,7 @@ public enum OrderStatus {
 	CHECKING(1,"检查中"),
 	FIXING(2,"维修中"),
 	AUDITING(3,"审核中"),
-	FEEDBACK(4,"评价中"),
+	COMPLETE(4,"已完结"),
 	CANCEL(5,"已取消");
 
 	OrderStatus(int value, String desc) {

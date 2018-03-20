@@ -5,6 +5,8 @@ import com.home.wms.dto.QueryOrderParams;
 import com.home.wms.entity.Torder;
 import com.ktanx.common.model.PageList;
 
+import java.util.List;
+
 /**
  * Created by fitz on 2018/3/13.
  */
@@ -14,4 +16,6 @@ public interface OrderService {
 	void updateOrder(Torder order);
 	Torder getOrderById(Long id);
 	OrderVo getOrderVoById(Long id);
+	List<Torder> findOrders(Torder order);
+	void updateWithNull(Torder torder);
 }

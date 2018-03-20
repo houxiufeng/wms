@@ -3,12 +3,13 @@ package com.home.wms.web.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.home.wms.dto.QueryDictParams;
 import com.home.wms.dto.QueryVendorParams;
-import com.home.wms.dto.QueryCustomerParams;
 import com.home.wms.dto.VendorVo;
 import com.home.wms.entity.Dict;
+import com.home.wms.entity.User;
 import com.home.wms.entity.Vendor;
 import com.home.wms.enums.DictType;
 import com.home.wms.service.DictService;
+import com.home.wms.service.UserService;
 import com.home.wms.service.VendorService;
 import com.home.wms.utils.AppContextManager;
 import com.ktanx.common.model.PageList;
@@ -34,6 +35,8 @@ public class VendorController {
 	private VendorService vendorService;
 	@Autowired
 	private DictService dictService;
+	@Autowired
+	private UserService userService;
 
 	private static final Logger LOG = LoggerFactory.getLogger(VendorController.class);
 
@@ -65,6 +68,7 @@ public class VendorController {
 		List<Dict> maintainSkills = dictService.findPageDicts(dictParams);
 		model.addAttribute("vendorLevels", customerLevels);
 		model.addAttribute("maintainSkills", maintainSkills);
+		model.addAttribute("users", userService.findUsersNotInVendor());
 		return "/vendor/add";
 	}
 
@@ -95,7 +99,13 @@ public class VendorController {
 		List<Dict> maintainSkills = dictService.findPageDicts(dictParams);
 		model.addAttribute("vendorLevels", customerLevels);
 		model.addAttribute("maintainSkills", maintainSkills);
-		model.addAttribute("vendor", vendorService.getVendorById(id));
+		Vendor vendor = vendorService.getVendorById(id);
+		model.addAttribute("vendor", vendor);
+		List<User> users = userService.findUsersNotInVendor();
+		if (vendor.getUserId() != null) {
+			users.add(0, userService.getById(vendor.getUserId()));
+		}
+		model.addAttribute("users", users);
 		return "/vendor/edit";
 	}
 

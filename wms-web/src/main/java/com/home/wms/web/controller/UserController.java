@@ -2,17 +2,13 @@ package com.home.wms.web.controller;
 
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSONObject;
-import com.home.wms.dto.QueryRoleParams;
 import com.home.wms.dto.QueryUserParams;
 import com.home.wms.dto.UserVo;
-import com.home.wms.entity.Organization;
 import com.home.wms.entity.User;
 import com.home.wms.service.OrganizationService;
 import com.home.wms.service.RoleService;
 import com.home.wms.service.UserService;
-import com.home.wms.utils.AppContextManager;
 import com.ktanx.common.model.PageList;
-import com.ktanx.common.utils.EncryptUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +41,7 @@ public class UserController {
     @ResponseBody
     public JSONObject loadData(QueryUserParams params, Model model){
     	JSONObject json = new JSONObject();
-    	PageList<UserVo> pageList = userService.findUsers(params);
+    	PageList<UserVo> pageList = userService.findPageUsers(params);
     	json.put("aaData", pageList);
     	json.put("iTotalRecords", pageList.getPager().getTotalItems());
     	json.put("iTotalDisplayRecords", pageList.getPager().getTotalItems());

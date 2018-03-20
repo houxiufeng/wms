@@ -17,6 +17,7 @@ public class Torder {
 	private Long organizationId;
 	private Long vendorId;
 	private String description;
+	private String fixRemark;
 	private Long createdBy;
 	private Date createdTime;
 	private Date updatedTime;
@@ -131,5 +132,13 @@ public class Torder {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getFixRemark() {
+		return fixRemark;
+	}
+
+	public void setFixRemark(String fixRemark) {
+		this.fixRemark = fixRemark;
 	}
 }

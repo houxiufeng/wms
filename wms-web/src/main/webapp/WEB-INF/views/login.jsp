@@ -57,9 +57,11 @@
     <script src="${flatpointPath}/js/library/jquery.validate.min.js"></script>
     <script src="${ctx}/js/jquery-confirm.min.js"></script>
     <script src="${ctx}/js/crypto-js.js"></script>
+    <script src="${ctx}/js/jquery.cookie.js"></script>
     <script src="${ctx}/js/app.js"></script>
     <script>
 	    $(function(){
+	        var ispc = isPC();
 	    	$("#loginBtn").click(function(){
 		   		var params = {};
 		   		params.rules = {
@@ -88,16 +90,27 @@
                     messages: params.messages
                 });
                 var data = {"email":$.trim($("#email").val()), "password":pwdMd5};
-                if (params.form.valid()) {
+                var token;
+                if (!ispc) {
+                    token = $.cookie('wms_token');
+                }
+                if (!_isNull(token) || params.form.valid()) {
                     $.ajax({
                         url:  "${ctx}/login",
                         type: 'post',
+                        headers: {
+                            token: token
+                        },
                         sync: false,
                         data:data,
                         dataType:'json',
                         success: function(json) {
                             if (json.code == 0) {
-                                window.location.href = "${ctx}/main";
+                                if (ispc) {
+                                    window.location.href = "${ctx}/main";
+                                } else {
+                                    window.location.href = "${ctx}/mobile";
+                                }
                             } else {
                                 App.alert(json.msg);
                             }
@@ -115,6 +128,9 @@
                     }
                 }
             });
+            if (!ispc && !_isNull($.cookie('wms_token'))) {//手机端
+                $('#loginBtn').click();
+            }
 	    })
     </script>
   </body>

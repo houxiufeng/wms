@@ -18,6 +18,7 @@ public class Vendor {
 	private Integer goodScore;
 	private Integer moderateScore;
 	private Integer badScore;
+	private Long userId;
 	private Long organizationId;
 	private Long createdBy;
 	private Date createdTime;
@@ -140,5 +141,13 @@ public class Vendor {
 
 	public void setCreatedTime(Date createdTime) {
 		this.createdTime = createdTime;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 }

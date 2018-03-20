@@ -23,8 +23,11 @@
 <script src="${pageContext.request.contextPath}/js/app.js"></script>
 
 <script>
-var appCtx = "${pageContext.request.contextPath}";
-var currentUserInfo = JSON.parse('${currentUserInfo}');
+appCtx = "${pageContext.request.contextPath}";
+var currentUserInfo;
+if (!_isNull('${currentUserInfo}')) {
+    currentUserInfo = JSON.parse('${currentUserInfo}');
+}
 jQuery(document).on('click','a.treeNode', function(){//菜单高亮显示
     jQuery("#main_navigation").find('.current_menu').removeClass('current_menu');
     jQuery("#main_navigation").find('.subOpened').removeClass('subOpened');

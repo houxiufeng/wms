@@ -8,7 +8,7 @@
 
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right"><span style="color: red">*</span>订单号:</label>
+                    <label class="field_name align_right">订单号:</label>
                     <div class="field" style="margin-top: 5px">
                         <span>${order.orderNo}</span>
                     </div>
@@ -17,7 +17,7 @@
 
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right"><span style="color: red">*</span>客户名称:</label>
+                    <label class="field_name align_right">客户名称:</label>
                     <div class="field" style="margin-top: 5px">
                         <span>${order.customerName}</span>
                     </div>
@@ -26,7 +26,7 @@
 
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right"><span style="color: red">*</span>总/分店名称:</label>
+                    <label class="field_name align_right">总/分店名称:</label>
                     <div class="field" style="margin-top: 5px">
                         <span>${order.branchName}</span>
                     </div>
@@ -35,7 +35,7 @@
 
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right"><span style="color: red">*</span>问题类型:</label>
+                    <label class="field_name align_right">问题类型:</label>
                     <div class="field" style="margin-top: 5px">
                         <span>${order.typeName}</span>
                     </div>
@@ -44,7 +44,7 @@
 
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right"><span style="color: red">*</span>维修产品:</label>
+                    <label class="field_name align_right">维修产品:</label>
                     <div class="field" style="margin-top: 5px">
                         <span>${order.productName}-${order.productModel}</span>
                     </div>
@@ -53,7 +53,7 @@
 
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right"><span style="color: red">*</span>维修产品:</label>
+                    <label class="field_name align_right">维修产品:</label>
                     <div class="field" style="margin-top: 5px">
                         <c:if test="${order.status == 0}"><span>派单中</span></c:if>
                         <c:if test="${order.status == 1}"><span>检查中</span></c:if>
@@ -67,9 +67,27 @@
 
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right"><span style="color: red">*</span>问题描述:</label>
+                    <label class="field_name align_right">问题描述:</label>
                     <div class="field" style="margin-top: 5px">
                         <span style="display: inline-block; width: 85%">${order.description}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form_row">
+                <div class="span6">
+                    <label class="field_name align_right">维修描述:</label>
+                    <div class="field" style="margin-top: 5px">
+                        <span style="display: inline-block; width: 85%">${order.fixRemark}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form_row">
+                <div class="span6">
+                    <label class="field_name align_right">完成备注:</label>
+                    <div class="field" style="margin-top: 5px">
+                        <span style="display: inline-block; width: 85%">${order.remark}</span>
                     </div>
                 </div>
             </div>

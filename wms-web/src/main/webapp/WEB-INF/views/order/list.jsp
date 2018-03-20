@@ -32,7 +32,7 @@
                     <li><a href="#right-tab1" data-toggle="tab">检查中</a></li>
                     <li><a href="#right-tab2" data-toggle="tab">维修中</a></li>
                     <li><a href="#right-tab3" data-toggle="tab">审核中</a></li>
-                    <li><a href="#right-tab4" data-toggle="tab">评价中</a></li>
+                    <li><a href="#right-tab4" data-toggle="tab">已完结</a></li>
                     <li><a href="#right-tab5" data-toggle="tab">已取消</a></li>
                 </ul>
             </div>

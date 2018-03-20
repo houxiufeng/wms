@@ -5,9 +5,11 @@ import com.home.wms.dto.UserVo;
 import com.home.wms.entity.User;
 import com.ktanx.common.model.PageList;
 
+import java.util.List;
+
 public interface UserService {
     
-    PageList<UserVo> findUsers(QueryUserParams params);
+    PageList<UserVo> findPageUsers(QueryUserParams params);
     
     void save(User user);
     
@@ -20,5 +22,9 @@ public interface UserService {
     User findByEmailAndPwd(String name, String password);
 
     User findByToken(String token);
+
+    List<User> findUsers(User user);
+
+    List<User> findUsersNotInVendor();
 
 }

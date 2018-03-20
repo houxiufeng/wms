@@ -81,6 +81,7 @@
 			<mvc:exclude-mapping path="/js/**"/>
 			<mvc:exclude-mapping path="/flatpoint/**"/>
 			<mvc:exclude-mapping path="/test/**"/>
+			<mvc:exclude-mapping path="/mobile/branch/product/*"/>
 			<bean class="com.home.wms.web.interceptor.SessionInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>

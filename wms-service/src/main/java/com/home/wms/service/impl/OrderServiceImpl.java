@@ -108,4 +108,15 @@ public class OrderServiceImpl implements OrderService {
 		sql.append("left join branch_product bp on t.branch_product_id = bp.id where t.id = ?");
 		return (OrderVo)jdbcDao.createNativeExecutor().resultClass(OrderVo.class).command(sql.toString()).parameters(Lists.newArrayList(id).toArray()).singleResult();
 	}
+
+	@Override
+	public List<Torder> findOrders(Torder torder) {
+		return jdbcDao.queryList(torder);
+	}
+
+	@Override
+	public void updateWithNull(Torder torder) {
+		torder.setUpdatedTime(new Date());
+		jdbcDao.createUpdate(Torder.class).setForEntityWhereId(torder).updateNull().execute();
+	}
 }

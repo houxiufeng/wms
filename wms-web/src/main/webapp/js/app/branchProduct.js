@@ -177,7 +177,7 @@ var BranchProduct = {
 
     genQrcode: function (id) {
         var prefix = window.location.href.substring(0, window.location.href.indexOf("/main"))
-        var url = prefix + "/branch/product/"+id;
+        var url = prefix + "/mobile/branch/product/"+id;
         jQuery.confirm({
             title: '二维码',
             confirmButton: '打印',
@@ -194,6 +194,7 @@ var BranchProduct = {
             height:200, //高度
             text: url //任意内容
         });
+        console.log(url);
         var canvas = jQuery('#qrcode canvas');
         var img = canvas[0].toDataURL("image/png")
         jQuery('#qrcode').html("<img src='" + img + "'>")

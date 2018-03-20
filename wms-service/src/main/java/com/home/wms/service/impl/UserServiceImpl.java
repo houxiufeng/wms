@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private JdbcDao jdbcDao;
     
-    public PageList<UserVo> findUsers(QueryUserParams params) {
+    public PageList<UserVo> findPageUsers(QueryUserParams params) {
 	    StringBuffer sql = new StringBuffer("select user.*, role.name role_name, role.code role_code, organization.name organization_name from user " +
 			    "left join role on user.role_id = role.id " +
 			    "left join organization on user.organization_id = organization.id where 1 ");
@@ -73,4 +73,19 @@ public class UserServiceImpl implements UserService{
     	user.setToken(token);
     	return jdbcDao.querySingleResult(user);
     }
+    public List<User> findUsers(User user) {
+    	return jdbcDao.queryList(user);
+    }
+
+	public List<User> findUsersNotInVendor() {
+		StringBuffer sql = new StringBuffer("select * from user");
+		sql.append(" where NOT EXISTS (select 1 from vendor where user_id = user.id)");
+		sql.append(" and user.role_id = (select id from role where code ='engineer' limit 1)");
+		Long organizationId = AppContextManager.getCurrentUserInfo().getOrganizationId();
+		if (organizationId != null) {
+			sql.append(" and user.organization_id = " + organizationId);
+		}
+		return (List<User>)jdbcDao.createNativeExecutor().resultClass(User.class).command(sql.toString()).list();
+
+	}
 }

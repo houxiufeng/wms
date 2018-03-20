@@ -1,4 +1,5 @@
-Date.prototype.Format = function(fmt) { //author: meizz 
+var appCtx;
+Date.prototype.Format = function(fmt) { //author: meizz
 	var o = {
 		"M+" : this.getMonth() + 1, //月份 
 		"d+" : this.getDate(), //日 
@@ -28,7 +29,7 @@ function _isNull(value){
     return value == undefined || value == null || jQuery.trim(value) == "" || jQuery.trim(value) == 'undefined' || jQuery.trim(value) == 'null';
 }
 
-//公用方法
+//公用方法goToPage
 var App = {
 	    goToPage: function (url, data) {
             jQuery.ajax({
@@ -85,12 +86,13 @@ var App = {
 	};
 function logout() {
     jQuery.ajax({
-        url: "logout",
+        url: appCtx +"/logout",
         type: 'post',
         dataType: 'json',
         success: function (json) {
             if (json.code == 0) {
-                window.location.href="login";
+                window.location.href=appCtx+"/login";
+                jQuery.removeCookie('wms_token', { path: '/' });
             } else {
                 alert(json.msg);
             }

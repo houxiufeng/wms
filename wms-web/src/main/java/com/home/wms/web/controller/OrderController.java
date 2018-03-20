@@ -125,6 +125,12 @@ public class OrderController {
 		order.setId(orderId);
 		order.setVendorId(vendorId);
 		try {
+			Torder torder = orderService.getOrderById(orderId);
+			if (torder != null && torder.getVendorId() != null) {
+				result.put("code", 1);
+				result.put("message", "该订单已分配");
+				return result;
+			}
 			orderService.updateOrder(order);
 			result.put("code", 0);
 		} catch(Exception e) {
@@ -172,10 +178,11 @@ public class OrderController {
 
 	@RequestMapping(value="/fixed", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject fixed(@RequestParam Long orderId){
+	public JSONObject fixed(@RequestParam Long orderId, String fixRemark){
 		JSONObject result = new JSONObject();
 		Torder order = new Torder();
 		order.setStatus(OrderStatus.AUDITING.getValue());
+		order.setFixRemark(fixRemark);
 		order.setId(orderId);
 		try {
 			orderService.updateOrder(order);
@@ -194,11 +201,30 @@ public class OrderController {
 	public JSONObject audited(@RequestParam Long orderId, @RequestParam String remark){
 		JSONObject result = new JSONObject();
 		Torder order = new Torder();
-		order.setStatus(OrderStatus.FEEDBACK.getValue());
+		order.setStatus(OrderStatus.COMPLETE.getValue());
 		order.setRemark(remark);
 		order.setId(orderId);
 		try {
 			orderService.updateOrder(order);
+			result.put("code", 0);
+		} catch(Exception e) {
+			e.printStackTrace();
+			LOG.error(e.getMessage());
+			result.put("code", 1);
+			result.put("message", e.getMessage());
+		}
+		return result;
+	}
+
+	@RequestMapping(value="/reject/{id}", method = RequestMethod.POST)
+	@ResponseBody
+	public JSONObject reject(@PathVariable Long id){
+		JSONObject result = new JSONObject();
+		Torder order = orderService.getOrderById(id);
+		order.setStatus(OrderStatus.ASSIGNING.getValue());
+		order.setVendorId(null);
+		try {
+			orderService.updateWithNull(order);
 			result.put("code", 0);
 		} catch(Exception e) {
 			e.printStackTrace();

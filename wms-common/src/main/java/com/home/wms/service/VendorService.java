@@ -14,4 +14,5 @@ public interface VendorService {
 	void updateVendor(Vendor vendor);
 	void deleteVendor(Long id);
 	Vendor getVendorById(Long id);
+	Vendor getVendorByUserId(Long userId);
 }

@@ -318,6 +318,185 @@ var Order = {
 
             }
         });
+    },
+
+    getMobileTableData: function (status) {
+        jQuery('#orderTable').dataTable({
+            sAjaxSource: appCtx + "/order/loadData",
+            // oLanguage: {
+            //     sUrl: appCtx + '/flatpoint/js/zh_CN.json',
+            // },
+            oLanguage: {
+                "sProcessing": "处理中...",
+                "sLengthMenu": "_MENU_ 记录/页",
+                "sZeroRecords": "没有匹配的记录",
+                "sInfo": "共 _TOTAL_ 条",
+                "sInfoEmpty": "共 0 条",
+                "sInfoFiltered": "(由 _MAX_ 项记录过滤)",
+                "sInfoPostFix": "",
+                "sSearch": "过滤:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "<<",
+                    "sPrevious": "<️",
+                    "sNext": ">",
+                    "sLast": ">>"
+                }
+            },
+            bSort: false,                        // 是否排序功能
+            bFilter: false,                       // 过滤功能
+            bPaginate: true,                     // 翻页功能
+            bInfo: true,                         // 页脚信息
+            bProcessing: true,                   //显示正在加载中
+            bServerSide: true,                   //开启服务器模式
+            // sPaginationType: "full_numbers",    //分页策略
+            bAutoWidth: false,                  // 是否非自动宽度
+            sServerMethod: "POST",              //请求方式为post 主要为了防止中文参数乱码
+            // bRetrieve:true,
+            // bDestroy:true,
+            //sPaginationType: "bootstrap",
+            sDom: '<"top">rt<"tableFooter"ip<"clear">',
+            fnServerParams : function (aoData) {
+                aoData.push({"name": "status", "value":status});
+                aoData.push({"name": "vendorId", "value":jQuery("#vendorId").val()});
+            },
+            aoColumns:[{
+                mData : "orderNo",
+                sDefaultContent : "",
+                sTitle : "订单号"
+            },{
+                mData : "createdTime",
+                sDefaultContent : "",
+                sTitle : "订单时间",
+                mRender: function(value, type ,data) {
+                    return moment(value).format("YYYY-MM-DD HH:mm:ss");
+                }
+            },{
+                mData : "typeName",
+                sDefaultContent : "",
+                sTitle : "问题类型"
+            },{
+                mData : "id",
+                sDefaultContent : "",
+                sTitle : "操作",
+                mRender: function(value, type ,data){
+                    var opts = [];
+                    if (status == 1) {//检查中
+                        opts.push('<a style="margin: 1px;" class="btn edit" href="javascript:Order.reject('+ value + ')">拒单</a><br>');
+                        opts.push('<a class="btn edit" href="javascript:Order.showMobileOrderDetail('+ value + ')">查看</a>');
+                    } else if (status == 2) {//维修中
+                        opts.push('<a class="btn edit" href="javascript:Order.mobileFixed('+ value + ')">完成</a>');
+                    } else if (status == 4) {
+                        opts.push('<a class="btn edit" href="javascript:Order.showMobileOrderDetail('+ value + ')">查看</a>');
+                    }
+                    return opts.join(" ");
+                }
+
+            }]
+        })
+    },
+
+    reject: function(id) {
+        App.confirm("确定要拒单？", function(){
+            jQuery.ajax({
+                url: appCtx + "/order/reject/" + id,
+                type: 'post',
+                dataType:'json',
+                success: function(json) {
+                    if (json.code == "0") {
+                        jQuery("#orderTable").dataTable().fnDraw();
+                    } else {
+                        App.alert(json.message);
+                    }
+                },
+                error: function(xhr, textStatus, errorThrown){
+                    alert(errorThrown);
+                }
+            });
+        });
+    },
+
+    showMobileOrderDetail: function (id) {
+        jQuery.dialog({
+            title: '订单详情',
+            content: 'url:'+appCtx+"/mobile/vendor/order/detail/"+id
+        });
+    },
+    showPOI: function (poi) {
+        jQuery.dialog({
+            title: '地图',
+            content: '<div id="googleMap" style="width:280px;height:220px;"></div>'
+        });
+        var map = initializeMap("googleMap");
+        google.maps.event.clearListeners(map,'click');
+        if (!_isNull(poi)) {
+            var latlng = poi.split(",");
+            var myCenter=new google.maps.LatLng(latlng[1],latlng[0]);
+            placeMarker(map, myCenter);
+        }
+    },
+    mobileChecked: function () {
+        var orderId = jQuery("#orderId").val();
+        var description = jQuery("#description").val();
+        var type = jQuery("#type").val();
+        if (_isNull(description)) {
+            App.alert("描述信息必填");
+            return false;
+        }
+        jQuery.ajax({
+            url: appCtx + "/order/checked",
+            type: 'post',
+            data: {"orderId":orderId, "type":type, "description":description},
+            dataType:'json',
+            success: function(json) {
+                if (json.code == "0") {
+                    App.goToPage(appCtx + '/mobile/vendor/order/list?status=2');
+                    App.alert("确认完成");
+                } else {
+                    App.alert(json.message);
+                }
+            },
+            error: function(xhr, textStatus, errorThrown){
+                alert(errorThrown);
+            }
+        });
+
+    },
+    mobileFixed: function (id) {
+        jQuery.confirm({
+            title: '维修中',
+            // columnClass: 'col-md-8 col-md-offset-2',
+            content: 'url:'+appCtx+"/mobile/vendor/order/fixed/"+id,
+            confirmButton: '确定',
+            cancelButton: '返回',
+            confirm: function(){
+                var fixRemark = jQuery("#fixRemark").val();
+                if (_isNull(fixRemark)) {
+                    App.alert("维修描述必填");
+                    return false;
+                }
+                // var orderId = jQuery("#orderId").val();
+                jQuery.ajax({
+                    url: appCtx + "/order/fixed",
+                    type: 'post',
+                    data: {"orderId":id,"fixRemark":fixRemark},
+                    dataType:'json',
+                    success: function(json) {
+                        if (json.code == "0") {
+                            App.goToPage(appCtx + '/mobile/vendor/order/list?status=2');
+                            App.alert("确认维修成功");
+                        } else {
+                            App.alert(json.message);
+                        }
+                    },
+                    error: function(xhr, textStatus, errorThrown){
+                        alert(errorThrown);
+                    }
+                });
+
+            }
+        });
+
     }
 
 }
