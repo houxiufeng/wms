@@ -64,8 +64,9 @@ public class BranchProductController {
 	public JSONObject create(BranchProduct branchProduct, Model model){
 		JSONObject result = new JSONObject();
 		try {
-			branchProductService.saveBranchProduct(branchProduct);
+			Long id = branchProductService.saveBranchProduct(branchProduct);
 			result.put("code", 0);
+			result.put("data", id);
 		} catch(Exception e) {
 			e.printStackTrace();
 			LOG.error(e.getMessage());

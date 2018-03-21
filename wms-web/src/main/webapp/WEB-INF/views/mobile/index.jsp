@@ -31,6 +31,8 @@
     <script>
         if (currentUserInfo.roleCode == 'engineer') {
             App.goToPage(appCtx + "/mobile/vendor");
+        } else if (currentUserInfo.roleCode == 'register') {
+            App.goToPage(appCtx + "/mobile/branch");
         }
     </script>
 

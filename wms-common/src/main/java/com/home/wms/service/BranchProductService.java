@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface BranchProductService {
 	PageList<BranchProductVo> findPageBranchProducts(QueryBranchProductParams params);
-	void saveBranchProduct(BranchProduct branchProduct);
+	Long saveBranchProduct(BranchProduct branchProduct);
 	void updateBranchProduct(BranchProduct branchProduct);
 	void deleteBranchProduct(Long id);
 	BranchProduct getBranchProductById(Long id);

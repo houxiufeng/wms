@@ -52,12 +52,13 @@ public class BranchProductServiceImpl implements BranchProductService{
 	}
 
 	@Override
-	public void saveBranchProduct(BranchProduct branchProduct) {
+	public Long saveBranchProduct(BranchProduct branchProduct) {
 		CurrentUserInfo currentUserInfo = AppContextManager.getCurrentUserInfo();
 		branchProduct.setOrganizationId(currentUserInfo.getOrganizationId());
 		branchProduct.setCreatedBy(currentUserInfo.getId());
 		branchProduct.setSn(branchProduct.getSn().trim());
-		jdbcDao.insert(branchProduct);
+		Long id = (Long)jdbcDao.insert(branchProduct);
+		return id;
 	}
 
 	@Override

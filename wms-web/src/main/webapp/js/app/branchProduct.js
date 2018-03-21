@@ -1,54 +1,54 @@
 var BranchProduct = {
-		getTableData: function(){
-			jQuery('#branchProductTable').dataTable({
-		        sAjaxSource: appCtx + "/branch/product/loadData",
-		        oLanguage: {
-		            sUrl: appCtx + '/flatpoint/js/zh_CN.json',
-		        },
-		        bSort: false,                        // 是否排序功能
-		        bFilter: false,                       // 过滤功能
-		        bPaginate: true,                     // 翻页功能
-		        bInfo: true,                         // 页脚信息
-		        bProcessing: true,                   //显示正在加载中
-		        bServerSide: true,                   //开启服务器模式
-		        sPaginationType: "full_numbers",    //分页策略
-		        bAutoWidth: false,                  // 是否非自动宽度
-		        sServerMethod: "POST",              //请求方式为post 主要为了防止中文参数乱码
-		        //sPaginationType: "bootstrap",
-		        sDom: '<"top">rt<"tableFooter"lip<"clear">',
-		        fnServerParams : function (aoData) {
-		            aoData.push({"name": "branchId", "value":jQuery("#branchId").val()});
-		        },
-		        aoColumns:[{
-		            mData : "productName",
-		            sDefaultContent : "",
-		            sTitle : "产品名称"
-		        },{
-		            mData : "productModel",
-		            sDefaultContent : "",
-		            sTitle : "产品型号"
-		            
-		        },{
-		            mData : "position",
-		            sDefaultContent : "",
-		            sTitle : "位置"
-		        },{
-                    mData : "sn",
-                    sDefaultContent : "",
-                    sTitle : "序列号"
-                },{
-		            mData : "id",
-		            sDefaultContent : "",
-		            sTitle : "操作",
-		            mRender: function(value, type ,data){
-		            	return '<a class="btn edit" href="javascript:BranchProduct.genQrcode('+ value + ')">二维码</a>\
-		            	        <a class="btn edit" href="javascript:BranchProduct.edit('+ value + ',' + data.productId + ',\''+data.productName+'\',\''+data.sn+'\',\''+data.position+'\',\'' + data.poi+'\')"><i class="icon-edit"></i></a>\
-		            	        <a class="btn edit" href="javascript:BranchProduct.delete('+ value + ')"><i class="icon-trash"></i></a>';
-		            }
-		            
-		        }]
-		    })
-		},
+    getTableData: function(){
+        jQuery('#branchProductTable').dataTable({
+            sAjaxSource: appCtx + "/branch/product/loadData",
+            oLanguage: {
+                sUrl: appCtx + '/flatpoint/js/zh_CN.json',
+            },
+            bSort: false,                        // 是否排序功能
+            bFilter: false,                       // 过滤功能
+            bPaginate: true,                     // 翻页功能
+            bInfo: true,                         // 页脚信息
+            bProcessing: true,                   //显示正在加载中
+            bServerSide: true,                   //开启服务器模式
+            sPaginationType: "full_numbers",    //分页策略
+            bAutoWidth: false,                  // 是否非自动宽度
+            sServerMethod: "POST",              //请求方式为post 主要为了防止中文参数乱码
+            //sPaginationType: "bootstrap",
+            sDom: '<"top">rt<"tableFooter"lip<"clear">',
+            fnServerParams : function (aoData) {
+                aoData.push({"name": "branchId", "value":jQuery("#branchId").val()});
+            },
+            aoColumns:[{
+                mData : "productName",
+                sDefaultContent : "",
+                sTitle : "产品名称"
+            },{
+                mData : "productModel",
+                sDefaultContent : "",
+                sTitle : "产品型号"
+
+            },{
+                mData : "position",
+                sDefaultContent : "",
+                sTitle : "位置"
+            },{
+                mData : "sn",
+                sDefaultContent : "",
+                sTitle : "序列号"
+            },{
+                mData : "id",
+                sDefaultContent : "",
+                sTitle : "操作",
+                mRender: function(value, type ,data){
+                    return '<a class="btn edit" href="javascript:BranchProduct.genQrcode('+ value + ')">二维码</a>\
+                            <a class="btn edit" href="javascript:BranchProduct.edit('+ value + ',' + data.productId + ',\''+data.productName+'\',\''+data.sn+'\',\''+data.position+'\',\'' + data.poi+'\')"><i class="icon-edit"></i></a>\
+                            <a class="btn edit" href="javascript:BranchProduct.delete('+ value + ')"><i class="icon-trash"></i></a>';
+                }
+
+            }]
+        })
+    },
 			
     // 查询按钮
     queryList : function(){
@@ -199,7 +199,62 @@ var BranchProduct = {
         var img = canvas[0].toDataURL("image/png")
         jQuery('#qrcode').html("<img src='" + img + "'>")
 
-    }
+    },
+
+    getMobileTableData: function(){
+        jQuery('#branchProductTable').dataTable({
+            sAjaxSource: appCtx + "/branch/product/loadData",
+            oLanguage: {
+                "sProcessing": "处理中...",
+                "sLengthMenu": "_MENU_ 记录/页",
+                "sZeroRecords": "没有匹配的记录",
+                "sInfo": "共 _TOTAL_ 条",
+                "sInfoEmpty": "共 0 条",
+                "sInfoFiltered": "(由 _MAX_ 项记录过滤)",
+                "sInfoPostFix": "",
+                "sSearch": "过滤:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "<<",
+                    "sPrevious": "<️",
+                    "sNext": ">",
+                    "sLast": ">>"
+                }
+            },
+            bSort: false,                        // 是否排序功能
+            bFilter: false,                       // 过滤功能
+            bPaginate: true,                     // 翻页功能
+            bInfo: true,                         // 页脚信息
+            bProcessing: true,                   //显示正在加载中
+            bServerSide: true,                   //开启服务器模式
+            // sPaginationType: "full_numbers",    //分页策略
+            bAutoWidth: false,                  // 是否非自动宽度
+            sServerMethod: "POST",              //请求方式为post 主要为了防止中文参数乱码
+            //sPaginationType: "bootstrap",
+            sDom: '<"top">rt<"tableFooter"ip<"clear">',
+            fnServerParams : function (aoData) {
+                aoData.push({"name": "branchId", "value":jQuery("#branchId").val()});
+            },
+            aoColumns:[{
+                mData : "productName",
+                sDefaultContent : "",
+                sTitle : "产品名称"
+            },{
+                mData : "productModel",
+                sDefaultContent : "",
+                sTitle : "产品型号"
+
+            },{
+                mData : "id",
+                sDefaultContent : "",
+                sTitle : "操作",
+                mRender: function(value, type ,data){
+                    return '<a class="btn edit" href="javascript:App.goToPage(appCtx + \'/mobile/branch/product/edit?branchProductId='+value+'\')">编辑</a>';
+                }
+
+            }]
+        })
+    },
 
 }
 

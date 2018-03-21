@@ -73,11 +73,11 @@
                     <div class="form_row" style="text-align: center;">
                         <span style="font-size: 16px;font-weight: 600">不对起先生，这不是你需要维修的产品，请再确认</span>
                     </div>
-                    <div class="form_row">
-                        <div class="field">
-                            <a href="javascript:App.goToPage(appCtx + '/mobile/vendor/order/list?status=1');" class="btn light_blue btn-large" style="font-size: 16px;">返回</a>
-                        </div>
-                    </div>
+                    <%--<div class="form_row">--%>
+                        <%--<div class="field">--%>
+                            <%--<a href="javascript:App.goToPage(appCtx + '/mobile/vendor/order/list?status=1');" class="btn light_blue btn-large" style="font-size: 16px;">返回</a>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                 </c:if>
                 <c:if test="${order != null}">
                     <div class="form_row">

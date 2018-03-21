@@ -1,10 +1,7 @@
 package com.home.wms.web.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.home.wms.dto.BranchProductInfo;
-import com.home.wms.dto.CurrentUserInfo;
-import com.home.wms.dto.OrderVo;
-import com.home.wms.dto.QueryOrderParams;
+import com.home.wms.dto.*;
 import com.home.wms.entity.*;
 import com.home.wms.enums.DictType;
 import com.home.wms.enums.OrderStatus;
@@ -41,6 +38,8 @@ public class MobileController {
 	private DictService dictService;
 	@Autowired
 	private OrganizationService organizationService;
+	@Autowired
+	private BranchService branchService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(HttpSession session, Model model) {
@@ -180,6 +179,42 @@ public class MobileController {
 			e.printStackTrace();
 		}
 		return "/mobile/vendor_order_fixed";
+	}
+
+	@RequestMapping(value = "/branch", method = RequestMethod.GET)
+	public String branch(Model model) {
+		return "/mobile/register_index";
+	}
+
+	@RequestMapping(value = "/branch/list", method = RequestMethod.GET)
+	public String branchList(Model model) {
+		return "/mobile/branch_list";
+	}
+
+	@RequestMapping(value = "/branch/product/add", method = RequestMethod.GET)
+	public String branchProductAdd(Model model, @RequestParam Long branchId){
+		QueryDictParams params = new QueryDictParams();
+		params.setOrganizationId(AppContextManager.getCurrentUserInfo().getOrganizationId());
+		params.setType(DictType.PRODUCT_BRAND.getValue());
+		params.setiDisplayLength(1000);
+		model.addAttribute("brands",dictService.findPageDicts(params));
+		model.addAttribute("branchId", branchId);
+		return "/mobile/branch_product_add";
+	}
+	@RequestMapping(value = "/branch/product/list", method = RequestMethod.GET)
+	public String branchProductList(Model model, @RequestParam Long branchId){
+		model.addAttribute("branch", branchService.getBranchById(branchId));
+		return "/mobile/branch_product_list";
+	}
+	@RequestMapping(value = "/branch/product/edit", method = RequestMethod.GET)
+	public String branchProductEdit(Model model, @RequestParam Long branchProductId){
+		QueryDictParams params = new QueryDictParams();
+		params.setOrganizationId(AppContextManager.getCurrentUserInfo().getOrganizationId());
+		params.setType(DictType.PRODUCT_BRAND.getValue());
+		params.setiDisplayLength(1000);
+		model.addAttribute("brands",dictService.findPageDicts(params));
+		model.addAttribute("bp", branchProductService.getBranchProductInfoById(branchProductId));
+		return "/mobile/branch_product_edit";
 	}
 
 }
