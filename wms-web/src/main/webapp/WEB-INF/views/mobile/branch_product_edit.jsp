@@ -59,6 +59,8 @@
 </div>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.qrcode.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-migrate-1.1.0.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.jqprint-0.3.js"></script>
 <%--<script type="text/javascript" src="${pageContext.request.contextPath}/js/app/branchProduct.js"></script>--%>
 
 <script>
@@ -131,9 +133,19 @@
         $("#btn_qrCode").click(function () {
             var prefix = window.location.href.substring(0, window.location.href.indexOf("/mobile"))
             var url = prefix + "/mobile/branch/product/${bp.id}";
-            $.dialog({
+//            $.dialog({
+//                title: '二维码',
+//                content: '<div id="qrcode"></div>'
+//            });
+            $.confirm({
                 title: '二维码',
-                content: '<div id="qrcode"></div>'
+                confirmButton: '打印',
+                confirmButtonClass: 'btn red',
+                cancelButton: '关闭',
+                content: '<div id="qrcode"></div>',
+                confirm: function(){
+                    $("#qrcode").jqprint();
+                }
             });
             $("#qrcode").qrcode({
                 render: "canvas", //canvas方式
