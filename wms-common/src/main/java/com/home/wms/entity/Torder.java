@@ -18,6 +18,8 @@ public class Torder {
 	private Long vendorId;
 	private String description;
 	private String fixRemark;
+	private Integer score;
+	private String feedback;
 	private Long createdBy;
 	private Date createdTime;
 	private Date updatedTime;
@@ -140,5 +142,21 @@ public class Torder {
 
 	public void setFixRemark(String fixRemark) {
 		this.fixRemark = fixRemark;
+	}
+
+	public Integer getScore() {
+		return score;
+	}
+
+	public void setScore(Integer score) {
+		this.score = score;
+	}
+
+	public String getFeedback() {
+		return feedback;
+	}
+
+	public void setFeedback(String feedback) {
+		this.feedback = feedback;
 	}
 }

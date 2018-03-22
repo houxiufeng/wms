@@ -5,6 +5,7 @@ import com.home.wms.dto.*;
 import com.home.wms.entity.*;
 import com.home.wms.enums.DictType;
 import com.home.wms.enums.OrderStatus;
+import com.home.wms.enums.RoleCode;
 import com.home.wms.service.*;
 import com.home.wms.utils.AppConstants;
 import com.home.wms.utils.AppContextManager;
@@ -40,6 +41,8 @@ public class MobileController {
 	private OrganizationService organizationService;
 	@Autowired
 	private BranchService branchService;
+	@Autowired
+	private CustomerService customerService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(HttpSession session, Model model) {
@@ -141,29 +144,39 @@ public class MobileController {
 
 		AppContextManager.setCurrentUserInfo(currentUserInfo);
 		BranchProductInfo bp = branchProductService.getBranchProductInfoById(id);
-		QueryOrderParams params = new QueryOrderParams();
-		params.setOrganizationId(currentUserInfo.getOrganizationId());
-		Vendor vendor = vendorService.getVendorByUserId(currentUserInfo.getId());
-		if (vendor != null) {
-			params.setVendorId(vendor.getId());
-		} else {
-			params.setVendorId(-1L);
-		}
-		params.setStatus(OrderStatus.CHECKING.getValue());
-		params.setiDisplayLength(Integer.MAX_VALUE);
-		List<OrderVo> orders = orderService.findPageOrders(params);
-		Torder order = null;
-		for (Torder item : orders) {//检查当前客户名下有没有这个需要维修的产品订单
-			if (item.getBranchProductId().longValue() == id.longValue()) {
-				order = item;
-				break;
+
+		String page = "/mobile/error";
+		if (StringUtils.equals(currentUserInfo.getRoleCode(), RoleCode.ENGINEER.getCode())) {//如果是维修员角色
+			QueryOrderParams params = new QueryOrderParams();
+			params.setOrganizationId(currentUserInfo.getOrganizationId());
+			Vendor vendor = vendorService.getVendorByUserId(currentUserInfo.getId());
+			if (vendor != null) {
+				params.setVendorId(vendor.getId());
+			} else {
+				params.setVendorId(-1L);
 			}
+			params.setStatus(OrderStatus.CHECKING.getValue());
+			params.setiDisplayLength(Integer.MAX_VALUE);
+			List<OrderVo> orders = orderService.findPageOrders(params);
+			Torder order = null;
+			for (Torder item : orders) {//检查当前客户名下有没有这个需要维修的产品订单
+				if (item.getBranchProductId().longValue() == id.longValue()) {
+					order = item;
+					break;
+				}
+			}
+			model.addAttribute("order", order);
+			page = "/mobile/vendor_order_check";
+		} else if (StringUtils.equals(currentUserInfo.getRoleCode(), RoleCode.CUSTOMER.getCode())) {
+			Long customerId = bp.getBranch().getCustomerId();
+			Customer customer = customerService.getCustomerById(customerId);
+			model.addAttribute("customer", customer);
+			page = "/mobile/order_add";
 		}
-		model.addAttribute("order", order);
-		model.addAttribute("branchProduct", bp);
 		model.addAttribute("types",dictService.findByType(DictType.PROBLEM_TYPE.getValue()));
+		model.addAttribute("branchProduct", bp);
 		model.addAttribute("currentUserInfo", JSON.toJSONString(currentUserInfo));
-		return "/mobile/vendor_order_check";
+		return page;
 	}
 
 	@RequestMapping(value="/vendor/order/fixed/{id}", method = RequestMethod.GET)
@@ -215,6 +228,44 @@ public class MobileController {
 		model.addAttribute("brands",dictService.findPageDicts(params));
 		model.addAttribute("bp", branchProductService.getBranchProductInfoById(branchProductId));
 		return "/mobile/branch_product_edit";
+	}
+
+	@RequestMapping(value = "/order/list", method = RequestMethod.GET)
+	public String orderList(@RequestParam Integer flag,  Model model) {//flag==1 未评价；flag==2 已评价或已取消
+		model.addAttribute("flag",flag);
+		return "mobile/order_list";
+	}
+
+	@RequestMapping(value="/order/detail/{id}", method = RequestMethod.GET)
+	public String customerOrderDetail(@PathVariable Long id, Model model){
+		try {
+			OrderVo order = orderService.getOrderVoById(id);
+			model.addAttribute("order", order);
+			if (order != null) {
+//				BranchProductInfo bp = branchProductService.getBranchProductInfoById(order.getBranchProductId());
+//				model.addAttribute("branchProduct", bp);
+				Vendor vendor = vendorService.getVendorById(order.getVendorId());
+				model.addAttribute("vendor", vendor);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "/mobile/order_detail";
+	}
+
+	@RequestMapping(value="/order/feedback/{id}", method = RequestMethod.GET)
+	public String feedback(@PathVariable Long id, Model model){
+		try {
+			OrderVo order = orderService.getOrderVoById(id);
+			model.addAttribute("order", order);
+			if (order != null) {
+				Vendor vendor = vendorService.getVendorById(order.getVendorId());
+				model.addAttribute("vendor", vendor);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "/mobile/order_feedback";
 	}
 
 }

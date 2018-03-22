@@ -95,7 +95,7 @@ var Order = {
     	jQuery("#orderTable"+index).dataTable().fnDraw();
     },
     
-    save: function() {
+    save: function(wap) {
         var params = Order.buildValidate();
         if (params.form.valid()) {
             jQuery.ajax({
@@ -106,7 +106,11 @@ var Order = {
                 success: function(json) {
                     if (json.code == "0") {
                         App.alert("创建成功!", function(){
-                            App.goToPage(appCtx+"/order");
+                            if (!_isNull(wap)) {//手机端
+                                App.goToPage(appCtx+"/mobile/order/list?flag=1");
+                            } else {
+                                App.goToPage(appCtx+"/order");
+                            }
                         });
                     } else {
                         App.alert(json.message);
@@ -156,6 +160,9 @@ var Order = {
             },
             remark: {
                 required: true
+            },
+            description: {
+                required: true
             }
         }
         params.messages={
@@ -172,6 +179,9 @@ var Order = {
                 required: "维修产品必选"
             },
             remark: {
+                required: "完成备注必填！"
+            },
+            description: {
                 required: "描述信息必填！"
             }
         }
@@ -497,7 +507,126 @@ var Order = {
             }
         });
 
-    }
+    },
+    getMobileTableData_customer: function (flag) {
+        jQuery('#orderTable').dataTable({
+            sAjaxSource: appCtx + "/order/loadData",
+            // oLanguage: {
+            //     sUrl: appCtx + '/flatpoint/js/zh_CN.json',
+            // },
+            oLanguage: {
+                "sProcessing": "处理中...",
+                "sLengthMenu": "_MENU_ 记录/页",
+                "sZeroRecords": "没有匹配的记录",
+                "sInfo": "共 _TOTAL_ 条",
+                "sInfoEmpty": "共 0 条",
+                "sInfoFiltered": "(由 _MAX_ 项记录过滤)",
+                "sInfoPostFix": "",
+                "sSearch": "过滤:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "<<",
+                    "sPrevious": "<️",
+                    "sNext": ">",
+                    "sLast": ">>"
+                }
+            },
+            bSort: false,                        // 是否排序功能
+            bFilter: false,                       // 过滤功能
+            bPaginate: true,                     // 翻页功能
+            bInfo: true,                         // 页脚信息
+            bProcessing: true,                   //显示正在加载中
+            bServerSide: true,                   //开启服务器模式
+            // sPaginationType: "full_numbers",    //分页策略
+            bAutoWidth: false,                  // 是否非自动宽度
+            sServerMethod: "POST",              //请求方式为post 主要为了防止中文参数乱码
+            // bRetrieve:true,
+            // bDestroy:true,
+            //sPaginationType: "bootstrap",
+            sDom: '<"top">rt<"tableFooter"ip<"clear">',
+            fnServerParams : function (aoData) {
+                aoData.push({"name": "flag", "value":flag});
+            },
+            aoColumns:[{
+                mData : "orderNo",
+                sDefaultContent : "",
+                sTitle : "订单号"
+            },{
+                mData : "createdTime",
+                sDefaultContent : "",
+                sTitle : "订单时间",
+                mRender: function(value, type ,data) {
+                    return moment(value).format("YYYY-MM-DD HH:mm:ss");
+                }
+            },{
+                mData : "status",
+                sDefaultContent : "",
+                sTitle : "订单状态",
+                mRender: function(value, type ,data){
+                    var html = '';
+                    if (value == 0) {
+                        html = '派单中';
+                    } else if (value == 1) {
+                        html = '检查中';
+                    } else if (value == 2) {
+                        html = '维修中';
+                    } else if (value == 3) {
+                        html = '审核中';
+                    } else if (value == 4) {
+                        html = '已完成';
+                    }
+                    return html;
+                }
+            },{
+                mData : "id",
+                sDefaultContent : "",
+                sTitle : "操作",
+                mRender: function(value, type ,data){
+                    var opts = [];
+                    if (data.status == 4 && _isNull(data.score)) {//未评价
+                        opts.push('<a style="margin: 1px;" class="btn edit" href="javascript:App.goToPage(appCtx + \'/mobile/order/feedback/'+value+'\')">评价</a><br>');
+                    }
+                    opts.push('<a class="btn edit" href="javascript:Order.showMobileOrderDetail_customer('+ value + ')">查看</a>');
+                    return opts.join(" ");
+                }
+
+            }]
+        })
+    },
+    showMobileOrderDetail_customer: function (id) {
+        jQuery.dialog({
+            title: '订单详情',
+            content: 'url:'+appCtx+"/mobile/order/detail/"+id
+        });
+    },
+    feedback: function () {
+        var orderId = jQuery("#orderId").val();
+        var vendorId = jQuery("#vendorId").val();
+        var feedback = jQuery.trim(jQuery("#feedback").val());
+        var score = jQuery("#score").val();
+        if (_isNull(feedback)) {
+            App.alert("评价信息必填");
+            return false;
+        }
+        jQuery.ajax({
+            url: appCtx + "/order/feedback",
+            type: 'post',
+            data: {"orderId":orderId, "vendorId":vendorId,"score":score, "feedback":feedback},
+            dataType:'json',
+            success: function(json) {
+                if (json.code == "0") {
+                    App.goToPage(appCtx + '/mobile/order/list?flag=1');
+                    App.alert("感谢评价！");
+                } else {
+                    App.alert(json.message);
+                }
+            },
+            error: function(xhr, textStatus, errorThrown){
+                alert(errorThrown);
+            }
+        });
+
+    },
 
 }
 

@@ -23,20 +23,10 @@
         </ul>
     </header>
     <div id="content">
-	    <div id="main" class="row-fluid">
-        </div>
+	    <div id="main" class="row-fluid">您无权限访问此页面！</div>
     </div>
 
     <jsp:include page="/WEB-INF/views/common/commonJS.jsp" flush="true"/>
-    <script>
-        if (currentUserInfo.roleCode == 'engineer') {
-            App.goToPage(appCtx + "/mobile/vendor");
-        } else if (currentUserInfo.roleCode == 'register') {
-            App.goToPage(appCtx + "/mobile/branch");
-        } else if (currentUserInfo.roleCode == 'customer') {
-            App.goToPage(appCtx + "/mobile/order/list?flag=1");
-        }
-    </script>
 
   </body>
 </html>

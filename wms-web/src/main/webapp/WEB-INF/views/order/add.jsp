@@ -67,7 +67,7 @@
             <div class="form_row">
                 <div class="span6" >
                     <div class="field">
-                        <a href="javascript:Order.save();" class="btn red">保存</a>
+                        <a href="javascript:Order.save(1);" class="btn red">保存</a>
                         <a href="javascript:App.goToPage(appCtx+'/order')" class="btn light_blue">取消</a>
                     </div>
                 </div>

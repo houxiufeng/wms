@@ -1,10 +1,13 @@
 package com.home.wms.service.impl;
 
+import cn.hutool.core.collection.CollUtil;
 import com.google.common.collect.Lists;
 import com.home.wms.dto.BranchProductInfo;
 import com.home.wms.dto.OrderVo;
 import com.home.wms.dto.QueryOrderParams;
 import com.home.wms.entity.Torder;
+import com.home.wms.entity.Vendor;
+import com.home.wms.enums.OrderStatus;
 import com.home.wms.service.BranchProductService;
 import com.home.wms.service.OrderService;
 import com.home.wms.utils.AppContextManager;
@@ -15,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -50,6 +54,9 @@ public class OrderServiceImpl implements OrderService {
 			sql.append(" and t.status = ?");
 			paramList.add(params.getStatus());
 		}
+//		if (params.getStatusList() != null && params.getStatusList().size() > 0) {
+//			sql.append(" and t.status in(").append(CollUtil.join(params.getStatusList(),",")).append(")");
+//		}
 		if (StringUtils.isNotBlank(params.getOrderNo())) {
 			sql.append(" and t.order_no = ?");
 			paramList.add(params.getOrderNo());
@@ -65,6 +72,12 @@ public class OrderServiceImpl implements OrderService {
 		if (params.getVendorId() != null) {
 			sql.append(" and t.vendor_id = ?");
 			paramList.add(params.getVendorId());
+		}
+		if (params.getFlag() != null && params.getFlag() == 2) {//已评价或取消
+			sql.append(" and ((t.score > 0 and t.status = 4) or t.status = 5)");
+		}
+		if (params.getFlag() != null && params.getFlag() == 1) {//未评价
+			sql.append(" and t.score is null and t.status in (0,1,2,3,4)");
 		}
         sql.append(" order by t.id desc");
 		return (PageList<OrderVo>)jdbcDao.createNativeExecutor().resultClass(OrderVo.class)
@@ -118,5 +131,24 @@ public class OrderServiceImpl implements OrderService {
 	public void updateWithNull(Torder torder) {
 		torder.setUpdatedTime(new Date());
 		jdbcDao.createUpdate(Torder.class).setForEntityWhereId(torder).updateNull().execute();
+	}
+
+	@Override
+	@Transactional
+	public void feedback(Long orderId, Long vendorId, Integer score, String feedback) {
+		Torder params = new Torder();
+		params.setId(orderId);
+		params.setFeedback(feedback);
+		params.setScore(score);
+		params.setUpdatedTime(new Date());
+		jdbcDao.update(params);
+		if (score == 1) {//好评
+			jdbcDao.createUpdate(Vendor.class).set("{{[goodScore]}}","[goodScore]+1").where("id", vendorId).execute();
+		} else if (score == 2) {//中评
+			jdbcDao.createUpdate(Vendor.class).set("{{[moderateScore]}}","[moderateScore]+1").where("id", vendorId).execute();
+		} else if (score == 3) {//差评
+			jdbcDao.createUpdate(Vendor.class).set("{{[badScore]}}","[badScore]+1").where("id", vendorId).execute();
+		}
+
 	}
 }

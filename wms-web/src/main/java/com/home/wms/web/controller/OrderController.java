@@ -235,4 +235,20 @@ public class OrderController {
 		return result;
 	}
 
+	@RequestMapping(value="/feedback", method = RequestMethod.POST)
+	@ResponseBody
+	public JSONObject feedback(@RequestParam Long orderId,@RequestParam Long vendorId,@RequestParam Integer score,@RequestParam String feedback){
+		JSONObject result = new JSONObject();
+		try {
+			orderService.feedback(orderId, vendorId, score, feedback);
+			result.put("code", 0);
+		} catch(Exception e) {
+			e.printStackTrace();
+			LOG.error(e.getMessage());
+			result.put("code", 1);
+			result.put("message", e.getMessage());
+		}
+		return result;
+	}
+
 }
