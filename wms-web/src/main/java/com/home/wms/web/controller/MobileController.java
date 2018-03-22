@@ -237,8 +237,6 @@ public class MobileController {
 			OrderVo order = orderService.getOrderVoById(id);
 			model.addAttribute("order", order);
 			if (order != null) {
-//				BranchProductInfo bp = branchProductService.getBranchProductInfoById(order.getBranchProductId());
-//				model.addAttribute("branchProduct", bp);
 				Vendor vendor = vendorService.getVendorById(order.getVendorId());
 				model.addAttribute("vendor", vendor);
 			}

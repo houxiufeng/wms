@@ -17,13 +17,16 @@
     <header class="blue"> <!-- Header start -->
         <a href="#" class="logo_image"><span class="hidden-480">WMS ZOO</span></a>
         <ul class="header_actions">
-            <li class="dropdown"><a href="#"><img src="${ctx}/flatpoint/demo/avatar_06.png" alt="User image" class="avatar"> ${CURRENT_USER.name}</a>
+            <li class="dropdown"><a href="javascript:void(0);">${CURRENT_USER.name}</a>
             </li>
             <li><a id="logout" href="javascript:logout()"><i class="icon-signout"></i> <span class="hidden-768 hidden-480">Logout</span></a></li>
         </ul>
     </header>
     <div id="content">
-	    <div id="main" class="row-fluid">您无权限访问此页面！</div>
+	    <div id="main" class="row-fluid">
+            <div style="margin-top: 40px; padding: 10px; font-size: 20px; font-weight: 600">您无权限访问此页面！</div>
+
+        </div>
     </div>
 
     <jsp:include page="/WEB-INF/views/common/commonJS.jsp" flush="true"/>
