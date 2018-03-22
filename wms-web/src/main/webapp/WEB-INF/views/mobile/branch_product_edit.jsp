@@ -10,7 +10,7 @@
         <input type="hidden" id="point_y">
         <div class="form_row">
             <div class="field">
-                <span style="font-size: 14px;font-weight: 600">李先生维修公司:你好刘德华</span>
+                <span style="font-size: 16px;font-weight: 600">${CURRENT_USER.organizationName}:你好,${CURRENT_USER.name}</span>
             </div>
         </div>
         <div class="form_row">

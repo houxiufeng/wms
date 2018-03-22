@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div style="margin-top: 40px; padding: 10px;">
     <div class="form_row" style="text-align: center;">
-        <span style="font-size: 16px;font-weight: 600">你好,刘德华</span>
+        <span style="font-size: 16px;font-weight: 600">${CURRENT_USER.organizationName}:你好,${CURRENT_USER.name}</span>
     </div>
 
     <div class="dataTables_wrapper">
