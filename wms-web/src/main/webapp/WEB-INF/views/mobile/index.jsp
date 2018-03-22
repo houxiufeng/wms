@@ -32,7 +32,7 @@
         if (currentUserInfo.roleCode == 'engineer') {
             App.goToPage(appCtx + "/mobile/vendor");
         } else if (currentUserInfo.roleCode == 'register') {
-            App.goToPage(appCtx + "/mobile/branch");
+            App.goToPage(appCtx + "/mobile/branch/list");
         } else if (currentUserInfo.roleCode == 'customer') {
             App.goToPage(appCtx + "/mobile/order/list?flag=1");
         }

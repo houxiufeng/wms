@@ -194,11 +194,6 @@ public class MobileController {
 		return "/mobile/vendor_order_fixed";
 	}
 
-	@RequestMapping(value = "/branch", method = RequestMethod.GET)
-	public String branch(Model model) {
-		return "/mobile/register_index";
-	}
-
 	@RequestMapping(value = "/branch/list", method = RequestMethod.GET)
 	public String branchList(Model model) {
 		return "/mobile/branch_list";

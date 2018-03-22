@@ -9,12 +9,6 @@
         <table id="branchTable" class="table table-striped table-bordered table-hover datatable"></table>
     </div>
 
-    <div class="form_row">
-        <div class="field">
-            <a href="javascript:App.goToPage(appCtx + '/mobile/branch');" class="btn btn-large" style="font-size: 20px;">首页</a>
-            <a href="javascript:App.goToPage(appCtx + '/mobile/branch/list');" class="btn light_blue btn-large" style="font-size: 20px;">创建</a>
-        </div>
-    </div>
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/app/branch.js"></script>
 <script>
