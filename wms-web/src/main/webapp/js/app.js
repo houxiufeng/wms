@@ -29,6 +29,10 @@ function _isNull(value){
     return value == undefined || value == null || jQuery.trim(value) == "" || jQuery.trim(value) == 'undefined' || jQuery.trim(value) == 'null';
 }
 
+function _isEmail(value) {
+    return /\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}/.test(value);
+}
+
 //公用方法goToPage
 var App = {
 	    goToPage: function (url, data) {
