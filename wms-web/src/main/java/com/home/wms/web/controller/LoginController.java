@@ -13,6 +13,7 @@ import com.home.wms.service.PermissionService;
 import com.home.wms.service.RoleService;
 import com.home.wms.service.UserService;
 import com.home.wms.utils.AppConstants;
+import com.home.wms.utils.MyUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,9 +78,19 @@ public class LoginController {
             }
 
             if (StringUtils.isBlank(user.getToken())) {
-                String newToken = generateToken(user.getEmail(), user.getPassword(), user.getOrganizationId());
+                String newToken = MyUtils.generateToken(user.getEmail(), user.getPassword(), user.getOrganizationId());
                 user.setToken(newToken);
                 userService.update(user);
+            } else {//token 不为空，验证token 是否已经改变
+                String newToken = MyUtils.generateToken(user.getEmail(), user.getPassword(), user.getOrganizationId());
+                if(!StringUtils.equals(newToken, user.getToken())) {
+                    user.setToken(newToken);
+                    userService.update(user);
+                    response.setCode(1);
+                    response.setMsg("令牌失效，请重新登录");
+                    return response;
+                }
+
             }
 
             CurrentUserInfo currentUserInfo = new CurrentUserInfo();
@@ -136,12 +147,5 @@ public class LoginController {
         return response;
     }
 
-    private static String generateToken(String email, String password, Long organizationId) {
-        String s = email + password;
-        if (organizationId != null) {
-            s += organizationId;
-        }
-        return SecureUtil.md5(s);
-    }
 
 }

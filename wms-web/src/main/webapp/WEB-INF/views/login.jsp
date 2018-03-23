@@ -112,10 +112,12 @@
                                     window.location.href = "${ctx}/mobile";
                                 }
                             } else {
+                                $.removeCookie('wms_token', { path: '/' });
                                 App.alert(json.msg);
                             }
                         },
                         error: function(xhr, textStatus, errorThrown){
+                            $.removeCookie('wms_token', { path: '/' });
                             App.alert(errorThrown);
                         }
                     });

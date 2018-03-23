@@ -9,12 +9,15 @@ import com.home.wms.enums.RoleCode;
 import com.home.wms.service.*;
 import com.home.wms.utils.AppConstants;
 import com.home.wms.utils.AppContextManager;
+import com.home.wms.utils.MyUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -104,42 +107,57 @@ public class MobileController {
 	}
 
 	@RequestMapping(value = "/branch/product/{id}", method = RequestMethod.GET)
-	public String vendorOrderCheck(@CookieValue(value="wms_token",required=false) String token, HttpSession session, @PathVariable Long id,Model model) {
+	public String vendorOrderCheck(@CookieValue(value="wms_token",required=false) String token, HttpSession session, @PathVariable Long id,Model model,HttpServletResponse res) {
+		if (StringUtils.isBlank(token)) {
+			return "redirect:/login";
+		}
+		User user = userService.findByToken(token);
+		if (user == null) {
+			//清除cookie
+			Cookie cookie = new Cookie("wms_token", "");
+			cookie.setMaxAge(0);
+			cookie.setPath("/");
+			res.addCookie(cookie);
+			return "redirect:/login";
+		}
+
+		String newToken = MyUtils.generateToken(user.getEmail(), user.getPassword(), user.getOrganizationId());
+		if(!StringUtils.equals(newToken, user.getToken())) {
+			user.setToken(newToken);
+			userService.update(user);
+			//清除cookie
+			Cookie cookie = new Cookie("wms_token", "");
+			cookie.setMaxAge(0);
+			cookie.setPath("/");
+			res.addCookie(cookie);
+			return "redirect:/login";
+		}
 		CurrentUserInfo currentUserInfo = (CurrentUserInfo)session.getAttribute(AppConstants.CURRENT_USER);
-		if (session.getAttribute(AppConstants.CURRENT_USER) == null) {//如果没登录
-			if (StringUtils.isBlank(token)) {
-				return "redirect:/login";
+		if (currentUserInfo == null) {//如果没登录
+			Organization organization = null;
+			if (user.getOrganizationId() != null) {
+				organization = organizationService.getById(user.getOrganizationId());
+				if (organization == null || organization.getStatus() == 0) {
+					throw new RuntimeException("机构不存在");
+				}
 			}
-			User user = userService.findByToken(token);
-			if (user == null) {
-				return "redirect:/login";
-			} else {
-				Organization organization = null;
-				if (user.getOrganizationId() != null) {
-					organization = organizationService.getById(user.getOrganizationId());
-					if (organization == null || organization.getStatus() == 0) {
-						throw new RuntimeException("机构不存在");
-					}
-				}
-				Role role = roleService.getById(user.getRoleId());
-				if (role == null || role.getStatus() == 0) {
-					throw new RuntimeException("角色不存在");
-				}
-
-				currentUserInfo = new CurrentUserInfo();
-				currentUserInfo.setId(user.getId());
-				currentUserInfo.setName(user.getName());
-				currentUserInfo.setEmail(user.getEmail());
-				currentUserInfo.setRoleId(role.getId());
-				currentUserInfo.setRoleName(role.getName());
-				currentUserInfo.setRoleCode(role.getCode());
-				if (organization != null) {
-					currentUserInfo.setOrganizationId(organization.getId());
-					currentUserInfo.setOrganizationName(organization.getName());
-				}
-				session.setAttribute(AppConstants.CURRENT_USER, currentUserInfo);
-
+			Role role = roleService.getById(user.getRoleId());
+			if (role == null || role.getStatus() == 0) {
+				throw new RuntimeException("角色不存在");
 			}
+
+			currentUserInfo = new CurrentUserInfo();
+			currentUserInfo.setId(user.getId());
+			currentUserInfo.setName(user.getName());
+			currentUserInfo.setEmail(user.getEmail());
+			currentUserInfo.setRoleId(role.getId());
+			currentUserInfo.setRoleName(role.getName());
+			currentUserInfo.setRoleCode(role.getCode());
+			if (organization != null) {
+				currentUserInfo.setOrganizationId(organization.getId());
+				currentUserInfo.setOrganizationName(organization.getName());
+			}
+			session.setAttribute(AppConstants.CURRENT_USER, currentUserInfo);
 		}
 
 		AppContextManager.setCurrentUserInfo(currentUserInfo);

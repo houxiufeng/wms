@@ -1,6 +1,7 @@
 package com.home.wms.utils;
 
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.crypto.SecureUtil;
 import com.google.common.base.Function;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;
@@ -29,6 +30,14 @@ public class MyUtils {
 				return in == null ? null : Ints.tryParse(in);
 			}
 		}));
+	}
+
+	public static String generateToken(String email, String password, Long organizationId) {
+		String s = email + password;
+		if (organizationId != null) {
+			s += organizationId;
+		}
+		return SecureUtil.md5(s);
 	}
 
 	public static void main(String[] args) {
