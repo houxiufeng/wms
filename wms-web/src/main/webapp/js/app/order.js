@@ -78,10 +78,11 @@ var Order = {
                     } else if (index == 2) {
                         opts.push('<a class="btn edit blue" href="javascript:Order.fixed('+ value + ')">确认</a>');
                         opts.push('<a class="btn edit blue" href="javascript:Order.cancel('+ value + ')">取消</a>');
-                    } else if (index == 3) {
-                        opts.push('<a class="btn edit blue" href="javascript:Order.audited('+ value + ')">通过</a>');
-                        opts.push('<a class="btn edit blue" href="javascript:Order.cancel('+ value + ')">取消</a>');
                     }
+                    // else if (index == 3) {
+                    //     opts.push('<a class="btn edit blue" href="javascript:Order.audited('+ value + ')">通过</a>');
+                    //     opts.push('<a class="btn edit blue" href="javascript:Order.cancel('+ value + ')">取消</a>');
+                    // }
                     return opts.join(" ");
                 }
 

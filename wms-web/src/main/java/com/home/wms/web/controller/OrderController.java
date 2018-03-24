@@ -181,7 +181,8 @@ public class OrderController {
 	public JSONObject fixed(@RequestParam Long orderId, String fixRemark){
 		JSONObject result = new JSONObject();
 		Torder order = new Torder();
-		order.setStatus(OrderStatus.AUDITING.getValue());
+//		order.setStatus(OrderStatus.AUDITING.getValue());
+		order.setStatus(OrderStatus.COMPLETE.getValue());
 		order.setFixRemark(fixRemark);
 		order.setId(orderId);
 		try {

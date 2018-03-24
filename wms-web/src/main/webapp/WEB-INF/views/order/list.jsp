@@ -31,7 +31,7 @@
                     <li class="active"><a href="#right-tab0" data-toggle="tab">派单中</a></li>
                     <li><a href="#right-tab1" data-toggle="tab">检查中</a></li>
                     <li><a href="#right-tab2" data-toggle="tab">维修中</a></li>
-                    <li><a href="#right-tab3" data-toggle="tab">审核中</a></li>
+                    <%--<li><a href="#right-tab3" data-toggle="tab">审核中</a></li>--%>
                     <li><a href="#right-tab4" data-toggle="tab">已完结</a></li>
                     <li><a href="#right-tab5" data-toggle="tab">已取消</a></li>
                 </ul>
@@ -47,9 +47,9 @@
                 <div class="tab-pane" id="right-tab2">
                     <table id="orderTable2" class="table table-striped table-bordered table-hover datatable"></table>
                 </div>
-                <div class="tab-pane" id="right-tab3">
-                    <table id="orderTable3" class="table table-striped table-bordered table-hover datatable"></table>
-                </div>
+                <%--<div class="tab-pane" id="right-tab3">--%>
+                    <%--<table id="orderTable3" class="table table-striped table-bordered table-hover datatable"></table>--%>
+                <%--</div>--%>
                 <div class="tab-pane" id="right-tab4">
                     <table id="orderTable4" class="table table-striped table-bordered table-hover datatable"></table>
                 </div>
