@@ -4,8 +4,8 @@
 <div class="well light_gray">
     <div class="top_bar">
         <ul class="breadcrumb">
-            <li><a href="javascript:void(0);">字典中心</a> <span class="divider">/</span></li>
-            <li class="active">字典管理</li>
+            <li><a href="javascript:void(0);" style="color: #037dc5;font-size: 15px;">字典中心</a> <span class="divider">/</span></li>
+            <li class="active"><a href="javascript:void(0)" style="font-weight: 600;font-size: 13px;color: #037dc5;">字典管理</a></li>
         </ul>
     </div>
 
@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="span2">
-                    <a href="javascript:Dict.save();" class="blue btn">保存</a>
+                    <a href="javascript:Dict.save();" class="dark_green btn">保存</a>
                 </div>
             </div>
         </form>

@@ -13,8 +13,8 @@
         <label class="field_name align_right">店名称:</label>
         <div class="field">
             <span>${branch.name}</span>
-            <a href="javascript:App.goToPage(appCtx+'/mobile/branch/product/add?branchId=${branch.id}')" class="btn light_blue">添加维修产品</a>
-            <a href="javascript:App.goToPage(appCtx+'/mobile/branch/list')" class="btn light_blue">返回</a>
+            <a href="javascript:App.goToPage(appCtx+'/mobile/branch/product/add?branchId=${branch.id}')" class="btn dark_green">添加维修产品</a>
+            <a href="javascript:App.goToPage(appCtx+'/mobile/branch/list')" class="btn dark_green">返回</a>
         </div>
     </div>
     <div class="dataTables_wrapper" style="margin-top: 5px;">

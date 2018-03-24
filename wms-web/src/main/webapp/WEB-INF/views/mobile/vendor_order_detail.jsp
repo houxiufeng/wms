@@ -32,7 +32,7 @@
         <label class="field_name align_right" style="width: 30%;">维修产品位置:</label>
         <div class="field" style="margin-left: 31%; margin-top: 5px;">
             <span>${branchProduct.position}</span>
-            <a href="javascript:Order.showPOI('${branchProduct.poi}');" class="btn light_blue btn-small" style="margin-left: 2px;">POI</a>
+            <a href="javascript:Order.showPOI('${branchProduct.poi}');" class="btn dark_green btn-small" style="margin-left: 2px;">POI</a>
         </div>
     </div>
     <div class="form_row">

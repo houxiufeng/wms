@@ -41,9 +41,9 @@ var BranchProduct = {
                 sDefaultContent : "",
                 sTitle : "操作",
                 mRender: function(value, type ,data){
-                    return '<a class="btn edit" href="javascript:BranchProduct.genQrcode('+ value + ')">二维码</a>\
-                            <a class="btn edit" href="javascript:BranchProduct.edit('+ value + ',' + data.productId + ',\''+data.productName+'\',\''+data.sn+'\',\''+data.position+'\',\'' + data.poi+'\')"><i class="icon-edit"></i></a>\
-                            <a class="btn edit" href="javascript:BranchProduct.delete('+ value + ')"><i class="icon-trash"></i></a>';
+                    return '<a class="btn edit blue" href="javascript:BranchProduct.genQrcode('+ value + ')">二维码</a>\
+                            <a class="btn edit blue" href="javascript:BranchProduct.edit('+ value + ',' + data.productId + ',\''+data.productName+'\',\''+data.sn+'\',\''+data.position+'\',\'' + data.poi+'\')"><i class="icon-edit"></i></a>\
+                            <a class="btn edit blue" href="javascript:BranchProduct.delete('+ value + ')"><i class="icon-trash"></i></a>';
                 }
 
             }]

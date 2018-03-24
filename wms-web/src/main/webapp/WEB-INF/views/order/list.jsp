@@ -4,8 +4,8 @@
     <div class="well light_gray">
         <div class="top_bar">
             <ul class="breadcrumb">
-                <li><a href="javascript:void(0);">订单中心</a> <span class="divider">/</span></li>
-                <li class="active"><a href="javascript:void(0)">订单管理</a></li>
+                <li><a href="javascript:void(0);" style="color: #037dc5;font-size: 15px;">订单中心</a> <span class="divider">/</span></li>
+                <li class="active"><a href="javascript:void(0)" style="font-weight: 600;font-size: 13px;color: #037dc5;">订单管理</a></li>
             </ul>
         </div>
 
@@ -20,8 +20,8 @@
                     <input id="startTime" name="startTime" type="text" class="datetimepicker" style="width:130px;" readonly>
                     <span class="inline">结束日期:</span>
                     <input id="endTime" name="endTime" type="text" class="datetimepicker" style="width:130px;" readonly>
-                    <a href="javascript:Order.queryList()" class="blue btn" style="margin-left:10px;">查询</a>
-                    <a href="javascript:App.goToPage('order/add')" class="blue btn">下单</a>
+                    <a href="javascript:Order.queryList()" class="dark_green btn" style="margin-left:10px;">查询</a>
+                    <a href="javascript:App.goToPage('order/add')" class="dark_green btn">下单</a>
                 </div>
             </div>
             <!-- end   -->

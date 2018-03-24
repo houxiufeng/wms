@@ -4,8 +4,8 @@
     <div class="well light_gray">
         <div class="top_bar">
             <ul class="breadcrumb">
-                <li><a href="javascript:void(0);">系统管理</a> <span class="divider">/</span></li>
-                <li class="active"><a href="javascript:void(0)">用户信息</a></li>
+                <li><a href="javascript:void(0);" style="color: #037dc5;font-size: 15px;">系统管理</a> <span class="divider">/</span></li>
+                <li class="active"><a href="javascript:void(0)" style="font-weight: 600;font-size: 13px;color: #037dc5;">用户信息</a></li>
             </ul>
         </div>
 
@@ -25,9 +25,9 @@
                           </c:forEach>
                       </select>
                   </c:if>
-                  <a id="search" href="javascript:User.queryList()" class="blue btn" style="margin-left:10px;">查询</a>
-                  <a id="addUser" href="javascript:void(0);" class="blue btn">添加</a>
-                  <a id="refresh" href="javascript:void(0);" class="blue btn">刷新</a>
+                  <a id="search" href="javascript:User.queryList()" class="dark_green btn" style="margin-left:10px;">查询</a>
+                  <a id="addUser" href="javascript:void(0);" class="dark_green btn">添加</a>
+                  <%--<a id="refresh" href="javascript:void(0);" class="dark_green btn">刷新</a>--%>
               </div>
           </div>
           <!-- end   -->

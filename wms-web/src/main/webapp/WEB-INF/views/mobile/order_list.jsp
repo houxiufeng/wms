@@ -11,8 +11,8 @@
 
     <div class="form_row">
         <div class="field">
-            <a href="javascript:App.goToPage(appCtx + '/mobile/order/list?flag=1');" class="btn btn-large <c:if test='${flag == 1}'>light_blue</c:if>" style="font-size: 16px;">进行中订单</a>
-            <a href="javascript:App.goToPage(appCtx + '/mobile/order/list?flag=2');" class="btn btn-large <c:if test='${flag == 2}'>light_blue</c:if>" style="font-size: 16px;">历史记录</a>
+            <a href="javascript:App.goToPage(appCtx + '/mobile/order/list?flag=1');" class="btn btn-large <c:if test='${flag == 1}'>dark_green</c:if>" style="font-size: 16px;">进行中订单</a>
+            <a href="javascript:App.goToPage(appCtx + '/mobile/order/list?flag=2');" class="btn btn-large <c:if test='${flag == 2}'>dark_green</c:if>" style="font-size: 16px;">历史记录</a>
         </div>
     </div>
 </div>

@@ -4,9 +4,9 @@
 <div class="well light_gray">
     <div class="top_bar">
         <ul class="breadcrumb">
-            <li><a href="javascript:void(0);">系统管理</a> <span class="divider">/</span></li>
-            <li><a href="javascript:void(0)">角色信息</a><span class="divider">/</span></li>
-            <li class="active">添加角色</li>
+            <li><a href="javascript:void(0);"style="color: #037dc5;font-size: 15px;">系统管理</a> <span class="divider">/</span></li>
+            <li><a href="javascript:void(0)"style="color: #037dc5;font-size: 15px;">角色信息</a><span class="divider">/</span></li>
+            <li class="active" style="font-weight: 600;font-size: 13px;color: #037dc5;">添加角色</li>
         </ul>
     </div>
 
@@ -57,8 +57,8 @@
             <div class="form_row">
                 <div class="span4" >
                     <div class="field">
-                        <a href="javascript:Role.save();" class="btn red">提交</a>
-                        <a href="javascript:App.goToPage(appCtx+'/role')" class="btn light_blue">取消</a>
+                        <a href="javascript:Role.save();" class="btn red btn-large" style="width: 60px;">提交</a>
+                        <a href="javascript:App.goToPage(appCtx+'/role')" class="btn dark_green btn-large" style="width: 60px;">取消</a>
                     </div>
                 </div>
             </div>

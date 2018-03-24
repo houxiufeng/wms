@@ -54,7 +54,7 @@
                     <label class="field_name align_right" style="width: 30%;">维修产品位置:</label>
                     <div class="field" style="margin-left: 31%; margin-top: 5px;">
                         <span>${branchProduct.position}</span>
-                        <a href="javascript:Order.showPOI('${branchProduct.poi}');" class="btn light_blue btn-small" style="margin-left: 2px;">POI</a>
+                        <a href="javascript:Order.showPOI('${branchProduct.poi}');" class="btn dark_green btn-small" style="margin-left: 2px;">POI</a>
                     </div>
                 </div>
                 <div class="form_row">
@@ -75,7 +75,7 @@
                     </div>
                     <%--<div class="form_row">--%>
                         <%--<div class="field">--%>
-                            <%--<a href="javascript:App.goToPage(appCtx + '/mobile/vendor/order/list?status=1');" class="btn light_blue btn-large" style="font-size: 16px;">返回</a>--%>
+                            <%--<a href="javascript:App.goToPage(appCtx + '/mobile/vendor/order/list?status=1');" class="btn dark_green btn-large" style="font-size: 16px;">返回</a>--%>
                         <%--</div>--%>
                     <%--</div>--%>
                 </c:if>
@@ -98,7 +98,7 @@
                     </div>
                     <div class="form_row">
                         <div class="field">
-                            <a href="javascript:Order.mobileChecked();" class="btn light_blue btn-large" style="font-size: 16px;">确认</a>
+                            <a href="javascript:Order.mobileChecked();" class="btn dark_green btn-large" style="font-size: 16px;">确认</a>
                             <a href="javascript:App.goToPage(appCtx + '/mobile/vendor/order/checkList');" class="btn  btn-large" style="font-size: 16px;">返回</a>
                         </div>
                     </div>

@@ -48,8 +48,8 @@ var Customer = {
 		            sDefaultContent : "",
 		            sTitle : "操作",
 		            mRender: function(value, type ,data){
-		            	return '<a class="btn edit" href="javascript:Customer.edit('+ value + ')"><i class="icon-edit"></i></a>\
-		            	        <a class="btn edit" href="javascript:Customer.delete('+ value + ')"><i class="icon-trash"></i></a>';
+		            	return '<a class="btn edit blue" href="javascript:Customer.edit('+ value + ')"><i class="icon-edit"></i></a>\
+		            	        <a class="btn edit blue" href="javascript:Customer.delete('+ value + ')"><i class="icon-trash"></i></a>';
 		            }
 		            
 		        }]

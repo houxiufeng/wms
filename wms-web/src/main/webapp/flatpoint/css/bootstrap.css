@@ -1216,8 +1216,9 @@ input[type="search"],
 input[type="tel"], 
 input[type="color"], 
 .uneditable-input  { 
-  border: 1px solid #8f8f8f; 
-  background: #ffffff; 
+  /*border: 1px solid #8f8f8f; */
+  border: 1px solid #d6d1d1;
+  background: #ffffff;
 }
 
 input[type="text"], 
@@ -5134,7 +5135,8 @@ input[type="submit"].btn.btn-mini {
   margin: 0;
   padding: 0 0 0 15px;
   list-style: none;
-  background-color: #fafafa;
+  /*background-color: #fafafa;*/
+  background-color: #e2e2e2;
 }
 
 .breadcrumb > li {

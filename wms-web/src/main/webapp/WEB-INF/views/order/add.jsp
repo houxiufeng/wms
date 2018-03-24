@@ -4,9 +4,9 @@
 <div class="well light_gray">
     <div class="top_bar">
         <ul class="breadcrumb">
-            <li><a href="javascript:void(0);">订单中心</a> <span class="divider">/</span></li>
-            <li><a href="javascript:void(0)">订单管理</a><span class="divider">/</span></li>
-            <li class="active">下单</li>
+            <li><a href="javascript:void(0);"style="color: #037dc5;font-size: 15px;">订单中心</a> <span class="divider">/</span></li>
+            <li><a href="javascript:void(0)"style="color: #037dc5;font-size: 15px;">订单管理</a><span class="divider">/</span></li>
+            <li class="active" style="font-weight: 600;font-size: 13px;color: #037dc5;">下单</li>
         </ul>
     </div>
 
@@ -22,14 +22,14 @@
                                 <option value="${item.id}">${item.name}</option>
                             </c:forEach>
                         </select>
-                        <a href="javascript:App.goToPage(appCtx + '/customer')" class="blue btn btn-small">跳转</a>
+                        <a href="javascript:App.goToPage(appCtx + '/customer')" class="dark_green btn btn-small">跳转</a>
                     </div>
                 </div>
                 <div class="span6">
                     <label class="field_name align_right"><span style="color: red">*</span>总/分店名称:</label>
                     <div class="field">
                         <select id="branchId" name="branchId" class="span10"></select>
-                        <a href="javascript:App.goToPage(appCtx + '/branch')" class="blue btn btn-small">跳转</a>
+                        <a href="javascript:App.goToPage(appCtx + '/branch')" class="dark_green btn btn-small">跳转</a>
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                     <label class="field_name align_right"><span style="color: red">*</span>维修产品:</label>
                     <div class="field">
                         <select id="branchProductId" name="branchProductId" class="span10"></select>
-                        <a href="javascript:void(0)" class="blue btn btn-small">跳转</a>
+                        <a href="javascript:void(0)" class="dark_green btn btn-small">跳转</a>
                     </div>
                 </div>
             </div>
@@ -67,8 +67,8 @@
             <div class="form_row">
                 <div class="span6" >
                     <div class="field">
-                        <a href="javascript:Order.save(1);" class="btn red">保存</a>
-                        <a href="javascript:App.goToPage(appCtx+'/order')" class="btn light_blue">取消</a>
+                        <a href="javascript:Order.save(1);" class="btn red btn-large" style="width: 60px;">保存</a>
+                        <a href="javascript:App.goToPage(appCtx+'/order')" class="btn dark_green btn-large" style="width: 60px;">取消</a>
                     </div>
                 </div>
             </div>

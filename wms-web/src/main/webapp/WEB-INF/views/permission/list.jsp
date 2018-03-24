@@ -4,8 +4,8 @@
     <div class="well light_gray">
         <div class="top_bar">
             <ul class="breadcrumb">
-                <li><a href="javascript:void(0);">系统管理</a> <span class="divider">/</span></li>
-                <li class="active"><a href="javascript:void(0)">权限信息</a></li>
+                <li><a href="javascript:void(0);"style="color: #037dc5;font-size: 15px;">系统管理</a> <span class="divider">/</span></li>
+                <li class="active"><a href="javascript:void(0)"style="font-weight: 600;color: #037dc5;font-size: 13px;">权限信息</a></li>
             </ul>
         </div>
 
@@ -19,9 +19,9 @@
                   <span class="inline">父级名称:</span>
                   <input id="pname" name="pname" type="text" style="width:130px;">
 
-                  <a href="javascript:Permission.queryList()" class="blue btn" style="margin-left:10px;">查询</a>
-                  <a href="javascript:App.goToPage('permission/add')" class="blue btn">添加</a>
-                  <a href="javascript:App.goToPage('permission')" class="blue btn">刷新</a>
+                  <a href="javascript:Permission.queryList()" class="dark_green btn" style="margin-left:10px;">查询</a>
+                  <a href="javascript:App.goToPage('permission/add')" class="dark_green btn">添加</a>
+                  <%--<a href="javascript:App.goToPage('permission')" class="dark_green btn">刷新</a>--%>
               </div>
           </div>
           <!-- end   -->

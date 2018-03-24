@@ -69,8 +69,8 @@ var Vendor = {
                 sDefaultContent : "",
                 sTitle : "操作",
                 mRender: function(value, type ,data){
-                    return '<a class="btn edit" href="javascript:Vendor.edit('+ value + ')"><i class="icon-edit"></i></a>\
-                            <a class="btn edit" href="javascript:Vendor.delete('+ value + ')"><i class="icon-trash"></i></a>';
+                    return '<a class="btn edit blue" href="javascript:Vendor.edit('+ value + ')"><i class="icon-edit"></i></a>\
+                            <a class="btn edit blue" href="javascript:Vendor.delete('+ value + ')"><i class="icon-trash"></i></a>';
                 }
 
             }]

@@ -48,7 +48,7 @@
             <div class="field">
                 <a id="btn_saveBranchProduct" href="javascript:;" class="btn red">保存</a>
                 <a id="btn_qrCode" href="javascript:;" class="btn red" style="display: none">二维码</a>
-                <a href="javascript:App.goToPage(appCtx + '/mobile/branch/list');" class="btn light_blue">返回</a>
+                <a href="javascript:App.goToPage(appCtx + '/mobile/branch/list');" class="btn dark_green">返回</a>
             </div>
         </div>
         <input type="hidden" id="point_x" name="point_x">

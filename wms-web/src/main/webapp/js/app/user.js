@@ -49,9 +49,9 @@ var User = {
 		            sDefaultContent : "",
 		            sTitle : "操作",
 		            mRender: function(value, type ,data){
-		            	return '<a class="btn edit" href="javascript:User.editUser('+ value + ')">编辑</a>\
-		            	        <a class="btn edit" href="javascript:User.resetPwd('+ value + ')">重置密码</a>\
-		            	        <a class="btn edit" href="javascript:User.deleteUser('+ value + ')">删除</a>';
+		            	return '<a class="btn edit blue" href="javascript:User.editUser('+ value + ')">编辑</a>\
+		            	        <a class="btn edit blue" href="javascript:User.resetPwd('+ value + ')">重置密码</a>\
+		            	        <a class="btn edit blue" href="javascript:User.deleteUser('+ value + ')">删除</a>';
 		            }
 		            
 		        }]

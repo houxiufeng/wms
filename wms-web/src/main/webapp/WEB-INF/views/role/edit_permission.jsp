@@ -4,14 +4,17 @@
 <div class="well light_gray span12">
     <div class="top_bar">
         <ul class="breadcrumb">
-            <li><a href="javascript:void(0);">系统管理</a> <span class="divider">/</span></li>
-            <li><a href="javascript:void(0)">角色信息</a><span class="divider">/</span></li>
-            <li class="active">设置权限</li>
+            <li><a href="javascript:void(0);"style="color: #037dc5;font-size: 15px;">系统管理</a> <span class="divider">/</span></li>
+            <li><a href="javascript:void(0)"style="color: #037dc5;font-size: 15px;">角色信息</a><span class="divider">/</span></li>
+            <li class="active" style="font-weight: 600;font-size: 13px;color: #037dc5;">设置权限</li>
         </ul>
     </div>
 
     <div class="well-content">
-        <p style="font-weight: 500; font-size: 14px;">${roleName}</p>
+        <%--<p style="font-weight: 500; font-size: 14px;">${roleName}</p>--%>
+        <div class="well-header" style="min-height: 35px;margin-bottom: 15px; background-color: #f7f7f7">
+            <label class="field_name align_left" style="font-weight: bold;font-size: 14px;margin:5px;color: #39a77e">${roleName}</label>
+        </div>
         <input id="roleId" type="hidden" value="${roleId}">
         <ul style="list-style-type:none;">
             <c:forEach items="${permissionTrees}" var="permissionTree">
@@ -32,8 +35,8 @@
         <div class="form_row" style="margin-top: 10px;">
             <div class="span10" >
                 <div class="field">
-                    <a id="saveRolePermission" href="javascript:void(0);" class="btn red">提交</a>
-                    <a href="javascript:App.goToPage(appCtx+'/role');" class="btn light_blue">取消</a>
+                    <a id="saveRolePermission" href="javascript:void(0);" class="btn red btn-large" style="width: 60px;">提交</a>
+                    <a href="javascript:App.goToPage(appCtx+'/role');" class="btn dark_green btn-large" style="width: 60px;">取消</a>
                 </div>
             </div>
         </div>

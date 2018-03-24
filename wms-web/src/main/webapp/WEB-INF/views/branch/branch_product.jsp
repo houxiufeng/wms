@@ -4,8 +4,8 @@
 <div class="well light_gray">
     <div class="top_bar">
         <ul class="breadcrumb">
-            <li><a href="javascript:void(0);">客户中心</a> <span class="divider">/</span></li>
-            <li class="active">创建维修产品</li>
+            <li><a href="javascript:void(0);"style="color: #037dc5;font-size: 15px;">客户中心</a> <span class="divider">/</span></li>
+            <li class="active" style="font-weight: 600;font-size: 13px;color: #037dc5;">创建维修产品</li>
         </ul>
     </div>
 
@@ -14,8 +14,8 @@
         <div class="table_options top_options">
             <div>
                 <span style="font-weight: 600; font-size: 14px;">维修产品情况</span>
-                <a href="javascript:BranchProduct.saveOrUpdate();" class="blue btn" style="float: right">保存</a>
-                <a href="javascript:BranchProduct.reset();" class="blue btn" style="float: right;margin-right: 2px">重置</a>
+                <a href="javascript:BranchProduct.saveOrUpdate();" class="red btn" style="float: right">保存</a>
+                <a href="javascript:BranchProduct.reset();" class="dark_green btn" style="float: right;margin-right: 2px">重置</a>
             </div>
         </div>
         <div class="span5" style="margin-bottom: 20px;">

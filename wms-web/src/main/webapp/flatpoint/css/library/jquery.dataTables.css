@@ -63,8 +63,9 @@ tr.even {
 .paging_full_numbers .paginate_active,
 .paging_full_numbers .paginate_active:hover {
 	color: #fff;
-	background: #0099cc;
-	border: 1px solid #0099cc;
+	/*background: #0099cc;*/
+	background: #82ba00;
+	border: 1px solid #82ba00;
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;

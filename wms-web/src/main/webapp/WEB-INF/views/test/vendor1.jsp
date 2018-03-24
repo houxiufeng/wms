@@ -67,9 +67,9 @@
 
                     <div class="form_row">
                         <div class="field">
-                            <a href="javascript:;" class="btn light_blue btn-large">首页</a>
-                            <a href="javascript:;" class="btn light_blue btn-large">检查中</a>
-                            <a href="javascript:;" class="btn light_blue btn-large">维修中</a>
+                            <a href="javascript:;" class="btn dark_green btn-large">首页</a>
+                            <a href="javascript:;" class="btn dark_green btn-large">检查中</a>
+                            <a href="javascript:;" class="btn dark_green btn-large">维修中</a>
                         </div>
                     </div>
 

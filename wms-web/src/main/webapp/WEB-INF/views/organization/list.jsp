@@ -4,8 +4,8 @@
     <div class="well light_gray">
         <div class="top_bar">
             <ul class="breadcrumb">
-                <li><a href="javascript:void(0);">系统管理</a> <span class="divider">/</span></li>
-                <li class="active"><a href="javascript:void(0)">平台客户</a></li>
+                <li><a href="javascript:void(0);" style="color: #037dc5;font-size: 15px;">系统管理</a> <span class="divider">/</span></li>
+                <li class="active"><a href="javascript:void(0)" style="font-weight: 600;font-size: 13px;color: #037dc5;">平台客户</a></li>
             </ul>
         </div>
 
@@ -14,8 +14,8 @@
           <!-- start -->
           <div class="table_options top_options">
               <div>
-                  <a href="javascript:App.goToPage('organization/add')" class="blue btn">添加</a>
-                  <a href="javascript:App.goToPage('organization')" class="blue btn">刷新</a>
+                  <a href="javascript:App.goToPage('organization/add')" class="dark_green btn">添加</a>
+                  <%--<a href="javascript:App.goToPage('organization')" class="dark_green btn">刷新</a>--%>
               </div>
           </div>
           <!-- end   -->

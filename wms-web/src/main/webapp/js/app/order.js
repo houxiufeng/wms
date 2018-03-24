@@ -68,19 +68,19 @@ var Order = {
                 sDefaultContent : "",
                 sTitle : "操作",
                 mRender: function(value, type ,data){
-                    var opts = ['<a class="btn edit" href="javascript:Order.detail('+ value + ')">查看</a>'];
+                    var opts = ['<a class="btn edit blue" href="javascript:Order.detail('+ value + ')">查看</a>'];
                     if (index == 0) {
-                        opts.push('<a class="btn edit" href="javascript:Order.assign('+ value + ')">委派</a>');
-                        opts.push('<a class="btn edit" href="javascript:Order.cancel('+ value + ')">取消</a>');
+                        opts.push('<a class="btn edit blue" href="javascript:Order.assign('+ value + ')">委派</a>');
+                        opts.push('<a class="btn edit blue" href="javascript:Order.cancel('+ value + ')">取消</a>');
                     } else if (index == 1) {
-                        opts.push('<a class="btn edit" href="javascript:Order.checked('+ value + ')">确认</a>');
-                        opts.push('<a class="btn edit" href="javascript:Order.cancel('+ value + ')">取消</a>');
+                        opts.push('<a class="btn edit blue" href="javascript:Order.checked('+ value + ')">确认</a>');
+                        opts.push('<a class="btn edit blue" href="javascript:Order.cancel('+ value + ')">取消</a>');
                     } else if (index == 2) {
-                        opts.push('<a class="btn edit" href="javascript:Order.fixed('+ value + ')">确认</a>');
-                        opts.push('<a class="btn edit" href="javascript:Order.cancel('+ value + ')">取消</a>');
+                        opts.push('<a class="btn edit blue" href="javascript:Order.fixed('+ value + ')">确认</a>');
+                        opts.push('<a class="btn edit blue" href="javascript:Order.cancel('+ value + ')">取消</a>');
                     } else if (index == 3) {
-                        opts.push('<a class="btn edit" href="javascript:Order.audited('+ value + ')">通过</a>');
-                        opts.push('<a class="btn edit" href="javascript:Order.cancel('+ value + ')">取消</a>');
+                        opts.push('<a class="btn edit blue" href="javascript:Order.audited('+ value + ')">通过</a>');
+                        opts.push('<a class="btn edit blue" href="javascript:Order.cancel('+ value + ')">取消</a>');
                     }
                     return opts.join(" ");
                 }

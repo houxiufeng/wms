@@ -46,9 +46,9 @@ var Role = {
 		            sDefaultContent : "",
 		            sTitle : "操作",
 		            mRender: function(value, type ,data){
-		            	return '<a class="btn edit" href="javascript:Role.edit('+ value + ')"><i class="icon-edit"></i></a>\
-		            	        <a class="btn edit" href="javascript:Role.delete('+ value + ')"><i class="icon-trash"></i></a>\
-		            	        <a class="btn edit" href="javascript:Role.editPermission('+ value + ')"><i class="icon-wrench"></i></a>';
+		            	return '<a class="btn edit blue" href="javascript:Role.edit('+ value + ')"><i class="icon-edit"></i></a>\
+		            	        <a class="btn edit blue" href="javascript:Role.delete('+ value + ')"><i class="icon-trash"></i></a>\
+		            	        <a class="btn edit blue" href="javascript:Role.editPermission('+ value + ')"><i class="icon-wrench"></i></a>';
 		            }
 		            
 		        }]

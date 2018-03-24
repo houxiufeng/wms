@@ -93,7 +93,7 @@
     </div>
     <div class="form_row">
         <div class="field">
-            <a href="javascript:Order.feedback();" class="btn light_blue btn-large" style="font-size: 16px;">评分</a>
+            <a href="javascript:Order.feedback();" class="btn dark_green btn-large" style="font-size: 16px;">评分</a>
             <a href="javascript:App.goToPage(appCtx + '/mobile/order/list?flag=1');" class="btn  btn-large" style="font-size: 16px;">返回</a>
         </div>
     </div>

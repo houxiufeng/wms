@@ -14,7 +14,7 @@
 
   <body>
 
-    <header class="blue"> <!-- Header start -->
+    <header class="dark_grey"> <!-- Header start -->
         <a href="#" class="logo_image"><span class="hidden-480">WMS ZOO</span></a>
         <ul class="header_actions">
             <li class="dropdown"><a href="javascript:void(0);">${CURRENT_USER.name}</a>
@@ -27,7 +27,7 @@
     </header>
 
     <!-- menu -->
-    <div id="main_navigation" class="blue"> <!-- Main navigation start -->
+    <div id="main_navigation" class="dark_navigation"> <!-- Main navigation start -->
         <div class="inner_navigation">
             <ul class="main">
                 <c:forEach items="${permissionTrees}" var="permissionTree">
@@ -38,8 +38,8 @@
                         <c:if test="${permissionTree.subNodes != null and permissionTree.subNodes.size() > 0}">
                             <ul class="sub_main">
                                 <c:forEach items="${permissionTree.subNodes}" var="subNode">
-                                    <li>
-                                        <a class="treeNode" href="javascript:App.goToPage('${ctx}${subNode.url}')" >
+                                    <li style="background-color: #7b7a7afa">
+                                        <a class="treeNode" style="color: #efe9e9" href="javascript:App.goToPage('${ctx}${subNode.url}')" >
                                             <i class="icon-caret-right"></i> ${subNode.name}
                                         </a>
                                     </li>
