@@ -73,6 +73,15 @@
                         </div>
                     </div>
 
+                    <div class="form_row" >
+                        <div>
+                            <a href="javascript:App.goToPage(appCtx + '/mobile/vendor');" class="btn dark_green btn-large" style="font-size: 16px;">首页</a>
+                            <a href="javascript:App.goToPage(appCtx + '/mobile/vendor/order/list?status=1');" class="btn btn-large" style="font-size: 16px;">检查中</a>
+                            <a href="javascript:App.goToPage(appCtx + '/mobile/vendor/order/list?status=2');" class="btn btn-large" style="font-size: 16px;">维修中</a>
+                            <a href="javascript:App.goToPage(appCtx + '/mobile/vendor/order/list?status=4');" class="btn btn-large" style="font-size: 16px;">已完成</a>
+                        </div>
+                    </div>
+
                 </form>
             </div>
 

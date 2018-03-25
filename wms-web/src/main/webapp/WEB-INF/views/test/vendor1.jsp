@@ -29,11 +29,11 @@
                     <div class="form_row" style="text-align: center">
                         <span style="font-size: 16px;font-weight: 600">李先生维修公司:你好刘德华</span>
                     </div>
-                    <div class="form_row">
-                        <div class="field">
-                            <img src="${ctx}/flatpoint/demo/avatar_04.png" style="width: 60%;">
-                        </div>
-                    </div>
+                    <%--<div class="form_row">--%>
+                        <%--<div class="field">--%>
+                            <%--<img src="${ctx}/flatpoint/demo/avatar_04.png" style="width: 60%;">--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                     <div class="form_row">
                         <label class="field_name align_right" style="width: 50%">检查中订单:</label>
                         <div class="field" style="margin-left: 55%; margin-top: 5px;">

@@ -363,6 +363,7 @@ var Order = {
             // sPaginationType: "full_numbers",    //分页策略
             bAutoWidth: false,                  // 是否非自动宽度
             sServerMethod: "POST",              //请求方式为post 主要为了防止中文参数乱码
+            iDisplayLength: 5,
             // bRetrieve:true,
             // bDestroy:true,
             //sPaginationType: "bootstrap",
