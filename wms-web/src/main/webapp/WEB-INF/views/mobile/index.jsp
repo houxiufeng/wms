@@ -35,6 +35,10 @@
             App.goToPage(appCtx + "/mobile/branch/list");
         } else if (currentUserInfo.roleCode == 'customer') {
             App.goToPage(appCtx + "/mobile/order/list?flag=1");
+        } else {
+            App.alert("对不起，您无权访问此页面！", function () {
+                logout();
+            })
         }
     </script>
 

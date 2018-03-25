@@ -4,9 +4,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.home.wms.dto.CustomerVo;
 import com.home.wms.dto.QueryCustomerParams;
 import com.home.wms.entity.Customer;
+import com.home.wms.entity.User;
 import com.home.wms.enums.DictType;
 import com.home.wms.service.CustomerService;
 import com.home.wms.service.DictService;
+import com.home.wms.service.UserService;
 import com.home.wms.utils.AppContextManager;
 import com.ktanx.common.model.PageList;
 import org.slf4j.Logger;
@@ -19,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 /**
  * Created by fitz on 2018/3/4.
  */
@@ -29,6 +33,8 @@ public class CustomerController {
 	private CustomerService customerService;
 	@Autowired
 	private DictService dictService;
+	@Autowired
+	private UserService userService;
 
 	private static final Logger LOG = LoggerFactory.getLogger(CustomerController.class);
 
@@ -53,6 +59,7 @@ public class CustomerController {
 	public String add(Model model){
 		model.addAttribute("types", dictService.findByType(DictType.CUSTOMER_LEVEL.getValue()));
 		model.addAttribute("creditStatus", dictService.findByType(DictType.CUSTOMER_CREDIT.getValue()));
+		model.addAttribute("users", userService.findUsersNotInCustomer());
 		return "/customer/add";
 	}
 
@@ -76,7 +83,13 @@ public class CustomerController {
 	public String edit(@PathVariable Long id, Model model){
 		model.addAttribute("types", dictService.findByType(DictType.CUSTOMER_LEVEL.getValue()));
 		model.addAttribute("creditStatus", dictService.findByType(DictType.CUSTOMER_CREDIT.getValue()));
-		model.addAttribute("customer", customerService.getCustomerById(id));
+		Customer customer = customerService.getCustomerById(id);
+		model.addAttribute("customer", customer);
+		List<User> users =  userService.findUsersNotInCustomer();
+		if (customer.getUserId() != null) {
+			users.add(0, userService.getById(customer.getUserId()));
+		}
+		model.addAttribute("users", users);
 		return "/customer/edit";
 	}
 

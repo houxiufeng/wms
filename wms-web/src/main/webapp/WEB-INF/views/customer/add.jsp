@@ -47,6 +47,19 @@
                         </div>
                     </div>
                 </div>
+                <div class="form_row">
+                    <div class="span4">
+                        <label class="field_name align_right">关联用户:</label>
+                        <div class="field">
+                            <select name="userId" class="span12">
+                                <c:forEach items="${users}" var="item">
+                                    <option value="${item.id}">${item.name}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <div style="border: solid 1px lightgrey;padding-bottom:10px;margin-bottom:10px;">

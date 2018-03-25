@@ -547,6 +547,7 @@ var Order = {
             sDom: '<"top">rt<"tableFooter"ip<"clear">',
             fnServerParams : function (aoData) {
                 aoData.push({"name": "flag", "value":flag});
+                aoData.push({"name": "customerId", "value":jQuery('#customerId').val()});
             },
             aoColumns:[{
                 mData : "orderNo",

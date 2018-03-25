@@ -73,5 +73,11 @@ public class CustomerServiceImpl implements CustomerService {
 	public Customer getCustomerById(Long id) {
 		return jdbcDao.get(Customer.class, id);
 	}
+	@Override
+	public Customer getCustomerByUserId(Long userId) {
+	    Customer customer = new Customer();
+	    customer.setUserId(userId);
+		return jdbcDao.querySingleResult(customer);
+	}
 
 }

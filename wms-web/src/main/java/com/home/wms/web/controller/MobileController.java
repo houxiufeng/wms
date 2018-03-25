@@ -245,6 +245,13 @@ public class MobileController {
 
 	@RequestMapping(value = "/order/list", method = RequestMethod.GET)
 	public String orderList(@RequestParam Integer flag,  Model model) {//flag==1 未评价；flag==2 已评价或已取消
+		Long userId = AppContextManager.getCurrentUserInfo().getId();
+		Customer customer = customerService.getCustomerByUserId(userId);
+		if (customer != null) {
+			model.addAttribute("customerId",customer.getId());
+		} else {
+			model.addAttribute("customerId",-1);
+		}
 		model.addAttribute("flag",flag);
 		return "mobile/order_list";
 	}

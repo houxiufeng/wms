@@ -10,6 +10,7 @@ public class QueryOrderParams {
 	private Long organizationId;
 	private Integer status;
 	private Long vendorId;
+	private Long customerId;
 	private Integer flag;//主要用来查看客户是否评价完成或取消
 	private Integer iDisplayStart = 0;
 	private Integer iDisplayLength = 10;
@@ -84,5 +85,13 @@ public class QueryOrderParams {
 
 	public void setFlag(Integer flag) {
 		this.flag = flag;
+	}
+
+	public Long getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
 	}
 }

@@ -27,4 +27,6 @@ public interface UserService {
 
     List<User> findUsersNotInVendor();
 
+    List<User> findUsersNotInCustomer();
+
 }

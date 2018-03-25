@@ -20,6 +20,7 @@ public class Customer {
 	private String contactPerson;
 	private String contactPhone;
 	private Integer type;
+	private Long userId;//用户登录的id，唯一对应
 	private Integer creditStatus;
 	private String contractName;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -189,5 +190,13 @@ public class Customer {
 
 	public void setContractInfo(String contractInfo) {
 		this.contractInfo = contractInfo;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 }

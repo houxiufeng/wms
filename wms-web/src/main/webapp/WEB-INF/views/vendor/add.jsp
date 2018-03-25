@@ -65,12 +65,6 @@
                 </div>
             </div>
 
-            <%--<div class="form_row">--%>
-                <%--<div class="span6">--%>
-                    <%--<label class="field_name align_left" style="font-weight: bold;font-size: 14px;">基本信息</label>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-
             <div style="border: solid 1px lightgrey;padding-bottom:10px;margin-bottom:10px;">
                 <div class="well-header" style="min-height: 35px;margin-bottom: 15px; background-color: #f7f7f7">
                     <label class="field_name align_left" style="font-weight: bold;font-size: 14px;margin:5px;color: #39a77e">其他情况</label>
@@ -110,12 +104,6 @@
                 </div>
             </div>
 
-            <%--<div class="form_row">--%>
-                <%--<div class="span6">--%>
-                    <%--<label class="field_name align_left" style="font-weight: bold;font-size: 14px;">其他情况</label>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-
             <div style="border: solid 1px lightgrey;padding-bottom:10px;margin-bottom:10px;">
                 <div class="well-header" style="min-height: 35px;margin-bottom: 15px; background-color: #f7f7f7">
                     <label class="field_name align_left" style="font-weight: bold;font-size: 14px;margin:5px;color: #39a77e">上岗情况</label>
@@ -132,14 +120,6 @@
                     </div>
                 </div>
             </div>
-
-            <%--<div class="form_row">--%>
-                <%--<div class="span6">--%>
-                    <%--<label class="field_name align_left" style="font-weight: bold;font-size: 14px;">上岗情况</label>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-
-
 
             <div class="form_row">
                 <div class="span6" >
