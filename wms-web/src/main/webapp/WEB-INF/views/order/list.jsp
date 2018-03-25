@@ -28,12 +28,12 @@
 
             <div class="navbar-inner">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#right-tab0" data-toggle="tab">派单中</a></li>
-                    <li><a href="#right-tab1" data-toggle="tab">检查中</a></li>
-                    <li><a href="#right-tab2" data-toggle="tab">维修中</a></li>
+                    <li class="active" data-status="0"><a href="#right-tab0" data-toggle="tab">派单中</a></li>
+                    <li data-status="1"><a href="#right-tab1" data-toggle="tab">检查中</a></li>
+                    <li data-status="2"><a href="#right-tab2" data-toggle="tab">维修中</a></li>
                     <%--<li><a href="#right-tab3" data-toggle="tab">审核中</a></li>--%>
-                    <li><a href="#right-tab4" data-toggle="tab">已完结</a></li>
-                    <li><a href="#right-tab5" data-toggle="tab">已取消</a></li>
+                    <li data-status="4"><a href="#right-tab4" data-toggle="tab">已完结</a></li>
+                    <li data-status="5"><a href="#right-tab5" data-toggle="tab">已取消</a></li>
                 </ul>
             </div>
 
@@ -65,7 +65,7 @@
 <script>
     Order.getTableData(0);
     jQuery("ul.nav li").on("click",function(){
-        Order.getTableData(jQuery(this).index());
+        Order.getTableData(jQuery(this).data("status"));
     });
     jQuery(".datetimepicker").datetimepicker({
         format:"yyyy-mm-dd",

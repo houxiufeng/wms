@@ -53,13 +53,13 @@
 
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right">维修产品:</label>
+                    <label class="field_name align_right">订单状态:</label>
                     <div class="field" style="margin-top: 5px">
                         <c:if test="${order.status == 0}"><span>派单中</span></c:if>
                         <c:if test="${order.status == 1}"><span>检查中</span></c:if>
                         <c:if test="${order.status == 2}"><span>维修中</span></c:if>
                         <c:if test="${order.status == 3}"><span>审核中</span></c:if>
-                        <c:if test="${order.status == 4}"><span>评价中</span></c:if>
+                        <c:if test="${order.status == 4}"><span>已完结</span></c:if>
                         <c:if test="${order.status == 5}"><span>已取消</span></c:if>
                     </div>
                 </div>
