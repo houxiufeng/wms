@@ -142,8 +142,8 @@ function uploadProductImg(){
                 var imgRow = ['<tr class="imgTr">',
                     '<td>'+ d.imgName +'</td>',
                     '<td>',
-                    '<a href="javascript:void(0);" onclick="showImg(this)" data-imgpath="' + d.imgPath + '" class="btn yellow btn-small imgPath">查看</a>',
-                    '<a href="javascript:void(0);" onclick="deleteImgRow(this)" class="btn grey btn-small">删除</a>',
+                    '<a href="javascript:void(0);" onclick="showImg(this)" data-imgpath="' + d.imgPath + '" class="btn yellow btn-small imgPath"><i class="icon-eye-open"></i></a>',
+                    '<a href="javascript:void(0);" onclick="deleteImgRow(this)" class="btn grey btn-small"><i class="icon-trash"></i></a>',
                     '</td>',
                     '</tr>'].join('\n');
                 productImgTable.append(imgRow);
@@ -225,8 +225,8 @@ function uploadProductFile(){
                 var fileRow = ['<tr class="fileTr">',
                     '<td>'+ d.fileName +'</td>',
                     '<td>',
-                    '<a href="javascript:void(0);" onclick="downloadFile(this)" data-filepath="' + d.filePath + '" class="btn yellow btn-small filePath">下载</a>',
-                    '<a href="javascript:void(0);" onclick="deleteFileRow(this)" class="btn grey btn-small">删除</a>',
+                    '<a href="javascript:void(0);" onclick="downloadFile(this)" data-filepath="' + d.filePath + '" class="btn yellow btn-small filePath"><i class="icon-download-alt"></i></a>',
+                    '<a href="javascript:void(0);" onclick="deleteFileRow(this)" class="btn grey btn-small"><i class="icon-trash"></i></a>',
                     '</td>',
                     '</tr>'].join('\n');
                 productFileTable.append(fileRow);

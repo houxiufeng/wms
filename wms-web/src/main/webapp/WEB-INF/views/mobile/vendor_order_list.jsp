@@ -23,10 +23,10 @@
 </div>
 <div class="footer1">
     <div style="margin-left: 10px;padding: 10px;">
-        <a href="javascript:App.goToPage(appCtx + '/mobile/vendor');" class="btn btn-large" style="font-size: 16px;">首页</a>
-        <a href="javascript:App.goToPage(appCtx + '/mobile/vendor/order/list?status=1');" class="btn btn-large <c:if test='${status == 1}'>dark_green</c:if>" style="font-size: 16px;">检查中</a>
-        <a href="javascript:App.goToPage(appCtx + '/mobile/vendor/order/list?status=2');" class="btn btn-large <c:if test='${status == 2}'>dark_green</c:if>" style="font-size: 16px;">维修中</a>
-        <a href="javascript:App.goToPage(appCtx + '/mobile/vendor/order/list?status=4');" class="btn btn-large <c:if test='${status == 4}'>dark_green</c:if>" style="font-size: 16px;">已完成</a>
+        <a href="javascript:App.goToPage(appCtx + '/mobile/vendor');" class="btn btn-large" style="font-size: 16px;"><i class="icon-home"></i></a>
+        <a href="javascript:App.goToPage(appCtx + '/mobile/vendor/order/list?status=1');" class="btn btn-large <c:if test='${status == 1}'>dark_green</c:if>" style="font-size: 16px;"><i class="icon-zoom-in"></i></a>
+        <a href="javascript:App.goToPage(appCtx + '/mobile/vendor/order/list?status=2');" class="btn btn-large <c:if test='${status == 2}'>dark_green</c:if>" style="font-size: 16px;"><i class="icon-legal"></i></a>
+        <a href="javascript:App.goToPage(appCtx + '/mobile/vendor/order/list?status=4');" class="btn btn-large <c:if test='${status == 4}'>dark_green</c:if>" style="font-size: 16px;"><i class="icon-check"></i></a>
     </div>
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/app/order.js"></script>

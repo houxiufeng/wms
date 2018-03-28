@@ -19,8 +19,8 @@
                   <span class="inline">父级名称:</span>
                   <input id="pname" name="pname" type="text" style="width:130px;">
 
-                  <a href="javascript:Permission.queryList()" class="dark_green btn" style="margin-left:10px;">查询</a>
-                  <a href="javascript:App.goToPage('permission/add')" class="dark_green btn">添加</a>
+                  <a href="javascript:Permission.queryList()" class="dark_green btn" style="margin-left:10px;"><i class="icon-search"></i></a>
+                  <a href="javascript:App.goToPage('permission/add')" class="dark_green btn"><i class="icon-plus"></i></a>
                   <%--<a href="javascript:App.goToPage('permission')" class="dark_green btn">刷新</a>--%>
               </div>
           </div>

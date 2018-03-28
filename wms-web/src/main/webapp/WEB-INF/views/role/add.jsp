@@ -57,8 +57,8 @@
             <div class="form_row">
                 <div class="span4" >
                     <div class="field">
-                        <a href="javascript:Role.save();" class="btn red btn-large" style="width: 60px;">提交</a>
-                        <a href="javascript:App.goToPage(appCtx+'/role')" class="btn dark_green btn-large" style="width: 60px;">取消</a>
+                        <a href="javascript:Role.save();" class="btn red btn-large" style="width: 60px;"><i class="icon-save"></i></a>
+                        <a href="javascript:App.goToPage(appCtx+'/role')" class="btn dark_green btn-large" style="width: 60px;"><i class="icon-reply"></i></a>
                     </div>
                 </div>
             </div>

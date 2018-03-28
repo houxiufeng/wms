@@ -45,7 +45,7 @@ var Branch = {
                 sDefaultContent : "",
                 sTitle : "操作",
                 mRender: function(value, type ,data){
-                    return '<a class="btn edit blue" href="javascript:Branch.addMaintainProduct('+ value + ')">维修产品添加</a>\
+                    return '<a class="btn edit blue" href="javascript:Branch.addMaintainProduct('+ value + ')"><i class="icon-wrench"></i></a>\
                             <a class="btn edit blue" href="javascript:Branch.edit('+ value + ')"><i class="icon-edit"></i></a>\
                             <a class="btn edit blue" href="javascript:Branch.delete('+ value + ')"><i class="icon-trash"></i></a>';
                 }
@@ -229,8 +229,8 @@ var Branch = {
                 sDefaultContent : "",
                 sTitle : "操作",
                 mRender: function(value, type ,data){
-                    return '<a class="btn edit" href="javascript:App.goToPage(appCtx + \'/mobile/branch/product/add?branchId='+value+'\')">产品添加</a>\
-                            <a class="btn edit" href="javascript:App.goToPage(appCtx + \'/mobile/branch/product/list?branchId='+value+'\')">查看</a>';
+                    return '<a class="btn edit" href="javascript:App.goToPage(appCtx + \'/mobile/branch/product/add?branchId='+value+'\')"><i class="icon-wrench"></i></a>\
+                            <a class="btn edit" href="javascript:App.goToPage(appCtx + \'/mobile/branch/product/list?branchId='+value+'\')"><i class="icon-eye-open"></i></a>';
                 }
 
             }]

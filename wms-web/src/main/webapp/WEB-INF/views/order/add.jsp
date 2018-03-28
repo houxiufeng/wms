@@ -22,14 +22,14 @@
                                 <option value="${item.id}">${item.name}</option>
                             </c:forEach>
                         </select>
-                        <a href="javascript:App.goToPage(appCtx + '/customer')" class="dark_green btn btn-small">跳转</a>
+                        <a href="javascript:App.goToPage(appCtx + '/customer')" class="dark_green btn btn-small"><i class="icon-external-link"></i></a>
                     </div>
                 </div>
                 <div class="span6">
                     <label class="field_name align_right"><span style="color: red">*</span>总/分店名称:</label>
                     <div class="field">
                         <select id="branchId" name="branchId" class="span10"></select>
-                        <a href="javascript:App.goToPage(appCtx + '/branch')" class="dark_green btn btn-small">跳转</a>
+                        <a href="javascript:App.goToPage(appCtx + '/branch')" class="dark_green btn btn-small"><i class="icon-external-link"></i></a>
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                     <label class="field_name align_right"><span style="color: red">*</span>维修产品:</label>
                     <div class="field">
                         <select id="branchProductId" name="branchProductId" class="span10"></select>
-                        <a href="javascript:void(0)" class="dark_green btn btn-small">跳转</a>
+                        <a href="javascript:void(0)" class="dark_green btn btn-small"><i class="icon-external-link"></i></a>
                     </div>
                 </div>
             </div>
@@ -67,8 +67,8 @@
             <div class="form_row">
                 <div class="span6" >
                     <div class="field">
-                        <a href="javascript:Order.save();" class="btn red btn-large" style="width: 60px;">保存</a>
-                        <a href="javascript:App.goToPage(appCtx+'/order')" class="btn dark_green btn-large" style="width: 60px;">取消</a>
+                        <a href="javascript:Order.save();" class="btn red btn-large" style="width: 60px;"><i class="icon-save"></i></a>
+                        <a href="javascript:App.goToPage(appCtx+'/order')" class="btn dark_green btn-large" style="width: 60px;"><i class="icon-reply"></i></a>
                     </div>
                 </div>
             </div>

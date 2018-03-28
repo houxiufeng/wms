@@ -16,8 +16,8 @@
               <div>
                   <span class="inline">总/分店名:</span>
                   <input id="name" name="name" type="text" style="width:230px;">
-                  <a href="javascript:Branch.queryList()" class="dark_green btn" style="margin-left:10px;">查询</a>
-                  <a href="javascript:App.goToPage('branch/add')" class="dark_green btn">添加</a>
+                  <a href="javascript:Branch.queryList()" class="dark_green btn" style="margin-left:10px;"><i class="icon-search"></i></a>
+                  <a href="javascript:App.goToPage('branch/add')" class="dark_green btn"><i class="icon-plus"></i></a>
               </div>
           </div>
           <!-- end   -->

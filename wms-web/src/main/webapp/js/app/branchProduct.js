@@ -41,7 +41,7 @@ var BranchProduct = {
                 sDefaultContent : "",
                 sTitle : "操作",
                 mRender: function(value, type ,data){
-                    return '<a class="btn edit blue" href="javascript:BranchProduct.genQrcode('+ value + ')">二维码</a>\
+                    return '<a class="btn edit blue" href="javascript:BranchProduct.genQrcode('+ value + ')"><i class="icon-qrcode"></i></a>\
                             <a class="btn edit blue" href="javascript:BranchProduct.edit('+ value + ',' + data.productId + ',\''+data.productName+'\',\''+data.sn+'\',\''+data.position+'\',\'' + data.poi+'\')"><i class="icon-edit"></i></a>\
                             <a class="btn edit blue" href="javascript:BranchProduct.delete('+ value + ')"><i class="icon-trash"></i></a>';
                 }
@@ -249,7 +249,7 @@ var BranchProduct = {
                 sDefaultContent : "",
                 sTitle : "操作",
                 mRender: function(value, type ,data){
-                    return '<a class="btn edit" href="javascript:App.goToPage(appCtx + \'/mobile/branch/product/edit?branchProductId='+value+'\')">编辑</a>';
+                    return '<a class="btn edit" href="javascript:App.goToPage(appCtx + \'/mobile/branch/product/edit?branchProductId='+value+'\')"><i class="icon-edit"></i></a>';
                 }
 
             }]

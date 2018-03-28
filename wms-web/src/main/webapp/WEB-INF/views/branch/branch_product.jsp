@@ -14,8 +14,8 @@
         <div class="table_options top_options">
             <div>
                 <span style="font-weight: 600; font-size: 14px;">维修产品情况</span>
-                <a href="javascript:BranchProduct.saveOrUpdate();" class="red btn" style="float: right">保存</a>
-                <a href="javascript:BranchProduct.reset();" class="dark_green btn" style="float: right;margin-right: 2px">重置</a>
+                <a href="javascript:BranchProduct.saveOrUpdate();" class="red btn" style="float: right"><i class="icon-save"></i></a>
+                <a href="javascript:BranchProduct.reset();" class="dark_green btn" style="float: right;margin-right: 2px"><i class="icon-undo"></i></a>
             </div>
         </div>
         <div class="span5" style="margin-bottom: 20px;">

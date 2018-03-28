@@ -49,9 +49,9 @@
         </div>
         <div class="form_row">
             <div class="field">
-                <a id="btn_updateBranchProduct" href="javascript:;" class="btn red">保存</a>
-                <a id="btn_qrCode" href="javascript:;" class="btn dark_green">二维码</a>
-                <a href="javascript:App.goToPage(appCtx + '/mobile/branch/product/list?branchId=${bp.branchId}')" class="btn dark_green">返回</a>
+                <a id="btn_updateBranchProduct" href="javascript:;" class="btn red"><i class="icon-save"></i></a>
+                <a id="btn_qrCode" href="javascript:;" class="btn dark_green"><i class="icon-qrcode"></i></a>
+                <a href="javascript:App.goToPage(appCtx + '/mobile/branch/product/list?branchId=${bp.branchId}')" class="btn dark_green"><i class="icon-reply"></i></a>
             </div>
         </div>
 

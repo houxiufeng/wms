@@ -68,8 +68,8 @@
 
                     <div class="form_row">
                         <div class="field">
-                            <a href="javascript:;" class="btn red">保存</a>
-                            <a href="javascript:;" class="btn dark_green">取消</a>
+                            <a href="javascript:;" class="btn red"><i class="icon-save"></i></a>
+                            <a href="javascript:;" class="btn dark_green"><i class="icon-reply"></i></a>
                         </div>
                     </div>
 

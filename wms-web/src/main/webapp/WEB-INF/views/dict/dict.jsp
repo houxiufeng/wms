@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="span2">
-                    <a href="javascript:Dict.save();" class="dark_green btn">保存</a>
+                    <a href="javascript:Dict.save();" class="red btn"><i class="icon-save"></i></a>
                 </div>
             </div>
         </form>

@@ -68,16 +68,16 @@ var Order = {
                 sDefaultContent : "",
                 sTitle : "操作",
                 mRender: function(value, type ,data){
-                    var opts = ['<a class="btn edit blue" href="javascript:Order.detail('+ value + ')">查看</a>'];
+                    var opts = ['<a class="btn edit blue" href="javascript:Order.detail('+ value + ')"><i class="icon-eye-open"></i></a>'];
                     if (index == 0) {
-                        opts.push('<a class="btn edit blue" href="javascript:Order.assign('+ value + ')">委派</a>');
-                        opts.push('<a class="btn edit blue" href="javascript:Order.cancel('+ value + ')">取消</a>');
+                        opts.push('<a class="btn edit blue" href="javascript:Order.assign('+ value + ')"><i class="icon-group"></i></a>');
+                        opts.push('<a class="btn edit blue" href="javascript:Order.cancel('+ value + ')"><i class="icon-remove"></i></a>');
                     } else if (index == 1) {
-                        opts.push('<a class="btn edit blue" href="javascript:Order.checked('+ value + ')">确认</a>');
-                        opts.push('<a class="btn edit blue" href="javascript:Order.cancel('+ value + ')">取消</a>');
+                        opts.push('<a class="btn edit blue" href="javascript:Order.checked('+ value + ')"><i class="icon-ok"></i></a>');
+                        opts.push('<a class="btn edit blue" href="javascript:Order.cancel('+ value + ')"><i class="icon-remove"></i></a>');
                     } else if (index == 2) {
-                        opts.push('<a class="btn edit blue" href="javascript:Order.fixed('+ value + ')">确认</a>');
-                        opts.push('<a class="btn edit blue" href="javascript:Order.cancel('+ value + ')">取消</a>');
+                        opts.push('<a class="btn edit blue" href="javascript:Order.fixed('+ value + ')"><i class="icon-ok"></i></a>');
+                        opts.push('<a class="btn edit blue" href="javascript:Order.cancel('+ value + ')"><i class="icon-remove"></i></a>');
                     }
                     // else if (index == 3) {
                     //     opts.push('<a class="btn edit blue" href="javascript:Order.audited('+ value + ')">通过</a>');
@@ -395,11 +395,11 @@ var Order = {
                     var opts = [];
                     if (status == 1) {//检查中
                         opts.push('<a style="margin: 1px;" class="btn edit" href="javascript:Order.reject('+ value + ')">拒单</a><br>');
-                        opts.push('<a class="btn edit" href="javascript:Order.showMobileOrderDetail('+ value + ')">查看</a>');
+                        opts.push('<a class="btn edit" href="javascript:Order.showMobileOrderDetail('+ value + ')"><i class="icon-eye-open"></i></a>');
                     } else if (status == 2) {//维修中
                         opts.push('<a class="btn edit" href="javascript:Order.mobileFixed('+ value + ')">完成</a>');
                     } else if (status == 4) {
-                        opts.push('<a class="btn edit" href="javascript:Order.showMobileOrderDetail('+ value + ')">查看</a>');
+                        opts.push('<a class="btn edit" href="javascript:Order.showMobileOrderDetail('+ value + ')"><i class="icon-eye-open"></i></a>');
                     }
                     return opts.join(" ");
                 }
@@ -589,7 +589,7 @@ var Order = {
                     if (data.status == 4 && _isNull(data.score)) {//未评价
                         opts.push('<a style="margin: 1px;" class="btn edit" href="javascript:App.goToPage(appCtx + \'/mobile/order/feedback/'+value+'\')">评价</a><br>');
                     }
-                    opts.push('<a class="btn edit" href="javascript:Order.showMobileOrderDetail_customer('+ value + ')">查看</a>');
+                    opts.push('<a class="btn edit" href="javascript:Order.showMobileOrderDetail_customer('+ value + ')"><i class="icon-eye-open"></i></a>');
                     return opts.join(" ");
                 }
 

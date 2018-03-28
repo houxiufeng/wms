@@ -117,8 +117,8 @@
 									<tr class="imgTr">
 										<td>${fn:substring(item, item.lastIndexOf("/")+1, item.length())}</td>
 										<td>
-											<a href="javascript:void(0);" onclick="showImg(this)" data-imgpath="${item}" class="btn yellow btn-small imgPath">查看</a>
-											<a href="javascript:void(0);" onclick="deleteImgRow(this)" class="btn grey btn-small">删除</a>
+											<a href="javascript:void(0);" onclick="showImg(this)" data-imgpath="${item}" class="btn yellow btn-small imgPath"><i class="icon-eye-open"></i></a>
+											<a href="javascript:void(0);" onclick="deleteImgRow(this)" class="btn grey btn-small"><i class="icon-trash"></i></a>
 										</td>
 									</tr>
 								</c:forEach>
@@ -137,8 +137,8 @@
 									<tr class="fileTr">
 										<td>${fn:substring(item, item.lastIndexOf("/")+1, item.length())}</td>
 										<td>
-											<a href="javascript:void(0);" onclick="downloadFile(this)" data-filepath="${item}" class="btn yellow btn-small filePath">下载</a>
-											<a href="javascript:void(0);" onclick="deleteFileRow(this)" class="btn grey btn-small">删除</a>
+											<a href="javascript:void(0);" onclick="downloadFile(this)" data-filepath="${item}" class="btn yellow btn-small filePath"><i class="icon-download-alt"></i></a>
+											<a href="javascript:void(0);" onclick="deleteFileRow(this)" class="btn grey btn-small"><i class="icon-trash"></i></a>
 										</td>
 									</tr>
 								</c:forEach>
@@ -151,8 +151,8 @@
 			<div class="form_row">
 				<div class="span5" >
 					<div class="field">
-						<a href="javascript:Product.update();" class="btn red btn-large" style="width: 60px;">提交</a>
-						<a href="javascript:App.goToPage(appCtx+'/product')" class="btn dark_green btn-large" style="width: 60px;">取消</a>
+						<a href="javascript:Product.update();" class="btn red btn-large" style="width: 60px;"><i class="icon-save"></i></a>
+						<a href="javascript:App.goToPage(appCtx+'/product')" class="btn dark_green btn-large" style="width: 60px;"><i class="icon-reply"></i></a>
 					</div>
 				</div>
 			</div>
