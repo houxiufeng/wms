@@ -70,6 +70,8 @@ var Product = {
         var params = Product.buildValidate();
         if (params.form.valid()) {
             var data = jQuery("#productForm").serialize();
+            var maintenancePhoneStr = buildPhoneStr(jQuery('#maintenancePhone_pre').val(), jQuery('#maintenancePhone').val());
+            data += "&maintenancePhone="+maintenancePhoneStr;
             var a1 = [];
             jQuery("#productImgTable").find("a.imgPath").each(function () {
                 a1.push(jQuery(this).attr("data-imgpath"));
@@ -108,6 +110,8 @@ var Product = {
         var params = Product.buildValidate();
         if (params.form.valid()) {
             var data = jQuery("#productForm").serialize();
+            var maintenancePhoneStr = buildPhoneStr(jQuery('#maintenancePhone_pre').val(), jQuery('#maintenancePhone').val());
+            data += "&maintenancePhone="+maintenancePhoneStr;
             var a1 = [];
             jQuery("#productImgTable").find("a.imgPath").each(function () {
                 a1.push(jQuery(this).attr("data-imgpath"));

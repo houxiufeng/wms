@@ -20,6 +20,19 @@
 
 	        <div class="form_row">
 		        <div class="span4">
+			        <label class="field_name align_right">角色:</label>
+			        <div class="field">
+				        <select name="roleId" class="span12">
+					        <c:forEach items="${roles}" var="item">
+						        <option value="${item.id}" <c:if test="${user.roleId == item.id}">selected</c:if>>${item.name}</option>
+					        </c:forEach>
+				        </select>
+			        </div>
+		        </div>
+	        </div>
+
+	        <div class="form_row">
+		        <div class="span4">
 			        <label class="field_name align_right">邮箱:</label>
 			        <div class="field">
 				        <input name="email" class="span12" type="text" value="${user.email }">
@@ -52,19 +65,6 @@
 	        </c:if>
 
 	        <div class="form_row">
-		        <div class="span4">
-			        <label class="field_name align_right">角色:</label>
-			        <div class="field">
-				        <select name="roleId" class="span12">
-					        <c:forEach items="${roles}" var="item">
-						        <option value="${item.id}" <c:if test="${user.roleId == item.id}">selected</c:if>>${item.name}</option>
-					        </c:forEach>
-				        </select>
-			        </div>
-		        </div>
-	        </div>
-
-             <div class="form_row">
                 <div class="span4">
                     <label class="field_name align_right">住址:</label>
 	                 <div class="field">

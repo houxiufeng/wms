@@ -39,6 +39,13 @@
             </div>
         </div>
         <div class="form_row">
+            <label class="field_name align_right">时间范围:</label>
+            <div class="field">
+                <input id="beginTime" name="beginTime" type="text" class="datetimepicker" style="width: 40%" readonly> —
+                <input id="endTime" name="endTime" type="text" class="datetimepicker" style="width: 40%" readonly>
+            </div>
+        </div>
+        <div class="form_row">
             <label class="field_name align_right">poi</label>
             <div class="field">
                 <div id="googleMap" style="width:280px;height:220px;"></div>
@@ -151,7 +158,15 @@
             var img = canvas[0].toDataURL("image/png");
             $('#qrcode').html("<img src='" + img + "'>");
 
-        })
+        });
+
+        $(".datetimepicker").datetimepicker({
+            format:"yyyy-mm-dd",
+            autoclose: true,
+            pickTime: false,
+            minView: '2',
+            todayBtn: true
+        });
 
     })
 </script>

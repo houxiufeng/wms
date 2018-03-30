@@ -44,7 +44,9 @@
 					<div class="span6">
 						<label class="field_name align_right">供应商电话:</label>
 						<div class="field">
-							<input name="phone" class="span12" type="text" maxlength="20" value="${vendor.phone}">
+							<%--<input name="phone" class="span12" type="text" maxlength="20" value="${vendor.phone}">--%>
+							<input id="phone_pre" class="span3" type="text" maxlength="5"> -
+							<input id="phone" class="span8" type="text" maxlength="14">
 						</div>
 					</div>
 				</div>
@@ -153,4 +155,8 @@
 	jQuery.each(skill.split(","),function (index, value) {
         jQuery("#vendorForm").find(":checkbox[name='skill'][value='" + value + "']").attr("checked","checked");
     });
+    var phone = '${vendor.phone}';
+    var p = splitPhoneStr(phone);
+    jQuery("#phone_pre").val(p[0]);
+    jQuery("#phone").val(p[1]);
 </script>

@@ -61,11 +61,14 @@ var Branch = {
     
     save: function() {
         var params = Branch.buildValidate();
+        var data = jQuery("#branchForm").serialize();
+        var contactPhoneStr = buildPhoneStr(jQuery('#contactPhone_pre').val(), jQuery('#contactPhone').val());
+        data += "&contactPhone="+contactPhoneStr;
         if (params.form.valid()) {
             jQuery.ajax({
                 url: appCtx + "/branch/create",
                 type: 'post',
-                data:jQuery("#branchForm").serialize(),
+                data:data,
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {
@@ -89,11 +92,14 @@ var Branch = {
 
     update: function() {
         var params = Branch.buildValidate();
+        var data = jQuery("#branchForm").serialize();
+        var contactPhoneStr = buildPhoneStr(jQuery('#contactPhone_pre').val(), jQuery('#contactPhone').val());
+        data += "&contactPhone="+contactPhoneStr;
         if (params.form.valid()) {
             jQuery.ajax({
                 url: appCtx + "/branch/update/",
                 type: 'post',
-                data:jQuery("#branchForm").serialize(),
+                data:data,
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {

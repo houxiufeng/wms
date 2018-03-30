@@ -42,7 +42,7 @@ var BranchProduct = {
                 sTitle : "操作",
                 mRender: function(value, type ,data){
                     return '<a class="btn edit blue" href="javascript:BranchProduct.genQrcode('+ value + ')"><i class="icon-qrcode"></i></a>\
-                            <a class="btn edit blue" href="javascript:BranchProduct.edit('+ value + ',' + data.productId + ',\''+data.productName+'\',\''+data.sn+'\',\''+data.position+'\',\'' + data.poi+'\')"><i class="icon-edit"></i></a>\
+                            <a class="btn edit blue" href="javascript:BranchProduct.edit('+ value + ',' + data.productId + ',\''+data.productName+'\',\''+data.sn+'\',\''+data.position+'\',\'' + data.poi+'\',\''+data.beginTime+'\',\''+data.endTime+'\')"><i class="icon-edit"></i></a>\
                             <a class="btn edit blue" href="javascript:BranchProduct.delete('+ value + ')"><i class="icon-trash"></i></a>';
                 }
 
@@ -97,13 +97,21 @@ var BranchProduct = {
         });
     },
     
-    edit : function(id, productId, productName, sn, position, poi){
+    edit : function(id, productId, productName, sn, position, poi, beginTime, endTime){
         jQuery("#branchProductForm").find(":input[name='id']").val(id);
         jQuery("#branchProductForm").find(":input[name='sn']").val(sn);
         jQuery("#branchProductForm").find(":input[name='position']").val(position);
         jQuery("#branchProductForm").find("#productName").val(productName);
         jQuery("#branchProductForm").find("#productName").trigger("change");
         jQuery("#branchProductForm").find("#productId").val(productId);
+        if (!_isNull(beginTime)) {
+            var bt = moment.unix(beginTime/1000).format("YYYY-MM-DD");
+            jQuery("#branchProductForm").find("#beginTime").val(bt);
+        }
+        if (!_isNull(endTime)) {
+            var et = moment.unix(endTime/1000).format("YYYY-MM-DD");
+            jQuery("#branchProductForm").find("#endTime").val(et);
+        }
         if (!_isNull(poi)) {
             var latlng = poi.split(",");
             var myCenter=new google.maps.LatLng(latlng[1],latlng[0]);
@@ -119,7 +127,7 @@ var BranchProduct = {
 
     update: function() {
         var data = jQuery("#branchProductForm").serialize();
-        if (!_isNull(jQuery("#point_x")) && !_isNull(jQuery("#point_y"))) {
+        if (!_isNull(jQuery("#point_x").val()) && !_isNull(jQuery("#point_y").val())) {
             data += "&poi=" + jQuery("#point_x").val() + "," + jQuery("#point_y").val();
         }
         jQuery.ajax({

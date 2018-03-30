@@ -27,11 +27,16 @@
 	</bean>
 
 	<!-- 启动Springmvc注解驱动 -->
-	<mvc:annotation-driven/>
-    <!-- 返回json 方法一 需要导入 fastjson.jar包 -->  
-	<mvc:annotation-driven>
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<set>
+				<bean class="com.home.wms.web.filter.StringTrimConvert"/>
+			</set>
+		</property>
+	</bean>
+    <!-- 返回json 方法一 需要导入 fastjson.jar包 -->
+	<mvc:annotation-driven conversion-service="conversionService">
         <mvc:message-converters register-defaults="true">
-            <!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
             <bean id="fastJsonHttpMessageConverter" class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
                 <property name="supportedMediaTypes">
                     <list>
@@ -43,7 +48,7 @@
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
-	
+
 	<context:component-scan base-package="com.home.wms.web" />
 	
 	<mvc:resources location="/js/" mapping="/js/**" />

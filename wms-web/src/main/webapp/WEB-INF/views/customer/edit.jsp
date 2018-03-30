@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <div class="span12">
     
@@ -46,7 +47,9 @@
 			        <div class="span4">
 				        <label class="field_name align_right">客户电话:</label>
 				        <div class="field">
-					        <input name="phone" class="span12" type="text" maxlength="20" value="${customer.phone}">
+					        <%--<input name="phone" class="span12" type="text" maxlength="20" value="${customer.phone}">--%>
+					        <input id="phone_pre" class="span3" type="text" maxlength="5"> -
+					        <input id="phone" class="span8" type="text" maxlength="14">
 				        </div>
 			        </div>
 		        </div>
@@ -57,7 +60,7 @@
 				        <div class="field">
 					        <select name="userId" class="span12">
 						        <c:forEach items="${users}" var="item">
-							        <option value="${item.id} <c:if test="${item.id == customer.userId}">selected</c:if>">${item.name}</option>
+							        <option value="${item.id}" <c:if test="${item.id == customer.userId}">selected</c:if>>${item.name}</option>
 						        </c:forEach>
 					        </select>
 				        </div>
@@ -79,7 +82,9 @@
 			        <div class="span4">
 				        <label class="field_name align_right">法人电话:</label>
 				        <div class="field">
-					        <input name="legalPhone" class="span12" type="text" maxlength="20" value="${customer.legalPhone}">
+					        <%--<input name="legalPhone" class="span12" type="text" maxlength="20" value="${customer.legalPhone}">--%>
+					        <input id="legalPhone_pre" class="span3" type="text" maxlength="5"> -
+					        <input id="legalPhone" class="span8" type="text" maxlength="14">
 				        </div>
 			        </div>
 		        </div>
@@ -99,7 +104,9 @@
 			        <div class="span4">
 				        <label class="field_name align_right">联系人电话:</label>
 				        <div class="field">
-					        <input name="contactPhone" class="span12" type="text" maxlength="20" value="${customer.contactPhone}">
+					        <%--<input name="contactPhone" class="span12" type="text" maxlength="20" value="${customer.contactPhone}">--%>
+					        <input id="contactPhone_pre" class="span3" type="text" maxlength="5"> -
+					        <input id="contactPhone" class="span8" type="text" maxlength="14">
 				        </div>
 			        </div>
 		        </div>
@@ -192,3 +199,19 @@
         </div>
     </div>
 </div>
+<script>
+    jQuery(function ($) {
+	    var phone = '${customer.phone}';
+        var legalPhone = '${customer.legalPhone}';
+        var contactPhone = '${customer.contactPhone}';
+        var p1 = splitPhoneStr(phone);
+        var p2 = splitPhoneStr(legalPhone);
+        var p3 = splitPhoneStr(contactPhone);
+        $("#phone_pre").val(p1[0]);
+        $("#phone").val(p1[1]);
+        $("#legalPhone_pre").val(p2[0]);
+        $("#legalPhone").val(p2[1]);
+        $("#contactPhone_pre").val(p3[0]);
+        $("#contactPhone").val(p3[1]);
+    });
+</script>

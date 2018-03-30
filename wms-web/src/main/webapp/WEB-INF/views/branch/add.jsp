@@ -51,7 +51,9 @@
                 <div class="span6">
                     <label class="field_name align_right"><span style="color: red">*</span>联系人电话:</label>
                     <div class="field">
-                        <input name="contactPhone" class="span12" type="text" maxlength="32">
+                        <%--<input name="contactPhone" class="span12" type="text" maxlength="32">--%>
+                        <input id="contactPhone_pre" class="span3" type="text" maxlength="5"> -
+                        <input id="contactPhone" class="span8" type="text" maxlength="14">
                     </div>
                 </div>
             </div>

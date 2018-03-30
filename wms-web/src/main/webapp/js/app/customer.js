@@ -63,11 +63,18 @@ var Customer = {
     
     save: function() {
         var params = Customer.buildValidate();
+        var data = jQuery("#customerForm").serialize();
+        var phoneStr = buildPhoneStr(jQuery('#phone_pre').val(), jQuery('#phone').val());
+        data += "&phone="+phoneStr;
+        var legalPhoneStr = buildPhoneStr(jQuery('#legalPhone_pre').val(), jQuery('#legalPhone').val());
+        data += "&legalPhone="+legalPhoneStr;
+        var contactPhoneStr = buildPhoneStr(jQuery('#contactPhone_pre').val(), jQuery('#contactPhone').val());
+        data += "&contactPhone="+contactPhoneStr;
         if (params.form.valid()) {
             jQuery.ajax({
                 url: appCtx + "/customer/create",
                 type: 'post',
-                data:jQuery("#customerForm").serialize(),
+                data:data,
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {
@@ -91,11 +98,18 @@ var Customer = {
 
     update: function() {
         var params = Customer.buildValidate();
+        var data = jQuery("#customerForm").serialize();
+        var phoneStr = buildPhoneStr(jQuery('#phone_pre').val(), jQuery('#phone').val());
+        data += "&phone="+phoneStr;
+        var legalPhoneStr = buildPhoneStr(jQuery('#legalPhone_pre').val(), jQuery('#legalPhone').val());
+        data += "&legalPhone="+legalPhoneStr;
+        var contactPhoneStr = buildPhoneStr(jQuery('#contactPhone_pre').val(), jQuery('#contactPhone').val());
+        data += "&contactPhone="+contactPhoneStr;
         if (params.form.valid()) {
             jQuery.ajax({
                 url: appCtx + "/customer/update/",
                 type: 'post',
-                data:jQuery("#customerForm").serialize(),
+                data:data,
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {

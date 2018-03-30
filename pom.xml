@@ -32,7 +32,7 @@
     <commons-io.version>2.2</commons-io.version>
     <commons-collections.version>3.2.1</commons-collections.version>
     <commons-codec.version>1.6</commons-codec.version>
-    <fastjson.version>1.2.4</fastjson.version>
+    <fastjson.version>1.2.17</fastjson.version>
     <poi.version>3.17</poi.version>
     <commons-pool.version>1.6</commons-pool.version>
     <guava.version>18.0</guava.version>

@@ -55,7 +55,9 @@
 		        <div class="span6">
 			        <label class="field_name align_right"><span style="color: red">*</span>联系人电话:</label>
 			        <div class="field">
-				        <input name="contactPhone" class="span12" type="text" maxlength="32" value="${branch.contactPhone}">
+				        <%--<input name="contactPhone" class="span12" type="text" maxlength="32" value="${branch.contactPhone}">--%>
+				        <input id="contactPhone_pre" class="span3" type="text" maxlength="5"> -
+				        <input id="contactPhone" class="span8" type="text" maxlength="14">
 			        </div>
 		        </div>
 	        </div>
@@ -82,3 +84,11 @@
         </div>
     </div>
 </div>
+<script>
+    jQuery(function ($) {
+        var contactPhone = '${branch.contactPhone}';
+        var p = splitPhoneStr(contactPhone);
+        $("#contactPhone_pre").val(p[0]);
+        $("#contactPhone").val(p[1]);
+    });
+</script>

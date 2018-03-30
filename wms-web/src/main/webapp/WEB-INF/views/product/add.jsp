@@ -80,7 +80,9 @@
                     <div class="span5">
                         <label class="field_name align_right"><span style="color: red">*</span>维保人电话:</label>
                         <div class="field">
-                            <input name="maintenancePhone" class="span10" type="text" maxlength="32">
+                            <%--<input name="maintenancePhone" class="span10" type="text" maxlength="32">--%>
+                            <input id="maintenancePhone_pre" class="span3" type="text" maxlength="5"> -
+                            <input id="maintenancePhone" class="span7" type="text" maxlength="14">
                         </div>
                     </div>
                 </div>

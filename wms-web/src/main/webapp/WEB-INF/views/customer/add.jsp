@@ -43,7 +43,8 @@
                     <div class="span4">
                         <label class="field_name align_right">客户电话:</label>
                         <div class="field">
-                            <input name="phone" class="span12" type="text" maxlength="20">
+                            <input id="phone_pre" class="span3" type="text" maxlength="5"> -
+                            <input id="phone" class="span8" type="text" maxlength="14">
                         </div>
                     </div>
                 </div>
@@ -76,7 +77,9 @@
                     <div class="span4">
                         <label class="field_name align_right">法人电话:</label>
                         <div class="field">
-                            <input name="legalPhone" class="span12" type="text" maxlength="20">
+                            <%--<input name="legalPhone" class="span12" type="text" maxlength="20">--%>
+                            <input id="legalPhone_pre" class="span3" type="text" maxlength="5"> -
+                            <input id="legalPhone" class="span8" type="text" maxlength="14">
                         </div>
                     </div>
                 </div>
@@ -96,7 +99,9 @@
                     <div class="span4">
                         <label class="field_name align_right">联系人电话:</label>
                         <div class="field">
-                            <input name="contactPhone" class="span12" type="text" maxlength="20">
+                            <%--<input name="contactPhone" class="span12" type="text" maxlength="20">--%>
+                            <input id="contactPhone_pre" class="span3" type="text" maxlength="5"> -
+                            <input id="contactPhone" class="span8" type="text" maxlength="14">
                         </div>
                     </div>
                 </div>

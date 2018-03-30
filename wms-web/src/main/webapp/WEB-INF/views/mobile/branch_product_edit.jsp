@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <div style="margin-top: 40px; padding: 10px;">
 
@@ -41,6 +42,15 @@
                 <input id="sn" name="sn" type="text" maxlength="32" class="span10" value="${bp.sn}">
             </div>
         </div>
+
+        <div class="form_row">
+            <label class="field_name align_right">时间范围:</label>
+            <div class="field">
+                <input id="beginTime" name="beginTime" type="text" class="datetimepicker" style="width: 40%" value="<fmt:formatDate value="${bp.beginTime}" pattern="yyyy-MM-dd"/>" readonly> —
+                <input id="endTime" name="endTime" type="text" class="datetimepicker" style="width: 40%" value="<fmt:formatDate value="${bp.endTime}" pattern="yyyy-MM-dd"/>" readonly>
+            </div>
+        </div>
+
         <div class="form_row">
             <label class="field_name align_right">poi</label>
             <div class="field">
@@ -157,7 +167,15 @@
             var img = canvas[0].toDataURL("image/png");
             $('#qrcode').html("<img src='" + img + "'>");
 
-        })
+        });
+
+        $(".datetimepicker").datetimepicker({
+            format:"yyyy-mm-dd",
+            autoclose: true,
+            pickTime: false,
+            minView: '2',
+            todayBtn: true
+        });
 
     })
 </script>

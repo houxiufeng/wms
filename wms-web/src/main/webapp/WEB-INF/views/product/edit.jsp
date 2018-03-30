@@ -82,7 +82,9 @@
 					<div class="span5">
 						<label class="field_name align_right"><span style="color: red">*</span>维保人电话:</label>
 						<div class="field">
-							<input name="maintenancePhone" class="span10" type="text" maxlength="32" value="${product.maintenancePhone}">
+							<%--<input name="maintenancePhone" class="span10" type="text" maxlength="32" value="${product.maintenancePhone}">--%>
+							<input id="maintenancePhone_pre" class="span3" type="text" maxlength="5"> -
+							<input id="maintenancePhone" class="span7" type="text" maxlength="14">
 						</div>
 					</div>
 				</div>
@@ -160,3 +162,11 @@
 		</form>
 	</div>
 </div>
+<script>
+    jQuery(function ($) {
+        var maintenancePhone = '${product.maintenancePhone}';
+        var p = splitPhoneStr(maintenancePhone);
+        $("#maintenancePhone_pre").val(p[0]);
+        $("#maintenancePhone").val(p[1]);
+    });
+</script>

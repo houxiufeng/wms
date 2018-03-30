@@ -133,12 +133,15 @@ var Vendor = {
     },
     
     save: function() {
+        var data = jQuery("#vendorForm").serialize();
+        var phoneStr = buildPhoneStr(jQuery('#phone_pre').val(), jQuery('#phone').val());
+        data += "&phone="+phoneStr;
         var params = Vendor.buildValidate();
         if (params.form.valid()) {
             jQuery.ajax({
                 url: appCtx + "/vendor/create",
                 type: 'post',
-                data:jQuery("#vendorForm").serialize(),
+                data:data,
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {
@@ -161,12 +164,15 @@ var Vendor = {
     },
 
     update: function() {
+        var data = jQuery("#vendorForm").serialize();
+        var phoneStr = buildPhoneStr(jQuery('#phone_pre').val(), jQuery('#phone').val());
+        data += "&phone="+phoneStr;
         var params = Vendor.buildValidate();
         if (params.form.valid()) {
             jQuery.ajax({
                 url: appCtx + "/vendor/update/",
                 type: 'post',
-                data:jQuery("#vendorForm").serialize(),
+                data:data,
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {

@@ -394,10 +394,10 @@ var Order = {
                 mRender: function(value, type ,data){
                     var opts = [];
                     if (status == 1) {//检查中
-                        opts.push('<a style="margin: 1px;" class="btn edit" href="javascript:Order.reject('+ value + ')">拒单</a><br>');
+                        opts.push('<a style="margin: 1px;" class="btn edit" href="javascript:Order.reject('+ value + ')"><i class="icon-remove-circle"></i></a><br>');
                         opts.push('<a class="btn edit" href="javascript:Order.showMobileOrderDetail('+ value + ')"><i class="icon-eye-open"></i></a>');
                     } else if (status == 2) {//维修中
-                        opts.push('<a class="btn edit" href="javascript:Order.mobileFixed('+ value + ')">完成</a>');
+                        opts.push('<a class="btn edit" href="javascript:Order.mobileFixed('+ value + ')"><i class="icon-check"></i></a>');
                     } else if (status == 4) {
                         opts.push('<a class="btn edit" href="javascript:Order.showMobileOrderDetail('+ value + ')"><i class="icon-eye-open"></i></a>');
                     }

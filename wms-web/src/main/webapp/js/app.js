@@ -311,3 +311,29 @@ function isPC() {//true为PC端，false为手机端
     }
     return flag;
 }
+
+function buildPhoneStr(prefix, phone) {
+    var s = "";
+    if (!_isNull(phone)) {
+       s = jQuery.trim(phone);
+    } else {
+        return s;
+    }
+    if (!_isNull(prefix)) {
+        s = jQuery.trim(prefix) + "-" + s;
+    }
+    return s;
+}
+
+function splitPhoneStr(phoneStr) {
+    var array = ["",""];
+    if (!_isNull(phoneStr)) {
+        var ss = phoneStr.split("-");
+        if (ss.length == 2) {
+            array = ss;
+        } else {
+            array[1] = phoneStr;
+        }
+    }
+    return array;
+}

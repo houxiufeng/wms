@@ -15,6 +15,19 @@
 
             <div class="form_row">
                 <div class="span4">
+                    <label class="field_name align_right">角色:</label>
+                    <div class="field">
+                        <select name="roleId" class="span12">
+                            <c:forEach items="${roles}" var="item">
+                                <option value="${item.id}">${item.name}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form_row">
+                <div class="span4">
                     <label class="field_name align_right">邮箱:</label>
                     <div class="field">
                         <input name="email" class="span12" type="text">
@@ -57,19 +70,6 @@
 
             <div class="form_row">
                 <div class="span4">
-                    <label class="field_name align_right">角色:</label>
-                    <div class="field">
-                        <select name="roleId" class="span12">
-                            <c:forEach items="${roles}" var="item">
-                                <option value="${item.id}">${item.name}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form_row">
-                <div class="span4">
                     <label class="field_name align_right">地址:</label>
                     <div class="field">
                         <input name="address" class="span12" type="text">
@@ -106,7 +106,6 @@ jQuery(function($){
         User.validateUser(function(){//validate 做基本的验证
            //这里做业务验证
             $("#password").val(CryptoJS.MD5($("#password").val()).toString());
-            debugger;
             $.ajax({
                 url: appCtx + "/user/create",
                 type: 'post',

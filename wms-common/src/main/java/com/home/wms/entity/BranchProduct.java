@@ -1,5 +1,7 @@
 package com.home.wms.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -13,6 +15,10 @@ public class BranchProduct {
 	private String poi;
 	private String position;
 	private Long organizationId;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date beginTime;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date endTime;
 	private Long createdBy;
 	private Date createdTime;
 
@@ -86,5 +92,21 @@ public class BranchProduct {
 
 	public void setPosition(String position) {
 		this.position = position;
+	}
+
+	public Date getBeginTime() {
+		return beginTime;
+	}
+
+	public void setBeginTime(Date beginTime) {
+		this.beginTime = beginTime;
+	}
+
+	public Date getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
 	}
 }

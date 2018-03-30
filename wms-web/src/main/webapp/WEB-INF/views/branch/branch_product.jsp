@@ -59,6 +59,15 @@
                         </div>
                     </div>
                 </div>
+                <div class="form_row">
+                    <div class="span12">
+                        <label class="field_name align_right"><span style="color: red">*</span>时间范围:</label>
+                        <div class="field">
+                            <input id="beginTime" name="beginTime" type="text" class="datetimepicker" style="width: 47%" readonly> —
+                            <input id="endTime" name="endTime" type="text" class="datetimepicker" style="width: 47%" readonly>
+                        </div>
+                    </div>
+                </div>
 
             </form>
         </div>
@@ -116,7 +125,14 @@
         if (_isNull(gMap)) {
             gMap = initializeMap("googleMap");
             BranchProduct.gMap = gMap;
-        }
+        };
+        $(".datetimepicker").datetimepicker({
+            format:"yyyy-mm-dd",
+            autoclose: true,
+            pickTime: false,
+            minView: '2',
+            todayBtn: true
+        });
 
     })
 </script>

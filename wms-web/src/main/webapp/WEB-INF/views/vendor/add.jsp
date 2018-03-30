@@ -42,7 +42,9 @@
                     <div class="span6">
                         <label class="field_name align_right">供应商电话:</label>
                         <div class="field">
-                            <input name="phone" class="span12" type="text" maxlength="20">
+                            <%--<input name="phone" class="span12" type="text" maxlength="20">--%>
+                            <input id="phone_pre" class="span3" type="text" maxlength="5"> -
+                            <input id="phone" class="span8" type="text" maxlength="14">
                         </div>
                     </div>
                 </div>
