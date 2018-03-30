@@ -24,6 +24,17 @@ var Order = {
                 aoData.push({"name": "endTime", "value":jQuery("#endTime").val()});
                 aoData.push({"name": "status", "value":index});
             },
+            fnRowCallback : function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                console.log(nRow);
+                console.log(aData);
+                console.log(iDisplayIndex);
+                console.log(iDisplayIndexFull);
+                if (aData.overed) {
+                    jQuery(nRow).find("td").not("td:last").css({"background-color":"#ac193d","color":"#fff"});
+                } else if (aData.warned) {
+                    jQuery(nRow).find("td").not("td:last").css({"background-color":"#ff8f32","color":"#fff"});
+                }
+            },
             aoColumns:[{
                 mData : "orderNo",
                 sDefaultContent : "",
@@ -214,24 +225,32 @@ var Order = {
                     return false;
                 }
                 var vendorId = checkedObj.val();
-                jQuery.ajax({
-                    url: appCtx + "/order/assign/vendor",
-                    type: 'post',
-                    data: {"orderId":id, "vendorId":vendorId},
-                    dataType:'json',
-                    success: function(json) {
-                        if (json.code == "0") {
-                            Order.queryList();
-                            App.alert("委派成功");
-                        } else {
-                            App.alert(json.message);
-                        }
-                    },
-                    error: function(xhr, textStatus, errorThrown){
-                        alert(errorThrown);
+                var privateOrder;
+                App.confirm("自制单号:<input id='privateOrder' type='text' maxlength='32'>", function () {
+                    if (_isNull(jQuery("#privateOrder").val())) {
+                        App.alert("请填写自制单号");
+                        return false;
+                    } else {
+                        privateOrder = jQuery("#privateOrder").val();
+                        jQuery.ajax({
+                            url: appCtx + "/order/assign/vendor",
+                            type: 'post',
+                            data: {"orderId":id, "vendorId":vendorId, "privateOrder":privateOrder},
+                            dataType:'json',
+                            success: function(json) {
+                                if (json.code == "0") {
+                                    Order.queryList();
+                                    App.alert("委派成功");
+                                } else {
+                                    App.alert(json.message);
+                                }
+                            },
+                            error: function(xhr, textStatus, errorThrown){
+                                alert(errorThrown);
+                            }
+                        });
                     }
                 });
-
             }
         });
     },

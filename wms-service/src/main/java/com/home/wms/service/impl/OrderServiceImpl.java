@@ -1,6 +1,7 @@
 package com.home.wms.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.StrUtil;
 import com.google.common.collect.Lists;
 import com.home.wms.dto.BranchProductInfo;
 import com.home.wms.dto.OrderVo;
@@ -42,6 +43,13 @@ public class OrderServiceImpl implements OrderService {
 		sql.append("(select d.name from dict d where t.type = d.id) type_name,");
 		sql.append("(select v.name from vendor v where t.vendor_id = v.id) vendor_name,");
 		sql.append("(select p.model from product p where bp.product_id = p.id) product_model,");
+		if (params.getOrganizationId() != null) {
+			sql.append("(select ot.hours from order_time ot where ot.order_status = t.status and ot.type = 1 and ot.organization_id = t.organization_id) warn_hours,");
+			sql.append("(select ot.hours from order_time ot where ot.order_status = t.status and ot.type = 2 and ot.organization_id = t.organization_id) over_hours,");
+		} else {
+			sql.append("(select ot.hours from order_time ot where ot.order_status = t.status and ot.type = 1 and ot.organization_id is null) warn_hours,");
+			sql.append("(select ot.hours from order_time ot where ot.order_status = t.status and ot.type = 2 and ot.organization_id is null) over_hours,");
+		}
 		sql.append("(select p.name from product p where bp.product_id = p.id) product_name from torder t ");
 		sql.append("left join branch_product bp on t.branch_product_id = bp.id where 1");
 
@@ -91,12 +99,25 @@ public class OrderServiceImpl implements OrderService {
 		order.setOrganizationId(AppContextManager.getCurrentUserInfo().getOrganizationId());
 		order.setCreatedBy(AppContextManager.getCurrentUserInfo().getId());
 		BranchProductInfo branchProductInfo = branchProductService.getBranchProductInfoById(order.getBranchProductId());
-		Long maxId = (Long)jdbcDao.createSelect(Torder.class).addSelectField("max(id)").notSelectEntityField().objectResult();
-		if (maxId == null) {
-			maxId = 0L;
+//		Long maxId = (Long)jdbcDao.createSelect(Torder.class).addSelectField("max(id)").notSelectEntityField().objectResult();
+//		if (maxId == null) {
+//			maxId = 0L;
+//		}
+//		maxId++;
+		String orderNo = null;
+		if (order.getOrganizationId() != null) {
+			orderNo = (String)jdbcDao.createNativeExecutor().command("select order_no from torder where organization_id = ? order by id desc limit 1").parameters(new Object[]{order.getOrganizationId()}).resultClass(String.class).singleResult();
+		} else {
+			orderNo = (String)jdbcDao.createNativeExecutor().command("select order_no from torder where organization_id is null order by id desc limit 1").resultClass(String.class).singleResult();
 		}
-		maxId++;
-		order.setOrderNo(branchProductInfo.getProduct().getCode() +"-"+branchProductInfo.getBranch().getCode()+ "-" +maxId);
+		String newOrderNo = null;
+		if (StringUtils.isNotBlank(orderNo)) {
+			Integer d = Integer.parseInt(orderNo.substring(0, 6));
+			newOrderNo = String.format("%06d", ++d) + "-" +branchProductInfo.getProduct().getCode() +"-"+branchProductInfo.getBranch().getCode();
+		} else {
+			newOrderNo = "000001-" + branchProductInfo.getProduct().getCode() +"-"+branchProductInfo.getBranch().getCode();
+		}
+		order.setOrderNo(newOrderNo);
         jdbcDao.insert(order);
 	}
 

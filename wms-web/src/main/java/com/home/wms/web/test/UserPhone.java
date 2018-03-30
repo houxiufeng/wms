@@ -40,4 +40,11 @@ public class UserPhone {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
+	public static void main(String[] args) {
+		String s = "000011";
+		System.out.println(Integer.parseInt(s));
+		Integer d = 3456;
+		System.out.println(String.format("%06d", d));
+	}
 }

@@ -118,12 +118,13 @@ public class OrderController {
 
 	@RequestMapping(value="/assign/vendor", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject assignVendor(@RequestParam Long orderId,@RequestParam Long vendorId){
+	public JSONObject assignVendor(@RequestParam Long orderId,@RequestParam Long vendorId, String privateOrder){
 		JSONObject result = new JSONObject();
 		Torder order = new Torder();
 		order.setStatus(OrderStatus.CHECKING.getValue());
 		order.setId(orderId);
 		order.setVendorId(vendorId);
+		order.setPrivateOrder(privateOrder);
 		try {
 			Torder torder = orderService.getOrderById(orderId);
 			if (torder != null && torder.getVendorId() != null) {

@@ -4,10 +4,12 @@ import cn.hutool.core.bean.BeanUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
 import com.home.wms.dto.DictVo;
+import com.home.wms.dto.OrderTimeSetting;
 import com.home.wms.dto.QueryDictParams;
 import com.home.wms.dto.QueryCustomerParams;
 import com.home.wms.entity.Branch;
 import com.home.wms.entity.Dict;
+import com.home.wms.entity.OrderTime;
 import com.home.wms.enums.DictType;
 import com.home.wms.service.DictService;
 import com.home.wms.utils.AppContextManager;
@@ -82,6 +84,28 @@ public class DictController {
 		JSONObject result = new JSONObject();
 		try {
 			dictService.deleteDict(id);
+			result.put("code", 0);
+		} catch(Exception e) {
+			e.printStackTrace();
+			LOG.error(e.getMessage());
+			result.put("code", 1);
+			result.put("message", e.getMessage());
+		}
+		return result;
+	}
+
+	@RequestMapping(value="/orderTime",method = RequestMethod.GET)
+	public String orderTime(Model model){
+		model.addAttribute("setting",dictService.findOrderTimeSetting(AppContextManager.getCurrentUserInfo().getOrganizationId()));
+		return "/dict/order_time";
+	}
+
+	@RequestMapping(value="/orderTime/update", method = RequestMethod.POST)
+	@ResponseBody
+	public JSONObject updateOrderTime(OrderTimeSetting orderTimeSetting, Model model){
+		JSONObject result = new JSONObject();
+		try {
+			dictService.saveOrUpdateOrderTime(orderTimeSetting);
 			result.put("code", 0);
 		} catch(Exception e) {
 			e.printStackTrace();

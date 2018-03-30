@@ -337,3 +337,11 @@ function splitPhoneStr(phoneStr) {
     }
     return array;
 }
+
+function onlyInt(obj) {
+    if(obj.value.length==1){
+        obj.value=obj.value.replace(/[^0-9]/g,'')
+    } else {
+        obj.value=obj.value.replace(/(\D)/g,'')
+    }
+}

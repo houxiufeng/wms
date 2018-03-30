@@ -8,6 +8,7 @@ import java.util.Date;
 public class Torder {
 	private Long id;
 	private String orderNo;
+	private String privateOrder;
 	private Long customerId;
 	private Long branchId;
 	private Long branchProductId;
@@ -158,5 +159,13 @@ public class Torder {
 
 	public void setFeedback(String feedback) {
 		this.feedback = feedback;
+	}
+
+	public String getPrivateOrder() {
+		return privateOrder;
+	}
+
+	public void setPrivateOrder(String privateOrder) {
+		this.privateOrder = privateOrder;
 	}
 }

@@ -4,7 +4,7 @@
 <div class="well light_gray">
     <div class="top_bar">
         <ul class="breadcrumb">
-            <li><a href="javascript:void(0);" style="color: #037dc5;font-size: 15px;">字典中心</a> <span class="divider">/</span></li>
+            <li><a href="javascript:void(0);" style="color: #037dc5;font-size: 15px;">设置</a> <span class="divider">/</span></li>
             <li class="active"><a href="javascript:void(0)" style="font-weight: 600;font-size: 13px;color: #037dc5;">字典管理</a></li>
         </ul>
     </div>

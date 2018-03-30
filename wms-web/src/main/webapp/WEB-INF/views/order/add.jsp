@@ -88,6 +88,7 @@
                     if (json.code == "0") {
                         var branchObj = $("#branchId");
                         branchObj.empty();
+                        $("#branchProductId").empty();
                         $.each(json.data, function (index, value) {
                             branchObj.append(("<option value='"+value.id+"'>"+value.name+"</option>"));
                         });
