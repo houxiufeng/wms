@@ -21,6 +21,9 @@ public class Torder {
 	private String fixRemark;
 	private Integer score;
 	private String feedback;
+	private Date checkTime;
+	private Date fixTime;
+	private Date completeTime;
 	private Long createdBy;
 	private Date createdTime;
 	private Date updatedTime;
@@ -167,5 +170,29 @@ public class Torder {
 
 	public void setPrivateOrder(String privateOrder) {
 		this.privateOrder = privateOrder;
+	}
+
+	public Date getCheckTime() {
+		return checkTime;
+	}
+
+	public void setCheckTime(Date checkTime) {
+		this.checkTime = checkTime;
+	}
+
+	public Date getFixTime() {
+		return fixTime;
+	}
+
+	public void setFixTime(Date fixTime) {
+		this.fixTime = fixTime;
+	}
+
+	public Date getCompleteTime() {
+		return completeTime;
+	}
+
+	public void setCompleteTime(Date completeTime) {
+		this.completeTime = completeTime;
 	}
 }

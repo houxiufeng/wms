@@ -25,10 +25,6 @@ var Order = {
                 aoData.push({"name": "status", "value":index});
             },
             fnRowCallback : function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-                console.log(nRow);
-                console.log(aData);
-                console.log(iDisplayIndex);
-                console.log(iDisplayIndexFull);
                 if (aData.overed) {
                     jQuery(nRow).find("td").not("td:last").css({"background-color":"#ac193d","color":"#fff"});
                 } else if (aData.warned) {
@@ -413,12 +409,12 @@ var Order = {
                 mRender: function(value, type ,data){
                     var opts = [];
                     if (status == 1) {//检查中
-                        opts.push('<a style="margin: 1px;" class="btn edit" href="javascript:Order.reject('+ value + ')"><i class="icon-remove-circle"></i></a><br>');
-                        opts.push('<a class="btn edit" href="javascript:Order.showMobileOrderDetail('+ value + ')"><i class="icon-eye-open"></i></a>');
+                        opts.push('<a style="margin: 1px;" class="btn edit" href="javascript:Order.reject('+ value + ')">Reject</a><br>');
+                        opts.push('<a class="btn edit" href="javascript:Order.showMobileOrderDetail('+ value + ')">View</a>');
                     } else if (status == 2) {//维修中
-                        opts.push('<a class="btn edit" href="javascript:Order.mobileFixed('+ value + ')"><i class="icon-check"></i></a>');
+                        opts.push('<a class="btn edit" href="javascript:Order.mobileFixed('+ value + ')">Fixed</a>');
                     } else if (status == 4) {
-                        opts.push('<a class="btn edit" href="javascript:Order.showMobileOrderDetail('+ value + ')"><i class="icon-eye-open"></i></a>');
+                        opts.push('<a class="btn edit" href="javascript:Order.showMobileOrderDetail('+ value + ')">View</a>');
                     }
                     return opts.join(" ");
                 }
@@ -606,9 +602,9 @@ var Order = {
                 mRender: function(value, type ,data){
                     var opts = [];
                     if (data.status == 4 && _isNull(data.score)) {//未评价
-                        opts.push('<a style="margin: 1px;" class="btn edit" href="javascript:App.goToPage(appCtx + \'/mobile/order/feedback/'+value+'\')">评价</a><br>');
+                        opts.push('<a style="margin: 1px;" class="btn edit" href="javascript:App.goToPage(appCtx + \'/mobile/order/feedback/'+value+'\')">Feedback</a><br>');
                     }
-                    opts.push('<a class="btn edit" href="javascript:Order.showMobileOrderDetail_customer('+ value + ')"><i class="icon-eye-open"></i></a>');
+                    opts.push('<a class="btn edit" href="javascript:Order.showMobileOrderDetail_customer('+ value + ')">View</a>');
                     return opts.join(" ");
                 }
 

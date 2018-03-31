@@ -12,8 +12,8 @@
 
     <div class="form_row">
         <div class="field">
-            <a href="javascript:App.goToPage(appCtx + '/mobile/order/list?flag=1');" class="btn btn-large <c:if test='${flag == 1}'>dark_green</c:if>" style="font-size: 16px;"><i class="icon-file-text-alt"></i></a>
-            <a href="javascript:App.goToPage(appCtx + '/mobile/order/list?flag=2');" class="btn btn-large <c:if test='${flag == 2}'>dark_green</c:if>" style="font-size: 16px;"><i class="icon-book"></i></a>
+            <a href="javascript:App.goToPage(appCtx + '/mobile/order/list?flag=1');" class="btn btn-large <c:if test='${flag == 1}'>dark_green</c:if>" style="font-size: 16px;">Current Orders</a>
+            <a href="javascript:App.goToPage(appCtx + '/mobile/order/list?flag=2');" class="btn btn-large <c:if test='${flag == 2}'>dark_green</c:if>" style="font-size: 16px;">History Orders</a>
         </div>
     </div>
 </div>

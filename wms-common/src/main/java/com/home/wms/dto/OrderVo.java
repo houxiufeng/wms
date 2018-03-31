@@ -4,6 +4,7 @@ import cn.hutool.core.date.DateField;
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import com.home.wms.entity.Torder;
+import com.home.wms.enums.OrderStatus;
 
 import java.util.Date;
 
@@ -86,7 +87,15 @@ public class OrderVo extends Torder{
 
 	public Boolean getWarned() {
 		if (this.warnHours != null && this.warnHours != 0) {
-			return DateUtil.offset(this.getCreatedTime(), DateField.HOUR, this.warnHours).before(new Date());
+			boolean b = false;
+			if (this.getStatus() == OrderStatus.ASSIGNING.getValue()) {
+				b = DateUtil.offset(this.getCreatedTime(), DateField.HOUR, this.warnHours).before(new Date());
+			} else if (this.getStatus() == OrderStatus.CHECKING.getValue()) {
+				b = DateUtil.offset(this.getCheckTime(), DateField.HOUR, this.warnHours).before(new Date());
+			} else if (this.getStatus() == OrderStatus.FIXING.getValue()) {
+				b = DateUtil.offset(this.getFixTime(), DateField.HOUR, this.warnHours).before(new Date());
+			}
+			return b;
 		} else {
 			return false;
 		}
@@ -94,7 +103,15 @@ public class OrderVo extends Torder{
 
 	public Boolean getOvered() {
 		if (this.overHours != null && this.overHours != 0) {
-			return DateUtil.offset(this.getCreatedTime(), DateField.HOUR, this.overHours).before(new Date());
+			boolean b = false;
+			if (this.getStatus() == OrderStatus.ASSIGNING.getValue()) {
+				b = DateUtil.offset(this.getCreatedTime(), DateField.HOUR, this.overHours).before(new Date());
+			} else if (this.getStatus() == OrderStatus.CHECKING.getValue()) {
+				b = DateUtil.offset(this.getCheckTime(), DateField.HOUR, this.overHours).before(new Date());
+			} else if (this.getStatus() == OrderStatus.FIXING.getValue()) {
+				b = DateUtil.offset(this.getFixTime(), DateField.HOUR, this.overHours).before(new Date());
+			}
+			return b;
 		} else {
 			return false;
 		}

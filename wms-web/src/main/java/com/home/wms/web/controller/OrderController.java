@@ -21,6 +21,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+
 /**
  * Created by fitz on 2018/3/4.
  */
@@ -122,6 +124,7 @@ public class OrderController {
 		JSONObject result = new JSONObject();
 		Torder order = new Torder();
 		order.setStatus(OrderStatus.CHECKING.getValue());
+		order.setCheckTime(new Date());
 		order.setId(orderId);
 		order.setVendorId(vendorId);
 		order.setPrivateOrder(privateOrder);
@@ -156,6 +159,7 @@ public class OrderController {
 		JSONObject result = new JSONObject();
 		Torder order = new Torder();
 		order.setStatus(OrderStatus.FIXING.getValue());
+		order.setFixTime(new Date());
 		order.setId(orderId);
 		order.setType(type);
 		order.setDescription(description);
@@ -184,6 +188,7 @@ public class OrderController {
 		Torder order = new Torder();
 //		order.setStatus(OrderStatus.AUDITING.getValue());
 		order.setStatus(OrderStatus.COMPLETE.getValue());
+		order.setCompleteTime(new Date());
 		order.setFixRemark(fixRemark);
 		order.setId(orderId);
 		try {
@@ -225,6 +230,7 @@ public class OrderController {
 		Torder order = orderService.getOrderById(id);
 		order.setStatus(OrderStatus.ASSIGNING.getValue());
 		order.setVendorId(null);
+		order.setCheckTime(null);
 		try {
 			orderService.updateWithNull(order);
 			result.put("code", 0);

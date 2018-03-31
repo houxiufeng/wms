@@ -257,7 +257,7 @@ var BranchProduct = {
                 sDefaultContent : "",
                 sTitle : "操作",
                 mRender: function(value, type ,data){
-                    return '<a class="btn edit" href="javascript:App.goToPage(appCtx + \'/mobile/branch/product/edit?branchProductId='+value+'\')"><i class="icon-edit"></i></a>';
+                    return '<a class="btn edit" href="javascript:App.goToPage(appCtx + \'/mobile/branch/product/edit?branchProductId='+value+'\')">Edit</a>';
                 }
 
             }]

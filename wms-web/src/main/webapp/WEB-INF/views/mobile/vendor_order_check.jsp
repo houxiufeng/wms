@@ -98,8 +98,8 @@
                     </div>
                     <div class="form_row">
                         <div class="field">
-                            <a href="javascript:Order.mobileChecked();" class="btn dark_green btn-large" style="font-size: 16px;"><i class="icon-ok"></i></a>
-                            <a href="javascript:App.goToPage(appCtx + '/mobile/vendor/order/checkList');" class="btn  btn-large" style="font-size: 16px;"><i class="icon-reply"></i></a>
+                            <a href="javascript:Order.mobileChecked();" class="btn dark_green btn-large" style="font-size: 16px;">Check</a>
+                            <a href="javascript:App.goToPage(appCtx + '/mobile/vendor/order/checkList');" class="btn  btn-large" style="font-size: 16px;">Back</a>
                         </div>
                     </div>
 

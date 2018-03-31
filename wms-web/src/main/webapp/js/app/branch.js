@@ -235,8 +235,8 @@ var Branch = {
                 sDefaultContent : "",
                 sTitle : "操作",
                 mRender: function(value, type ,data){
-                    return '<a class="btn edit" href="javascript:App.goToPage(appCtx + \'/mobile/branch/product/add?branchId='+value+'\')"><i class="icon-wrench"></i></a>\
-                            <a class="btn edit" href="javascript:App.goToPage(appCtx + \'/mobile/branch/product/list?branchId='+value+'\')"><i class="icon-eye-open"></i></a>';
+                    return '<a class="btn edit" href="javascript:App.goToPage(appCtx + \'/mobile/branch/product/add?branchId='+value+'\')">Add Product</a>\
+                            <a class="btn edit" href="javascript:App.goToPage(appCtx + \'/mobile/branch/product/list?branchId='+value+'\')">View</a>';
                 }
 
             }]

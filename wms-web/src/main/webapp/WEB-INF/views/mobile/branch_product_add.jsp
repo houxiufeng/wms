@@ -53,9 +53,9 @@
         </div>
         <div class="form_row">
             <div class="field">
-                <a id="btn_saveBranchProduct" href="javascript:;" class="btn red"><i class="icon-save"></i></a>
-                <a id="btn_qrCode" href="javascript:;" class="btn red" style="display: none"><i class="icon-qrcode"></i></a>
-                <a href="javascript:App.goToPage(appCtx + '/mobile/branch/list');" class="btn dark_green"><i class="icon-reply"></i></a>
+                <a id="btn_saveBranchProduct" href="javascript:;" class="btn red">Save</a>
+                <a id="btn_qrCode" href="javascript:;" class="btn red" style="display: none">QRCode</a>
+                <a href="javascript:App.goToPage(appCtx + '/mobile/branch/list');" class="btn dark_green">Back</a>
             </div>
         </div>
         <input type="hidden" id="point_x" name="point_x">

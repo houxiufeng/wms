@@ -59,9 +59,9 @@
         </div>
         <div class="form_row">
             <div class="field">
-                <a id="btn_updateBranchProduct" href="javascript:;" class="btn red"><i class="icon-save"></i></a>
-                <a id="btn_qrCode" href="javascript:;" class="btn dark_green"><i class="icon-qrcode"></i></a>
-                <a href="javascript:App.goToPage(appCtx + '/mobile/branch/product/list?branchId=${bp.branchId}')" class="btn dark_green"><i class="icon-reply"></i></a>
+                <a id="btn_updateBranchProduct" href="javascript:;" class="btn red">Update</a>
+                <a id="btn_qrCode" href="javascript:;" class="btn dark_green">QRCode</a>
+                <a href="javascript:App.goToPage(appCtx + '/mobile/branch/product/list?branchId=${bp.branchId}')" class="btn dark_green">Back</a>
             </div>
         </div>
 
