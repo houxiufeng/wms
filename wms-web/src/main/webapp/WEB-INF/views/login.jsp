@@ -25,7 +25,7 @@
     <![endif]-->
   </head>
 
-  <body style="background-image: url('${flatpointPath}/demo/slide_04.jpg');background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;">
+  <body>
 
     <div class="login-container">
         <div class="login-header blue">

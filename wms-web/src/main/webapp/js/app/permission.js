@@ -2,9 +2,9 @@ var Permission = {
 		getTableData: function(){
 			jQuery('#permissionTable').dataTable({
 		        sAjaxSource: appCtx + "/permission/loadData",
-		        oLanguage: {
-		            sUrl: appCtx + '/flatpoint/js/zh_CN.json',
-		        },
+		        // oLanguage: {
+		        //     sUrl: appCtx + '/flatpoint/js/zh_CN.json',
+		        // },
 		        bSort: false,                        // 是否排序功能
 		        bFilter: false,                       // 过滤功能
 		        bPaginate: true,                     // 翻页功能
@@ -23,32 +23,32 @@ var Permission = {
 		        aoColumns:[{
 		            mData : "name",
 		            sDefaultContent : "",
-		            sTitle : "权限名称"
+		            sTitle : "Name"
 		        },{
 		            mData : "url",
 		            sDefaultContent : "",
-		            sTitle : "url"
+		            sTitle : "URL"
 		            
 		        },{
 		            mData : "pname",
 		            sDefaultContent : "",
-		            sTitle : "父级"
+		            sTitle : "Parent"
 		        },{
 		            mData : "menuFlag",
 		            sDefaultContent : "",
-		            sTitle : "是否菜单",
+		            sTitle : "IsMenu",
 		            mRender: function(value, type ,data){
 		            	if (value == 1) {
-			            	return "是";
+			            	return "Yes";
 		            	} else {
-		            		return "否"
+		            		return "No"
 						}
 		            }
 		            
 		        },{
 		            mData : "createdTime",
 		            sDefaultContent : "",
-		            sTitle : "创建时间",
+		            sTitle : "CreateTime",
                     mRender: function(value, type ,data){
                         return moment(value).format("YYYY-MM-DD HH:mm:ss");
                     }
@@ -56,19 +56,19 @@ var Permission = {
 		        },{
                     mData : "status",
                     sDefaultContent : "",
-                    sTitle : "状态",
+                    sTitle : "Status",
                     mRender: function(value, type ,data){
                         if (value == 1) {
-                            return "启用";
+                            return "On";
                         } else {
-                            return "禁用";
+                            return "Off";
                         }
                     }
 
                 },{
 		            mData : "id",
 		            sDefaultContent : "",
-		            sTitle : "操作",
+		            sTitle : "Operation",
 		            mRender: function(value, type ,data){
 		            	return '<a class="btn edit blue" href="javascript:Permission.edit('+ value + ')"><i class="icon-edit"></i></a>\
 		            	        <a class="btn edit blue" href="javascript:Permission.delete('+ value + ')"><i class="icon-trash"></i></a>';
@@ -92,7 +92,7 @@ var Permission = {
         }
     	params.messages={
             name: {
-                required: "权限名称不能为空！"
+                required: "Name can't be empty！"
             }
     	}
     	params.form = jQuery("#permissionForm");
@@ -108,7 +108,7 @@ var Permission = {
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {
-                        App.alert("权限创建成功!", function(){
+                        App.alert("success!", function(){
                             App.goToPage(appCtx+"/permission");
                         });
                     } else {
@@ -135,7 +135,7 @@ var Permission = {
         }
         params.messages={
             name: {
-                required: "权限名称不能为空！"
+                required: "Name can't be empty！"
             }
         }
         params.form = jQuery("#permissionForm");
@@ -151,7 +151,7 @@ var Permission = {
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {
-                        App.alert("权限修改成功!", function(){
+                        App.alert("success!", function(){
                             App.goToPage(appCtx+"/permission");
                         });
                     } else {
@@ -166,7 +166,7 @@ var Permission = {
     },
     
     delete: function(id) {
-        App.confirm("确定要删除？", function(){
+        App.confirm("Are you sure？", function(){
     		jQuery.ajax({
 				url: appCtx + "/permission/delete/" + id,
 				type: 'post',

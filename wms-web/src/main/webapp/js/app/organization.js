@@ -2,9 +2,9 @@ var Organization = {
 		getTableData: function(){
 			jQuery('#organizationTable').dataTable({
 		        sAjaxSource: appCtx + "/organization/loadData",
-		        oLanguage: {
-		            sUrl: appCtx + '/flatpoint/js/zh_CN.json',
-		        },
+		        // oLanguage: {
+		        //     sUrl: appCtx + '/flatpoint/js/zh_CN.json',
+		        // },
 		        bSort: false,                        // 是否排序功能
 		        bFilter: false,                       // 过滤功能
 		        bPaginate: true,                     // 翻页功能
@@ -19,27 +19,27 @@ var Organization = {
 		        aoColumns:[{
 		            mData : "name",
 		            sDefaultContent : "",
-		            sTitle : "机构名称"
+		            sTitle : "Name"
 		        },{
 		            mData : "remark",
 		            sDefaultContent : "",
-		            sTitle : "备注"
+		            sTitle : "Remarks"
 		        },{
                     mData : "status",
                     sDefaultContent : "",
-                    sTitle : "状态",
+                    sTitle : "Status",
                     mRender: function(value, type ,data){
                         if (value == 1) {
-                            return "启用";
+                            return "On";
                         } else {
-                            return "禁用";
+                            return "Off";
                         }
                     }
 
                 },{
 		            mData : "id",
 		            sDefaultContent : "",
-		            sTitle : "操作",
+		            sTitle : "Operation",
 		            mRender: function(value, type ,data){
 		            	return '<a class="btn edit blue" href="javascript:Organization.edit('+ value + ')"><i class="icon-edit"></i></a>\
 		            	        <a class="btn edit blue" href="javascript:Organization.delete('+ value + ')"><i class="icon-trash"></i></a>';
@@ -63,7 +63,7 @@ var Organization = {
         };
     	params.messages={
             name: {
-                required:"机构名称不能为空！"
+                required:"Name can't be empty！"
             }
     	};
     	params.form = jQuery("#organizationForm");
@@ -73,7 +73,7 @@ var Organization = {
         });
         if (params.form.valid()) {
             if (jQuery(":checkbox[name='roleIds']:checked").length == 0) {
-                App.alert("必须选择最少一个角色！")
+                App.alert("please select at least one！")
                 return false;
             }
             jQuery.ajax({
@@ -83,7 +83,7 @@ var Organization = {
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {
-                        App.alert("集团创建成功!", function(){
+                        App.alert("success!", function(){
                             App.goToPage(appCtx+"/organization");
                         });
                     } else {
@@ -110,7 +110,7 @@ var Organization = {
         };
         params.messages={
             name: {
-                required:"机构名称不能为空！"
+                required:"Name can't be empty！"
             }
         };
         params.form = jQuery("#organizationForm");
@@ -120,7 +120,7 @@ var Organization = {
         });
         if (params.form.valid()) {
             if (jQuery(":checkbox[name='roleIds']:checked").length == 0) {
-                App.alert("必须选择最少一个角色！")
+                App.alert("please select at least one role！")
                 return false;
             }
             jQuery.ajax({
@@ -130,7 +130,7 @@ var Organization = {
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {
-                        App.alert("集团修改成功!", function(){
+                        App.alert("success!", function(){
                             App.goToPage(appCtx+"/organization");
                         });
                     } else {
@@ -145,7 +145,7 @@ var Organization = {
     },
 
     delete: function(id) {
-        App.confirm("确定要删除？", function(){
+        App.confirm("Are you sure？", function(){
     		jQuery.ajax({
 				url: appCtx + "/organization/delete/" + id,
 				type: 'post',

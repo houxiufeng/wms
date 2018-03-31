@@ -2,9 +2,9 @@ var User = {
 		getTableData: function(){
 			jQuery('.datatable').dataTable({
 		        sAjaxSource: appCtx + "/user/loadData",
-		        oLanguage: {
-		            sUrl: appCtx + '/flatpoint/js/zh_CN.json',
-		        },
+		        // oLanguage: {
+		        //     sUrl: appCtx + '/flatpoint/js/zh_CN.json',
+		        // },
 		        bSort: false,                        // 是否排序功能
 		        bFilter: false,                       // 过滤功能
 		        bPaginate: true,                     // 翻页功能
@@ -23,16 +23,16 @@ var User = {
 		        aoColumns:[{
 		            mData : "name",
 		            sDefaultContent : "",
-		            sTitle : "姓名"
+		            sTitle : "Name"
 		        },{
 		            mData : "roleName",
 		            sDefaultContent : "",
-		            sTitle : "角色"
+		            sTitle : "Role"
 		            
 		        },{
                     mData : "organizationName",
                     sDefaultContent : "",
-                    sTitle : "机构"
+                    sTitle : "Organization"
 
                 },{
 		            mData : "email",
@@ -42,12 +42,12 @@ var User = {
 		        },{
 		            mData : "address",
 		            sDefaultContent : "",
-		            sTitle : "地址"
+		            sTitle : "Address"
 		            
 		        },{
 		            mData : "id",
 		            sDefaultContent : "",
-		            sTitle : "操作",
+		            sTitle : "Operation",
 		            mRender: function(value, type ,data){
 		            	return '<a class="btn edit blue" href="javascript:User.editUser('+ value + ')"><i class="icon-edit"></i></a>\
 		            	        <a class="btn edit blue" href="javascript:User.resetPwd('+ value + ')"><i class="icon-keyboard"></i></a>\
@@ -79,14 +79,14 @@ var User = {
         }
     	params.messages={
             name: {
-                required: "用户名不能为空！"
+                required: "Name can't empty！"
             },
             password: {
-            	required: "密码不能为空！"
+            	required: "Password can't empty！"
             },
             email: {
-                required: "Email不能为空!",
-            	email: "Email格式不正确！"
+                required: "Email can't empty",
+            	email: "Email wrong！"
             }
     	}
     	params.form = jQuery("#userForm");
@@ -99,7 +99,7 @@ var User = {
     },
     
     deleteUser: function(id) {
-        App.confirm("确定要删除？", function(){
+        App.confirm("Are you sure？", function(){
     		jQuery.ajax({
 				url: appCtx + "/user/delete/" + id,
 				type: 'post',
@@ -120,19 +120,19 @@ var User = {
 
     resetPwd : function(id) {
         jQuery.confirm({
-            title: '重置密码!',
-            confirmButton: '确定',
+            title: 'Reset password!',
+            confirmButton: 'OK',
             confirmButtonClass: 'btn red',
-            cancelButton: '关闭',
-            content: '<div>新密码：<input type="text" id="newPwd" maxlength="20" value="abc123"></div>',
+            cancelButton: 'CLOSE',
+            content: '<div>New Password：<input type="text" id="newPwd" maxlength="20" value="abc123"></div>',
             confirm: function(){
                 var newPwd = jQuery.trim(jQuery("#newPwd").val());
                 if (!newPwd) {
-                    App.alert("密码不能为空！");
+                    App.alert("password can't empty!");
                     return false;
                 }
                 if (!/^[a-zA-Z0-9_\.]+$/.test(newPwd)) {
-                    App.alert("密码必须是数字、字母或下划线");
+                    App.alert("invalid password, should a-zA-Z0-9_.");
                     return false;
                 }
                 var pwdMd5 = CryptoJS.MD5(newPwd).toString();
@@ -143,7 +143,7 @@ var User = {
                     data:{"id":id, "password":pwdMd5},
                     success: function(json) {
                         if (json.code == "0") {
-                            App.alert("重置密码成功！");
+                            App.alert("success！");
                             User.queryList();
                         } else {
                             App.alert(json.message);

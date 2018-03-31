@@ -4,8 +4,8 @@
     <div class="well light_gray">
         <div class="top_bar">
             <ul class="breadcrumb">
-                <li><a href="javascript:void(0);" style="color: #037dc5;font-size: 15px;">系统管理</a> <span class="divider">/</span></li>
-                <li class="active"><a href="javascript:void(0)" style="font-weight: 600;font-size: 13px;color: #037dc5;">平台客户</a></li>
+                <li><a href="javascript:void(0);" style="color: #037dc5;font-size: 15px;">System setting</a> <span class="divider">/</span></li>
+                <li class="active"><a href="javascript:void(0)" style="font-weight: 600;font-size: 13px;color: #037dc5;">Platform users</a></li>
             </ul>
         </div>
 

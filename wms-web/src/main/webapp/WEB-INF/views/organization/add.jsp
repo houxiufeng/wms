@@ -4,9 +4,9 @@
 <div class="well light_gray">
     <div class="top_bar">
         <ul class="breadcrumb">
-            <li><a href="javascript:void(0);"style="color: #037dc5;font-size: 15px;">系统管理</a> <span class="divider">/</span></li>
-            <li><a href="javascript:void(0)"style="color: #037dc5;font-size: 15px;">平台客户</a><span class="divider">/</span></li>
-            <li class="active" style="font-weight: 600;font-size: 13px;color: #037dc5;">添加平台客户</li>
+            <li><a href="javascript:void(0);"style="color: #037dc5;font-size: 15px;">System setting</a> <span class="divider">/</span></li>
+            <li><a href="javascript:void(0)"style="color: #037dc5;font-size: 15px;">Platform users</a><span class="divider">/</span></li>
+            <li class="active" style="font-weight: 600;font-size: 13px;color: #037dc5;">Add platform user</li>
         </ul>
     </div>
 
@@ -15,7 +15,7 @@
 
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right">名称:</label>
+                    <label class="field_name align_right">Name:</label>
                     <div class="field">
                         <input name="name" class="span12" type="text" maxlength="30">
                     </div>
@@ -24,7 +24,7 @@
 
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right">角色:</label>
+                    <label class="field_name align_right">Roles:</label>
                     <div class="field">
                         <c:forEach items="${roles}" var="item">
                             <label class="checkbox">
@@ -37,13 +37,13 @@
 
             <div class="form_row">
                 <div class="span6" >
-                    <label class="field_name align_right">状态：</label>
+                    <label class="field_name align_right">Status：</label>
                     <div class="field">
                         <label class="radio">
-                            <input type="radio" class="uniform" name="status" value="1" checked="checked"> 启用
+                            <input type="radio" class="uniform" name="status" value="1" checked="checked"> On
                         </label>
                         <label class="radio">
-                            <input type="radio" class="uniform" name="status" value="0"> 禁用
+                            <input type="radio" class="uniform" name="status" value="0"> Off
                         </label>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
 
             <div class="form_row">
                 <div class="span6" >
-                    <label class="field_name align_right">备注：</label>
+                    <label class="field_name align_right">Remarks：</label>
                     <div class="field">
                         <textarea name="remark" cols="80" rows="10" style="resize:none" maxlength="60"></textarea>
                     </div>

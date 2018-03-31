@@ -2,9 +2,9 @@ var Role = {
 		getTableData: function(){
 			jQuery('#roleTable').dataTable({
 		        sAjaxSource: appCtx + "/role/loadData",
-		        oLanguage: {
-		            sUrl: appCtx + '/flatpoint/js/zh_CN.json',
-		        },
+		        // oLanguage: {
+		        //     sUrl: appCtx + '/flatpoint/js/zh_CN.json',
+		        // },
 		        bSort: false,                        // 是否排序功能
 		        bFilter: false,                       // 过滤功能
 		        bPaginate: true,                     // 翻页功能
@@ -19,32 +19,32 @@ var Role = {
 		        aoColumns:[{
 		            mData : "name",
 		            sDefaultContent : "",
-		            sTitle : "角色名称"
+		            sTitle : "Role"
 		        },{
 		            mData : "code",
 		            sDefaultContent : "",
-		            sTitle : "编码"
+		            sTitle : "Code"
 		            
 		        },{
 		            mData : "remark",
 		            sDefaultContent : "",
-		            sTitle : "备注"
+		            sTitle : "Remarks"
 		        },{
                     mData : "status",
                     sDefaultContent : "",
-                    sTitle : "状态",
+                    sTitle : "Status",
                     mRender: function(value, type ,data){
                         if (value == 1) {
-                            return "启用";
+                            return "On";
                         } else {
-                            return "禁用";
+                            return "Off";
                         }
                     }
 
                 },{
 		            mData : "id",
 		            sDefaultContent : "",
-		            sTitle : "操作",
+		            sTitle : "Operation",
 		            mRender: function(value, type ,data){
 		            	return '<a class="btn edit blue" href="javascript:Role.edit('+ value + ')"><i class="icon-edit"></i></a>\
 		            	        <a class="btn edit blue" href="javascript:Role.delete('+ value + ')"><i class="icon-trash"></i></a>\
@@ -72,10 +72,10 @@ var Role = {
         };
     	params.messages={
             name: {
-                required:"角色名称不能为空！"
+                required:"Role can't be empty！"
             },
             code: {
-                required:"角色编码不能为空！"
+                required:"Code can't be empty！"
             }
     	};
     	params.form = jQuery("#roleForm");
@@ -91,7 +91,7 @@ var Role = {
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {
-                        App.alert("角色创建成功!", function(){
+                        App.alert("success!", function(){
                             App.goToPage(appCtx+"/role");
                         });
                     } else {
@@ -121,10 +121,10 @@ var Role = {
         };
         params.messages={
             name: {
-                required:"角色名称不能为空！"
+                required:"Role can't be empty！"
             },
             code: {
-                required:"角色编码不能为空！"
+                required:"Code can't be empty！"
             }
         };
         params.form = jQuery("#roleForm");
@@ -140,7 +140,7 @@ var Role = {
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {
-                        App.alert("角色修改成功!", function(){
+                        App.alert("success!", function(){
                             App.goToPage(appCtx+"/role");
                         });
                     } else {
@@ -158,7 +158,7 @@ var Role = {
     },
     
     delete: function(id) {
-        App.confirm("确定要删除？", function(){
+        App.confirm("Are you sure？", function(){
     		jQuery.ajax({
 				url: appCtx + "/role/delete/" + id,
 				type: 'post',

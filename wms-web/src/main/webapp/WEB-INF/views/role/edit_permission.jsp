@@ -4,9 +4,9 @@
 <div class="well light_gray span12">
     <div class="top_bar">
         <ul class="breadcrumb">
-            <li><a href="javascript:void(0);"style="color: #037dc5;font-size: 15px;">系统管理</a> <span class="divider">/</span></li>
-            <li><a href="javascript:void(0)"style="color: #037dc5;font-size: 15px;">角色信息</a><span class="divider">/</span></li>
-            <li class="active" style="font-weight: 600;font-size: 13px;color: #037dc5;">设置权限</li>
+            <li><a href="javascript:void(0);"style="color: #037dc5;font-size: 15px;">System setting</a> <span class="divider">/</span></li>
+            <li><a href="javascript:void(0)"style="color: #037dc5;font-size: 15px;">Role management</a><span class="divider">/</span></li>
+            <li class="active" style="font-weight: 600;font-size: 13px;color: #037dc5;">Permission setting</li>
         </ul>
     </div>
 
@@ -68,7 +68,7 @@ jQuery(function($){
             permissionIds.push($(this).val());
         });
         if (permissionIds.length == 0) {
-            App.alert("请选择至少一个权限");
+            App.alert("please select one!");
             return;
         }
         var data = {};
@@ -81,7 +81,7 @@ jQuery(function($){
             dataType:'json',
             success: function(json) {
                 if (json.code == "0") {
-                    App.alert("权限编辑成功!", function(){
+                    App.alert("success!", function(){
                         App.goToPage(appCtx+"/role");
                     });
                 } else {

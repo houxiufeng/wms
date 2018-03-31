@@ -4,9 +4,9 @@
 <div class="well light_gray">
     <div class="top_bar">
         <ul class="breadcrumb">
-            <li><a href="javascript:void(0);"style="color: #037dc5;font-size: 15px;">系统管理</a> <span class="divider">/</span></li>
-            <li><a href="javascript:void(0)"style="color: #037dc5;font-size: 15px;">用户信息</a><span class="divider">/</span></li>
-            <li class="active" style="font-weight: 600;font-size: 13px;color: #037dc5;">添加用户</li>
+            <li><a href="javascript:void(0);"style="color: #037dc5;font-size: 15px;">System setting</a> <span class="divider">/</span></li>
+            <li><a href="javascript:void(0)"style="color: #037dc5;font-size: 15px;">User management</a><span class="divider">/</span></li>
+            <li class="active" style="font-weight: 600;font-size: 13px;color: #037dc5;">Add User</li>
         </ul>
     </div>
 
@@ -15,7 +15,7 @@
 
             <div class="form_row">
                 <div class="span4">
-                    <label class="field_name align_right">角色:</label>
+                    <label class="field_name align_right">Role:</label>
                     <div class="field">
                         <select name="roleId" class="span12">
                             <c:forEach items="${roles}" var="item">
@@ -28,7 +28,7 @@
 
             <div class="form_row">
                 <div class="span4">
-                    <label class="field_name align_right">邮箱:</label>
+                    <label class="field_name align_right">Email:</label>
                     <div class="field">
                         <input name="email" class="span12" type="text">
                     </div>
@@ -37,7 +37,7 @@
 
             <div class="form_row">
                 <div class="span4">
-                    <label class="field_name align_right">密码:</label>
+                    <label class="field_name align_right">Password:</label>
                     <div class="field">
                         <input id="password" name="password" class="span12" type="text">
                     </div>
@@ -46,7 +46,7 @@
 
             <div class="form_row">
                 <div class="span4">
-                    <label class="field_name align_right">姓名:</label>
+                    <label class="field_name align_right">Name:</label>
                     <div class="field">
                         <input name="name" class="span12" type="text">
                     </div>
@@ -56,7 +56,7 @@
             <c:if test="${CURRENT_USER.roleCode == 'admin'}">
                 <div class="form_row">
                     <div class="span4">
-                        <label class="field_name align_right">机构:</label>
+                        <label class="field_name align_right">Organization:</label>
                         <div class="field">
                             <select name="organizationId" class="span12">
                                 <c:forEach items="${organizations}" var="item">
@@ -70,7 +70,7 @@
 
             <div class="form_row">
                 <div class="span4">
-                    <label class="field_name align_right">地址:</label>
+                    <label class="field_name align_right">Address:</label>
                     <div class="field">
                         <input name="address" class="span12" type="text">
                     </div>
@@ -79,7 +79,7 @@
 
             <div class="form_row">
                 <div class="span4" >
-                    <label class="field_name align_right">描述：</label>
+                    <label class="field_name align_right">Remarks：</label>
                     <div class="field">
                         <textarea id="description" name="description" cols="80" rows="10" style="resize:none"></textarea>
                     </div>
@@ -113,7 +113,7 @@ jQuery(function($){
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {
-                        App.alert("用户创建成功!", function(){
+                        App.alert("success!", function(){
                             App.goToPage(appCtx+"/user");
                         });
                     } else {
