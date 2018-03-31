@@ -11,6 +11,7 @@ public class Branch {
 	private String code;
 	private Long customerId;
 	private Long organizationId;
+	private Long userId;
 	private String address;
 	private String contactPerson;
 	private String contactPhone;
@@ -95,5 +96,13 @@ public class Branch {
 
 	public void setCreatedBy(Long createdBy) {
 		this.createdBy = createdBy;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 }

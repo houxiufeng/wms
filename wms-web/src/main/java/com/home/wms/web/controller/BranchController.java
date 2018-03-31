@@ -6,8 +6,10 @@ import com.home.wms.dto.QueryBranchParams;
 import com.home.wms.dto.QueryCustomerParams;
 import com.home.wms.entity.Branch;
 import com.home.wms.entity.Customer;
+import com.home.wms.entity.User;
 import com.home.wms.service.BranchService;
 import com.home.wms.service.CustomerService;
+import com.home.wms.service.UserService;
 import com.home.wms.utils.AppContextManager;
 import com.ktanx.common.model.PageList;
 import org.slf4j.Logger;
@@ -32,6 +34,8 @@ public class BranchController {
 	private BranchService branchService;
 	@Autowired
 	private CustomerService customerService;
+	@Autowired
+	private UserService userService;
 
 	private static final Logger LOG = LoggerFactory.getLogger(BranchController.class);
 
@@ -59,6 +63,7 @@ public class BranchController {
 		params.setiDisplayLength(Integer.MAX_VALUE);
 		params.setiDisplayStart(0);
 		model.addAttribute("customers", customerService.findPageCustomers(params));
+		model.addAttribute("users", userService.findUsersNotInBranch());
 		return "/branch/add";
 	}
 
@@ -85,7 +90,13 @@ public class BranchController {
 		params.setiDisplayLength(Integer.MAX_VALUE);
 		params.setiDisplayStart(0);
 		model.addAttribute("customers", customerService.findPageCustomers(params));
-		model.addAttribute("branch", branchService.getBranchById(id));
+		Branch branch = branchService.getBranchById(id);
+		model.addAttribute("branch", branch);
+		List<User> users =  userService.findUsersNotInBranch();
+		if (branch.getUserId() != null) {
+			users.add(0, userService.getById(branch.getUserId()));
+		}
+		model.addAttribute("users", users);
 		return "/branch/edit";
 	}
 

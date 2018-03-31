@@ -3,7 +3,7 @@
 <div style="margin-top: 40px; padding: 10px;">
     <div class="form_row" style="text-align: center;">
         <span style="font-size: 14px;font-weight: 600">${CURRENT_USER.organizationName}:很高兴为你服务</span>
-        <input type="hidden" id="customerId" value="${customerId}">
+        <input type="hidden" id="branchId" value="${branchId}">
     </div>
 
     <div class="dataTables_wrapper">

@@ -75,4 +75,10 @@ public class BranchServiceImpl implements BranchService{
 		branch.setName(params.getName());
 		return jdbcDao.queryList(branch);
 	}
+	@Override
+	public Branch getBranchByUserId(Long userId) {
+        Branch branch = new Branch();
+        branch.setUserId(userId);
+		return jdbcDao.querySingleResult(branch);
+	}
 }

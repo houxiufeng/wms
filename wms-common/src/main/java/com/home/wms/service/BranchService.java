@@ -17,4 +17,5 @@ public interface BranchService {
 	void deleteBranch(Long id);
 	Branch getBranchById(Long id);
 	List<Branch> findByConditions(QueryBranchParams params);
+	Branch getBranchByUserId(Long userId);
 }

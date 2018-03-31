@@ -88,9 +88,9 @@ public class UserServiceImpl implements UserService{
 		return (List<User>)jdbcDao.createNativeExecutor().resultClass(User.class).command(sql.toString()).list();
 
 	}
-	public List<User> findUsersNotInCustomer() {
+	public List<User> findUsersNotInBranch() {
 		StringBuffer sql = new StringBuffer("select * from user");
-		sql.append(" where NOT EXISTS (select 1 from customer where user_id = user.id)");
+		sql.append(" where NOT EXISTS (select 1 from branch where user_id = user.id)");
 		sql.append(" and user.role_id = (select id from role where code ='customer' limit 1)");
 		Long organizationId = AppContextManager.getCurrentUserInfo().getOrganizationId();
 		if (organizationId != null) {

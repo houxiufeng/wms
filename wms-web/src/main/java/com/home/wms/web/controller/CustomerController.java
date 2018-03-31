@@ -59,7 +59,7 @@ public class CustomerController {
 	public String add(Model model){
 		model.addAttribute("types", dictService.findByType(DictType.CUSTOMER_LEVEL.getValue()));
 		model.addAttribute("creditStatus", dictService.findByType(DictType.CUSTOMER_CREDIT.getValue()));
-		model.addAttribute("users", userService.findUsersNotInCustomer());
+//		model.addAttribute("users", userService.findUsersNotInCustomer());
 		return "/customer/add";
 	}
 
@@ -85,11 +85,11 @@ public class CustomerController {
 		model.addAttribute("creditStatus", dictService.findByType(DictType.CUSTOMER_CREDIT.getValue()));
 		Customer customer = customerService.getCustomerById(id);
 		model.addAttribute("customer", customer);
-		List<User> users =  userService.findUsersNotInCustomer();
-		if (customer.getUserId() != null) {
-			users.add(0, userService.getById(customer.getUserId()));
-		}
-		model.addAttribute("users", users);
+//		List<User> users =  userService.findUsersNotInCustomer();
+//		if (customer.getUserId() != null) {
+//			users.add(0, userService.getById(customer.getUserId()));
+//		}
+//		model.addAttribute("users", users);
 		return "/customer/edit";
 	}
 

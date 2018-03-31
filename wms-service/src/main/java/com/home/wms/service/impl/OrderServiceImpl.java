@@ -66,6 +66,10 @@ public class OrderServiceImpl implements OrderService {
 			sql.append(" and t.customer_id = ?");
 			paramList.add(params.getCustomerId());
 		}
+		if (params.getBranchId() != null) {
+			sql.append(" and t.branch_id = ?");
+			paramList.add(params.getBranchId());
+		}
 		if (StringUtils.isNotBlank(params.getOrderNo())) {
 			sql.append(" and t.order_no = ?");
 			paramList.add(params.getOrderNo());
