@@ -13,7 +13,7 @@
 </style>
 <div class="content1" style="margin-top: 40px; padding: 10px;">
     <div class="form_row" style="text-align: center;">
-        <span style="font-size: 16px;font-weight: 600">你好,${vendor.name}</span>
+        <span style="font-size: 16px;font-weight: 600">Hi,${vendor.name}</span>
         <input type="hidden" id="vendorId" value="${vendor.id}">
     </div>
 

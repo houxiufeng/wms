@@ -2,9 +2,9 @@ var Customer = {
 		getTableData: function(){
 			jQuery('#customerTable').dataTable({
 		        sAjaxSource: appCtx + "/customer/loadData",
-		        oLanguage: {
-		            sUrl: appCtx + '/flatpoint/js/zh_CN.json',
-		        },
+		        // oLanguage: {
+		        //     sUrl: appCtx + '/flatpoint/js/zh_CN.json',
+		        // },
 		        bSort: false,                        // 是否排序功能
 		        bFilter: false,                       // 过滤功能
 		        bPaginate: true,                     // 翻页功能
@@ -22,31 +22,31 @@ var Customer = {
 		        aoColumns:[{
 		            mData : "name",
 		            sDefaultContent : "",
-		            sTitle : "客户名称"
+		            sTitle : "Customer name"
 		        },{
                     mData : "code",
                     sDefaultContent : "",
-                    sTitle : "客户Code"
+                    sTitle : "Customer code"
                 },{
                     mData : "phone",
                     sDefaultContent : "",
-                    sTitle : "客户电话"
+                    sTitle : "Phone number"
                 },{
                     mData : "typeName",
                     sDefaultContent : "",
-                    sTitle : "客户级别"
+                    sTitle : "Customer degree"
                 },{
                     mData : "creditStatusName",
                     sDefaultContent : "",
-                    sTitle : "客户信用"
+                    sTitle : "Credit"
                 },{
                     mData : "contractName",
                     sDefaultContent : "",
-                    sTitle : "客户合同名称"
+                    sTitle : "Contract name"
                 },{
 		            mData : "id",
 		            sDefaultContent : "",
-		            sTitle : "操作",
+		            sTitle : "Operation",
 		            mRender: function(value, type ,data){
 		            	return '<a class="btn edit blue" href="javascript:Customer.edit('+ value + ')"><i class="icon-edit"></i></a>\
 		            	        <a class="btn edit blue" href="javascript:Customer.delete('+ value + ')"><i class="icon-trash"></i></a>';
@@ -78,7 +78,7 @@ var Customer = {
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {
-                        App.alert("客户创建成功!", function(){
+                        App.alert("success!", function(){
                             App.goToPage(appCtx+"/customer");
                         });
                     } else {
@@ -113,7 +113,7 @@ var Customer = {
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {
-                        App.alert("客户修改成功!", function(){
+                        App.alert("success!", function(){
                             App.goToPage(appCtx+"/customer");
                         });
                     } else {
@@ -128,7 +128,7 @@ var Customer = {
     },
 
     delete: function(id) {
-        App.confirm("确定要删除？", function(){
+        App.confirm("Are you sure？", function(){
     		jQuery.ajax({
 				url: appCtx + "/customer/delete/" + id,
 				type: 'post',
@@ -180,32 +180,32 @@ var Customer = {
         };
         params.messages={
             name: {
-                required:"客户名称不能为空！"
+                required:"customer name can't be empty"
             },
             code:{
-                required: "客户编码不能为空！",
-                eng: "只能是字母，数字和下划线！"
+                required: "customer code can't be empty",
+                eng: "invalid input, eg:a-z,0-9,_"
             },
             legalPerson: {
-                required: "法人不能为空！"
+                required: "legal person can't be empty"
             },
             contactPerson: {
-                required: "联系人不能为空！"
+                required: "contact person can't be empty"
             },
             phone: {
-                digits:"电话格式不正确！"
+                digits:"invalid phone input!"
             },
             contactPhone: {
-                digits:"电话格式不正确！"
+                digits:"invalid contact phone input!"
             },
             legalPhone: {
-                digits:"电话格式不正确！"
+                digits:"invalid legal phone input!"
             },
             contractName: {
-                required:"合同名称不能为空！"
+                required:"contract name can't be empty!"
             },
             contractAmount: {
-                number:"金额格式不正确！"
+                number:"invalid amount"
             }
         };
         params.form = jQuery("#customerForm");

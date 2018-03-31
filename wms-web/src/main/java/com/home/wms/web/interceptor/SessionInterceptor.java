@@ -23,7 +23,7 @@ public class SessionInterceptor implements HandlerInterceptor {
 			out.println("<meta charset='utf-8'>");
 			out.println("</head>");
 			out.println("<script>");
-			out.println("if(window.confirm('会话失效，请重新登录！')) {window.top.location.href = 'login';}");
+			out.println("if(window.confirm('session timeout，please re-login')) {window.top.location.href = 'login';}");
 			out.println("</script>");
 			out.println("</html>");
 			return false;

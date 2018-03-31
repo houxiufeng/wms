@@ -7,11 +7,11 @@
         <input id="branchId" name="branchId" type="hidden" value="${branchId}">
         <div class="form_row">
             <div class="field">
-                <span style="font-size: 16px;font-weight: 600">${CURRENT_USER.organizationName}:你好,${CURRENT_USER.name}</span>
+                <span style="font-size: 16px;font-weight: 600">${CURRENT_USER.organizationName}:Hi,${CURRENT_USER.name}</span>
             </div>
         </div>
         <div class="form_row">
-            <label class="field_name align_right"><span style="color: red">*</span>产品名称:</label>
+            <label class="field_name align_right"><span style="color: red">*</span>Product name:</label>
             <div class="field">
                 <select id="productName" class="span10">
                     <c:forEach items="${brands}" var="item">
@@ -21,25 +21,25 @@
             </div>
         </div>
         <div class="form_row">
-            <label class="field_name align_right"><span style="color: red">*</span>产品型号:</label>
+            <label class="field_name align_right"><span style="color: red">*</span>Product model:</label>
             <div class="field">
                 <select id="productId" name="productId" class="span10"></select>
             </div>
         </div>
         <div class="form_row">
-            <label class="field_name align_right">产品位置:</label>
+            <label class="field_name align_right">Position:</label>
             <div class="field">
                 <input name="position" type="text" maxlength="128" class="span10">
             </div>
         </div>
         <div class="form_row">
-            <label class="field_name align_right"><span style="color: red">*</span>序列号:</label>
+            <label class="field_name align_right"><span style="color: red">*</span>Serial Number:</label>
             <div class="field">
                 <input id="sn" name="sn" type="text" maxlength="32" class="span10">
             </div>
         </div>
         <div class="form_row">
-            <label class="field_name align_right">时间范围:</label>
+            <label class="field_name align_right">Date range:</label>
             <div class="field">
                 <input id="beginTime" name="beginTime" type="text" class="datetimepicker" style="width: 40%" readonly> —
                 <input id="endTime" name="endTime" type="text" class="datetimepicker" style="width: 40%" readonly>
@@ -99,11 +99,11 @@
 
         $("#btn_saveBranchProduct").click(function() {
             if (_isNull($("#productId").val())) {
-                App.alert("产品型号必填！");
+                App.alert("product model can't be empty!");
                 return false;
             }
             if (_isNull($("#sn").val())) {
-                App.alert("序列号必填！");
+                App.alert("Serial number can't be mepty!");
                 return false;
             }
             var data = $("#branchProductForm").serialize();
@@ -117,7 +117,7 @@
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {
-                        App.alert("创建成功!", function(){
+                        App.alert("success!", function(){
                             $("#btn_qrCode").show();
                             $("#btn_saveBranchProduct").hide();
                             $("#branchProductId").val(json.data);
@@ -139,10 +139,10 @@
 //                content: '<div id="qrcode"></div>'
 //            });
             $.confirm({
-                title: '二维码',
-                confirmButton: '打印',
+                title: 'QRCode',
+                confirmButton: 'Print',
                 confirmButtonClass: 'btn red',
-                cancelButton: '关闭',
+                cancelButton: 'Close',
                 content: '<div id="qrcode"></div>',
                 confirm: function(){
                     $("#qrcode").jqprint();

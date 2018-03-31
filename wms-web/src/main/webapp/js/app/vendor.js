@@ -2,9 +2,9 @@ var Vendor = {
     getTableData: function(){
         jQuery('#vendorTable').dataTable({
             sAjaxSource: appCtx + "/vendor/loadData",
-            oLanguage: {
-                sUrl: appCtx + '/flatpoint/js/zh_CN.json',
-            },
+            // oLanguage: {
+            //     sUrl: appCtx + '/flatpoint/js/zh_CN.json',
+            // },
             bSort: false,                        // 是否排序功能
             bFilter: false,                       // 过滤功能
             bPaginate: true,                     // 翻页功能
@@ -22,24 +22,24 @@ var Vendor = {
             aoColumns:[{
                 mData : "name",
                 sDefaultContent : "",
-                sTitle : "供应商名称"
+                sTitle : "Name"
             },{
                 mData : "code",
                 sDefaultContent : "",
-                sTitle : "供应商编码"
+                sTitle : "Code"
 
             },{
                 mData : "phone",
                 sDefaultContent : "",
-                sTitle : "供应商电话"
+                sTitle : "Phone"
             },{
                 mData : "levelName",
                 sDefaultContent : "",
-                sTitle : "供应商级别"
+                sTitle : "Degree"
             },{
                 mData : "skillList",
                 sDefaultContent : "",
-                sTitle : "供应商能力",
+                sTitle : "Capability",
                 mRender: function(value, type ,data){
                     if (!_isNull(value)) {
                         return value.join(",");
@@ -49,25 +49,25 @@ var Vendor = {
             },{
                 mData : "score",
                 sDefaultContent : "",
-                sTitle : "累计评分",
+                sTitle : "Cumulative score",
                 mRender: function(value, type ,data){
-                    return '好评:' + data.goodScore + " 中评:" + data.moderateScore + " 差评:" + data.badScore;
+                    return 'Good:' + data.goodScore + " Moderate:" + data.moderateScore + " Bad:" + data.badScore;
                 }
             },{
                 mData : "status",
                 sDefaultContent : "",
-                sTitle : "上岗情况",
+                sTitle : "Status",
                 mRender: function(value, type ,data){
                     if (value == 1) {
-                        return "启用";
+                        return "On";
                     } else {
-                        return "闲置";
+                        return "Off";
                     }
                 }
             },{
                 mData : "id",
                 sDefaultContent : "",
-                sTitle : "操作",
+                sTitle : "Operation",
                 mRender: function(value, type ,data){
                     return '<a class="btn edit blue" href="javascript:Vendor.edit('+ value + ')"><i class="icon-edit"></i></a>\
                             <a class="btn edit blue" href="javascript:Vendor.delete('+ value + ')"><i class="icon-trash"></i></a>';
@@ -80,9 +80,9 @@ var Vendor = {
     getTableDataSimple: function(){
         jQuery('#vendorTable').dataTable({
             sAjaxSource: appCtx + "/vendor/loadData",
-            oLanguage: {
-                sUrl: appCtx + '/flatpoint/js/zh_CN.json',
-            },
+            // oLanguage: {
+            //     sUrl: appCtx + '/flatpoint/js/zh_CN.json',
+            // },
             bSort: false,                        // 是否排序功能
             bFilter: false,                       // 过滤功能
             bPaginate: true,                     // 翻页功能
@@ -101,15 +101,15 @@ var Vendor = {
             aoColumns:[{
                 mData : "name",
                 sDefaultContent : "",
-                sTitle : "供应商名称"
+                sTitle : "Engineer Name"
             },{
                 mData : "levelName",
                 sDefaultContent : "",
-                sTitle : "供应商级别"
+                sTitle : "Degree"
             },{
                 mData : "skillList",
                 sDefaultContent : "",
-                sTitle : "供应商能力",
+                sTitle : "Capability",
                 mRender: function(value, type ,data){
                     if (!_isNull(value)) {
                         return value.join(",");
@@ -119,7 +119,7 @@ var Vendor = {
             },{
                 mData : "id",
                 sDefaultContent : "",
-                sTitle : "选择",
+                sTitle : "#",
                 mRender: function(value, type ,data){
                     return '<input type="checkbox" name="vendorId" value="' + value +'">';
                 }
@@ -145,7 +145,7 @@ var Vendor = {
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {
-                        App.alert("创建成功!", function(){
+                        App.alert("success!", function(){
                             App.goToPage(appCtx+"/vendor");
                         });
                     } else {
@@ -176,7 +176,7 @@ var Vendor = {
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {
-                        App.alert("修改成功!", function(){
+                        App.alert("success!", function(){
                             App.goToPage(appCtx+"/vendor");
                         });
                     } else {
@@ -191,7 +191,7 @@ var Vendor = {
     },
     
     delete: function(id) {
-        App.confirm("确定要删除？", function(){
+        App.confirm("Are you sure？", function(){
     		jQuery.ajax({
 				url: appCtx + "/vendor/delete/" + id,
 				type: 'post',
@@ -223,11 +223,11 @@ var Vendor = {
         }
         params.messages={
             name: {
-                required: "名称必填！"
+                required: "name can't be empty!"
             },
             code: {
-                required: "编码必填！",
-                eng:"必须是字母数字！"
+                required: "code can't be empty",
+                eng:"invalid code input！"
             }
         }
         params.form = jQuery("#vendorForm");

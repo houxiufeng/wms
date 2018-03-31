@@ -5,9 +5,9 @@
 <div class="well light_gray">
 	<div class="top_bar">
 		<ul class="breadcrumb">
-			<li><a href="javascript:void(0);"style="color: #037dc5;font-size: 15px;">供应商中心</a> <span class="divider">/</span></li>
-			<li><a href="javascript:void(0)"style="color: #037dc5;font-size: 15px;">供应商管理</a><span class="divider">/</span></li>
-			<li class="active" style="font-weight: 600;font-size: 13px;color: #037dc5;">编辑供应商</li>
+			<li><a href="javascript:void(0);"style="color: #037dc5;font-size: 15px;">My engineer team</a> <span class="divider">/</span></li>
+			<li><a href="javascript:void(0)"style="color: #037dc5;font-size: 15px;">Engineer management</a><span class="divider">/</span></li>
+			<li class="active" style="font-weight: 600;font-size: 13px;color: #037dc5;">Add engineer</li>
 		</ul>
 	</div>
 
@@ -17,17 +17,17 @@
 			<input type="hidden" name="id" value="${vendor.id}">
 			<div style="border: solid 1px lightgrey;padding-bottom:10px;margin-bottom:10px;">
 				<div class="well-header" style="min-height: 35px;margin-bottom: 15px; background-color: #f7f7f7">
-					<label class="field_name align_left" style="font-weight: bold;font-size: 14px;margin:5px;color: #39a77e">基本信息</label>
+					<label class="field_name align_left" style="font-weight: bold;font-size: 14px;margin:5px;color: #39a77e">Basic info</label>
 				</div>
 				<div class="form_row">
 					<div class="span6">
-						<label class="field_name align_right"><span style="color: red">*</span>供应商名称:</label>
+						<label class="field_name align_right"><span style="color: red">*</span>Name:</label>
 						<div class="field">
 							<input name="name" class="span12" type="text" maxlength="64" value="${vendor.name}">
 						</div>
 					</div>
 					<div class="span6">
-						<label class="field_name align_right"><span style="color: red">*</span>供应商编码:</label>
+						<label class="field_name align_right"><span style="color: red">*</span>Code:</label>
 						<div class="field">
 							<input name="code" class="span12" type="text" maxlength="3" value="${vendor.code}">
 						</div>
@@ -36,13 +36,13 @@
 
 				<div class="form_row">
 					<div class="span6">
-						<label class="field_name align_right">供应商备注:</label>
+						<label class="field_name align_right">Remarks:</label>
 						<div class="field">
 							<input name="remark" class="span12" type="text" maxlength="100" value="${vendor.remark}">
 						</div>
 					</div>
 					<div class="span6">
-						<label class="field_name align_right">供应商电话:</label>
+						<label class="field_name align_right">Phone:</label>
 						<div class="field">
 							<%--<input name="phone" class="span12" type="text" maxlength="20" value="${vendor.phone}">--%>
 							<input id="phone_pre" class="span3" type="text" maxlength="5"> -
@@ -53,10 +53,10 @@
 
 				<div class="form_row">
 					<div class="span6">
-						<label class="field_name align_right">供应商头像:</label>
+						<label class="field_name align_right">Avator:</label>
 						<div class="field">
 							<input type="file" id="upAvator" style="margin-top: 5px;"/>
-							<input type="button" value="上传" onclick="javascript:uploadVendorAvator()"/>
+							<input type="button" value="Upload" onclick="javascript:uploadVendorAvator()"/>
 						</div>
 					</div>
 					<div class="span6">
@@ -76,11 +76,11 @@
 
 			<div style="border: solid 1px lightgrey;padding-bottom:10px;margin-bottom:10px;">
 				<div class="well-header" style="min-height: 35px;margin-bottom: 15px; background-color: #f7f7f7">
-					<label class="field_name align_left" style="font-weight: bold;font-size: 14px;margin:5px;color: #39a77e">其他情况</label>
+					<label class="field_name align_left" style="font-weight: bold;font-size: 14px;margin:5px;color: #39a77e">Others</label>
 				</div>
 				<div class="form_row">
 					<div class="span6">
-						<label class="field_name align_right">供应商级别:</label>
+						<label class="field_name align_right">Engineer degree:</label>
 						<div class="field">
 							<select name="level" class="span12">
 								<c:forEach items="${vendorLevels}" var="item">
@@ -90,7 +90,7 @@
 						</div>
 					</div>
 					<div class="span6">
-						<label class="field_name align_right">关联用户:</label>
+						<label class="field_name align_right">Bind user:</label>
 						<div class="field">
 							<select name="userId" class="span12">
 								<c:forEach items="${users}" var="item">
@@ -103,7 +103,7 @@
 
 				<div class="form_row">
 					<div class="span6">
-						<label class="field_name align_right">维修能力:</label>
+						<label class="field_name align_right">Capability:</label>
 						<div class="field" style="margin-top: 5px;">
 							<c:forEach items="${maintainSkills}" var="item">
 								<input type="checkbox" value="${item.id}" name="skill">${item.name}
@@ -115,24 +115,24 @@
 
 			<div style="border: solid 1px lightgrey;padding-bottom:10px;margin-bottom:10px;">
 				<div class="well-header" style="min-height: 35px;margin-bottom: 15px; background-color: #f7f7f7">
-					<label class="field_name align_left" style="font-weight: bold;font-size: 14px;margin:5px;color: #39a77e">上岗情况</label>
+					<label class="field_name align_left" style="font-weight: bold;font-size: 14px;margin:5px;color: #39a77e">Work info</label>
 				</div>
 				<div class="form_row">
 					<div class="span6">
-						<label class="field_name align_right">岗位:</label>
+						<label class="field_name align_right">Status:</label>
 						<div class="field">
 							<select name="status" class="span12">
-								<option value="1" <c:if test="${vendor.status == 1}">selected</c:if>>启用</option>
-								<option value="0" <c:if test="${vendor.status == 0}">selected</c:if>>闲置</option>
+								<option value="1" <c:if test="${vendor.status == 1}">selected</c:if>>On</option>
+								<option value="0" <c:if test="${vendor.status == 0}">selected</c:if>>Off</option>
 							</select>
 						</div>
 					</div>
 					<div class="span6">
-						<label class="field_name align_right">累计评分:</label>
+						<label class="field_name align_right">Cumulative score:</label>
 						<div class="field" style="margin-top: 5px;">
-							<span style="color: green">好评</span>:${vendor.goodScore}
-							<span style="color: darkslategrey;">中评</span>:${vendor.moderateScore}
-							<span style="color:red">差评</span>:${vendor.badScore}
+							<span style="color: green">Good</span>:${vendor.goodScore}
+							<span style="color: darkslategrey;">Moderate</span>:${vendor.moderateScore}
+							<span style="color:red">Bad</span>:${vendor.badScore}
 						</div>
 					</div>
 				</div>

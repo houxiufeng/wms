@@ -4,9 +4,9 @@
 <div class="well light_gray">
     <div class="top_bar">
         <ul class="breadcrumb">
-            <li><a href="javascript:void(0);"style="color: #037dc5;font-size: 15px;">订单中心</a> <span class="divider">/</span></li>
-            <li><a href="javascript:void(0)"style="color: #037dc5;font-size: 15px;">订单管理</a><span class="divider">/</span></li>
-            <li class="active" style="font-weight: 600;font-size: 13px;color: #037dc5;">下单</li>
+            <li><a href="javascript:void(0);"style="color: #037dc5;font-size: 15px;">My orders</a> <span class="divider">/</span></li>
+            <li><a href="javascript:void(0)"style="color: #037dc5;font-size: 15px;">Order management</a><span class="divider">/</span></li>
+            <li class="active" style="font-weight: 600;font-size: 13px;color: #037dc5;">Add order</li>
         </ul>
     </div>
 
@@ -15,7 +15,7 @@
 
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right"><span style="color: red">*</span>客户名称:</label>
+                    <label class="field_name align_right"><span style="color: red">*</span>Customer name:</label>
                     <div class="field">
                         <select id="customerId" name="customerId" class="span10">
                             <c:forEach items="${customers}" var="item">
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="span6">
-                    <label class="field_name align_right"><span style="color: red">*</span>总/分店名称:</label>
+                    <label class="field_name align_right"><span style="color: red">*</span>Branch name:</label>
                     <div class="field">
                         <select id="branchId" name="branchId" class="span10"></select>
                         <a href="javascript:App.goToPage(appCtx + '/branch')" class="dark_green btn btn-small"><i class="icon-external-link"></i></a>
@@ -36,7 +36,7 @@
 
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right"><span style="color: red">*</span>问题类型:</label>
+                    <label class="field_name align_right"><span style="color: red">*</span>Problem types:</label>
                     <div class="field">
                         <select name="type" class="span10">
                             <c:forEach items="${types}" var="item">
@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="span6">
-                    <label class="field_name align_right"><span style="color: red">*</span>维修产品:</label>
+                    <label class="field_name align_right"><span style="color: red">*</span>Product:</label>
                     <div class="field">
                         <select id="branchProductId" name="branchProductId" class="span10"></select>
                         <a href="javascript:void(0)" class="dark_green btn btn-small"><i class="icon-external-link"></i></a>
@@ -57,7 +57,7 @@
 
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right"><span style="color: red">*</span>问题描述:</label>
+                    <label class="field_name align_right"><span style="color: red">*</span>Description:</label>
                     <div class="field">
                         <textarea name="description" style="resize:none;width: 83%;height: 150px;"></textarea>
                     </div>

@@ -10,47 +10,47 @@
     <input type="hidden" id="vendorId" value="${order.vendorId}">
     <div class="form_row">
         <div class="field">
-            <span style="font-size: 14px;font-weight: 600">${CURRENT_USER.organizationName}:很高兴为你服务</span>
+            <span style="font-size: 14px;font-weight: 600">${CURRENT_USER.organizationName}:happy to serve you!</span>
         </div>
     </div>
     <div class="form_row">
-        <label class="field_name align_right" style="width: 30%;">客户名称:</label>
+        <label class="field_name align_right" style="width: 30%;">Product name:</label>
         <div class="field" style="margin-left: 31%; margin-top: 5px; ">
             ${order.customerName}
         </div>
     </div>
     <div class="form_row">
-        <label class="field_name align_right" style="width: 30%;">总/分店名称:</label>
+        <label class="field_name align_right" style="width: 30%;">Branch name:</label>
         <div class="field" style="margin-left: 31%; margin-top: 5px;">
             ${order.branchName}
         </div>
     </div>
     <div class="form_row">
-        <label class="field_name align_right" style="width: 30%;">订单号:</label>
+        <label class="field_name align_right" style="width: 30%;">Order No:</label>
         <div class="field" style="margin-left: 31%; margin-top: 5px;">
             ${order.orderNo}
         </div>
     </div>
     <div class="form_row">
-        <label class="field_name align_right" style="width: 30%;">维修产品名称:</label>
+        <label class="field_name align_right" style="width: 30%;">Product name:</label>
         <div class="field" style="margin-left: 31%; margin-top: 5px;">
             ${order.productName}
         </div>
     </div>
     <div class="form_row">
-        <label class="field_name align_right" style="width: 30%;">维修产品型号:</label>
+        <label class="field_name align_right" style="width: 30%;">Product model:</label>
         <div class="field" style="margin-left: 31%; margin-top: 5px;">
             ${order.productModel}
         </div>
     </div>
     <div class="form_row">
-        <label class="field_name align_right" style="width: 30%;">问题类型:</label>
+        <label class="field_name align_right" style="width: 30%;">Problem type:</label>
         <div class="field" style="margin-left: 31%; margin-top: 5px;">
             ${order.typeName}
         </div>
     </div>
     <div class="form_row">
-        <label class="field_name align_right" style="width: 30%;">问题描述:</label>
+        <label class="field_name align_right" style="width: 30%;">Description:</label>
         <div class="field" style="margin-left: 31%; margin-top: 5px;">
             ${order.description}
         </div>
@@ -63,30 +63,30 @@
         </div>
     </c:if>
     <div class="form_row">
-        <label class="field_name align_right" style="width: 30%;">维修员名称:</label>
+        <label class="field_name align_right" style="width: 30%;">Engineer name:</label>
         <div class="field" style="margin-left: 31%; margin-top: 5px;">
             ${vendor.name}
         </div>
     </div>
     <div class="form_row">
-        <label class="field_name align_right" style="width: 30%;">维修员编码:</label>
+        <label class="field_name align_right" style="width: 30%;">Engineer code:</label>
         <div class="field" style="margin-left: 31%; margin-top: 5px;">
             ${vendor.code}
         </div>
     </div>
 
     <div class="form_row">
-        <label class="field_name align_right" style="width: 30%;">评分:</label>
+        <label class="field_name align_right" style="width: 30%;">Score:</label>
         <div class="field" style="margin-left: 31%; margin-top: 5px;">
             <select id="score" name="score">
-                <option value="1">好评</option>
-                <option value="2">中评</option>
-                <option value="3">差评</option>
+                <option value="1">Good</option>
+                <option value="2">moderate</option>
+                <option value="3">Bad</option>
             </select>
         </div>
     </div>
     <div class="form_row">
-        <label class="field_name align_right" style="width: 30%;">评价:</label>
+        <label class="field_name align_right" style="width: 30%;">Feedback:</label>
         <div class="field" style="margin-left: 31%; margin-top: 5px;">
             <textarea id="feedback" name="feedback" style="resize:none;height: 50px; width: 90%;" maxlength="200"></textarea>
         </div>

@@ -2,9 +2,9 @@ var Order = {
     getTableData: function(index){
         jQuery('#orderTable'+index).dataTable({
             sAjaxSource: appCtx + "/order/loadData",
-            oLanguage: {
-                sUrl: appCtx + '/flatpoint/js/zh_CN.json',
-            },
+            // oLanguage: {
+            //     sUrl: appCtx + '/flatpoint/js/zh_CN.json',
+            // },
             bSort: false,                        // 是否排序功能
             bFilter: false,                       // 过滤功能
             bPaginate: true,                     // 翻页功能
@@ -34,46 +34,46 @@ var Order = {
             aoColumns:[{
                 mData : "orderNo",
                 sDefaultContent : "",
-                sTitle : "订单号"
+                sTitle : "Order no"
             },{
                 mData : "customerName",
                 sDefaultContent : "",
-                sTitle : "客户名"
+                sTitle : "Customer name"
             },{
                 mData : "branchName",
                 sDefaultContent : "",
-                sTitle : "分店名"
+                sTitle : "Branch name"
 
             },{
                 mData : "productName",
                 sDefaultContent : "",
-                sTitle : "维修产品名",
+                sTitle : "Product name",
                 mRender: function(value, type ,data) {
                     return value + "-" + data.productModel;
                 }
             },{
                 mData : "createdTime",
                 sDefaultContent : "",
-                sTitle : "订单时间",
+                sTitle : "Create time",
                 mRender: function(value, type ,data) {
                     return moment(value).format("YYYY-MM-DD HH:mm:ss");
                 }
             },{
                 mData : "typeName",
                 sDefaultContent : "",
-                sTitle : "问题类型"
+                sTitle : "Problem type"
             },{
                 mData : "description",
                 sDefaultContent : "",
-                sTitle : "问题描述"
+                sTitle : "Description"
             },{
                 mData : "vendorName",
                 sDefaultContent : "",
-                sTitle : "维修人员"
+                sTitle : "Engineer name"
             },{
                 mData : "id",
                 sDefaultContent : "",
-                sTitle : "操作",
+                sTitle : "Operation",
                 mRender: function(value, type ,data){
                     var opts = ['<a class="btn edit blue" href="javascript:Order.detail('+ value + ')"><i class="icon-eye-open"></i></a>'];
                     if (index == 0) {
@@ -113,7 +113,7 @@ var Order = {
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {
-                        App.alert("创建成功!", function(){
+                        App.alert("success!", function(){
                             if (!_isNull(wap)) {//手机端
                                 App.goToPage(appCtx+"/mobile/order/list?flag=1");
                             } else {
@@ -132,7 +132,7 @@ var Order = {
     },
 
     cancel: function(id) {
-        App.confirm("确定要取消订单？", function(){
+        App.confirm("Cancel order？", function(){
     		jQuery.ajax({
 				url: appCtx + "/order/cancel/" + id,
 				type: 'post',
@@ -175,22 +175,22 @@ var Order = {
         }
         params.messages={
             customerId: {
-                required: "客户必选"
+                required: "customer can't be empty!"
             },
             branchId: {
-                required: "分支必选"
+                required: "branch can't be empty!"
             },
             type: {
-                required: "问题类型必选"
+                required: "problem type can't be empty!"
             },
             branchProductId: {
-                required: "维修产品必选"
+                required: "product can't be empty!"
             },
             remark: {
-                required: "完成备注必填！"
+                required: "remarks can't be empty!！"
             },
             description: {
-                required: "描述信息必填！"
+                required: "description can't be empty!！"
             }
         }
         params.form = jQuery("#orderForm");
@@ -202,29 +202,29 @@ var Order = {
     },
     detail: function (id) {
         jQuery.dialog({
-            title: '订单详情',
+            title: 'Order detail',
             columnClass: 'col-md-6 col-md-offset-3',
             content: 'url:'+appCtx+"/order/detail/"+id
         });
     },
     assign: function (id) {
         jQuery.confirm({
-            title: '派单中',
+            title: 'Assigning',
             columnClass: 'col-md-8 col-md-offset-2',
             content: 'url:'+appCtx+"/order/assign/"+id,
-            confirmButton: '确定',
-            cancelButton: '关闭',
+            confirmButton: 'OK',
+            cancelButton: 'CLOSE',
             confirm: function(){
                 var checkedObj = jQuery("#vendorTable").find(":checkbox:checked[name='vendorId']");
                 if (checkedObj.length == 0) {
-                    App.alert("请选择一个供应商");
+                    App.alert("please select one");
                     return false;
                 }
                 var vendorId = checkedObj.val();
                 var privateOrder;
-                App.confirm("自制单号:<input id='privateOrder' type='text' maxlength='32'>", function () {
+                App.confirm("Private OrderNo:<input id='privateOrder' type='text' maxlength='32'>", function () {
                     if (_isNull(jQuery("#privateOrder").val())) {
-                        App.alert("请填写自制单号");
+                        App.alert("private orderNo can't be empty!");
                         return false;
                     } else {
                         privateOrder = jQuery("#privateOrder").val();
@@ -236,7 +236,7 @@ var Order = {
                             success: function(json) {
                                 if (json.code == "0") {
                                     Order.queryList();
-                                    App.alert("委派成功");
+                                    App.alert("success");
                                 } else {
                                     App.alert(json.message);
                                 }
@@ -253,16 +253,16 @@ var Order = {
     
     checked: function (id) {
         jQuery.confirm({
-            title: '检查中',
+            title: 'Checking',
             columnClass: 'col-md-6 col-md-offset-3',
             content: 'url:'+appCtx+"/order/check/"+id,
-            confirmButton: '确定',
-            cancelButton: '关闭',
+            confirmButton: 'OK',
+            cancelButton: 'CLOSE',
             confirm: function(){
                 var description = jQuery("#description").val();
                 var type = jQuery("#type").val();
                 if (_isNull(description)) {
-                    App.alert("描述信息必填");
+                    App.alert("Description can't be empty!");
                     return false;
                 }
                 jQuery.ajax({
@@ -273,7 +273,7 @@ var Order = {
                     success: function(json) {
                         if (json.code == "0") {
                             Order.queryList();
-                            App.alert("确认完成");
+                            App.alert("Check done");
                         } else {
                             App.alert(json.message);
                         }
@@ -289,11 +289,11 @@ var Order = {
 
     fixed: function (id) {
         jQuery.confirm({
-            title: '维修中',
+            title: 'Fixing',
             columnClass: 'col-md-6 col-md-offset-3',
             content: 'url:'+appCtx+"/order/fix/"+id,
-            confirmButton: '确定',
-            cancelButton: '关闭',
+            confirmButton: 'OK',
+            cancelButton: 'CLOSE',
             confirm: function(){
                 jQuery.ajax({
                     url: appCtx + "/order/fixed",
@@ -303,7 +303,7 @@ var Order = {
                     success: function(json) {
                         if (json.code == "0") {
                             Order.queryList();
-                            App.alert("维修完成");
+                            App.alert("Fixed!");
                         } else {
                             App.alert(json.message);
                         }
@@ -318,11 +318,11 @@ var Order = {
     },
     audited: function (id) {
         jQuery.confirm({
-            title: '审核中',
+            title: 'Auditing',
             columnClass: 'col-md-6 col-md-offset-3',
-            content: '完成备注:<textarea id="remark" style="resize:none;width: 100%;height: 150px;"></textarea>',
-            confirmButton: '通过',
-            cancelButton: '关闭',
+            content: 'Remarks:<textarea id="remark" style="resize:none;width: 100%;height: 150px;"></textarea>',
+            confirmButton: 'OK',
+            cancelButton: 'CLOSE',
             confirm: function(){
                 jQuery.ajax({
                     url: appCtx + "/order/audited",
@@ -332,7 +332,7 @@ var Order = {
                     success: function(json) {
                         if (json.code == "0") {
                             Order.queryList();
-                            App.alert("审核完成");
+                            App.alert("Audit done");
                         } else {
                             App.alert(json.message);
                         }
@@ -353,11 +353,11 @@ var Order = {
             //     sUrl: appCtx + '/flatpoint/js/zh_CN.json',
             // },
             oLanguage: {
-                "sProcessing": "处理中...",
+                "sProcessing": "Processing...",
                 "sLengthMenu": "_MENU_ 记录/页",
-                "sZeroRecords": "没有匹配的记录",
-                "sInfo": "共 _TOTAL_ 条",
-                "sInfoEmpty": "共 0 条",
+                "sZeroRecords": "No records",
+                "sInfo": "total _TOTAL_ ",
+                "sInfoEmpty": "total 0 ",
                 "sInfoFiltered": "(由 _MAX_ 项记录过滤)",
                 "sInfoPostFix": "",
                 "sSearch": "过滤:",
@@ -390,22 +390,22 @@ var Order = {
             aoColumns:[{
                 mData : "orderNo",
                 sDefaultContent : "",
-                sTitle : "订单号"
+                sTitle : "Order No"
             },{
                 mData : "createdTime",
                 sDefaultContent : "",
-                sTitle : "订单时间",
+                sTitle : "Created time",
                 mRender: function(value, type ,data) {
                     return moment(value).format("YYYY-MM-DD HH:mm:ss");
                 }
             },{
                 mData : "typeName",
                 sDefaultContent : "",
-                sTitle : "问题类型"
+                sTitle : "Problem type"
             },{
                 mData : "id",
                 sDefaultContent : "",
-                sTitle : "操作",
+                sTitle : "Operation",
                 mRender: function(value, type ,data){
                     var opts = [];
                     if (status == 1) {//检查中
@@ -424,7 +424,7 @@ var Order = {
     },
 
     reject: function(id) {
-        App.confirm("确定要拒单？", function(){
+        App.confirm("Are you sure？", function(){
             jQuery.ajax({
                 url: appCtx + "/order/reject/" + id,
                 type: 'post',
@@ -445,13 +445,13 @@ var Order = {
 
     showMobileOrderDetail: function (id) {
         jQuery.dialog({
-            title: '订单详情',
+            title: 'Order detail',
             content: 'url:'+appCtx+"/mobile/vendor/order/detail/"+id
         });
     },
     showPOI: function (poi) {
         jQuery.dialog({
-            title: '地图',
+            title: 'Map',
             content: '<div id="googleMap" style="width:280px;height:220px;"></div>'
         });
         var map = initializeMap("googleMap");
@@ -467,7 +467,7 @@ var Order = {
         var description = jQuery("#description").val();
         var type = jQuery("#type").val();
         if (_isNull(description)) {
-            App.alert("描述信息必填");
+            App.alert("Description can't be empty");
             return false;
         }
         jQuery.ajax({
@@ -478,7 +478,7 @@ var Order = {
             success: function(json) {
                 if (json.code == "0") {
                     App.goToPage(appCtx + '/mobile/vendor/order/list?status=2');
-                    App.alert("确认完成");
+                    App.alert("checked");
                 } else {
                     App.alert(json.message);
                 }
@@ -491,15 +491,15 @@ var Order = {
     },
     mobileFixed: function (id) {
         jQuery.confirm({
-            title: '维修中',
+            title: 'Fixing',
             // columnClass: 'col-md-8 col-md-offset-2',
             content: 'url:'+appCtx+"/mobile/vendor/order/fixed/"+id,
-            confirmButton: '确定',
-            cancelButton: '返回',
+            confirmButton: 'OK',
+            cancelButton: 'Back',
             confirm: function(){
                 var fixRemark = jQuery("#fixRemark").val();
                 if (_isNull(fixRemark)) {
-                    App.alert("维修描述必填");
+                    App.alert("Fix remark can't be empty!");
                     return false;
                 }
                 // var orderId = jQuery("#orderId").val();
@@ -511,7 +511,7 @@ var Order = {
                     success: function(json) {
                         if (json.code == "0") {
                             App.goToPage(appCtx + '/mobile/vendor/order/list?status=2');
-                            App.alert("确认维修成功");
+                            App.alert("success");
                         } else {
                             App.alert(json.message);
                         }
@@ -532,11 +532,11 @@ var Order = {
             //     sUrl: appCtx + '/flatpoint/js/zh_CN.json',
             // },
             oLanguage: {
-                "sProcessing": "处理中...",
+                "sProcessing": "Processing...",
                 "sLengthMenu": "_MENU_ 记录/页",
-                "sZeroRecords": "没有匹配的记录",
-                "sInfo": "共 _TOTAL_ 条",
-                "sInfoEmpty": "共 0 条",
+                "sZeroRecords": "No records",
+                "sInfo": "total _TOTAL_ ",
+                "sInfoEmpty": "total 0",
                 "sInfoFiltered": "(由 _MAX_ 项记录过滤)",
                 "sInfoPostFix": "",
                 "sSearch": "过滤:",
@@ -568,37 +568,37 @@ var Order = {
             aoColumns:[{
                 mData : "orderNo",
                 sDefaultContent : "",
-                sTitle : "订单号"
+                sTitle : "Order No"
             },{
                 mData : "createdTime",
                 sDefaultContent : "",
-                sTitle : "订单时间",
+                sTitle : "Created time",
                 mRender: function(value, type ,data) {
                     return moment(value).format("YYYY-MM-DD HH:mm:ss");
                 }
             },{
                 mData : "status",
                 sDefaultContent : "",
-                sTitle : "订单状态",
+                sTitle : "Status",
                 mRender: function(value, type ,data){
                     var html = '';
                     if (value == 0) {
-                        html = '派单中';
+                        html = 'Assigning';
                     } else if (value == 1) {
-                        html = '检查中';
+                        html = 'Checking';
                     } else if (value == 2) {
-                        html = '维修中';
+                        html = 'Fixing';
                     } else if (value == 3) {
-                        html = '审核中';
+                        html = 'Auditing';
                     } else if (value == 4) {
-                        html = '已完成';
+                        html = 'Complete';
                     }
                     return html;
                 }
             },{
                 mData : "id",
                 sDefaultContent : "",
-                sTitle : "操作",
+                sTitle : "Operation",
                 mRender: function(value, type ,data){
                     var opts = [];
                     if (data.status == 4 && _isNull(data.score)) {//未评价
@@ -613,7 +613,7 @@ var Order = {
     },
     showMobileOrderDetail_customer: function (id) {
         jQuery.dialog({
-            title: '订单详情',
+            title: 'Order detail',
             content: 'url:'+appCtx+"/mobile/order/detail/"+id
         });
     },
@@ -623,7 +623,7 @@ var Order = {
         var feedback = jQuery.trim(jQuery("#feedback").val());
         var score = jQuery("#score").val();
         if (_isNull(feedback)) {
-            App.alert("评价信息必填");
+            App.alert("Feedback can't be empty!");
             return false;
         }
         jQuery.ajax({
@@ -634,7 +634,7 @@ var Order = {
             success: function(json) {
                 if (json.code == "0") {
                     App.goToPage(appCtx + '/mobile/order/list?flag=1');
-                    App.alert("感谢评价！");
+                    App.alert("Thanks for your feedback！");
                 } else {
                     App.alert(json.message);
                 }
@@ -644,7 +644,7 @@ var Order = {
             }
         });
 
-    },
+    }
 
 }
 

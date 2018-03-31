@@ -8,7 +8,7 @@
 
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right">订单号:</label>
+                    <label class="field_name align_right">Order no:</label>
                     <div class="field" style="margin-top: 5px">
                         <span>${order.orderNo}</span>
                     </div>
@@ -17,7 +17,7 @@
 
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right">客户名称:</label>
+                    <label class="field_name align_right">Customer name:</label>
                     <div class="field" style="margin-top: 5px">
                         <span>${order.customerName}</span>
                     </div>
@@ -26,7 +26,7 @@
 
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right">总/分店名称:</label>
+                    <label class="field_name align_right">Branch name:</label>
                     <div class="field" style="margin-top: 5px">
                         <span>${order.branchName}</span>
                     </div>
@@ -35,7 +35,7 @@
 
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right">问题类型:</label>
+                    <label class="field_name align_right">Problem types:</label>
                     <div class="field" style="margin-top: 5px">
                         <span>${order.typeName}</span>
                     </div>
@@ -44,7 +44,7 @@
 
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right">维修产品:</label>
+                    <label class="field_name align_right">Product:</label>
                     <div class="field" style="margin-top: 5px">
                         <span>${order.productName}-${order.productModel}</span>
                     </div>
@@ -53,21 +53,21 @@
 
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right">订单状态:</label>
+                    <label class="field_name align_right">Order status:</label>
                     <div class="field" style="margin-top: 5px">
-                        <c:if test="${order.status == 0}"><span>派单中</span></c:if>
-                        <c:if test="${order.status == 1}"><span>检查中</span></c:if>
-                        <c:if test="${order.status == 2}"><span>维修中</span></c:if>
-                        <c:if test="${order.status == 3}"><span>审核中</span></c:if>
-                        <c:if test="${order.status == 4}"><span>已完结</span></c:if>
-                        <c:if test="${order.status == 5}"><span>已取消</span></c:if>
+                        <c:if test="${order.status == 0}"><span>Assigning</span></c:if>
+                        <c:if test="${order.status == 1}"><span>Checking</span></c:if>
+                        <c:if test="${order.status == 2}"><span>Fixing</span></c:if>
+                        <c:if test="${order.status == 3}"><span>Auditing</span></c:if>
+                        <c:if test="${order.status == 4}"><span>Complete</span></c:if>
+                        <c:if test="${order.status == 5}"><span>Cancel</span></c:if>
                     </div>
                 </div>
             </div>
 
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right">问题描述:</label>
+                    <label class="field_name align_right">Description:</label>
                     <div class="field" style="margin-top: 5px">
                         <span style="display: inline-block; width: 85%">${order.description}</span>
                     </div>
@@ -76,7 +76,7 @@
 
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right">维修描述:</label>
+                    <label class="field_name align_right">Fix remarks:</label>
                     <div class="field" style="margin-top: 5px">
                         <span style="display: inline-block; width: 85%">${order.fixRemark}</span>
                     </div>
@@ -85,7 +85,7 @@
 
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right">完成备注:</label>
+                    <label class="field_name align_right">Complete remarks:</label>
                     <div class="field" style="margin-top: 5px">
                         <span style="display: inline-block; width: 85%">${order.remark}</span>
                     </div>

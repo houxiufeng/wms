@@ -6,9 +6,9 @@
 <div class="well light_gray">
 	<div class="top_bar">
 		<ul class="breadcrumb">
-			<li><a href="javascript:void(0);"style="color: #037dc5;font-size: 15px;">产品中心</a> <span class="divider">/</span></li>
-			<li><a href="javascript:void(0)"style="color: #037dc5;font-size: 15px;">产品管理</a><span class="divider">/</span></li>
-			<li class="active" style="font-weight: 600;font-size: 13px;color: #037dc5;">编辑产品</li>
+			<li><a href="javascript:void(0);"style="color: #037dc5;font-size: 15px;">My product</a> <span class="divider">/</span></li>
+			<li><a href="javascript:void(0)"style="color: #037dc5;font-size: 15px;">Product management</a><span class="divider">/</span></li>
+			<li class="active" style="font-weight: 600;font-size: 13px;color: #037dc5;">Edit product</li>
 		</ul>
 	</div>
 
@@ -17,11 +17,11 @@
 			<input type="hidden" name="id" value="${product.id}" />
 			<div style="border: solid 1px lightgrey;padding-bottom:10px;margin-bottom:10px;">
 				<div class="well-header" style="min-height: 35px;margin-bottom: 15px; background-color: #f7f7f7">
-					<label class="field_name align_left" style="font-weight: bold;font-size: 14px;margin:5px;color: #39a77e">基本信息</label>
+					<label class="field_name align_left" style="font-weight: bold;font-size: 14px;margin:5px;color: #39a77e">Basic info</label>
 				</div>
 				<div class="form_row">
 					<div class="span5">
-						<label class="field_name align_right"><span style="color: red">*</span>产品名称:</label>
+						<label class="field_name align_right"><span style="color: red">*</span>Product name:</label>
 						<div class="field">
 							<select id="productName" name="name" class="span10">
 								<c:forEach items="${brands}" var="item">
@@ -32,7 +32,7 @@
 						</div>
 					</div>
 					<div class="span5">
-						<label class="field_name align_right"><span style="color: red">*</span>产品编码:</label>
+						<label class="field_name align_right"><span style="color: red">*</span>Product code:</label>
 						<div class="field">
 							<input name="code" class="span10" type="text" maxlength="3" value="${product.code}">
 						</div>
@@ -41,18 +41,18 @@
 
 				<div class="form_row">
 					<div class="span5">
-						<label class="field_name align_right"><span style="color: red">*</span>产品型号:</label>
+						<label class="field_name align_right"><span style="color: red">*</span>Product model:</label>
 						<div class="field">
 							<input name="model" class="span10" type="text" maxlength="32" value="${product.model}">
 						</div>
 					</div>
 					<div class="span5">
-						<label class="field_name align_right">产品类型:</label>
+						<label class="field_name align_right">Product type:</label>
 						<div class="field">
 							<select name="type" class="span10">
-								<option value="1" <c:if test="${product.type == 1}">selected</c:if>>空调</option>
-								<option value="2" <c:if test="${product.type == 2}">selected</c:if>>升降机</option>
-								<option value="3" <c:if test="${product.type == 3}">selected</c:if>>风扇</option>
+								<option value="1" <c:if test="${product.type == 1}">selected</c:if>>Air conditioning</option>
+								<option value="2" <c:if test="${product.type == 2}">selected</c:if>>Lifter</option>
+								<option value="3" <c:if test="${product.type == 3}">selected</c:if>>Fan</option>
 							</select>
 						</div>
 					</div>
@@ -60,7 +60,7 @@
 
 				<div class="form_row">
 					<div class="span5" >
-						<label class="field_name align_right">产品备注:</label>
+						<label class="field_name align_right">Remarks:</label>
 						<div class="field">
 							<textarea name="remark" class="span10" style="resize:none;height: 80px;">${product.remark}</textarea>
 						</div>
@@ -70,17 +70,17 @@
 
 			<div style="border: solid 1px lightgrey;padding-bottom:10px;margin-bottom:10px;">
 				<div class="well-header" style="min-height: 35px;margin-bottom: 15px; background-color: #f7f7f7">
-					<label class="field_name align_left" style="font-weight: bold;font-size: 14px;margin:5px;color: #39a77e">维保人员信息</label>
+					<label class="field_name align_left" style="font-weight: bold;font-size: 14px;margin:5px;color: #39a77e">Maintenance info</label>
 				</div>
 				<div class="form_row">
 					<div class="span5">
-						<label class="field_name align_right"><span style="color: red">*</span>维保人名称:</label>
+						<label class="field_name align_right"><span style="color: red">*</span>Maintenance person:</label>
 						<div class="field">
 							<input name="maintenancePerson" class="span10" type="text" maxlength="64" value="${product.maintenancePerson}">
 						</div>
 					</div>
 					<div class="span5">
-						<label class="field_name align_right"><span style="color: red">*</span>维保人电话:</label>
+						<label class="field_name align_right"><span style="color: red">*</span>Maintenance phone:</label>
 						<div class="field">
 							<%--<input name="maintenancePhone" class="span10" type="text" maxlength="32" value="${product.maintenancePhone}">--%>
 							<input id="maintenancePhone_pre" class="span3" type="text" maxlength="5"> -
@@ -91,17 +91,17 @@
 
 				<div class="form_row">
 					<div class="span5">
-						<label class="field_name align_right">产品图片:</label>
+						<label class="field_name align_right">Product Image:</label>
 						<div class="field">
 							<input type="file" id="upImg" style="margin-top: 5px;"/>
-							<input type="button" value="上传" onclick="javascript:uploadProductImg()"/>
+							<input type="button" value="Upload" onclick="javascript:uploadProductImg()"/>
 						</div>
 					</div>
 					<div class="span5">
-						<label class="field_name align_right">产品附件:</label>
+						<label class="field_name align_right">Attachments:</label>
 						<div class="field">
 							<input type="file" id="upFile" style="margin-top: 5px;"/>
-							<input type="button" value="上传" onclick="javascript:uploadProductFile()"/>
+							<input type="button" value="Upload" onclick="javascript:uploadProductFile()"/>
 						</div>
 					</div>
 				</div>
@@ -112,8 +112,8 @@
 						<div class="field">
 							<table id="productImgTable" border="1" <c:if test="${product.imgUrl == null or product.imgUrl == ''}">style="display: none" </c:if>>
 								<tr>
-									<th>图片名称</th>
-									<th>操作</th>
+									<th>Image</th>
+									<th>Operation</th>
 								</tr>
 								<c:forEach items="${product.imgUrlList}" var="item">
 									<tr class="imgTr">
@@ -132,8 +132,8 @@
 						<div class="field">
 							<table id="productFileTable" border="1" <c:if test="${product.fileUrl == null or product.fileUrl == ''}">style="display: none" </c:if>>
 								<tr>
-									<th>附件名称x</th>
-									<th>操作</th>
+									<th>Attachment</th>
+									<th>Operation</th>
 								</tr>
 								<c:forEach items="${product.fileUrlList}" var="item">
 									<tr class="fileTr">

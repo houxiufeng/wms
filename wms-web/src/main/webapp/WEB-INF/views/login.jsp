@@ -75,11 +75,11 @@
 		   		}
 		   		params.messages={
 		   				email: {
-		   					required: "Email不能为空！",
-                            email:"email格式不正确"
+		   					required: "Email can't be empty!",
+                            email:"invalid email!"
 		   				},
 		   				password: {
-		   					required: "密码不能为空！"
+		   					required: "password can't be empty"
 		   				}
 		   		}
 		   		params.form = $("#loginForm");

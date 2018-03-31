@@ -8,8 +8,8 @@
 <div class="well light_gray">
     <div class="top_bar">
         <ul class="breadcrumb">
-            <li><a href="javascript:void(0);" style="color: #037dc5;font-size: 15px;">设置</a> <span class="divider">/</span></li>
-            <li class="active"><a href="javascript:void(0)" style="font-weight: 600;font-size: 13px;color: #037dc5;">订单时间设置</a></li>
+            <li><a href="javascript:void(0);" style="color: #037dc5;font-size: 15px;">My basic setup</a> <span class="divider">/</span></li>
+            <li class="active"><a href="javascript:void(0)" style="font-weight: 600;font-size: 13px;color: #037dc5;">Order status time setting</a></li>
         </ul>
     </div>
 
@@ -17,14 +17,14 @@
         <form id="orderTimeForm" style="margin-bottom: 10px;">
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right" style="margin-top: 20px;">派单中(h):</label>
+                    <label class="field_name align_right" style="margin-top: 20px;">Assigning(h):</label>
                     <div class="field" style="text-align: center">
                         <div class="span5">
-                            <span>预警时间</span>
+                            <span>Warn time</span>
                             <input name="assignWarn" class="span12" type="text" maxlength="32" onkeyup="onlyInt(this);" value="${setting.assignWarn}" readonly>
                         </div>
                         <div class="span5">
-                            <span>逾期时间</span>
+                            <span>Over time</span>
                             <input name="assignOver" class="span12" type="text" maxlength="32" onkeyup="onlyInt(this);" value="${setting.assignOver}" readonly>
                         </div>
                     </div>
@@ -32,14 +32,14 @@
             </div>
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right" style="margin-top: 20px;">检查中(h):</label>
+                    <label class="field_name align_right" style="margin-top: 20px;">Checking(h):</label>
                     <div class="field" style="text-align: center">
                         <div class="span5">
-                            <span>预警时间</span>
+                            <span>Warn time</span>
                             <input name="checkWarn" class="span12" type="text" maxlength="32" onkeyup="onlyInt(this);" value="${setting.checkWarn}" readonly>
                         </div>
                         <div class="span5">
-                            <span>逾期时间</span>
+                            <span>Over time</span>
                             <input name="checkOver" class="span12" type="text" maxlength="32" onkeyup="onlyInt(this);" value="${setting.checkOver}" readonly>
                         </div>
                     </div>
@@ -47,14 +47,14 @@
             </div>
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right" style="margin-top: 20px;">维修中(h):</label>
+                    <label class="field_name align_right" style="margin-top: 20px;">Fixing(h):</label>
                     <div class="field" style="text-align: center">
                         <div class="span5">
-                            <span>预警时间</span>
+                            <span>Warn time</span>
                             <input name="fixWarn" class="span12" type="text" maxlength="32" onkeyup="onlyInt(this);" value="${setting.fixWarn}" readonly>
                         </div>
                         <div class="span5">
-                            <span>逾期时间</span>
+                            <span>Over time</span>
                             <input name="fixOver" class="span12" type="text" maxlength="32" onkeyup="onlyInt(this);" value="${setting.fixOver}" readonly>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {
-                        App.alert("设置成功!");
+                        App.alert("success!");
                         $("#btn_lock").show();
                         $("#btn_unlock").hide();
                         $("#orderTimeForm").find(":input").attr("readonly","readonly");

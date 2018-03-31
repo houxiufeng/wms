@@ -138,12 +138,12 @@ public class MobileController {
 			if (user.getOrganizationId() != null) {
 				organization = organizationService.getById(user.getOrganizationId());
 				if (organization == null || organization.getStatus() == 0) {
-					throw new RuntimeException("机构不存在");
+					throw new RuntimeException("Organization does't exist!");
 				}
 			}
 			Role role = roleService.getById(user.getRoleId());
 			if (role == null || role.getStatus() == 0) {
-				throw new RuntimeException("角色不存在");
+				throw new RuntimeException("Role does't exist!");
 			}
 
 			currentUserInfo = new CurrentUserInfo();

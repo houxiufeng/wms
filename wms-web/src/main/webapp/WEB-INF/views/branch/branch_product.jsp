@@ -4,8 +4,8 @@
 <div class="well light_gray">
     <div class="top_bar">
         <ul class="breadcrumb">
-            <li><a href="javascript:void(0);"style="color: #037dc5;font-size: 15px;">客户中心</a> <span class="divider">/</span></li>
-            <li class="active" style="font-weight: 600;font-size: 13px;color: #037dc5;">创建维修产品</li>
+            <li><a href="javascript:void(0);"style="color: #037dc5;font-size: 15px;">My customer</a> <span class="divider">/</span></li>
+            <li class="active" style="font-weight: 600;font-size: 13px;color: #037dc5;">Add product</li>
         </ul>
     </div>
 
@@ -13,7 +13,7 @@
 
         <div class="table_options top_options">
             <div>
-                <span style="font-weight: 600; font-size: 14px;">维修产品情况</span>
+                <span style="font-weight: 600; font-size: 14px;">Product info</span>
                 <a href="javascript:BranchProduct.saveOrUpdate();" class="red btn" style="float: right"><i class="icon-save"></i></a>
                 <a href="javascript:BranchProduct.reset();" class="dark_green btn" style="float: right;margin-right: 2px"><i class="icon-undo"></i></a>
             </div>
@@ -24,7 +24,7 @@
                 <input id="branchId" name="branchId" type="hidden" value="${branchId}">
                 <div class="form_row">
                     <div class="span12">
-                        <label class="field_name align_right"><span style="color: red">*</span>产品名称:</label>
+                        <label class="field_name align_right"><span style="color: red">*</span>Product name:</label>
                         <div class="field">
                             <select id="productName" class="span12">
                                 <c:forEach items="${brands}" var="item">
@@ -37,7 +37,7 @@
                 </div>
                 <div class="form_row">
                     <div class="span12">
-                        <label class="field_name align_right"><span style="color: red">*</span>产品型号:</label>
+                        <label class="field_name align_right"><span style="color: red">*</span>Product model:</label>
                         <div class="field">
                             <select id="productId" name="productId" class="span12"></select>
                         </div>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="form_row">
                     <div class="span12">
-                        <label class="field_name align_right">维修产品位置:</label>
+                        <label class="field_name align_right">Position:</label>
                         <div class="field">
                             <input name="position" class="span12" type="text" maxlength="128">
                         </div>
@@ -53,7 +53,7 @@
                 </div>
                 <div class="form_row">
                     <div class="span12">
-                        <label class="field_name align_right"><span style="color: red">*</span>产品序列号:</label>
+                        <label class="field_name align_right"><span style="color: red">*</span>Serial number:</label>
                         <div class="field">
                             <input name="sn" class="span12" type="text" maxlength="32">
                         </div>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="form_row">
                     <div class="span12">
-                        <label class="field_name align_right"><span style="color: red">*</span>时间范围:</label>
+                        <label class="field_name align_right"><span style="color: red">*</span>Date range:</label>
                         <div class="field">
                             <input id="beginTime" name="beginTime" type="text" class="datetimepicker" style="width: 47%" readonly> —
                             <input id="endTime" name="endTime" type="text" class="datetimepicker" style="width: 47%" readonly>

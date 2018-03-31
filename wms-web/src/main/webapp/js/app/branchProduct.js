@@ -2,9 +2,9 @@ var BranchProduct = {
     getTableData: function(){
         jQuery('#branchProductTable').dataTable({
             sAjaxSource: appCtx + "/branch/product/loadData",
-            oLanguage: {
-                sUrl: appCtx + '/flatpoint/js/zh_CN.json',
-            },
+            // oLanguage: {
+            //     sUrl: appCtx + '/flatpoint/js/zh_CN.json',
+            // },
             bSort: false,                        // 是否排序功能
             bFilter: false,                       // 过滤功能
             bPaginate: true,                     // 翻页功能
@@ -22,24 +22,24 @@ var BranchProduct = {
             aoColumns:[{
                 mData : "productName",
                 sDefaultContent : "",
-                sTitle : "产品名称"
+                sTitle : "Product name"
             },{
                 mData : "productModel",
                 sDefaultContent : "",
-                sTitle : "产品型号"
+                sTitle : "Product model"
 
             },{
                 mData : "position",
                 sDefaultContent : "",
-                sTitle : "位置"
+                sTitle : "Position"
             },{
                 mData : "sn",
                 sDefaultContent : "",
-                sTitle : "序列号"
+                sTitle : "Serial number"
             },{
                 mData : "id",
                 sDefaultContent : "",
-                sTitle : "操作",
+                sTitle : "Operation",
                 mRender: function(value, type ,data){
                     return '<a class="btn edit blue" href="javascript:BranchProduct.genQrcode('+ value + ')"><i class="icon-qrcode"></i></a>\
                             <a class="btn edit blue" href="javascript:BranchProduct.edit('+ value + ',' + data.productId + ',\''+data.productName+'\',\''+data.sn+'\',\''+data.position+'\',\'' + data.poi+'\',\''+data.beginTime+'\',\''+data.endTime+'\')"><i class="icon-edit"></i></a>\
@@ -57,11 +57,11 @@ var BranchProduct = {
 
     saveOrUpdate : function () {
         if (_isNull(jQuery("#productId").val())) {
-            App.alert("产品型号必填！");
+            App.alert("product model can't be empty!！");
             return false;
         }
         if (_isNull(jQuery("#branchProductForm").find(":input[name='sn']").val())) {
-            App.alert("序列号必填！");
+            App.alert("serial number can't be empty!！");
             return false;
         }
         if (_isNull(jQuery("#branchProductForm").find(":input[name='id']").val())) {
@@ -83,7 +83,7 @@ var BranchProduct = {
             dataType:'json',
             success: function(json) {
                 if (json.code == "0") {
-                    App.alert("创建成功!", function(){
+                    App.alert("success!", function(){
                         BranchProduct.queryList();
                         BranchProduct.reset();
                     });
@@ -137,7 +137,7 @@ var BranchProduct = {
             dataType:'json',
             success: function(json) {
                 if (json.code == "0") {
-                    App.alert("修改成功!", function(){
+                    App.alert("success!", function(){
                         BranchProduct.queryList();
                         BranchProduct.reset();
                     });
@@ -152,7 +152,7 @@ var BranchProduct = {
     },
     
     delete: function(id) {
-        App.confirm("确定要删除？", function(){
+        App.confirm("Are you sure？", function(){
     		jQuery.ajax({
 				url: appCtx + "/branch/product/delete/" + id,
 				type: 'post',
@@ -187,10 +187,10 @@ var BranchProduct = {
         var prefix = window.location.href.substring(0, window.location.href.indexOf("/main"))
         var url = prefix + "/mobile/branch/product/"+id;
         jQuery.confirm({
-            title: '二维码',
-            confirmButton: '打印',
+            title: 'QRCode',
+            confirmButton: 'Print',
             confirmButtonClass: 'btn red',
-            cancelButton: '关闭',
+            cancelButton: 'Close',
             content: '<div id="qrcode"></div>',
             confirm: function(){
                 jQuery("#qrcode").jqprint();
@@ -213,11 +213,11 @@ var BranchProduct = {
         jQuery('#branchProductTable').dataTable({
             sAjaxSource: appCtx + "/branch/product/loadData",
             oLanguage: {
-                "sProcessing": "处理中...",
+                "sProcessing": "Processing...",
                 "sLengthMenu": "_MENU_ 记录/页",
-                "sZeroRecords": "没有匹配的记录",
-                "sInfo": "共 _TOTAL_ 条",
-                "sInfoEmpty": "共 0 条",
+                "sZeroRecords": "no records",
+                "sInfo": "total _TOTAL_ ",
+                "sInfoEmpty": "total 0 ",
                 "sInfoFiltered": "(由 _MAX_ 项记录过滤)",
                 "sInfoPostFix": "",
                 "sSearch": "过滤:",
@@ -246,16 +246,16 @@ var BranchProduct = {
             aoColumns:[{
                 mData : "productName",
                 sDefaultContent : "",
-                sTitle : "产品名称"
+                sTitle : "Product name"
             },{
                 mData : "productModel",
                 sDefaultContent : "",
-                sTitle : "产品型号"
+                sTitle : "Product model"
 
             },{
                 mData : "id",
                 sDefaultContent : "",
-                sTitle : "操作",
+                sTitle : "Operation",
                 mRender: function(value, type ,data){
                     return '<a class="btn edit" href="javascript:App.goToPage(appCtx + \'/mobile/branch/product/edit?branchProductId='+value+'\')">Edit</a>';
                 }

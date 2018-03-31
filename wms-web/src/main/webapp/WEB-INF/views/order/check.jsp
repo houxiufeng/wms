@@ -4,7 +4,7 @@
     <div class="well-content">
         <div class="form_row">
             <div class="span5">
-                <label class="field_name align_right"><span style="color: red">*</span>确认问题:</label>
+                <label class="field_name align_right"><span style="color: red">*</span>Confirm question:</label>
                 <div class="field">
                     <select id="type" name="type" class="span4">
                         <c:forEach items="${types}" var="item">
@@ -16,7 +16,7 @@
         </div>
         <div class="form_row">
             <div class="span5">
-                <label class="field_name align_right"><span style="color: red">*</span>确认描述:</label>
+                <label class="field_name align_right"><span style="color: red">*</span>Confirm description:</label>
                 <div class="field">
                     <textarea id="description" style="resize:none;height: 100px;" class="span5">${order.description}</textarea>
                 </div>

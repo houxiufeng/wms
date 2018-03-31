@@ -64,7 +64,7 @@ public class UserController {
     		result.put("code", 0);
     	} catch(DuplicateKeyException dkException) {
     		result.put("code", 1);
-    		result.put("message", StrUtil.format("用户名:{} 重复", user.getName()));
+    		result.put("message", StrUtil.format("duplicate user name:{}", user.getName()));
     	} catch(Exception e) {
     		e.printStackTrace();
     		LOG.error(e.getMessage());
@@ -91,7 +91,7 @@ public class UserController {
     		result.put("code", 0);
     	} catch(DuplicateKeyException dkException) {
     		result.put("code", 1);
-    		result.put("message", StrUtil.format("用户名:{} 重复", user.getName()));
+    		result.put("message", StrUtil.format("duplicate user name:{}", user.getName()));
     	} catch(Exception e) {
     		e.printStackTrace();
     		LOG.error(e.getMessage());

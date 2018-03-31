@@ -2,9 +2,9 @@ var Branch = {
     getTableData: function(){
         jQuery('#branchTable').dataTable({
             sAjaxSource: appCtx + "/branch/loadData",
-            oLanguage: {
-                sUrl: appCtx + '/flatpoint/js/zh_CN.json',
-            },
+            // oLanguage: {
+            //     sUrl: appCtx + '/flatpoint/js/zh_CN.json',
+            // },
             bSort: false,                        // 是否排序功能
             bFilter: false,                       // 过滤功能
             bPaginate: true,                     // 翻页功能
@@ -22,28 +22,28 @@ var Branch = {
             aoColumns:[{
                 mData : "customerName",
                 sDefaultContent : "",
-                sTitle : "客户名"
+                sTitle : "Customer name"
             },{
                 mData : "name",
                 sDefaultContent : "",
-                sTitle : "店名称"
+                sTitle : "Branch name"
             },{
                 mData : "address",
                 sDefaultContent : "",
-                sTitle : "地址"
+                sTitle : "Address"
 
             },{
                 mData : "contactPerson",
                 sDefaultContent : "",
-                sTitle : "联系人"
+                sTitle : "Contact name"
             },{
                 mData : "contactPhone",
                 sDefaultContent : "",
-                sTitle : "联系人电话"
+                sTitle : "contact phone"
             },{
                 mData : "id",
                 sDefaultContent : "",
-                sTitle : "操作",
+                sTitle : "Operation",
                 mRender: function(value, type ,data){
                     return '<a class="btn edit blue" href="javascript:Branch.addMaintainProduct('+ value + ')"><i class="icon-wrench"></i></a>\
                             <a class="btn edit blue" href="javascript:Branch.edit('+ value + ')"><i class="icon-edit"></i></a>\
@@ -72,7 +72,7 @@ var Branch = {
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {
-                        App.alert("创建成功!", function(){
+                        App.alert("success!", function(){
                             App.goToPage(appCtx+"/branch");
                         });
                     } else {
@@ -103,7 +103,7 @@ var Branch = {
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {
-                        App.alert("修改成功!", function(){
+                        App.alert("success!", function(){
                             App.goToPage(appCtx+"/branch");
                         });
                     } else {
@@ -118,7 +118,7 @@ var Branch = {
     },
     
     delete: function(id) {
-        App.confirm("确定要删除？", function(){
+        App.confirm("Are you sure？", function(){
     		jQuery.ajax({
 				url: appCtx + "/branch/delete/" + id,
 				type: 'post',
@@ -159,20 +159,20 @@ var Branch = {
         }
         params.messages={
             name: {
-                required: "名称必填！"
+                required: "name can't be empty!"
             },
             code: {
-                required: "code必填！",
-                eng:"必须是字母数字！"
+                required: "code can't be empty!",
+                eng:"invalid input!"
             },
             address: {
-                required:"地址必填！"
+                required:"address can't be empty!！"
             },
             contactPerson: {
-                required:"联系人必填！"
+                required:"contact name can't be empty!"
             },
             contactPhone: {
-                required:"联系人电话必填！"
+                required:"contact phone can't be empty!"
             }
         }
         params.form = jQuery("#branchForm");
@@ -191,11 +191,11 @@ var Branch = {
         jQuery('#branchTable').dataTable({
             sAjaxSource: appCtx + "/branch/loadData",
             oLanguage: {
-                "sProcessing": "处理中...",
+                "sProcessing": "Processing...",
                 "sLengthMenu": "_MENU_ 记录/页",
-                "sZeroRecords": "没有匹配的记录",
-                "sInfo": "共 _TOTAL_ 条",
-                "sInfoEmpty": "共 0 条",
+                "sZeroRecords": "No records",
+                "sInfo": "total _TOTAL_ ",
+                "sInfoEmpty": "0 items",
                 "sInfoFiltered": "(由 _MAX_ 项记录过滤)",
                 "sInfoPostFix": "",
                 "sSearch": "过滤:",
@@ -224,16 +224,16 @@ var Branch = {
             aoColumns:[{
                 mData : "name",
                 sDefaultContent : "",
-                sTitle : "店名称"
+                sTitle : "Branch name"
             },{
                 mData : "address",
                 sDefaultContent : "",
-                sTitle : "地址"
+                sTitle : "Address"
 
             },{
                 mData : "id",
                 sDefaultContent : "",
-                sTitle : "操作",
+                sTitle : "Operation",
                 mRender: function(value, type ,data){
                     return '<a class="btn edit" href="javascript:App.goToPage(appCtx + \'/mobile/branch/product/add?branchId='+value+'\')">Add Product</a>\
                             <a class="btn edit" href="javascript:App.goToPage(appCtx + \'/mobile/branch/product/list?branchId='+value+'\')">View</a>';

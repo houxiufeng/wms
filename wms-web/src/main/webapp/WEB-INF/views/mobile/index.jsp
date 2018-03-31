@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>allen</title>
+    <title>WMS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -36,7 +36,7 @@
         } else if (currentUserInfo.roleCode == 'customer') {
             App.goToPage(appCtx + "/mobile/order/list?flag=1");
         } else {
-            App.alert("对不起，您无权访问此页面！", function () {
+            App.alert("Sorry，you don't have permission", function () {
                 logout();
             })
         }

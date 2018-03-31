@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     <div class="form_row">
-                        <label class="field_name align_right"><span style="color: red">*</span>产品名称:</label>
+                        <label class="field_name align_right"><span style="color: red">*</span>Product name:</label>
                         <div class="field">
                             <select id="productId" name="productId" class="span10">
                                 <option value="0">kent li</option>
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="form_row">
-                        <label class="field_name align_right"><span style="color: red">*</span>产品型号:</label>
+                        <label class="field_name align_right"><span style="color: red">*</span>Product model:</label>
                         <div class="field">
                             <select id="modelId" name="modelId" class="span10">
                                 <option value="0">型号1</option>
@@ -53,14 +53,14 @@
                     </div>
 
                     <div class="form_row">
-                        <label class="field_name align_right"><span style="color: red">*</span>问题描述:</label>
+                        <label class="field_name align_right"><span style="color: red">*</span>Description:</label>
                         <div class="field">
                             <input name="name" type="text" maxlength="30" class="span10">
                         </div>
                     </div>
 
                     <div class="form_row">
-                        <label class="field_name align_right"><span style="color: red">*</span>问题描述:</label>
+                        <label class="field_name align_right"><span style="color: red">*</span>Description:</label>
                         <div class="field">
                             <textarea name="remark" style="resize:none;height: 100px;" class="span10"></textarea>
                         </div>

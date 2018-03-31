@@ -2,9 +2,9 @@ var Product = {
 		getTableData: function(){
 			jQuery('#productTable').dataTable({
 		        sAjaxSource: appCtx + "/product/loadData",
-		        oLanguage: {
-		            sUrl: appCtx + '/flatpoint/js/zh_CN.json',
-		        },
+		        // oLanguage: {
+		        //     sUrl: appCtx + '/flatpoint/js/zh_CN.json',
+		        // },
 		        bSort: false,                        // 是否排序功能
 		        bFilter: false,                       // 过滤功能
 		        bPaginate: true,                     // 翻页功能
@@ -23,35 +23,35 @@ var Product = {
 		        aoColumns:[{
 		            mData : "name",
 		            sDefaultContent : "",
-		            sTitle : "产品名称"
+		            sTitle : "Product name"
 		        },{
 		            mData : "code",
 		            sDefaultContent : "",
-		            sTitle : "产品编码"
+		            sTitle : "Product code"
 		            
 		        },{
 		            mData : "model",
 		            sDefaultContent : "",
-		            sTitle : "产品型号"
+		            sTitle : "Product model"
 		        },{
 		            mData : "type",
 		            sDefaultContent : "",
-		            sTitle : "产品类型",
+		            sTitle : "Product type",
                     mRender: function(value, type ,data){
                         var html = "";
 		                if (value == 1) {
-                            html = '空调';
+                            html = 'Air conditioning';
                         } else if (value == 2) {
-                            html = '升降机';
+                            html = 'Lifter';
                         } else if (value == 3) {
-                            html = '风扇';
+                            html = 'Fan';
                         }
                         return html;
                     }
 		        },{
 		            mData : "id",
 		            sDefaultContent : "",
-		            sTitle : "操作",
+		            sTitle : "Operation",
 		            mRender: function(value, type ,data){
 		            	return '<a class="btn edit blue" href="javascript:Product.edit('+ value + ')"><i class="icon-edit"></i></a>\
 		            	        <a class="btn edit blue" href="javascript:Product.delete('+ value + ')"><i class="icon-trash"></i></a>';
@@ -88,7 +88,7 @@ var Product = {
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {
-                        App.alert("创建成功!", function(){
+                        App.alert("success!", function(){
                             App.goToPage(appCtx+"/product");
                         });
                     } else {
@@ -128,7 +128,7 @@ var Product = {
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {
-                        App.alert("修改成功!", function(){
+                        App.alert("success!", function(){
                             App.goToPage(appCtx+"/product");
                         });
                     } else {
@@ -143,7 +143,7 @@ var Product = {
     },
     
     delete: function(id) {
-        App.confirm("确定要删除？", function(){
+        App.confirm("Are you sure？", function(){
     		jQuery.ajax({
 				url: appCtx + "/product/delete/" + id,
 				type: 'post',
@@ -189,25 +189,25 @@ var Product = {
         }
         params.messages={
             name: {
-                required: "产品名称必填"
+                required: "name can't be empty!"
             },
             code: {
-                required: "产品编码必填",
-                eng:"只能是字母数字"
+                required: "code can't be empty!",
+                eng:"invalid input"
             },
             model: {
-                required: "产品型号必填",
-                eng:"只能是字母数字"
+                required: "model can't be empty!",
+                eng:"invalid input"
             },
             sn: {
-                required: "产品序列号必填",
-                eng:"只能是字母数字"
+                required: "serial number can't be empty!",
+                eng:"invalid input"
             },
             maintenancePerson: {
-                required:"维保人必填"
+                required:"maintenance person can't be empty!"
             },
             maintenancePhone: {
-                required:"维保人电话必填"
+                required:"maintenance phone can't be empty!"
             }
         }
         params.form = jQuery("#productForm");
@@ -220,15 +220,15 @@ var Product = {
 
     addBrand : function(id) {
         jQuery.confirm({
-            title: '添加品牌!',
-            confirmButton: '确定',
+            title: 'Add Brand!',
+            confirmButton: 'OK',
             confirmButtonClass: 'btn red',
-            cancelButton: '关闭',
-            content: '<div>品牌：<input type="text" id="brandName" maxlength="32"></div>',
+            cancelButton: 'CLOSE',
+            content: '<div>Brand：<input type="text" id="brandName" maxlength="32"></div>',
             confirm: function(){
                 var brandName = jQuery.trim(jQuery("#brandName").val());
                 if (_isNull(brandName)) {
-                    App.alert("品牌不能为空！");
+                    App.alert("Brand can't be empty!");
                     return false;
                 }
                 jQuery.ajax({

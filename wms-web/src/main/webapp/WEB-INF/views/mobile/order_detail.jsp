@@ -7,43 +7,43 @@
 </style>
 <div>
     <div class="form_row">
-        <label class="field_name align_right" style="width: 30%;">客户名称:</label>
+        <label class="field_name align_right" style="width: 30%;">Product name:</label>
         <div class="field" style="margin-left: 31%; margin-top: 5px; ">
             ${order.customerName}
         </div>
     </div>
     <div class="form_row">
-        <label class="field_name align_right" style="width: 30%;">总/分店名称:</label>
+        <label class="field_name align_right" style="width: 30%;">Branch name:</label>
         <div class="field" style="margin-left: 31%; margin-top: 5px;">
             ${order.branchName}
         </div>
     </div>
     <div class="form_row">
-        <label class="field_name align_right" style="width: 30%;">订单号:</label>
+        <label class="field_name align_right" style="width: 30%;">Order No:</label>
         <div class="field" style="margin-left: 31%; margin-top: 5px;">
             ${order.orderNo}
         </div>
     </div>
     <div class="form_row">
-        <label class="field_name align_right" style="width: 30%;">维修产品名称:</label>
+        <label class="field_name align_right" style="width: 30%;">Product name:</label>
         <div class="field" style="margin-left: 31%; margin-top: 5px;">
             ${order.productName}
         </div>
     </div>
     <div class="form_row">
-        <label class="field_name align_right" style="width: 30%;">维修产品型号:</label>
+        <label class="field_name align_right" style="width: 30%;">Product model:</label>
         <div class="field" style="margin-left: 31%; margin-top: 5px;">
             ${order.productModel}
         </div>
     </div>
     <div class="form_row">
-        <label class="field_name align_right" style="width: 30%;">问题类型:</label>
+        <label class="field_name align_right" style="width: 30%;">Problem type:</label>
         <div class="field" style="margin-left: 31%; margin-top: 5px;">
             ${order.typeName}
         </div>
     </div>
     <div class="form_row">
-        <label class="field_name align_right" style="width: 30%;">问题描述:</label>
+        <label class="field_name align_right" style="width: 30%;">Description:</label>
         <div class="field" style="margin-left: 31%; margin-top: 5px;">
             ${order.description}
         </div>
@@ -57,13 +57,13 @@
             </div>
         </c:if>
         <div class="form_row">
-            <label class="field_name align_right" style="width: 30%;">维修员名称:</label>
+            <label class="field_name align_right" style="width: 30%;">Engineer name:</label>
             <div class="field" style="margin-left: 31%; margin-top: 5px;">
                     ${vendor.name}
             </div>
         </div>
         <div class="form_row">
-            <label class="field_name align_right" style="width: 30%;">维修员编码:</label>
+            <label class="field_name align_right" style="width: 30%;">Engineer code:</label>
             <div class="field" style="margin-left: 31%; margin-top: 5px;">
                     ${vendor.code}
             </div>
@@ -72,17 +72,17 @@
     </c:if>
     <c:if test="${order.score != null}">
         <div class="form_row">
-            <label class="field_name align_right" style="width: 30%;">评分:</label>
+            <label class="field_name align_right" style="width: 30%;">Score:</label>
             <div class="field" style="margin-left: 31%; margin-top: 5px;">
-                <c:if test="${order.score == 1}">好评</c:if>
-                <c:if test="${order.score == 2}">中评</c:if>
-                <c:if test="${order.score == 3}">差评</c:if>
+                <c:if test="${order.score == 1}">Good</c:if>
+                <c:if test="${order.score == 2}">moderate</c:if>
+                <c:if test="${order.score == 3}">Bad</c:if>
             </div>
         </div>
     </c:if>
     <c:if test="${order.feedback != null and order.feedback != '' }">
         <div class="form_row">
-            <label class="field_name align_right" style="width: 30%;">评价:</label>
+            <label class="field_name align_right" style="width: 30%;">Feedback:</label>
             <div class="field" style="margin-left: 31%; margin-top: 5px;">
                 ${order.feedback}
             </div>

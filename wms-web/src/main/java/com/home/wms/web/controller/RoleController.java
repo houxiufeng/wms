@@ -132,7 +132,7 @@ public class RoleController {
 		} catch(Exception e) {
 			LOG.error(e.getMessage());
 			result.put("code", 1);
-			result.put("message", "编辑角色权限异常，请联系管理员");
+			result.put("message", "edit error");
 		}
 		return result;
 	}

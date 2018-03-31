@@ -22,7 +22,7 @@ Date.prototype.Format = function(fmt) { //author: meizz
 
 jQuery.validator.addMethod("eng", function (value, element) {
     return this.optional(element) || /^[a-zA-Z0-9_\.]+$/.test(value);
-}, "只能包括英文字母,数字和下划线");
+}, "only a-zA-Z0-9_ permited");
 
 /*判断是否为空*/
 function _isNull(value){
@@ -55,7 +55,7 @@ var App = {
 			jQuery.alert({
 				icon: 'icon-ok-sign',
 				confirmButtonClass: 'btn yellow',
-				confirmButton: '确定',
+				confirmButton: 'OK',
 			    title: "Alert!",
 			    content: content,
 			    confirm: function(){
@@ -67,9 +67,9 @@ var App = {
 			jQuery.confirm({
 				icon: 'icon-warning-sign',
 			    title: 'Confirm!',
-			    confirmButton: '确定',
+			    confirmButton: 'OK',
 			    confirmButtonClass: 'btn red',
-			    cancelButton: '关闭',
+			    cancelButton: 'CLOSE',
 			    content: content,
 			    confirm: function(){
 			    	if(cbk) cbk();
@@ -109,22 +109,22 @@ function logout() {
 
 function uploadProductImg(){
     if (jQuery("#upImg").get(0).files.length == 0) {
-        App.alert("请选择图片后再上传！");
+        App.alert("please chose image!");
         return false;
     }
     var fd = new FormData();
     var file = jQuery("#upImg").get(0).files[0];
     if (file.size/1024 > 1024) {//大于1M
-        App.alert('图片不能大于1M');
+        App.alert('image size can not mare than 1M');
         return false;
 	}
 	var fileName = file.name;
 	if (fileName.lastIndexOf(".") == -1 || !checkImgExt(fileName.substring(fileName.lastIndexOf(".")).toLowerCase())) {
-        App.alert("图片格式不正确");
+        App.alert("invalid suffix");
         return false;
 	}
 	if (fileName.indexOf(",") != -1 || fileName.indexOf("&") != -1 || fileName.indexOf("?") != -1) {
-	    App.alert("图片名不能包括,&?");
+	    App.alert("can't include,&? in image name");
 	    return false;
     }
     fd.append("productImg", file);
@@ -149,12 +149,12 @@ function uploadProductImg(){
                 productImgTable.append(imgRow);
 
             } else {
-                App.alert("上传失败！");
+                App.alert("upload failed!");
             }
         },
         error : function(err) {
             console.log(err);
-            App.alert("上传失败！");
+            App.alert("upload failed!");
         },
         complete : function () {
             jQuery("#upImg").val("");
@@ -181,7 +181,7 @@ function deleteFileRow(obj) {
 function showImg(obj) {
     var imgPath = jQuery(obj).data("imgpath");
     jQuery.dialog({
-        title: '图片展示',
+        title: 'Show Image',
         content: '<img src="' + imgPath + '" style="width: 450px;">'
     });
 };
@@ -195,18 +195,18 @@ function checkImgExt(ext) {
 
 function uploadProductFile(){
     if (jQuery("#upFile").get(0).files.length == 0) {
-        App.alert("请选择文件后再上传！");
+        App.alert("please chose file!");
         return false;
     }
     var fd = new FormData();
     var file = jQuery("#upFile").get(0).files[0];
     if (file.size/1024 > 3027) {//大于3M
-        App.alert('附件不能大于3M');
+        App.alert('file size can not more than 3M');
         return false;
     }
     var fileName = file.name;
     if (fileName.indexOf(",") != -1 || fileName.indexOf("&") != -1 || fileName.indexOf("?") != -1) {
-        App.alert("文件名不能包括,&?");
+        App.alert("can't include,&? in file name");
         return false;
     }
 
@@ -232,12 +232,12 @@ function uploadProductFile(){
                 productFileTable.append(fileRow);
 
             } else {
-                App.alert("上传失败！");
+                App.alert("upload failed!");
             }
         },
         error : function(err) {
             console.log(err);
-            App.alert("上传失败！");
+            App.alert("upload failed!");
         },
         complete : function () {
             jQuery("#upFile").val("");
@@ -253,22 +253,22 @@ function downloadFile(obj) {
 
 function uploadVendorAvator() {
     if (jQuery("#upAvator").get(0).files.length == 0) {
-        App.alert("请选择图片后再上传！");
+        App.alert("please select avator!");
         return false;
     }
     var fd = new FormData();
     var file = jQuery("#upAvator").get(0).files[0];
     if (file.size/1024 > 1024) {//大于1M
-        App.alert('图片不能大于1M');
+        App.alert('image size can not mare than 1M');
         return false;
     }
     var fileName = file.name;
     if (fileName.lastIndexOf(".") == -1 || !checkImgExt(fileName.substring(fileName.lastIndexOf(".")).toLowerCase())) {
-        App.alert("图片格式不正确");
+        App.alert("invalid suffix");
         return false;
     }
     if (fileName.indexOf(",") != -1 || fileName.indexOf("&") != -1 || fileName.indexOf("?") != -1) {
-        App.alert("图片名不能包括,&?");
+        App.alert("can't include ,&? in image name");
         return false;
     }
     fd.append("vendorAvator", file);
@@ -286,12 +286,12 @@ function uploadVendorAvator() {
                 avatorObj.next().attr('src',d.avatorPath);
                 avatorObj.next().show();
             } else {
-                App.alert("上传失败！");
+                App.alert("upload failed!");
             }
         },
         error : function(err) {
             console.log(err);
-            App.alert("上传失败！");
+            App.alert("upload failed!");
         },
         complete : function () {
             jQuery("#upAvator").val("");

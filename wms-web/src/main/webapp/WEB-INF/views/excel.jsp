@@ -58,9 +58,9 @@
                 dataType: 'json',
                 success: function(d) {
                     if (d.code == 0) {
-                        alert("上传成功！");
+                        alert("success！");
                     } else {
-                        alert("上传失败！");
+                        alert("failed！");
                     }
                 },
                 error : function(err) {

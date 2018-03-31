@@ -132,7 +132,7 @@ public class OrderController {
 			Torder torder = orderService.getOrderById(orderId);
 			if (torder != null && torder.getVendorId() != null) {
 				result.put("code", 1);
-				result.put("message", "该订单已分配");
+				result.put("message", "This order has assigned");
 				return result;
 			}
 			orderService.updateOrder(order);

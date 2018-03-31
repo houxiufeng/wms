@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>allen</title>
+    <title>WMS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -27,51 +27,51 @@
             <div style="margin-top: 40px; padding: 10px;">
                 <input type="hidden" value="${order.id}" id="orderId">
                 <div class="form_row">
-                    <label class="field_name align_right" style="width: 30%;">总/分店名称:</label>
+                    <label class="field_name align_right" style="width: 30%;">Branch name:</label>
                     <div class="field" style="margin-left: 31%; margin-top: 5px;">
                         ${branchProduct.branch.name}
                     </div>
                 </div>
                 <div class="form_row">
-                    <label class="field_name align_right" style="width: 30%;">总分店地址:</label>
+                    <label class="field_name align_right" style="width: 30%;">Branch address:</label>
                     <div class="field" style="margin-left: 31%; margin-top: 5px; ">
                         ${branchProduct.branch.address}
                     </div>
                 </div>
                 <div class="form_row">
-                    <label class="field_name align_right" style="width: 30%;">维修产品名称:</label>
+                    <label class="field_name align_right" style="width: 30%;">Product name:</label>
                     <div class="field" style="margin-left: 31%; margin-top: 5px;">
                         ${branchProduct.product.name}
                     </div>
                 </div>
                 <div class="form_row">
-                    <label class="field_name align_right" style="width: 30%;">维修产品型号:</label>
+                    <label class="field_name align_right" style="width: 30%;">Product model:</label>
                     <div class="field" style="margin-left: 31%; margin-top: 5px;">
                         ${branchProduct.product.model}
                     </div>
                 </div>
                 <div class="form_row">
-                    <label class="field_name align_right" style="width: 30%;">维修产品位置:</label>
+                    <label class="field_name align_right" style="width: 30%;">Position:</label>
                     <div class="field" style="margin-left: 31%; margin-top: 5px;">
                         <span>${branchProduct.position}</span>
                         <a href="javascript:Order.showPOI('${branchProduct.poi}');" class="btn dark_green btn-small" style="margin-left: 2px;">POI</a>
                     </div>
                 </div>
                 <div class="form_row">
-                    <label class="field_name align_right" style="width: 30%;">客户问题类型:</label>
+                    <label class="field_name align_right" style="width: 30%;">Problem type:</label>
                     <div class="field" style="margin-left: 31%; margin-top: 5px;">
                         ${order.typeName}
                     </div>
                 </div>
                 <div class="form_row">
-                    <label class="field_name align_right" style="width: 30%;">客户问题描述:</label>
+                    <label class="field_name align_right" style="width: 30%;">Description:</label>
                     <div class="field" style="margin-left: 31%; margin-top: 5px;">
                         ${order.description}
                     </div>
                 </div>
                 <c:if test="${order == null}">
                     <div class="form_row" style="text-align: center;">
-                        <span style="font-size: 16px;font-weight: 600">不对起先生，这不是你需要维修的产品，请再确认</span>
+                        <span style="font-size: 16px;font-weight: 600">Sorry sir, this is not the product you will fix, please make it sure!</span>
                     </div>
                     <%--<div class="form_row">--%>
                         <%--<div class="field">--%>
@@ -81,7 +81,7 @@
                 </c:if>
                 <c:if test="${order != null}">
                     <div class="form_row">
-                        <label class="field_name align_right" style="width: 30%;">确认问题:</label>
+                        <label class="field_name align_right" style="width: 30%;">Confirm question:</label>
                         <div class="field" style="margin-left: 31%;">
                             <select id="type" name="type">
                                 <c:forEach items="${types}" var="item">
@@ -91,7 +91,7 @@
                         </div>
                     </div>
                     <div class="form_row">
-                        <label class="field_name align_right" style="width: 30%;">确认描述:</label>
+                        <label class="field_name align_right" style="width: 30%;">confirm description:</label>
                         <div class="field" style="margin-left: 31%;">
                             <textarea id="description" style="resize:none;height: 50px; width: 90%;" maxlength="200">${order.description}</textarea>
                         </div>

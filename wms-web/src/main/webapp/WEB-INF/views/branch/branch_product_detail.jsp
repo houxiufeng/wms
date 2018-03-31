@@ -4,8 +4,8 @@
 <div class="well light_gray">
     <div class="top_bar">
         <ul class="breadcrumb">
-            <li><a href="javascript:void(0);">客户中心</a> <span class="divider">/</span></li>
-            <li class="active">维修产品详情</li>
+            <li><a href="javascript:void(0);">My customer</a> <span class="divider">/</span></li>
+            <li class="active">Product info</li>
         </ul>
     </div>
 
@@ -13,14 +13,14 @@
 
         <div class="table_options top_options">
             <div>
-                <span style="font-weight: 600; font-size: 14px;">维修产品情况</span>
+                <span style="font-weight: 600; font-size: 14px;">Product info</span>
             </div>
         </div>
         <div class="span5" style="margin-bottom: 20px;">
             <form id="branchProductForm">
                 <div class="form_row">
                     <div class="span12">
-                        <label class="field_name align_right">产品名称:</label>
+                        <label class="field_name align_right">Product name:</label>
                         <div class="field">
                             <span>${branchProduct.productId}</span>
                         </div>
@@ -29,7 +29,7 @@
                 </div>
                 <div class="form_row">
                     <div class="span12">
-                        <label class="field_name align_right">分支机构:</label>
+                        <label class="field_name align_right">Branch name:</label>
                         <div class="field">
                             <span>${branchProduct.branchId}</span>
                         </div>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="form_row">
                     <div class="span12">
-                        <label class="field_name align_right">维修产品位置:</label>
+                        <label class="field_name align_right">Position:</label>
                         <div class="field">
                             <span>${branchProduct.position}</span>
                         </div>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="form_row">
                     <div class="span12">
-                        <label class="field_name align_right"><span style="color: red">*</span>产品序列号:</label>
+                        <label class="field_name align_right"><span style="color: red">*</span>Serial number:</label>
                         <div class="field">
                             <span>${branchProduct.sn}</span>
                         </div>

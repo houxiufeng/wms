@@ -4,12 +4,12 @@ package com.home.wms.enums;
  * Created by fitz on 2018/3/10.
  */
 public enum DictType {
-	CUSTOMER_LEVEL((short)1,"客户级别"),
-	CUSTOMER_CREDIT((short)2,"客户信用"),
-	PROBLEM_TYPE((short)3,"问题类型"),
-	VENDOR_LEVEL((short)4,"供应商级别"),
-	MAINTAIN_SKILL((short)5,"产品维修能力"),
-	PRODUCT_BRAND((short)6,"产品名称");
+	CUSTOMER_LEVEL((short)1,"Customer degree"),
+	CUSTOMER_CREDIT((short)2,"Customer credit"),
+	PROBLEM_TYPE((short)3,"Problem type"),
+	VENDOR_LEVEL((short)4,"Engineer degree"),
+	MAINTAIN_SKILL((short)5,"Maintain capability"),
+	PRODUCT_BRAND((short)6,"Product band");
 
 	DictType(Short value, String desc) {
 		this.value = value;

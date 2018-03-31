@@ -4,7 +4,7 @@
     <div class="well-content">
         <div class="form_row">
             <div class="span5">
-                <label class="field_name align_right"><span style="color: red">*</span>确认问题:</label>
+                <label class="field_name align_right"><span style="color: red">*</span>Confirm question:</label>
                 <div class="field" style="margin-top: 5px;">
                     <span>${order.typeName}</span>
                 </div>
@@ -12,7 +12,7 @@
         </div>
         <div class="form_row">
             <div class="span5">
-                <label class="field_name align_right"><span style="color: red">*</span>确认描述:</label>
+                <label class="field_name align_right"><span style="color: red">*</span>Confirm description:</label>
                 <div class="field" style="margin-top: 5px;">
                     <span style="display: inline-block; width: 100%">${order.description}</span>
                 </div>

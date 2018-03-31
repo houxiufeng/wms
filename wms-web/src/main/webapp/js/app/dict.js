@@ -2,9 +2,9 @@ var Dict = {
 		getTableData: function(){
 			jQuery('#dictTable').dataTable({
 		        sAjaxSource: appCtx + "/dict/loadData",
-		        oLanguage: {
-		            sUrl: appCtx + '/flatpoint/js/zh_CN.json',
-		        },
+		        // oLanguage: {
+		        //     sUrl: appCtx + '/flatpoint/js/zh_CN.json',
+		        // },
 		        bSort: false,                        // 是否排序功能
 		        bFilter: false,                       // 过滤功能
 		        bPaginate: true,                     // 翻页功能
@@ -20,17 +20,17 @@ var Dict = {
 		        aoColumns:[{
 		            mData : "typeName",
 		            sDefaultContent : "",
-		            sTitle : "字典类型"
+		            sTitle : "Parameter type"
 
 		        },{
 		            mData : "name",
 		            sDefaultContent : "",
-		            sTitle : "字典名称"
+		            sTitle : "Parameter name"
 		            
 		        },{
 		            mData : "id",
 		            sDefaultContent : "",
-		            sTitle : "操作",
+		            sTitle : "Operation",
 		            mRender: function(value, type ,data){
 		            	return '<a class="btn edit blue" href="javascript:Dict.delete('+ value + ')"><i class="icon-trash"></i></a>';
 		            }
@@ -54,7 +54,7 @@ var Dict = {
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {
-                        App.alert("创建成功!", function(){
+                        App.alert("success!", function(){
                             Dict.queryList();
                             Dict.reset();
                         });
@@ -70,7 +70,7 @@ var Dict = {
     },
 
     delete: function(id) {
-        App.confirm("确定要删除？", function(){
+        App.confirm("Are you sure？", function(){
     		jQuery.ajax({
 				url: appCtx + "/dict/delete/" + id,
 				type: 'post',
@@ -102,7 +102,7 @@ var Dict = {
         }
         params.messages={
             name: {
-                required: "名称必填！"
+                required: "parameter name can't be empty!"
             }
         }
         params.form = jQuery("#dictForm");

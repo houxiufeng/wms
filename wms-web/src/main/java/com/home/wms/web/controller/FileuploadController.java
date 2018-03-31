@@ -57,7 +57,7 @@ public class FileuploadController {
 				result.put("imgName",fileName);
 			}catch (IllegalStateException | IOException e) {
 				result.put("code",1);
-				result.put("msg","上传失败！");
+				result.put("msg","upload failed.");
 			}
 		}
 
@@ -89,7 +89,7 @@ public class FileuploadController {
 				result.put("fileName",fileName);
 			}catch (IllegalStateException | IOException e) {
 				result.put("code",1);
-				result.put("msg","上传失败！");
+				result.put("msg","upload failed.");
 			}
 		}
 
@@ -120,7 +120,7 @@ public class FileuploadController {
 				result.put("avatorPath",uploadPath + AppContextManager.getCurrentUserInfo().getOrganizationId() + File.separator + "vendorAvator" + File.separator + fileName);
 			}catch (IllegalStateException | IOException e) {
 				result.put("code",1);
-				result.put("msg","上传失败！");
+				result.put("msg","upload failed.");
 			}
 		}
 

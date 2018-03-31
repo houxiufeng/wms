@@ -4,9 +4,9 @@
 <div class="well light_gray">
     <div class="top_bar">
         <ul class="breadcrumb">
-            <li><a href="javascript:void(0);"style="color: #037dc5;font-size: 15px;">客户中心</a> <span class="divider">/</span></li>
-            <li><a href="javascript:void(0)"style="color: #037dc5;font-size: 15px;">分支管理</a><span class="divider">/</span></li>
-            <li class="active" style="font-weight: 600;font-size: 13px;color: #037dc5;">添加分支</li>
+            <li><a href="javascript:void(0);"style="color: #037dc5;font-size: 15px;">My customer</a> <span class="divider">/</span></li>
+            <li><a href="javascript:void(0)"style="color: #037dc5;font-size: 15px;">Branch management</a><span class="divider">/</span></li>
+            <li class="active" style="font-weight: 600;font-size: 13px;color: #037dc5;">Add branch</li>
         </ul>
     </div>
 
@@ -15,7 +15,7 @@
 
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right"><span style="color: red">*</span>客户名称:</label>
+                    <label class="field_name align_right"><span style="color: red">*</span>Customer name:</label>
                     <div class="field">
                         <select name="customerId" class="span12">
                             <c:forEach items="${customers}" var="item">
@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="span6">
-                    <label class="field_name align_right">关联用户:</label>
+                    <label class="field_name align_right">Bind user:</label>
                     <div class="field">
                         <select name="userId" class="span12">
                             <c:forEach items="${users}" var="item">
@@ -38,13 +38,13 @@
 
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right"><span style="color: red">*</span>总/分店名称:</label>
+                    <label class="field_name align_right"><span style="color: red">*</span>Branch name:</label>
                     <div class="field">
                         <input name="name" class="span12" type="text" maxlength="100">
                     </div>
                 </div>
                 <div class="span6">
-                    <label class="field_name align_right"><span style="color: red">*</span>总/分店编码:</label>
+                    <label class="field_name align_right"><span style="color: red">*</span>Branch code:</label>
                     <div class="field">
                         <input name="code" class="span12" type="text" maxlength="3">
                     </div>
@@ -53,13 +53,13 @@
 
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right"><span style="color: red">*</span>联系人名称:</label>
+                    <label class="field_name align_right"><span style="color: red">*</span>Contact name:</label>
                     <div class="field">
                         <input name="contactPerson" class="span12" type="text" maxlength="64">
                     </div>
                 </div>
                 <div class="span6">
-                    <label class="field_name align_right"><span style="color: red">*</span>联系人电话:</label>
+                    <label class="field_name align_right"><span style="color: red">*</span>Contact phone:</label>
                     <div class="field">
                         <%--<input name="contactPhone" class="span12" type="text" maxlength="32">--%>
                         <input id="contactPhone_pre" class="span3" type="text" maxlength="5"> -
@@ -70,7 +70,7 @@
 
             <div class="form_row">
                 <div class="span6">
-                    <label class="field_name align_right"><span style="color: red">*</span>总/分店地址:</label>
+                    <label class="field_name align_right"><span style="color: red">*</span>Branch address:</label>
                     <div class="field">
                         <input name="address" class="span12" type="text" maxlength="128">
                     </div>

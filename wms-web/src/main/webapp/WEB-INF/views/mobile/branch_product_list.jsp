@@ -6,11 +6,11 @@
     <input id="branchId" name="branchId" type="hidden" value="${branch.id}">
     <div class="form_row">
         <div class="field">
-            <span style="font-size: 16px;font-weight: 600">${CURRENT_USER.organizationName}:你好,${CURRENT_USER.name}</span>
+            <span style="font-size: 16px;font-weight: 600">${CURRENT_USER.organizationName}:Hi,${CURRENT_USER.name}</span>
         </div>
     </div>
     <div class="form_row">
-        <label class="field_name align_right">店名称:</label>
+        <label class="field_name align_right">Branch name:</label>
         <div class="field">
             <span>${branch.name}</span>
             <a href="javascript:App.goToPage(appCtx+'/mobile/branch/product/add?branchId=${branch.id}')" class="btn dark_green">Add Product</a>

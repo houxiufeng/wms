@@ -54,7 +54,7 @@ public class LoginController {
             user = userService.findByToken(token);
             if (user == null) {
                 response.setCode(1);
-                response.setMsg("请重新登录！");
+                response.setMsg("please re-Login");
                 return response;
             }
         } else {
@@ -66,14 +66,14 @@ public class LoginController {
                 organization = organizationService.getById(user.getOrganizationId());
                 if (organization == null || organization.getStatus() == 0) {
                     response.setCode(1);
-                    response.setMsg("机构不存在！");
+                    response.setMsg("Organization does't exist!");
                     return response;
                 }
             }
             Role role = roleService.getById(user.getRoleId());
             if (role == null || role.getStatus() == 0) {
                 response.setCode(1);
-                response.setMsg("用户角色不存在！");
+                response.setMsg("Role does't exist!");
                 return response;
             }
 
@@ -87,7 +87,7 @@ public class LoginController {
                     user.setToken(newToken);
                     userService.update(user);
                     response.setCode(1);
-                    response.setMsg("令牌失效，请重新登录");
+                    response.setMsg("Token invalid, please re-login");
                     return response;
                 }
 
@@ -113,7 +113,7 @@ public class LoginController {
             res.addCookie(cookie);
         } else {
             response.setCode(1);
-            response.setMsg("用户名或者密码不正确！");
+            response.setMsg("Wrong Email or Password!");
         }
         return response;
     }

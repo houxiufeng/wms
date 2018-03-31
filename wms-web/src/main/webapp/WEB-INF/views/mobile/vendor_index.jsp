@@ -13,28 +13,28 @@
 </style>
 <div class="content" style="margin-top: 40px; padding: 10px; font-size: 20px; margin-left: 10px;">
     <div class="form_row" >
-        <span style="font-weight: 600">你好,${vendor.name}</span>
+        <span style="font-weight: 600">Hi,${vendor.name}</span>
     </div>
     <div class="form_row" >
         <img src="${vendor.avator}" style="width: 50%;">
     </div>
 
     <div class="form_row" >
-        <div>检查中订单:${checkAmount}</div>
+        <div>Checking orders:${checkAmount}</div>
     </div>
     <div class="form_row" >
-        <div>维修中订单:${fixAmount}</div>
+        <div>Fixing orders:${fixAmount}</div>
     </div>
     <div class="form_row" >
-        <div>已完成订单:${completeAmount}</div>
+        <div>Complete orders:${completeAmount}</div>
     </div>
 
     <div class="form_row" >
         <div>
-            <span>我的评分:</span>
-            <span style="color: green">好评</span>:${vendor.goodScore}
-            <span style="color: darkslategrey;">中评</span>:${vendor.moderateScore}
-            <span style="color:red">差评</span>:${vendor.badScore}
+            <span>My score:</span>
+            <span style="color: green">Good</span>:${vendor.goodScore}
+            <span style="color: darkslategrey;">moderate</span>:${vendor.moderateScore}
+            <span style="color:red">Bad</span>:${vendor.badScore}
         </div>
     </div>
 

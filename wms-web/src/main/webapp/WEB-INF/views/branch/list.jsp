@@ -4,8 +4,8 @@
     <div class="well light_gray">
         <div class="top_bar">
             <ul class="breadcrumb">
-                <li><a href="javascript:void(0);" style="color: #037dc5;font-size: 15px;">客户中心</a> <span class="divider">/</span></li>
-                <li class="active"><a href="javascript:void(0)" style="font-weight: 600;font-size: 13px;color: #037dc5;">分支管理</a></li>
+                <li><a href="javascript:void(0);" style="color: #037dc5;font-size: 15px;">My customer</a> <span class="divider">/</span></li>
+                <li class="active"><a href="javascript:void(0)" style="font-weight: 600;font-size: 13px;color: #037dc5;">Branch management</a></li>
             </ul>
         </div>
 
@@ -14,7 +14,7 @@
           <!-- start -->
           <div class="table_options top_options">
               <div>
-                  <span class="inline">总/分店名:</span>
+                  <span class="inline">Branch name:</span>
                   <input id="name" name="name" type="text" style="width:230px;">
                   <a href="javascript:Branch.queryList()" class="dark_green btn" style="margin-left:10px;"><i class="icon-search"></i></a>
                   <a href="javascript:App.goToPage('branch/add')" class="dark_green btn"><i class="icon-plus"></i></a>

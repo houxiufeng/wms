@@ -4,12 +4,12 @@ package com.home.wms.enums;
  * Created by fitz on 2018/3/13.
  */
 public enum OrderStatus {
-	ASSIGNING(0,"派单中"),
-	CHECKING(1,"检查中"),
-	FIXING(2,"维修中"),
-	AUDITING(3,"审核中"),
-	COMPLETE(4,"已完结"),
-	CANCEL(5,"已取消");
+	ASSIGNING(0,"Assigning"),
+	CHECKING(1,"Checking"),
+	FIXING(2,"Fixing"),
+	AUDITING(3,"Auditing"),
+	COMPLETE(4,"Complete"),
+	CANCEL(5,"Cancel");
 
 	OrderStatus(int value, String desc) {
 		this.value = value;

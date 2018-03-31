@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>allen</title>
+    <title>WMS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -30,35 +30,35 @@
                     <input type="hidden" name="branchProductId" value="${branchProduct.id}">
                     <div class="form_row">
                         <div class="field">
-                            <span style="font-size: 14px;font-weight: 600">${CURRENT_USER.organizationName}:很高兴为你服务</span>
+                            <span style="font-size: 14px;font-weight: 600">${CURRENT_USER.organizationName}:happy to serve you!</span>
                         </div>
                     </div>
                     <div class="form_row">
-                        <label class="field_name align_right" style="width: 30%;">客户名称:</label>
+                        <label class="field_name align_right" style="width: 30%;">Customer name:</label>
                         <div class="field" style="margin-left: 31%; margin-top: 5px;">
                             ${customer.name}
                         </div>
                     </div>
                     <div class="form_row">
-                        <label class="field_name align_right" style="width: 30%;">总分店名称:</label>
+                        <label class="field_name align_right" style="width: 30%;">Branch name:</label>
                         <div class="field" style="margin-left: 31%; margin-top: 5px; ">
                             ${branchProduct.branch.name}
                         </div>
                     </div>
                     <div class="form_row">
-                        <label class="field_name align_right" style="width: 30%;">维修产品名称:</label>
+                        <label class="field_name align_right" style="width: 30%;">Product name:</label>
                         <div class="field" style="margin-left: 31%; margin-top: 5px;">
                             ${branchProduct.product.name}
                         </div>
                     </div>
                     <div class="form_row">
-                        <label class="field_name align_right" style="width: 30%;">维修产品型号:</label>
+                        <label class="field_name align_right" style="width: 30%;">Product model:</label>
                         <div class="field" style="margin-left: 31%; margin-top: 5px;">
                             ${branchProduct.product.model}
                         </div>
                     </div>
                     <div class="form_row">
-                        <label class="field_name align_right" style="width: 30%;">问题类型:</label>
+                        <label class="field_name align_right" style="width: 30%;">Problem type:</label>
                         <div class="field" style="margin-left: 31%;">
                             <select id="type" name="type">
                                 <c:forEach items="${types}" var="item">
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                     <div class="form_row">
-                        <label class="field_name align_right" style="width: 30%;">问题描述:</label>
+                        <label class="field_name align_right" style="width: 30%;">Description:</label>
                         <div class="field" style="margin-left: 31%;">
                             <textarea name="description" style="resize:none;height: 50px; width: 90%;" maxlength="200"></textarea>
                         </div>

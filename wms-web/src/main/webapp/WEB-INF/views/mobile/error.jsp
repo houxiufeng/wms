@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>allen</title>
+    <title>WMS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -24,7 +24,7 @@
     </header>
     <div id="content">
 	    <div id="main" class="row-fluid">
-            <div style="margin-top: 40px; padding: 10px; font-size: 20px; font-weight: 600">您无权限访问此页面！</div>
+            <div style="margin-top: 40px; padding: 10px; font-size: 20px; font-weight: 600">Sorry you don't have permission!</div>
 
         </div>
     </div>
