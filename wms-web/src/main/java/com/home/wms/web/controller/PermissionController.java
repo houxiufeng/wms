@@ -6,6 +6,7 @@ import com.home.wms.dto.PermissionVo;
 import com.home.wms.dto.QueryPermissionParams;
 import com.home.wms.entity.Permission;
 import com.home.wms.service.PermissionService;
+import com.home.wms.service.RoleService;
 import com.ktanx.common.model.PageList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,8 @@ public class PermissionController {
 
     @Autowired
     private PermissionService permissionService;
+    @Autowired
+    private RoleService roleService;
     
     private static final Logger LOG = LoggerFactory.getLogger(PermissionController.class);
     
@@ -102,6 +105,11 @@ public class PermissionController {
     public JSONObject delete(@PathVariable Long id, Model model){
     	JSONObject result = new JSONObject();
     	try {
+		    if(roleService.findRolePermissionByPermissionId(id).size() > 0) {
+			    result.put("code", 1);
+			    result.put("message", "can't delete, already in used!");
+			    return result;
+		    }
     		permissionService.delete(id);
     		result.put("code", 0);
     	} catch(Exception e) {

@@ -45,6 +45,10 @@ public class BranchProductServiceImpl implements BranchProductService{
 			sql.append(" and a.branch_id = ?");
 			paramList.add(params.getBranchId());
 		}
+		if (params.getProductId() != null) {
+			sql.append(" and a.product_id = ?");
+			paramList.add(params.getProductId());
+		}
 		sql.append(" order by a.id desc");
 		return (PageList<BranchProductVo>)jdbcDao.createNativeExecutor().resultClass(BranchProductVo.class)
 				.command(sql.toString()).parameters(paramList.toArray())

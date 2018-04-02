@@ -78,6 +78,12 @@ public class RoleServiceImpl implements RoleService{
 		rp.setRoleId(roleId);
 		return jdbcDao.queryList(rp);
 	}
+	public List<RolePermission> findRolePermissionByPermissionId(Long permissionId) {
+		RolePermission rp = new RolePermission();
+		rp.setPermissionId(permissionId);
+		return jdbcDao.queryList(rp);
+	}
+
 	@Override
 	@Transactional
 	public void editRolePermissions(Long roleId, Long[] permissionIds) {

@@ -5,6 +5,7 @@ import com.home.wms.dto.*;
 import com.home.wms.entity.Branch;
 import com.home.wms.entity.BranchProduct;
 import com.home.wms.entity.Product;
+import com.home.wms.entity.Torder;
 import com.home.wms.enums.DictType;
 import com.home.wms.service.*;
 import com.home.wms.utils.AppContextManager;
@@ -27,9 +28,7 @@ public class BranchProductController {
 	@Autowired
 	private BranchProductService branchProductService;
 	@Autowired
-	private BranchService branchService;
-	@Autowired
-	private ProductService productService;
+	private OrderService orderService;
 	@Autowired
 	private DictService dictService;
 
@@ -97,6 +96,13 @@ public class BranchProductController {
 	public JSONObject delete(@PathVariable Long id, Model model){
 		JSONObject result = new JSONObject();
 		try {
+			Torder order = new Torder();
+			order.setBranchProductId(id);
+			if(orderService.findOrders(order).size() > 0) {
+				result.put("code", 1);
+				result.put("message", "can't delete, already in used!");
+				return result;
+			}
 			branchProductService.deleteBranchProduct(id);
 			result.put("code", 0);
 		} catch(Exception e) {

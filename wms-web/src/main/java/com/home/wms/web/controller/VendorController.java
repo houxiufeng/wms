@@ -5,10 +5,12 @@ import com.home.wms.dto.QueryDictParams;
 import com.home.wms.dto.QueryVendorParams;
 import com.home.wms.dto.VendorVo;
 import com.home.wms.entity.Dict;
+import com.home.wms.entity.Torder;
 import com.home.wms.entity.User;
 import com.home.wms.entity.Vendor;
 import com.home.wms.enums.DictType;
 import com.home.wms.service.DictService;
+import com.home.wms.service.OrderService;
 import com.home.wms.service.UserService;
 import com.home.wms.service.VendorService;
 import com.home.wms.utils.AppContextManager;
@@ -37,6 +39,8 @@ public class VendorController {
 	private DictService dictService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private OrderService orderService;
 
 	private static final Logger LOG = LoggerFactory.getLogger(VendorController.class);
 
@@ -130,6 +134,13 @@ public class VendorController {
 	public JSONObject delete(@PathVariable Long id, Model model){
 		JSONObject result = new JSONObject();
 		try {
+			Torder order = new Torder();
+			order.setVendorId(id);
+			if(orderService.findOrders(order).size() > 0) {
+				result.put("code", 1);
+				result.put("message", "can't delete, already in used!");
+				return result;
+			}
 			vendorService.deleteVendor(id);
 			result.put("code", 0);
 		} catch(Exception e) {

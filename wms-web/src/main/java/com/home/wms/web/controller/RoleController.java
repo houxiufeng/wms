@@ -8,8 +8,10 @@ import com.home.wms.dto.QueryRoleParams;
 import com.home.wms.entity.Permission;
 import com.home.wms.entity.Role;
 import com.home.wms.entity.RolePermission;
+import com.home.wms.entity.User;
 import com.home.wms.service.PermissionService;
 import com.home.wms.service.RoleService;
+import com.home.wms.service.UserService;
 import com.ktanx.common.model.PageList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +32,8 @@ public class RoleController {
 	private RoleService roleService;
 	@Autowired
 	private PermissionService permissionService;
+	@Autowired
+	private UserService userService;
 	private static final Logger LOG = LoggerFactory.getLogger(RoleController.class);
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(Model model){
@@ -95,6 +99,14 @@ public class RoleController {
 	public JSONObject delete(@PathVariable Integer id, Model model){
 		JSONObject result = new JSONObject();
 		try {
+			User user = new User();
+			user.setRoleId((long)id);
+			List<User> users = userService.findUsers(user);
+			if (users.size() > 0) {
+				result.put("code", 1);
+				result.put("message", "can't delete this role, already in used!");
+				return result;
+			}
 			roleService.delete(id);
 			result.put("code", 0);
 		} catch(Exception e) {

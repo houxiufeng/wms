@@ -5,6 +5,7 @@ package com.home.wms.dto;
  */
 public class QueryBranchProductParams {
 	private Long branchId;
+	private Long productId;
 	private Long organizationId;
 	private Integer iDisplayStart = 0;
 	private Integer iDisplayLength = 10;
@@ -39,5 +40,13 @@ public class QueryBranchProductParams {
 
 	public void setBranchId(Long branchId) {
 		this.branchId = branchId;
+	}
+
+	public Long getProductId() {
+		return productId;
+	}
+
+	public void setProductId(Long productId) {
+		this.productId = productId;
 	}
 }

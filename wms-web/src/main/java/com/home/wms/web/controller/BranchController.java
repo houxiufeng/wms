@@ -3,10 +3,12 @@ package com.home.wms.web.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.home.wms.dto.BranchVo;
 import com.home.wms.dto.QueryBranchParams;
+import com.home.wms.dto.QueryBranchProductParams;
 import com.home.wms.dto.QueryCustomerParams;
 import com.home.wms.entity.Branch;
 import com.home.wms.entity.Customer;
 import com.home.wms.entity.User;
+import com.home.wms.service.BranchProductService;
 import com.home.wms.service.BranchService;
 import com.home.wms.service.CustomerService;
 import com.home.wms.service.UserService;
@@ -36,6 +38,8 @@ public class BranchController {
 	private CustomerService customerService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private BranchProductService branchProductService;
 
 	private static final Logger LOG = LoggerFactory.getLogger(BranchController.class);
 
@@ -121,6 +125,13 @@ public class BranchController {
 	public JSONObject delete(@PathVariable Long id, Model model){
 		JSONObject result = new JSONObject();
 		try {
+			QueryBranchProductParams params = new QueryBranchProductParams();
+			params.setBranchId(id);
+			if(branchProductService.findPageBranchProducts(params).size() > 0) {
+				result.put("code", 1);
+				result.put("message", "can't delete, already in used!");
+				return result;
+			}
 			branchService.deleteBranch(id);
 			result.put("code", 0);
 		} catch(Exception e) {

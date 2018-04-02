@@ -25,6 +25,8 @@ public interface RoleService {
 
 	List<RolePermission> findRolePermissionByRoleId(Long roleId);
 
+	List<RolePermission> findRolePermissionByPermissionId(Long permissionId);
+
 	void editRolePermissions(Long roleId, Long[] permissionIds);
 
 	void deleteRolePermissionByRoleId(Long roleId);

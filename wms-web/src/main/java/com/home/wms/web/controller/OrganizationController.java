@@ -5,8 +5,10 @@ import com.home.wms.dto.QueryOrganizationParams;
 import com.home.wms.dto.QueryRoleParams;
 import com.home.wms.entity.Organization;
 import com.home.wms.entity.Role;
+import com.home.wms.entity.User;
 import com.home.wms.service.OrganizationService;
 import com.home.wms.service.RoleService;
+import com.home.wms.service.UserService;
 import com.ktanx.common.model.PageList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +32,8 @@ public class OrganizationController {
 	private OrganizationService organizationService;
 	@Autowired
 	private RoleService roleService;
+	@Autowired
+	private UserService userService;
 	private static final Logger LOG = LoggerFactory.getLogger(OrganizationController.class);
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -104,6 +108,13 @@ public class OrganizationController {
 	public JSONObject delete(@PathVariable Long id, Model model){
 		JSONObject result = new JSONObject();
 		try {
+			User user = new User();
+			user.setOrganizationId(id);
+			if(userService.findUsers(user).size() > 0) {
+				result.put("code", 1);
+				result.put("message", "can't delete, already in used!");
+				return result;
+			}
 			organizationService.deleteOrganization(id);
 			result.put("code", 0);
 		} catch(Exception e) {
