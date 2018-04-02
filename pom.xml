@@ -45,7 +45,7 @@
     <!--<dubbo.version>2.5.3</dubbo.version>-->
     <!--<zookeeper.version>3.4.6</zookeeper.version>-->
     <!--<zkclient.version>0.5</zkclient.version>-->
-    <hutool.version>4.0.8</hutool.version>
+    <hutool.version>4.0.9</hutool.version>
     <ktanx.version>1.0.3</ktanx.version>
   </properties>
 
