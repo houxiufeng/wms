@@ -40,7 +40,7 @@
     </bean>
     
    <!-- 定时器开关  开始 -->
-    <!-- <task:annotation-driven /> -->
+     <task:annotation-driven />
    <!-- 定时器开关  结束 -->
 
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close"> 

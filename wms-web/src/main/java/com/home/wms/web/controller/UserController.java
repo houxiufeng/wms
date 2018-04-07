@@ -1,10 +1,15 @@
 package com.home.wms.web.controller;
 
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.crypto.SecureUtil;
+import cn.hutool.extra.mail.MailUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.home.wms.dto.QueryUserParams;
 import com.home.wms.dto.UserVo;
+import com.home.wms.entity.Role;
 import com.home.wms.entity.User;
+import com.home.wms.enums.RoleCode;
+import com.home.wms.service.AsyncService;
 import com.home.wms.service.OrganizationService;
 import com.home.wms.service.RoleService;
 import com.home.wms.service.UserService;
@@ -28,6 +33,8 @@ public class UserController {
 	private RoleService roleService;
 	@Autowired
 	private OrganizationService organizationService;
+	@Autowired
+	private AsyncService asyncService;
     
     private static final Logger LOG = LoggerFactory.getLogger(UserController.class);
     
@@ -59,9 +66,15 @@ public class UserController {
     @ResponseBody
     public JSONObject create(User user, Model model){
     	JSONObject result = new JSONObject();
+    	String password =  user.getPassword();
     	try {
+    		user.setPassword(SecureUtil.md5(password));
     		userService.save(user);
     		result.put("code", 0);
+//    		Role role = roleService.getById(user.getRoleId());
+//    		if (role != null && role.getCode().equals(RoleCode.CUSTOMER.getCode())) {//如果是customer用户，需要发邮件.
+//			    asyncService.sendMail("houxiufeng@edianzu.cn","Account info",StrUtil.format("your account is:{}, password is:{}", user.getEmail(), password));
+//		    }
     	} catch(DuplicateKeyException dkException) {
     		result.put("code", 1);
     		result.put("message", StrUtil.format("duplicate user name:{}", user.getName()));

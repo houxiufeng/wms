@@ -67,10 +67,10 @@ jQuery(function($){
         $("input:checked").each(function () {
             permissionIds.push($(this).val());
         });
-        if (permissionIds.length == 0) {
-            App.alert("please select one!");
-            return;
-        }
+//        if (permissionIds.length == 0) {
+//            App.alert("please select one!");
+//            return;
+//        }
         var data = {};
         data.permissionIds = permissionIds;
         data.roleId = $("#roleId").val();

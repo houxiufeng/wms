@@ -136,7 +136,7 @@ public class RoleController {
 
 	@RequestMapping(value="/editRolePermissions", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject editRoleResources(@RequestParam("roleId")Long roleId, @RequestParam("permissionIds[]") Long[] permissionIds){
+	public JSONObject editRoleResources(@RequestParam("roleId")Long roleId, @RequestParam(value = "permissionIds[]", required = false) Long[] permissionIds){
 		JSONObject result = new JSONObject();
 		try {
 			roleService.editRolePermissions(roleId, permissionIds);

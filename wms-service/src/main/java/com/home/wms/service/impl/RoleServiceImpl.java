@@ -88,11 +88,13 @@ public class RoleServiceImpl implements RoleService{
 	@Transactional
 	public void editRolePermissions(Long roleId, Long[] permissionIds) {
 		deleteRolePermissionByRoleId(roleId);
-		for (Long permissionId : permissionIds) {
-			RolePermission rp = new RolePermission();
-			rp.setRoleId(roleId);
-			rp.setPermissionId(permissionId);
-			jdbcDao.insert(rp);
+		if (permissionIds != null && permissionIds.length > 0) {
+			for (Long permissionId : permissionIds) {
+				RolePermission rp = new RolePermission();
+				rp.setRoleId(roleId);
+				rp.setPermissionId(permissionId);
+				jdbcDao.insert(rp);
+			}
 		}
 	}
 

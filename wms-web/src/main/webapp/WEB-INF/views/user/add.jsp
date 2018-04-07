@@ -105,7 +105,7 @@ jQuery(function($){
     $('#saveUser').click(function(){
         User.validateUser(function(){//validate 做基本的验证
            //这里做业务验证
-            $("#password").val(CryptoJS.MD5($("#password").val()).toString());
+//            $("#password").val(CryptoJS.MD5($("#password").val()).toString());
             $.ajax({
                 url: appCtx + "/user/create",
                 type: 'post',

@@ -47,6 +47,7 @@
     <!--<zkclient.version>0.5</zkclient.version>-->
     <hutool.version>4.0.9</hutool.version>
     <ktanx.version>1.0.3</ktanx.version>
+	<javax-mail.version>1.4.7</javax-mail.version>
   </properties>
 
   <dependencyManagement>
@@ -253,6 +254,11 @@
     	<artifactId>xstream</artifactId>
     	<version>${xstream.version}</version>
     </dependency>
+	<dependency>
+		<groupId>javax.mail</groupId>
+		<artifactId>mail</artifactId>
+		<version>${javax-mail.version}</version>
+	</dependency>
     <!-- Zookeeper相关 -->
     <!--<dependency>-->
         <!--<groupId>org.apache.zookeeper</groupId>-->
