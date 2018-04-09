@@ -21,7 +21,7 @@
 				</div>
 				<div class="form_row">
 					<div class="span5">
-						<label class="field_name align_right"><span style="color: red">*</span>Product name:</label>
+						<label class="field_name align_right"><span style="color: red">*</span>Product brand:</label>
 						<div class="field">
 							<select id="productName" name="name" class="span10">
 								<c:forEach items="${brands}" var="item">

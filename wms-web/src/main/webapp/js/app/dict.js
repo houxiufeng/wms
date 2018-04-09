@@ -16,6 +16,7 @@ var Dict = {
 		        sServerMethod: "POST",              //请求方式为post 主要为了防止中文参数乱码
 		        sDom: '<"top">rt<"tableFooter"lip<"clear">',
 		        fnServerParams : function (aoData) {
+                    aoData.push({"name": "type", "value":jQuery("#type").val()});
 		        },
 		        aoColumns:[{
 		            mData : "typeName",
@@ -43,6 +44,21 @@ var Dict = {
     queryList : function(){
     	jQuery("#dictTable").dataTable().fnDraw();
     },
+
+    popupAdd : function () {
+        jQuery.confirm({
+            // icon: 'icon-info-sign',
+            title: 'Add Parameter!',
+            columnClass: 'col-md-4 col-md-offset-4',
+            confirmButton: 'OK',
+            confirmButtonClass: 'btn red',
+            cancelButton: 'CLOSE',
+            content: "url:"+appCtx+"/dict/add",
+            confirm: function(){
+                Dict.save();
+            }
+        });
+    },
     
     save: function() {
         var params = Dict.buildValidate();
@@ -56,7 +72,7 @@ var Dict = {
                     if (json.code == "0") {
                         App.alert("success!", function(){
                             Dict.queryList();
-                            Dict.reset();
+                            // Dict.reset();
                         });
                     } else {
                         App.alert(json.message);

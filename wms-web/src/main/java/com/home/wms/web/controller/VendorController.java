@@ -81,6 +81,14 @@ public class VendorController {
 	public JSONObject create(Vendor vendor, Model model){
 		JSONObject result = new JSONObject();
 		try {
+			if (vendor.getUserId() != null) {
+				Vendor v = vendorService.getVendorByUserId(vendor.getUserId());
+				if (v != null) {
+					result.put("code", 1);
+					result.put("message", "user already bind in " + v.getName());
+					return result;
+				}
+			}
 			vendorService.saveVendor(vendor);
 			result.put("code", 0);
 		} catch(Exception e) {
@@ -118,6 +126,14 @@ public class VendorController {
 	public JSONObject update(Vendor vendor, Model model){
 		JSONObject result = new JSONObject();
 		try {
+			if (vendor.getUserId() != null) {
+				Vendor v = vendorService.getVendorByUserId(vendor.getUserId());
+				if (v != null && v.getId().longValue() != vendor.getId().longValue()) {
+					result.put("code", 1);
+					result.put("message", "user already bind in " + v.getName());
+					return result;
+				}
+			}
 			vendorService.updateVendor(vendor);
 			result.put("code", 0);
 		} catch(Exception e) {

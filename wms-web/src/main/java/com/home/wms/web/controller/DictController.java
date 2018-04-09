@@ -61,6 +61,12 @@ public class DictController {
 		return json;
 	}
 
+	@RequestMapping(value="/add",method = RequestMethod.GET)
+	public String addDict(Model model){
+		model.addAttribute("dictTypes", DictType.values());
+		return "/dict/dict_add";
+	}
+
 
 	@RequestMapping(value="/create", method = RequestMethod.POST)
 	@ResponseBody

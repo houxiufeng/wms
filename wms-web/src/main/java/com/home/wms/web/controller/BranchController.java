@@ -6,6 +6,7 @@ import com.home.wms.dto.QueryBranchParams;
 import com.home.wms.dto.QueryBranchProductParams;
 import com.home.wms.dto.QueryCustomerParams;
 import com.home.wms.entity.Branch;
+import com.home.wms.entity.BranchProduct;
 import com.home.wms.entity.Customer;
 import com.home.wms.entity.User;
 import com.home.wms.service.BranchProductService;
@@ -76,6 +77,14 @@ public class BranchController {
 	public JSONObject create(Branch branch, Model model){
 		JSONObject result = new JSONObject();
 		try {
+			if (branch.getUserId() != null) {
+				Branch b = branchService.getBranchByUserId(branch.getUserId());
+				if (b != null) {
+					result.put("code", 1);
+					result.put("message", "user already bind in " + b.getName());
+					return result;
+				}
+			}
 			branchService.saveBranch(branch);
 			result.put("code", 0);
 		} catch(Exception e) {
@@ -109,6 +118,14 @@ public class BranchController {
 	public JSONObject update(Branch branch, Model model){
 		JSONObject result = new JSONObject();
 		try {
+			if (branch.getUserId() != null) {
+                Branch b = branchService.getBranchByUserId(branch.getUserId());
+                if (b != null && b.getId().longValue() != branch.getId().longValue()) {
+	                result.put("code", 1);
+	                result.put("message", "user already bind in " + b.getName());
+	                return result;
+                }
+			}
 			branchService.updateBranch(branch);
 			result.put("code", 0);
 		} catch(Exception e) {

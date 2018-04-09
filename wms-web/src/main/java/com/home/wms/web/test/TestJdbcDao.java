@@ -4,6 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.home.wms.entity.Permission;
+import com.home.wms.entity.Torder;
 import com.home.wms.entity.User;
 import com.ktanx.common.model.PageList;
 import com.ktanx.jdbc.persist.JdbcDao;
@@ -20,7 +21,7 @@ import java.util.List;
  * Created by fitz on 2018/1/18.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:applicationContext.xml"})
+@ContextConfiguration(locations = {"classpath:applicationContext_test.xml"})
 public class TestJdbcDao {
 
 	@Autowired
@@ -68,6 +69,12 @@ public class TestJdbcDao {
 	public void testSS() {
 		Integer maxSeq = (Integer)jdbcDao.createSelect(Permission.class).addSelectField("max(seq)").notSelectEntityField().objectResult();
 		System.out.println(maxSeq);
+	}
+	@Test
+	public void testSingle() {
+		List<Torder> orders = (List<Torder>)jdbcDao.createNativeExecutor().command("select * from torder where organization_id = 10 order by id desc limit 1").resultClass(Torder.class).list();
+		String orderNo = orders.size() > 0 ? orders.get(0).getOrderNo():null;
+		System.out.println(orderNo);
 	}
 
 	public static void main(String[] args) {

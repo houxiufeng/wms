@@ -10,29 +10,24 @@
     </div>
 
     <div class="well-content">
-        <form id="dictForm" style="margin-bottom: 10px;">
-            <div class="form_row">
-                <div class="span5">
-                    <label class="field_name align_right" style="width: 24%"><span style="color: red">*</span>Parameter type:</label>
-                    <div class="field" style="margin-left: 25%">
-                        <select name="type" class="span12">
-                            <c:forEach items="${dictTypes}" var="item">
-                                <option value="${item.value}">${item.desc}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
-                </div>
-                <div class="span5">
-                    <label class="field_name align_right" style="width: 24%"><span style="color: red">*</span>Parameter name:</label>
-                    <div class="field" style="margin-left: 25%">
-                        <input name="name" class="span12" type="text" maxlength="32">
-                    </div>
-                </div>
-                <div class="span2">
-                    <a href="javascript:Dict.save();" class="red btn"><i class="icon-save"></i></a>
+        <div class="form_row">
+            <div class="span5">
+                <label class="field_name align_right" style="width: 24%"><span style="color: red">*</span>Parameter type:</label>
+                <div class="field" style="margin-left: 25%">
+                    <select id="type" name="type" class="span12">
+                        <option value="">All</option>
+                        <c:forEach items="${dictTypes}" var="item">
+                            <option value="${item.value}">${item.desc}</option>
+                        </c:forEach>
+                    </select>
                 </div>
             </div>
-        </form>
+            <div class="span2">
+                <%--<a href="javascript:Dict.save();" class="red btn"><i class="icon-save"></i></a>--%>
+                <a href="javascript:Dict.queryList();" class="dark_green btn"><i class="icon-search"></i></a>
+                <a href="javascript:Dict.popupAdd();" class="dark_green btn"><i class="icon-plus"></i></a>
+            </div>
+        </div>
 
         <div class="dataTables_wrapper">
             <table id="dictTable" class="table table-striped table-bordered table-hover datatable"></table>

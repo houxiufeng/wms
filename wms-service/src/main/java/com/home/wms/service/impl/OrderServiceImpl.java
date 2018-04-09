@@ -13,6 +13,7 @@ import com.home.wms.service.BranchProductService;
 import com.home.wms.service.OrderService;
 import com.home.wms.utils.AppContextManager;
 import com.ktanx.common.model.PageList;
+import com.ktanx.jdbc.command.simple.ResultHandler;
 import com.ktanx.jdbc.persist.JdbcDao;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -23,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by fitz on 2018/3/13.
@@ -110,9 +112,11 @@ public class OrderServiceImpl implements OrderService {
 //		maxId++;
 		String orderNo = null;
 		if (order.getOrganizationId() != null) {
-			orderNo = (String)jdbcDao.createNativeExecutor().command("select order_no from torder where organization_id = ? order by id desc limit 1").parameters(new Object[]{order.getOrganizationId()}).resultClass(String.class).singleResult();
+			List<Torder> orders = (List<Torder>)jdbcDao.createNativeExecutor().command("select * from torder where organization_id = ? order by id desc limit 1").parameters(new Object[]{order.getOrganizationId()}).resultClass(Torder.class).list();
+			orderNo = orders.size() > 0 ? orders.get(0).getOrderNo():null;
 		} else {
-			orderNo = (String)jdbcDao.createNativeExecutor().command("select order_no from torder where organization_id is null order by id desc limit 1").resultClass(String.class).singleResult();
+			List<Torder> orders = (List<Torder>)jdbcDao.createNativeExecutor().command("select * from torder where organization_id is null order by id desc limit 1").resultClass(Torder.class).list();
+			orderNo = orders.size() > 0 ? orders.get(0).getOrderNo():null;
 		}
 		String newOrderNo = null;
 		if (StringUtils.isNotBlank(orderNo)) {
