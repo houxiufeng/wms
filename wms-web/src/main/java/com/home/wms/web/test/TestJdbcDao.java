@@ -77,6 +77,16 @@ public class TestJdbcDao {
 		System.out.println(orderNo);
 	}
 
+	@Test
+	public void testSingle2() {
+		User user = new User();
+		user.setOrganizationId(8L);
+		User users = jdbcDao.querySingleResult(user);
+		if (users != null) {
+			System.out.println(users.getName());
+		}
+	}
+
 	public static void main(String[] args) {
 		List<Long> ids = Lists.newArrayList(5L,6L,7L,8L);
 		System.out.println(StrUtil.join(",",ids));
