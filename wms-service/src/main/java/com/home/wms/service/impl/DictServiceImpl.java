@@ -76,13 +76,14 @@ public class DictServiceImpl implements DictService{
 
 	@Override
 	public OrderTime getOrderTime(Integer orderStatus, Integer type, Long organizationId) {
-		if (organizationId != null) {
-			List<OrderTime> list = (List<OrderTime>)jdbcDao.createNativeExecutor().command("select * from order_time where order_status = ? and type = ? and organization_id = ? limit 1").parameters(new Object[]{orderStatus, type, organizationId}).resultClass(OrderTime.class).list();
-			return list.size() > 0 ? list.get(0) : null;
-		} else {
-			List<OrderTime> list = (List<OrderTime>)jdbcDao.createNativeExecutor().command("select * from order_time where order_status = ? and type = ? and organization_id is null limit 1").parameters(new Object[]{orderStatus, type}).resultClass(OrderTime.class).list();
-			return list.size() > 0 ? list.get(0) : null;
-		}
+		return jdbcDao.createSelect(OrderTime.class).where("organizationId", organizationId).and("orderStatus",orderStatus).and("type",type).singleResult();
+//		if (organizationId != null) {
+//			List<OrderTime> list = (List<OrderTime>)jdbcDao.createNativeExecutor().command("select * from order_time where order_status = ? and type = ? and organization_id = ? limit 1").parameters(new Object[]{orderStatus, type, organizationId}).resultClass(OrderTime.class).list();
+//			return list.size() > 0 ? list.get(0) : null;
+//		} else {
+//			List<OrderTime> list = (List<OrderTime>)jdbcDao.createNativeExecutor().command("select * from order_time where order_status = ? and type = ? and organization_id is null limit 1").parameters(new Object[]{orderStatus, type}).resultClass(OrderTime.class).list();
+//			return list.size() > 0 ? list.get(0) : null;
+//		}
 	}
 	@Override
 	public void saveOrUpdateOrderTime(OrderTimeSetting orderTimeSetting) {

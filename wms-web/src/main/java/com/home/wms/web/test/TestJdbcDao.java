@@ -3,6 +3,8 @@ package com.home.wms.web.test;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
+import com.home.wms.dto.UserVo;
+import com.home.wms.entity.Dict;
 import com.home.wms.entity.Permission;
 import com.home.wms.entity.Torder;
 import com.home.wms.entity.User;
@@ -85,6 +87,33 @@ public class TestJdbcDao {
 		if (users != null) {
 			System.out.println(users.getName());
 		}
+	}
+
+	@Test
+	public void testSingle3() {
+		List<String> ss = jdbcDao.createSelect(Torder.class).include("orderNo").where("id","<",10).and("organizationId",null).orderById().desc().singleColumnList(String.class);
+		PageList<String> stt = jdbcDao.createSelect(Torder.class).include("orderNo").where("id",">",10).and("organizationId",null).orderBy("id").desc().singleColumnPageList(String.class, 1, 1);
+		Torder torder = jdbcDao.createSelect(Torder.class).where("organizationId", null).and("id",54).singleResult();
+		String s = jdbcDao.createSelect(Torder.class).include("orderNo").where("id",120).singleColumnResult(String.class);
+		System.out.println(s);
+	}
+
+	@Test
+	public void testNative() {
+		String sql = "select a.*, b.name role_name, b.code role_code from user a left join role b on a.role_id = b.id";
+		List<UserVo> userVos = (List<UserVo>)jdbcDao.createNativeExecutor().command(sql).resultClass(UserVo.class).list();
+		for(UserVo vo : userVos) {
+			System.out.println(vo.getName() + ": " + vo.getRoleName());
+		}
+	}
+
+	@Test
+	public void testMoreOrLess() {
+		//user @Transient on get method can ignore filed in table
+ 		Dict dict = jdbcDao.get(Dict.class, 1);
+//		dict.setGender(dict.getName() + "---ssf");
+//		System.out.println(dict.getName());
+//		System.out.println(dict.getGender());
 	}
 
 	public static void main(String[] args) {

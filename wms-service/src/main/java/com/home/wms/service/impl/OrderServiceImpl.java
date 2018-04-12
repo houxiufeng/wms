@@ -110,14 +110,15 @@ public class OrderServiceImpl implements OrderService {
 //			maxId = 0L;
 //		}
 //		maxId++;
-		String orderNo = null;
-		if (order.getOrganizationId() != null) {
-			List<Torder> orders = (List<Torder>)jdbcDao.createNativeExecutor().command("select * from torder where organization_id = ? order by id desc limit 1").parameters(new Object[]{order.getOrganizationId()}).resultClass(Torder.class).list();
-			orderNo = orders.size() > 0 ? orders.get(0).getOrderNo():null;
-		} else {
-			List<Torder> orders = (List<Torder>)jdbcDao.createNativeExecutor().command("select * from torder where organization_id is null order by id desc limit 1").resultClass(Torder.class).list();
-			orderNo = orders.size() > 0 ? orders.get(0).getOrderNo():null;
-		}
+		PageList<String> orderNos = jdbcDao.createSelect(Torder.class).include("orderNo").where("organizationId",order.getOrganizationId()).orderBy("id").desc().singleColumnPageList(String.class, 1, 1);
+		String orderNo = orderNos.size() > 0 ? orderNos.get(0) : null;
+//		if (order.getOrganizationId() != null) {
+//			List<Torder> orders = (List<Torder>)jdbcDao.createNativeExecutor().command("select * from torder where organization_id = ? order by id desc limit 1").parameters(new Object[]{order.getOrganizationId()}).resultClass(Torder.class).list();
+//			orderNo = orders.size() > 0 ? orders.get(0).getOrderNo():null;
+//		} else {
+//			List<Torder> orders = (List<Torder>)jdbcDao.createNativeExecutor().command("select * from torder where organization_id is null order by id desc limit 1").resultClass(Torder.class).list();
+//			orderNo = orders.size() > 0 ? orders.get(0).getOrderNo():null;
+//		}
 		String newOrderNo = null;
 		if (StringUtils.isNotBlank(orderNo)) {
 			Integer d = Integer.parseInt(orderNo.substring(0, 6));
