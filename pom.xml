@@ -16,6 +16,8 @@
     <module>wms-web</module>
   </modules>
 
+  <!--this is test -->
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <junit.version>4.11</junit.version>
