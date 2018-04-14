@@ -15,7 +15,7 @@
   <body>
 
     <header class="dark_grey"> <!-- Header start -->
-        <a href="#" class="logo_image"><span class="hidden-480">WMS ZOO</span></a>
+        <a href="#" class="logo_image"><span class="hidden-480">WMS</span></a>
         <ul class="header_actions">
             <li class="dropdown"><a href="javascript:void(0);">${CURRENT_USER.name}</a>
                 <%--<ul>--%>
