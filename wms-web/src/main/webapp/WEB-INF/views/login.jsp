@@ -113,7 +113,7 @@
                                 }
                             } else {
                                 $.removeCookie('wms_token', { path: '/' });
-                                App.alert(json.msg);
+                                App.alert(json.message);
                             }
                         },
                         error: function(xhr, textStatus, errorThrown){

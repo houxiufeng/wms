@@ -7,19 +7,19 @@ import java.io.Serializable;
  */
 public class WMSResponse implements Serializable{
 	private int code = 0;
-	private String msg;
+	private String message;
 	private Object data;
 
 	public WMSResponse(){}
 
-	public WMSResponse(int code, String msg){
+	public WMSResponse(int code, String message){
 		this.code = code;
-		this.msg = msg;
+		this.message = message;
 	}
 
-	public WMSResponse(int code, String msg, Object data) {
+	public WMSResponse(int code, String message, Object data) {
 		this.code = code;
-		this.msg = msg;
+		this.message = message;
 		this.data = data;
 	}
 	public int getCode() {
@@ -30,12 +30,12 @@ public class WMSResponse implements Serializable{
 		this.code = code;
 	}
 
-	public String getMsg() {
-		return msg;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setMsg(String msg) {
-		this.msg = msg;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	public Object getData() {

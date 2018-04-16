@@ -54,14 +54,14 @@ public class APIController {
 				organization = organizationService.getById(user.getOrganizationId());
 				if (organization == null || organization.getStatus() == 0) {
 					response.setCode(1);
-					response.setMsg("Organization does't exist!");
+					response.setMessage("Organization does't exist!");
 					return response;
 				}
 			}
 			Role role = roleService.getById(user.getRoleId());
 			if (role == null || role.getStatus() == 0) {
 				response.setCode(1);
-				response.setMsg("Role does't exist!");
+				response.setMessage("Role does't exist!");
 				return response;
 			}
 
@@ -75,7 +75,7 @@ public class APIController {
 					user.setToken(newToken);
 					userService.update(user);
 					response.setCode(1);
-					response.setMsg("Token invalid, please re-login");
+					response.setMessage("Token invalid, please re-login");
 					return response;
 				}
 
@@ -97,7 +97,7 @@ public class APIController {
 			response.setData(currentUserInfo);
 		} else {
 			response.setCode(1);
-			response.setMsg("Wrong Email or Password!");
+			response.setMessage("Wrong Email or Password!");
 		}
 		return response;
 	}

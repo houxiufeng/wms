@@ -98,7 +98,7 @@ function logout() {
                 window.location.href=appCtx+"/login";
                 jQuery.removeCookie('wms_token', { path: '/' });
             } else {
-                alert(json.msg);
+                alert(json.message);
             }
         },
         error: function (xhr, textStatus, errorThrown) {
