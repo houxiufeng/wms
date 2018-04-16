@@ -12,6 +12,7 @@ public class CurrentUserInfo {
 	private String roleCode;
 	private Long organizationId;
 	private String organizationName;
+	private String token;
 
 	public String getName() {
 		return name;
@@ -76,5 +77,13 @@ public class CurrentUserInfo {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 }

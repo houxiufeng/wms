@@ -81,6 +81,7 @@
 			<mvc:mapping path="/**"/>
 			<!-- 需排除拦截的地址 -->
 			<mvc:exclude-mapping path="/login"/>
+			<mvc:exclude-mapping path="/api/**"/>
 			<mvc:exclude-mapping path="/checkCode"/>
 			<mvc:exclude-mapping path="/css/**"/>
 			<mvc:exclude-mapping path="/js/**"/>
@@ -88,6 +89,12 @@
 			<mvc:exclude-mapping path="/test/**"/>
 			<mvc:exclude-mapping path="/mobile/branch/product/*"/>
 			<bean class="com.home.wms.web.interceptor.SessionInterceptor"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/api/**"/>
+			<!-- 需排除拦截的地址 -->
+			<mvc:exclude-mapping path="/api/login"/>
+			<bean class="com.home.wms.web.interceptor.ApiInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
 	   

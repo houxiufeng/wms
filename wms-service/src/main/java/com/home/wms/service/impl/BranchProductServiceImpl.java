@@ -82,11 +82,14 @@ public class BranchProductServiceImpl implements BranchProductService{
 	@Override
 	public BranchProductInfo getBranchProductInfoById(Long id) {
 		BranchProduct bp = jdbcDao.get(BranchProduct.class, id);
-		BranchProductInfo bpInfo = new BranchProductInfo();
-		BeanUtil.copyProperties(bp, bpInfo);
-		bpInfo.setBranch(jdbcDao.get(Branch.class, bp.getBranchId()));
-		bpInfo.setProduct(jdbcDao.get(Product.class, bp.getProductId()));
-		return bpInfo;
+		if (bp != null) {
+			BranchProductInfo bpInfo = new BranchProductInfo();
+			BeanUtil.copyProperties(bp, bpInfo);
+			bpInfo.setBranch(jdbcDao.get(Branch.class, bp.getBranchId()));
+			bpInfo.setProduct(jdbcDao.get(Product.class, bp.getProductId()));
+			return bpInfo;
+		}
+		return null;
 	}
 
 }

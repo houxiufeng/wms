@@ -100,6 +100,7 @@ public class LoginController {
             currentUserInfo.setRoleId(role.getId());
             currentUserInfo.setRoleName(role.getName());
             currentUserInfo.setRoleCode(role.getCode());
+            currentUserInfo.setToken(user.getToken());
             if (organization != null) {
                 currentUserInfo.setOrganizationId(organization.getId());
                 currentUserInfo.setOrganizationName(organization.getName());
