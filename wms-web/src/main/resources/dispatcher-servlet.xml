@@ -55,9 +55,7 @@
 	<mvc:resources location="/css/" mapping="/css/**" />
 	<mvc:resources location="/flatpoint/" mapping="/flatpoint/**" />
 	<mvc:resources location="/files/" mapping="/files/**" />
-	<!--add other resource here  -->
-	<!-- <mvc:resources location="/media/css/" mapping="/media/css/**" /> -->
-	
+
 	<!-- xml视图，XStreamMarshaller，可以转换任何形式的java对象 -->
     <bean name="xStreamMarshallingView" class="org.springframework.web.servlet.view.xml.MarshallingView">
         <property name="marshaller">
@@ -87,6 +85,11 @@
 			<mvc:exclude-mapping path="/js/**"/>
 			<mvc:exclude-mapping path="/flatpoint/**"/>
 			<mvc:exclude-mapping path="/test/**"/>
+			<!--swagger start-->
+			<mvc:exclude-mapping path="/swagger*/**"></mvc:exclude-mapping>
+			<mvc:exclude-mapping path="/v2/**"></mvc:exclude-mapping>
+			<mvc:exclude-mapping path="/webjars/**"></mvc:exclude-mapping>
+			<!--swagger end-->
 			<mvc:exclude-mapping path="/mobile/branch/product/*"/>
 			<bean class="com.home.wms.web.interceptor.SessionInterceptor"></bean>
 		</mvc:interceptor>
@@ -97,5 +100,7 @@
 			<bean class="com.home.wms.web.interceptor.ApiInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
+
+	<import resource="classpath:context-swagger.xml"/>
 	   
 </beans>

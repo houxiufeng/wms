@@ -7,9 +7,7 @@ import com.home.wms.entity.User;
 import com.home.wms.service.OrganizationService;
 import com.home.wms.service.RoleService;
 import com.home.wms.service.UserService;
-import com.home.wms.utils.AppConstants;
 import com.home.wms.utils.AppContextManager;
-import com.home.wms.web.controller.APIController;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +31,7 @@ public class ApiInterceptor implements HandlerInterceptor {
 	@Autowired
 	private OrganizationService organizationService;
 
-	private static final Logger LOG = LoggerFactory.getLogger(APIController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(ApiInterceptor.class);
 
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object o) throws Exception {

@@ -1,6 +1,5 @@
-package com.home.wms.web.controller;
+package com.home.wms.web.api;
 
-import cn.hutool.core.lang.Validator;
 import com.alibaba.fastjson.JSONObject;
 import com.home.wms.dto.*;
 import com.home.wms.entity.*;
@@ -9,6 +8,10 @@ import com.home.wms.utils.AppConstants;
 import com.home.wms.utils.AppContextManager;
 import com.home.wms.utils.MyUtils;
 import com.ktanx.common.model.PageList;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +20,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -43,6 +45,11 @@ public class APIController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(APIController.class);
 
+	@ApiOperation(value = "登录接口", httpMethod = "POST", notes = "教程notes")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "email", value = "email value", paramType="query",required = true, dataTypeClass = String.class),
+			@ApiImplicitParam(name = "password", value = "password value", paramType="query",required = true, dataTypeClass = String.class)
+	})
 	@RequestMapping(value="login", method = RequestMethod.POST)
 	@ResponseBody
 	public WMSResponse login(@RequestParam String email, @RequestParam String password, HttpSession session) {
@@ -102,7 +109,8 @@ public class APIController {
 		return response;
 	}
 
-	@RequestMapping(value="/customers")
+	@ApiImplicitParam(name = "token", value = "token value", paramType="header", required = true, dataTypeClass = String.class)
+	@RequestMapping(value="/customers", method = RequestMethod.POST)
 	@ResponseBody
 	public JSONObject customers(@RequestBody QueryCustomerParams params, Model model){
 		JSONObject json = new JSONObject();
@@ -120,7 +128,8 @@ public class APIController {
 		return json;
 	}
 
-	@RequestMapping(value="/branchs")
+	@ApiImplicitParam(name = "token", value = "token value", paramType="header", required = true, dataTypeClass = String.class)
+	@RequestMapping(value="/branchs",method = RequestMethod.POST)
 	@ResponseBody
 	public JSONObject branchs(@RequestBody QueryBranchParams params, Model model){
 		JSONObject json = new JSONObject();
@@ -138,6 +147,7 @@ public class APIController {
 	}
 
 
+	@ApiImplicitParam(name = "token", value = "token value", paramType="header", required = true, dataTypeClass = String.class)
 	@RequestMapping(value="/createProduct", method = RequestMethod.POST)
 	@ResponseBody
 	public JSONObject createProduct(@RequestBody BranchProduct branchProduct, Model model){
@@ -155,7 +165,8 @@ public class APIController {
 		return result;
 	}
 
-	@RequestMapping(value="/branch/products")
+	@ApiImplicitParam(name = "token", value = "token value", paramType="header", required = true, dataTypeClass = String.class)
+	@RequestMapping(value="/branch/products", method = RequestMethod.POST)
 	@ResponseBody
 	public JSONObject branchProducts(@RequestBody QueryBranchProductParams params, Model model){
 		JSONObject json = new JSONObject();
@@ -166,7 +177,8 @@ public class APIController {
 		return json;
 	}
 
-	@RequestMapping(value="/branch/product/{id}")
+	@ApiImplicitParam(name = "token", value = "token value", paramType="header", required = true, dataTypeClass = String.class)
+	@RequestMapping(value="/branch/product/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public JSONObject branchProductDetail(@PathVariable Long id, Model model){
 		JSONObject json = new JSONObject();
