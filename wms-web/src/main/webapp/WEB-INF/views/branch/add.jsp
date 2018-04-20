@@ -72,7 +72,16 @@
                 <div class="span6">
                     <label class="field_name align_right"><span style="color: red">*</span>Branch address:</label>
                     <div class="field">
-                        <input name="address" class="span12" type="text" maxlength="128">
+                        <input id="address" name="address" class="span10" type="text" maxlength="128">
+                        <a id="searchPoi" href="javascript:void(0)" class="btn dark_green">Search</a>
+                    </div>
+                </div>
+            </div>
+            <div class="form_row">
+                <div class="span12">
+                    <label class="field_name align_right" style="width: 9%">poi</label>
+                    <div class="field" style="margin-left: 10%">
+                        <div id="googleMap" style="height:350px;"></div>
                     </div>
                 </div>
             </div>
@@ -89,5 +98,24 @@
         </form>
     </div>
 </div>
+<script>
+    jQuery(function ($) {
+        var gMap = initializeMap("googleMap");
+        var geocoder = new google.maps.Geocoder();
+        $("#searchPoi").click(function () {
+            var address = $("#address").val();
+            if (!_isNull(address)) {
+                geocoder.geocode( {'address': $.trim(address)}, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        placeMarker(gMap, results[0].geometry.location);
+                    } else {
+                        App.alert("Geocode was not successful for the following reason: " + status);
+                    }
+                });
+            }
+        });
+
+    })
+</script>
 
     

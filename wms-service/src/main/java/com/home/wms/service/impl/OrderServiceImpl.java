@@ -88,11 +88,17 @@ public class OrderServiceImpl implements OrderService {
 			sql.append(" and t.vendor_id = ?");
 			paramList.add(params.getVendorId());
 		}
-		if (params.getFlag() != null && params.getFlag() == 2) {//已评价或取消
+		if (params.getFlag() != null && params.getFlag() == 2) {//已评价或取消(手机端)
 			sql.append(" and ((t.score > 0 and t.status = 4) or t.status = 5)");
 		}
-		if (params.getFlag() != null && params.getFlag() == 1) {//未评价
+		if (params.getFlag() != null && params.getFlag() == 1) {//未评价（手机端）
 			sql.append(" and t.score is null and t.status in (0,1,2,3,4)");
+		}
+		if (params.getFeedbackFlag() != null && params.getFeedbackFlag() == 2) {//已评价(web端)
+			sql.append(" and t.score > 0 and t.status = 4");
+		}
+		if (params.getFeedbackFlag() != null && params.getFeedbackFlag() == 1) {//未评价（web端）
+			sql.append(" and t.score is null and t.status = 4");
 		}
         sql.append(" order by t.id desc");
 		return (PageList<OrderVo>)jdbcDao.createNativeExecutor().resultClass(OrderVo.class)

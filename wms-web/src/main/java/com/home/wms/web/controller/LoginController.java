@@ -120,7 +120,8 @@ public class LoginController {
     }
 
     @RequestMapping(value="/login", method = RequestMethod.GET)
-    public String login() {
+    public String login(String fromUrl,Model model) {
+        model.addAttribute("fromUrl",fromUrl);
         return "login";
     }
 

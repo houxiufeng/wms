@@ -1,9 +1,12 @@
 package com.home.wms.dto;
 
+import java.util.List;
+
 public class QueryUserParams {
 
 	private String name;
 	private Long organizationId;
+	private List<String> roleCodes;
 	private Integer iDisplayStart = 0;
 	private Integer iDisplayLength = 10;
 	public String getName() {
@@ -32,5 +35,13 @@ public class QueryUserParams {
 	}
 	public void setiDisplayLength(Integer iDisplayLength) {
 		this.iDisplayLength = iDisplayLength;
+	}
+
+	public List<String> getRoleCodes() {
+		return roleCodes;
+	}
+
+	public void setRoleCodes(List<String> roleCodes) {
+		this.roleCodes = roleCodes;
 	}
 }

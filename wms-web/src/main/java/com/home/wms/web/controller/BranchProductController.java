@@ -31,18 +31,20 @@ public class BranchProductController {
 	private OrderService orderService;
 	@Autowired
 	private DictService dictService;
+	@Autowired
+	private BranchService branchService;
 
 	private static final Logger LOG = LoggerFactory.getLogger(BranchProductController.class);
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(Model model, @RequestParam Long branchId){
-//		Branch branch = branchService.getBranchById(branchId);
+		Branch branch = branchService.getBranchById(branchId);
 		QueryDictParams params = new QueryDictParams();
 		params.setOrganizationId(AppContextManager.getCurrentUserInfo().getOrganizationId());
 		params.setType(DictType.PRODUCT_BRAND.getValue());
 		params.setiDisplayLength(1000);
 		model.addAttribute("brands",dictService.findPageDicts(params));
-		model.addAttribute("branchId", branchId);
+		model.addAttribute("branch", branch);
 		return "/branch/branch_product";
 	}
 

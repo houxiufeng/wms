@@ -12,7 +12,8 @@ public class QueryOrderParams {
 	private Long vendorId;
 	private Long customerId;
 	private Long branchId;
-	private Integer flag;//主要用来查看客户是否评价完成或取消
+	private Integer flag;//主要用来查看客户是否评价完成或取消（手机端）
+	private Integer feedbackFlag;//查看是否已经评价（WEB端）
 	private Integer iDisplayStart = 0;
 	private Integer iDisplayLength = 10;
 
@@ -102,5 +103,13 @@ public class QueryOrderParams {
 
 	public void setBranchId(Long branchId) {
 		this.branchId = branchId;
+	}
+
+	public Integer getFeedbackFlag() {
+		return feedbackFlag;
+	}
+
+	public void setFeedbackFlag(Integer feedbackFlag) {
+		this.feedbackFlag = feedbackFlag;
 	}
 }

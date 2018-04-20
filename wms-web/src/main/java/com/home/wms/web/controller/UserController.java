@@ -71,6 +71,7 @@ public class UserController {
     		user.setPassword(SecureUtil.md5(password));
     		userService.save(user);
     		result.put("code", 0);
+		    asyncService.sendMail(user.getEmail(),"Welcome " + user.getName(),StrUtil.format(" Username:{}\n Password:{}\nPlease login the system for change the password", user.getEmail(), password));
 //    		Role role = roleService.getById(user.getRoleId());
 //    		if (role != null && role.getCode().equals(RoleCode.CUSTOMER.getCode())) {//如果是customer用户，需要发邮件.
 //			    asyncService.sendMail("houxiufeng@edianzu.cn","Account info",StrUtil.format("your account is:{}, password is:{}", user.getEmail(), password));

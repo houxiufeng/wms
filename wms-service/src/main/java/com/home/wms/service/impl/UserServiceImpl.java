@@ -37,6 +37,16 @@ public class UserServiceImpl implements UserService{
 		    sql.append(" and user.name like ?");
 		    values.add("%" + params.getName().trim() + "%");
 	    }
+	    if (params.getRoleCodes() != null && params.getRoleCodes().size() > 0) {
+	    	String roleStr = "";
+	    	for (String s : params.getRoleCodes()) {
+	    		roleStr += "'" + s +  "',";
+		    }
+		    if (StringUtils.isNotBlank(roleStr)) {
+	    		roleStr = roleStr.substring(0, roleStr.length() - 1);
+		    }
+		    sql.append(StrUtil.format(" and role.code in ({})", roleStr));
+	    }
 	    sql.append(" order by user.id desc");
 	    return (PageList<UserVo>)jdbcDao.createNativeExecutor().resultClass(UserVo.class).command(sql.toString()).parameters(values.toArray()).pageList(params.getiDisplayStart()/params.getiDisplayLength() + 1, params.getiDisplayLength());
     }

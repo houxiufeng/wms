@@ -109,7 +109,12 @@
                                 if (ispc) {
                                     window.location.href = "${ctx}/main";
                                 } else {
-                                    window.location.href = "${ctx}/mobile";
+                                    var fromUrl = '${fromUrl}';
+                                    if (!_isNull(fromUrl)) {
+                                        window.location.href = "${ctx}"+fromUrl;
+                                    } else {
+                                        window.location.href = "${ctx}/mobile";
+                                    }
                                 }
                             } else {
                                 $.removeCookie('wms_token', { path: '/' });

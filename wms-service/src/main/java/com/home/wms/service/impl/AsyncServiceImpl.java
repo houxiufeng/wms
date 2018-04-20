@@ -1,8 +1,11 @@
 package com.home.wms.service.impl;
 
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.extra.mail.MailAccount;
 import cn.hutool.extra.mail.MailUtil;
 import com.home.wms.service.AsyncService;
+import com.home.wms.utils.MyUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
@@ -19,10 +22,6 @@ public class AsyncServiceImpl implements AsyncService {
 	@Override
 	@Async
 	public void sendMail(String to, String subject, String content, File... files) {
-		try {
-			MailUtil.sendText(to,subject, content, files);
-		} catch (Exception e) {
-			LOG.info("Email error:{}",e.getMessage());
-		}
+		MyUtils.sendMail(to, subject, content, false, files);
 	}
 }

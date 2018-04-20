@@ -64,6 +64,9 @@ var Branch = {
         var data = jQuery("#branchForm").serialize();
         var contactPhoneStr = buildPhoneStr(jQuery('#contactPhone_pre').val(), jQuery('#contactPhone').val());
         data += "&contactPhone="+contactPhoneStr;
+        if (!_isNull(jQuery("#point_x").val()) && !_isNull(jQuery("#point_y").val())) {
+            data += "&poi=" + jQuery("#point_x").val() + "," + jQuery("#point_y").val();
+        }
         if (params.form.valid()) {
             jQuery.ajax({
                 url: appCtx + "/branch/create",
@@ -73,6 +76,7 @@ var Branch = {
                 success: function(json) {
                     if (json.code == "0") {
                         App.alert("success!", function(){
+                            cleanPointxy();
                             App.goToPage(appCtx+"/branch");
                         });
                     } else {
@@ -95,6 +99,9 @@ var Branch = {
         var data = jQuery("#branchForm").serialize();
         var contactPhoneStr = buildPhoneStr(jQuery('#contactPhone_pre').val(), jQuery('#contactPhone').val());
         data += "&contactPhone="+contactPhoneStr;
+        if (!_isNull(jQuery("#point_x").val()) && !_isNull(jQuery("#point_y").val())) {
+            data += "&poi=" + jQuery("#point_x").val() + "," + jQuery("#point_y").val();
+        }
         if (params.form.valid()) {
             jQuery.ajax({
                 url: appCtx + "/branch/update/",
@@ -104,6 +111,7 @@ var Branch = {
                 success: function(json) {
                     if (json.code == "0") {
                         App.alert("success!", function(){
+                            cleanPointxy();
                             App.goToPage(appCtx+"/branch");
                         });
                     } else {
@@ -155,6 +163,9 @@ var Branch = {
             },
             contactPhone: {
                 required:true
+            },
+            userId: {
+                required:true
             }
         }
         params.messages={
@@ -173,6 +184,9 @@ var Branch = {
             },
             contactPhone: {
                 required:"contact phone can't be empty!"
+            },
+            userId: {
+                required:"user can't be empty!"
             }
         }
         params.form = jQuery("#branchForm");

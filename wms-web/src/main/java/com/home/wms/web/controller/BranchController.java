@@ -84,6 +84,10 @@ public class BranchController {
 					result.put("message", "user already bind in " + b.getName());
 					return result;
 				}
+			} else {
+				result.put("code", 1);
+				result.put("message", "user can't be empty");
+				return result;
 			}
 			branchService.saveBranch(branch);
 			result.put("code", 0);
@@ -125,6 +129,10 @@ public class BranchController {
 	                result.put("message", "user already bind in " + b.getName());
 	                return result;
                 }
+			} else {
+				result.put("code", 1);
+				result.put("message", "user can't be empty");
+				return result;
 			}
 			branchService.updateBranch(branch);
 			result.put("code", 0);

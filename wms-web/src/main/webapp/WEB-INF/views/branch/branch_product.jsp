@@ -16,12 +16,13 @@
                 <span style="font-weight: 600; font-size: 14px;">Product info</span>
                 <a href="javascript:BranchProduct.saveOrUpdate();" class="red btn" style="float: right"><i class="icon-save"></i></a>
                 <a href="javascript:BranchProduct.reset();" class="dark_green btn" style="float: right;margin-right: 2px"><i class="icon-refresh"></i></a>
+                <a href="javascript:App.goToPage(appCtx+'/branch');" class="dark_green btn" style="float: right;margin-right: 2px"><i class="icon-reply"></i></a>
             </div>
         </div>
         <div class="span5" style="margin-bottom: 20px;">
             <form id="branchProductForm">
                 <input name="id" type="hidden" value="">
-                <input id="branchId" name="branchId" type="hidden" value="${branchId}">
+                <input id="branchId" name="branchId" type="hidden" value="${branch.id}">
                 <div class="form_row">
                     <div class="span12">
                         <label class="field_name align_right"><span style="color: red">*</span>Product name:</label>
@@ -126,6 +127,19 @@
             gMap = initializeMap("googleMap");
             BranchProduct.gMap = gMap;
         };
+
+        var poi = '${branch.poi}';
+        if (!_isNull(poi)) {
+            var latlng = poi.split(",");
+            var myCenter=new google.maps.LatLng(latlng[1],latlng[0]);
+            placeMarker(gMap, myCenter);
+        } else {
+            if (!_isNull(marker)) {
+                marker.setMap(null);
+            }
+            cleanPointxy();
+        }
+
         $(".datetimepicker").datetimepicker({
             format:"yyyy-mm-dd",
             autoclose: true,

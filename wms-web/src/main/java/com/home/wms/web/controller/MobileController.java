@@ -109,7 +109,7 @@ public class MobileController {
 	@RequestMapping(value = "/branch/product/{id}", method = RequestMethod.GET)
 	public String vendorOrderCheck(@CookieValue(value="wms_token",required=false) String token, HttpSession session, @PathVariable Long id,Model model,HttpServletResponse res) {
 		if (StringUtils.isBlank(token)) {
-			return "redirect:/login";
+			return "redirect:/login?fromUrl=/mobile/branch/product/"+id;
 		}
 		User user = userService.findByToken(token);
 		if (user == null) {
@@ -118,7 +118,7 @@ public class MobileController {
 			cookie.setMaxAge(0);
 			cookie.setPath("/");
 			res.addCookie(cookie);
-			return "redirect:/login";
+			return "redirect:/login?fromUrl=/mobile/branch/product/"+id;
 		}
 
 		String newToken = MyUtils.generateToken(user.getEmail(), user.getPassword(), user.getOrganizationId());
@@ -130,7 +130,7 @@ public class MobileController {
 			cookie.setMaxAge(0);
 			cookie.setPath("/");
 			res.addCookie(cookie);
-			return "redirect:/login";
+			return "redirect:/login?fromUrl=/mobile/branch/product/"+id;
 		}
 		CurrentUserInfo currentUserInfo = (CurrentUserInfo)session.getAttribute(AppConstants.CURRENT_USER);
 		if (currentUserInfo == null) {//如果没登录

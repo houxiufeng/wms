@@ -84,6 +84,10 @@ if (!_isNull('${currentUserInfo}')) {
         jQuery("#point_y").val(location.lat());
         jQuery("#point_x").val(location.lng());
     }
+    function cleanPointxy() {
+        jQuery("#point_y").val("");
+        jQuery("#point_x").val("");
+    }
 </script>
 
 

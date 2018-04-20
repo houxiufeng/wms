@@ -15,6 +15,7 @@ public class Branch {
 	private String address;
 	private String contactPerson;
 	private String contactPhone;
+	private String poi;
 	private Long createdBy;
 	private Date createdTime;
 
@@ -104,5 +105,13 @@ public class Branch {
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
+	}
+
+	public String getPoi() {
+		return poi;
+	}
+
+	public void setPoi(String poi) {
+		this.poi = poi;
 	}
 }

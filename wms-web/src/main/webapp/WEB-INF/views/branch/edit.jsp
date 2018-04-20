@@ -76,7 +76,17 @@
 		        <div class="span6">
 			        <label class="field_name align_right"><span style="color: red">*</span>Branch address:</label>
 			        <div class="field">
-				        <input name="address" class="span12" type="text" maxlength="128" value="${branch.address}">
+				        <input id="address" name="address" class="span10" type="text" maxlength="128" value="${branch.address}">
+				        <a id="searchPoi" href="javascript:void(0)" class="btn dark_green">Search</a>
+			        </div>
+		        </div>
+	        </div>
+
+	        <div class="form_row">
+		        <div class="span12">
+			        <label class="field_name align_right" style="width: 9%">poi</label>
+			        <div class="field" style="margin-left: 10%">
+				        <div id="googleMap" style="height:350px;"></div>
 			        </div>
 		        </div>
 	        </div>
@@ -100,5 +110,31 @@
         var p = splitPhoneStr(contactPhone);
         $("#contactPhone_pre").val(p[0]);
         $("#contactPhone").val(p[1]);
+
+        var gMap = initializeMap("googleMap");
+        var geocoder = new google.maps.Geocoder();
+        $("#searchPoi").click(function () {
+            var address = $("#address").val();
+            if (!_isNull(address)) {
+                geocoder.geocode( {'address': $.trim(address)}, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        placeMarker(gMap, results[0].geometry.location);
+                    } else {
+                        App.alert("Geocode was not successful for the following reason: " + status);
+                    }
+                });
+            }
+        });
+	    var poi = '${branch.poi}';
+        if (!_isNull(poi)) {
+            var latlng = poi.split(",");
+            var myCenter=new google.maps.LatLng(latlng[1],latlng[0]);
+            placeMarker(gMap, myCenter);
+        } else {
+            if (!_isNull(marker)) {
+                marker.setMap(null);
+            }
+            cleanPointxy();
+        }
     });
 </script>

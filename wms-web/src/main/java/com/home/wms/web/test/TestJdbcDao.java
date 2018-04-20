@@ -1,6 +1,7 @@
 package com.home.wms.web.test;
 
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.extra.mail.MailUtil;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.home.wms.dto.UserVo;
@@ -8,6 +9,7 @@ import com.home.wms.entity.Dict;
 import com.home.wms.entity.Permission;
 import com.home.wms.entity.Torder;
 import com.home.wms.entity.User;
+import com.home.wms.service.AsyncService;
 import com.ktanx.common.model.PageList;
 import com.ktanx.jdbc.persist.JdbcDao;
 import org.apache.commons.lang.StringUtils;
@@ -28,6 +30,8 @@ public class TestJdbcDao {
 
 	@Autowired
 	private JdbcDao jdbcDao;
+	@Autowired
+	private AsyncService asyncService;
 
 
 	@Test
@@ -114,6 +118,12 @@ public class TestJdbcDao {
 //		dict.setGender(dict.getName() + "---ssf");
 //		System.out.println(dict.getName());
 //		System.out.println(dict.getGender());
+	}
+
+	@Test
+	public void testMail() {
+//		MailUtil.sendText("houxiufeng@edianzu.cn","testxxss", "testmailtome", null);
+		asyncService.sendMail("houxiufeng@edianzu.cn","Account info","ssfsfsfsfsf");
 	}
 
 	public static void main(String[] args) {

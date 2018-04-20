@@ -1,17 +1,14 @@
 package com.home.wms.web.controller;
 
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
-import com.home.wms.dto.OrderVo;
-import com.home.wms.dto.QueryCustomerParams;
-import com.home.wms.dto.QueryDictParams;
-import com.home.wms.dto.QueryOrderParams;
-import com.home.wms.entity.Torder;
+import com.home.wms.dto.*;
+import com.home.wms.entity.*;
 import com.home.wms.enums.DictType;
 import com.home.wms.enums.OrderStatus;
-import com.home.wms.service.CustomerService;
-import com.home.wms.service.DictService;
-import com.home.wms.service.OrderService;
+import com.home.wms.enums.RoleCode;
+import com.home.wms.service.*;
 import com.home.wms.utils.AppContextManager;
 import com.ktanx.common.model.PageList;
 import org.slf4j.Logger;
@@ -22,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by fitz on 2018/3/4.
@@ -35,6 +33,14 @@ public class OrderController {
 	private CustomerService customerService;
 	@Autowired
 	private DictService dictService;
+	@Autowired
+	private AsyncService asyncService;
+	@Autowired
+	private VendorService vendorService;
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private BranchService branchService;
 
 	private static final Logger LOG = LoggerFactory.getLogger(OrderController.class);
 
@@ -73,6 +79,7 @@ public class OrderController {
 		try {
 			orderService.saveOrder(order);
 			result.put("code", 0);
+			sendMailToStaff(order);
 		} catch(Exception e) {
 			e.printStackTrace();
 			LOG.error(e.getMessage());
@@ -137,6 +144,18 @@ public class OrderController {
 			}
 			orderService.updateOrder(order);
 			result.put("code", 0);
+			Vendor vendor = vendorService.getVendorById(vendorId);
+			if (vendor != null) {//发邮件通知
+				User user = userService.getById(vendor.getUserId());
+				Branch branch = branchService.getBranchById(torder.getBranchId());
+				String branchName = "";
+				if (branch != null) {
+					branchName = branch.getName();
+				}
+				if (user != null) {
+					asyncService.sendMail(user.getEmail(),"You have assigned a job from the customer branch " + branchName,"You have assigned a job from the customer branch " + branchName + ", please check the product and scan the QR code" );
+				}
+			}
 		} catch(Exception e) {
 			e.printStackTrace();
 			LOG.error(e.getMessage());
@@ -257,6 +276,22 @@ public class OrderController {
 			result.put("message", e.getMessage());
 		}
 		return result;
+	}
+
+	private void sendMailToStaff(Torder order) {
+		QueryUserParams params = new QueryUserParams();
+		params.setiDisplayLength(Integer.MAX_VALUE);
+		List<String> roles = Lists.newArrayList(RoleCode.BOSS.getCode(), RoleCode.USER.getCode());
+		params.setRoleCodes(roles);
+		String customerName = "";
+		Customer customer = customerService.getCustomerById(order.getCustomerId());
+		if (customer != null) {
+			customerName = customer.getName();
+		}
+		List<UserVo> users = userService.findPageUsers(params);
+		for (UserVo vo : users) {
+            asyncService.sendMail(vo.getEmail(), StrUtil.format("you have an order {} from {}", order.getOrderNo(), customerName),StrUtil.format("you have an order {} from {}, Please follow up the order", order.getOrderNo(), customerName));
+		}
 	}
 
 }

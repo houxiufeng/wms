@@ -22,6 +22,7 @@ var Order = {
                 aoData.push({"name": "orderNo", "value":jQuery("#orderNo").val()});
                 aoData.push({"name": "startTime", "value":jQuery("#startTime").val()});
                 aoData.push({"name": "endTime", "value":jQuery("#endTime").val()});
+                aoData.push({"name": "feedbackFlag", "value":jQuery("input[name='feedbackFlag']:checked").val()});
                 aoData.push({"name": "status", "value":index});
             },
             fnRowCallback : function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
@@ -31,70 +32,98 @@ var Order = {
                     jQuery(nRow).find("td").not("td:last").css({"background-color":"#ff8f32","color":"#fff"});
                 }
             },
-            aoColumns:[{
-                mData : "orderNo",
-                sDefaultContent : "",
-                sTitle : "Order no"
-            },{
-                mData : "customerName",
-                sDefaultContent : "",
-                sTitle : "Customer name"
-            },{
-                mData : "branchName",
-                sDefaultContent : "",
-                sTitle : "Branch name"
-
-            },{
-                mData : "productName",
-                sDefaultContent : "",
-                sTitle : "Product name",
-                mRender: function(value, type ,data) {
-                    return value + "-" + data.productModel;
-                }
-            },{
-                mData : "createdTime",
-                sDefaultContent : "",
-                sTitle : "Create time",
-                mRender: function(value, type ,data) {
-                    return moment(value).format("YYYY-MM-DD HH:mm:ss");
-                }
-            },{
-                mData : "typeName",
-                sDefaultContent : "",
-                sTitle : "Problem type"
-            },{
-                mData : "description",
-                sDefaultContent : "",
-                sTitle : "Description"
-            },{
-                mData : "vendorName",
-                sDefaultContent : "",
-                sTitle : "Engineer name"
-            },{
-                mData : "id",
-                sDefaultContent : "",
-                sTitle : "Operation",
-                mRender: function(value, type ,data){
-                    var opts = ['<a class="btn edit blue" href="javascript:Order.detail('+ value + ')"><i class="icon-eye-open"></i></a>'];
-                    if (index == 0) {
-                        opts.push('<a class="btn edit blue" href="javascript:Order.assign('+ value + ')"><i class="icon-group"></i></a>');
-                        opts.push('<a class="btn edit blue" href="javascript:Order.cancel('+ value + ')"><i class="icon-remove"></i></a>');
-                    } else if (index == 1) {
-                        opts.push('<a class="btn edit blue" href="javascript:Order.checked('+ value + ')"><i class="icon-ok"></i></a>');
-                        opts.push('<a class="btn edit blue" href="javascript:Order.cancel('+ value + ')"><i class="icon-remove"></i></a>');
-                    } else if (index == 2) {
-                        opts.push('<a class="btn edit blue" href="javascript:Order.fixed('+ value + ')"><i class="icon-ok"></i></a>');
-                        opts.push('<a class="btn edit blue" href="javascript:Order.cancel('+ value + ')"><i class="icon-remove"></i></a>');
-                    }
-                    // else if (index == 3) {
-                    //     opts.push('<a class="btn edit blue" href="javascript:Order.audited('+ value + ')">通过</a>');
-                    //     opts.push('<a class="btn edit blue" href="javascript:Order.cancel('+ value + ')">取消</a>');
-                    // }
-                    return opts.join(" ");
-                }
-
-            }]
+            aoColumns:Order.getColumns(index)
         })
+    },
+
+    getColumns: function (index) {
+        var columns = [{
+            mData : "orderNo",
+            sDefaultContent : "",
+            sTitle : "Order no"
+        },{
+            mData : "customerName",
+            sDefaultContent : "",
+            sTitle : "Customer name"
+        },{
+            mData : "branchName",
+            sDefaultContent : "",
+            sTitle : "Branch name"
+
+        },{
+            mData : "productName",
+            sDefaultContent : "",
+            sTitle : "Product name",
+            mRender: function(value, type ,data) {
+                return value + "-" + data.productModel;
+            }
+        },{
+            mData : "createdTime",
+            sDefaultContent : "",
+            sTitle : "Create time",
+            mRender: function(value, type ,data) {
+                return moment(value).format("YYYY-MM-DD HH:mm:ss");
+            }
+        },{
+            mData : "typeName",
+            sDefaultContent : "",
+            sTitle : "Problem type"
+        },{
+            mData : "description",
+            sDefaultContent : "",
+            sTitle : "Description"
+        },{
+            mData : "vendorName",
+            sDefaultContent : "",
+            sTitle : "Engineer name"
+        }];
+        var scoreColumn = {
+            mData : "score",
+            sDefaultContent : "",
+            sTitle : "Rate",
+            mRender: function(value, type ,data){
+                if (_isNull(value)) {
+                    return "<span style='color: #bf3f20'>wait for customer rating</span>"
+                } else {
+                    if (value == 1) {
+                        return "positive"
+                    } else if (value == 2) {
+                        return "normal"
+                    } else {
+                        return "negative"
+                    }
+                }
+            }
+        };
+        var opts = {
+            mData : "id",
+            sDefaultContent : "",
+            sTitle : "Operation",
+            mRender: function(value, type ,data){
+                var opts = ['<a class="btn edit blue" href="javascript:Order.detail('+ value + ')"><i class="icon-eye-open"></i></a>'];
+                if (index == 0) {
+                    opts.push('<a class="btn edit blue" href="javascript:Order.assign('+ value + ')"><i class="icon-group"></i></a>');
+                    opts.push('<a class="btn edit blue" href="javascript:Order.cancel('+ value + ')"><i class="icon-remove"></i></a>');
+                } else if (index == 1) {
+                    opts.push('<a class="btn edit blue" href="javascript:Order.checked('+ value + ')"><i class="icon-ok"></i></a>');
+                    opts.push('<a class="btn edit blue" href="javascript:Order.cancel('+ value + ')"><i class="icon-remove"></i></a>');
+                } else if (index == 2) {
+                    opts.push('<a class="btn edit blue" href="javascript:Order.fixed('+ value + ')"><i class="icon-ok"></i></a>');
+                    opts.push('<a class="btn edit blue" href="javascript:Order.cancel('+ value + ')"><i class="icon-remove"></i></a>');
+                }
+                // else if (index == 3) {
+                //     opts.push('<a class="btn edit blue" href="javascript:Order.audited('+ value + ')">通过</a>');
+                //     opts.push('<a class="btn edit blue" href="javascript:Order.cancel('+ value + ')">取消</a>');
+                // }
+                return opts.join(" ");
+            }
+
+        };
+        if (index == 4) {
+            columns.push(scoreColumn);
+        }
+        columns.push(opts);
+        return columns;
     },
 
     // 查询按钮

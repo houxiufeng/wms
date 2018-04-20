@@ -51,6 +51,11 @@
                     <%--<table id="orderTable3" class="table table-striped table-bordered table-hover datatable"></table>--%>
                 <%--</div>--%>
                 <div class="tab-pane" id="right-tab4">
+                    <div class="span5" style="float: right; text-align: right">
+                        <input type="radio" class="uniform" name="feedbackFlag" value="" checked="checked"> All&nbsp;&nbsp;
+                        <input type="radio" class="uniform" name="feedbackFlag" value="1" > Wait for rate&nbsp;&nbsp;
+                        <input type="radio" class="uniform" name="feedbackFlag" value="2" > Already rated
+                    </div>
                     <table id="orderTable4" class="table table-striped table-bordered table-hover datatable"></table>
                 </div>
                 <div class="tab-pane" id="right-tab5">
@@ -73,5 +78,8 @@
         pickTime: false,
         minView: '2',
         todayBtn: true
+    });
+    jQuery("input[name='feedbackFlag']").click(function(){
+        Order.getTableData(4);
     });
 </script>
