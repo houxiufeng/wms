@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoders are assigned by default the type ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+		<encoder>
+			<pattern>%d{YYYY-MM-dd HH:mm:ss.SSS} %-5level [%file:%line] - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!--按照大小的事例-->
+	<!--<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+		<!--<file>wms.log</file>-->
+		<!--<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">-->
+			<!--<fileNamePattern>wms.%i.log.zip</fileNamePattern>-->
+			<!--<minIndex>1</minIndex>-->
+			<!--<maxIndex>10</maxIndex>-->
+		<!--</rollingPolicy>-->
+		<!--<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">-->
+			<!--<maxFileSize>100MB</maxFileSize>-->
+		<!--</triggeringPolicy>-->
+		<!--<encoder>-->
+			<!--<pattern>%d{YYYY-MM-dd HH:mm:ss.SSS} %-5level [%file:%line] - %msg%n</pattern>-->
+		<!--</encoder>-->
+	<!--</appender>-->
+
+
+	<!--按照天数事例-->
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>%d{YYYY-MM-dd HH:mm:ss.SSS} %-5level [%file:%line] - %msg%n</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${catalina.home}/logs/wms_%d{yyyy-MM-dd}.log</fileNamePattern>
+			<!-- 保留 30天数据，默认无限-->
+			<MaxHistory>30</MaxHistory>
+		</rollingPolicy>
+	</appender>
+
+    <logger name="com.home" level="INFO" additivity="false">
+        <appender-ref ref="FILE"/>
+	    <appender-ref ref="STDOUT" />
+    </logger>
+
+	<!--JdbcTemplate SQL语句-->
+	<!--<logger name="org.springframework.jdbc.core.JdbcTemplate" level="DEBUG"/>-->
+
+	<!--JdbcTemplate SQL参数-->
+	<!--<logger name="org.springframework.jdbc.core.StatementCreatorUtils" level="TRACE"/>-->
+
+    <!--TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF-->
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
+	</root>
+</configuration>
