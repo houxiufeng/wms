@@ -42,7 +42,7 @@ public class BranchServiceImpl implements BranchService{
 		sql.append(" order by a.id desc");
 
 
-		return (PageList<BranchVo>)jdbcDao.createNativeExecutor().resultClass(BranchVo.class).command(sql.toString()).parameters(paramList.toArray()).pageList(params.getiDisplayStart()/params.getiDisplayLength() + 1, params.getiDisplayLength());
+		return (PageList<BranchVo>)jdbcDao.createNativeExecutor().resultClass(BranchVo.class).command(sql.toString()).forceNative(true).parameters(paramList.toArray()).pageList(params.getiDisplayStart()/params.getiDisplayLength() + 1, params.getiDisplayLength());
 	}
 
 	@Override

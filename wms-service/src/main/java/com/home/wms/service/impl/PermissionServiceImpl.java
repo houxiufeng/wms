@@ -43,14 +43,14 @@ public class PermissionServiceImpl implements PermissionService {
 			paramList.add(params.getStatus());
 		}
 		if (StrUtil.isNotBlank(params.getPname())) {
-			List<Long> ids = jdbcDao.createSelect(Permission.class).include("id").where("status",1).and("name","like","%" + params.getPname().trim() + "%").singleColumnList(Long.class);
+			List<Long> ids = jdbcDao.createSelect(Permission.class).include("id").where("status",1).and("name","like","%" + params.getPname().trim() + "%").oneColList(Long.class);
 			if (ids.isEmpty()) {
 				ids.add(-1L);
 			}
 			sql.append(" and a.pid in(" + StrUtil.join(",",ids) + ")");//in, 就你特殊，注意不能用?和参数的模式。
 		}
 		sql.append(" order by a.seq asc");
-		return (PageList<PermissionVo>)jdbcDao.createNativeExecutor().resultClass(PermissionVo.class).command(sql.toString()).parameters(paramList.toArray()).pageList(params.getiDisplayStart()/params.getiDisplayLength() + 1, params.getiDisplayLength());
+		return (PageList<PermissionVo>)jdbcDao.createNativeExecutor().resultClass(PermissionVo.class).command(sql.toString()).forceNative(true).parameters(paramList.toArray()).pageList(params.getiDisplayStart()/params.getiDisplayLength() + 1, params.getiDisplayLength());
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class PermissionServiceImpl implements PermissionService {
 
 	@Override
 	public void save(Permission permission) {
-		Integer maxSeq = (Integer)jdbcDao.createSelect(Permission.class).addSelectField("max(seq)").notSelectEntityField().objectResult();
+		Integer maxSeq = (Integer)jdbcDao.createSelect(Permission.class).addSelectField("max(seq)").notSelectEntityField().objResult();
 		permission.setSeq(maxSeq+1);
 		jdbcDao.insert(permission);
 	}

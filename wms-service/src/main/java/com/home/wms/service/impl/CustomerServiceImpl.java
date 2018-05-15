@@ -46,7 +46,7 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 		sql.append(" order by c.id desc");
 		return (PageList<CustomerVo>)jdbcDao.createNativeExecutor().resultClass(CustomerVo.class)
-				.command(sql.toString()).parameters(paramList.toArray())
+				.command(sql.toString()).forceNative(true).parameters(paramList.toArray())
 				.pageList(params.getiDisplayStart()/params.getiDisplayLength() + 1, params.getiDisplayLength());
 	}
 

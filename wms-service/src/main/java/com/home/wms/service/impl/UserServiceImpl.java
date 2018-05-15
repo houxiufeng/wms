@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService{
 		    sql.append(StrUtil.format(" and role.code in ({})", roleStr));
 	    }
 	    sql.append(" order by user.id desc");
-	    return (PageList<UserVo>)jdbcDao.createNativeExecutor().resultClass(UserVo.class).command(sql.toString()).parameters(values.toArray()).pageList(params.getiDisplayStart()/params.getiDisplayLength() + 1, params.getiDisplayLength());
+	    return (PageList<UserVo>)jdbcDao.createNativeExecutor().resultClass(UserVo.class).command(sql.toString()).forceNative(true).parameters(values.toArray()).pageList(params.getiDisplayStart()/params.getiDisplayLength() + 1, params.getiDisplayLength());
     }
     
     public void save(User user) {
@@ -95,7 +95,7 @@ public class UserServiceImpl implements UserService{
 		if (organizationId != null) {
 			sql.append(" and user.organization_id = " + organizationId);
 		}
-		return (List<User>)jdbcDao.createNativeExecutor().resultClass(User.class).command(sql.toString()).list();
+		return (List<User>)jdbcDao.createNativeExecutor().resultClass(User.class).command(sql.toString()).forceNative(true).list();
 
 	}
 	public List<User> findUsersNotInBranch() {
@@ -106,7 +106,7 @@ public class UserServiceImpl implements UserService{
 		if (organizationId != null) {
 			sql.append(" and user.organization_id = " + organizationId);
 		}
-		return (List<User>)jdbcDao.createNativeExecutor().resultClass(User.class).command(sql.toString()).list();
+		return (List<User>)jdbcDao.createNativeExecutor().resultClass(User.class).command(sql.toString()).forceNative(true).list();
 
 	}
 }

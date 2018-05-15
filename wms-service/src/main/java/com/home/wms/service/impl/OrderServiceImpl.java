@@ -102,7 +102,7 @@ public class OrderServiceImpl implements OrderService {
 		}
         sql.append(" order by t.id desc");
 		return (PageList<OrderVo>)jdbcDao.createNativeExecutor().resultClass(OrderVo.class)
-				.command(sql.toString()).parameters(paramList.toArray())
+				.command(sql.toString()).forceNative(true).parameters(paramList.toArray())
 				.pageList(params.getiDisplayStart()/params.getiDisplayLength() + 1, params.getiDisplayLength());
 	}
 
@@ -111,20 +111,8 @@ public class OrderServiceImpl implements OrderService {
 		order.setOrganizationId(AppContextManager.getCurrentUserInfo().getOrganizationId());
 		order.setCreatedBy(AppContextManager.getCurrentUserInfo().getId());
 		BranchProductInfo branchProductInfo = branchProductService.getBranchProductInfoById(order.getBranchProductId());
-//		Long maxId = (Long)jdbcDao.createSelect(Torder.class).addSelectField("max(id)").notSelectEntityField().objectResult();
-//		if (maxId == null) {
-//			maxId = 0L;
-//		}
-//		maxId++;
-		PageList<String> orderNos = jdbcDao.createSelect(Torder.class).include("orderNo").where("organizationId",order.getOrganizationId()).orderBy("id").desc().singleColumnPageList(String.class, 1, 1);
+		PageList<String> orderNos = jdbcDao.createSelect(Torder.class).include("orderNo").where("organizationId",order.getOrganizationId()).orderBy("id").desc().oneColPageList(String.class, 1, 1);
 		String orderNo = orderNos.size() > 0 ? orderNos.get(0) : null;
-//		if (order.getOrganizationId() != null) {
-//			List<Torder> orders = (List<Torder>)jdbcDao.createNativeExecutor().command("select * from torder where organization_id = ? order by id desc limit 1").parameters(new Object[]{order.getOrganizationId()}).resultClass(Torder.class).list();
-//			orderNo = orders.size() > 0 ? orders.get(0).getOrderNo():null;
-//		} else {
-//			List<Torder> orders = (List<Torder>)jdbcDao.createNativeExecutor().command("select * from torder where organization_id is null order by id desc limit 1").resultClass(Torder.class).list();
-//			orderNo = orders.size() > 0 ? orders.get(0).getOrderNo():null;
-//		}
 		String newOrderNo = null;
 		if (StringUtils.isNotBlank(orderNo)) {
 			Integer d = Integer.parseInt(orderNo.substring(0, 6));
@@ -156,7 +144,7 @@ public class OrderServiceImpl implements OrderService {
 		sql.append("(select p.model from product p where bp.product_id = p.id) product_model,");
 		sql.append("(select p.name from product p where bp.product_id = p.id) product_name from torder t ");
 		sql.append("left join branch_product bp on t.branch_product_id = bp.id where t.id = ?");
-		return (OrderVo)jdbcDao.createNativeExecutor().resultClass(OrderVo.class).command(sql.toString()).parameters(Lists.newArrayList(id).toArray()).singleResult();
+		return (OrderVo)jdbcDao.createNativeExecutor().resultClass(OrderVo.class).command(sql.toString()).forceNative(true).parameters(Lists.newArrayList(id).toArray()).singleResult();
 	}
 
 	@Override

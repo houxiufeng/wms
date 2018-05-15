@@ -49,7 +49,7 @@ public class TestJdbcDao {
 	@Test
 	public void testSqlQuery() {
 		List<UserPhone> list = (List<UserPhone>)jdbcDao.createNativeExecutor().resultClass(UserPhone.class)
-				.command("select a.id, a.name, a.age, b.phone from user a left join user_phone b on a.id = b.user_id where a.id = ?")
+				.command("select a.id, a.name, a.age, b.phone from user a left join user_phone b on a.id = b.user_id where a.id = ?").forceNative(true)
 				.parameters(new Object[]{1}).list();
 		for (UserPhone uf : list) {
 			System.out.println(JSON.toJSONString(uf));
@@ -66,21 +66,23 @@ public class TestJdbcDao {
 			sql.append(" and a.pid in  (?) ");
 			paramList.add("5,6,7,8");
 		}
-		List<Permission> ps = (PageList<Permission>)jdbcDao.createNativeExecutor().resultClass(Permission.class).command(sql.toString()).parameters(paramList.toArray()).pageList(1, 10);
+		List<Permission> ps = (PageList<Permission>)jdbcDao.createNativeExecutor().resultClass(Permission.class).command(sql.toString()).forceNative(true).parameters(paramList.toArray()).pageList(1, 10);
 		for (Permission p : ps) {
 			System.out.println(p.getName());
 		}
 	}
 	@Test
 	public void testSS() {
-		Integer maxSeq = (Integer)jdbcDao.createSelect(Permission.class).addSelectField("max(seq)").notSelectEntityField().objectResult();
+		Integer maxSeq = (Integer)jdbcDao.createSelect(Permission.class).addSelectField("max(seq)").notSelectEntityField().objResult();
 		System.out.println(maxSeq);
 	}
 	@Test
 	public void testSingle() {
-		List<Torder> orders = (List<Torder>)jdbcDao.createNativeExecutor().command("select * from torder where organization_id = 10 order by id desc limit 1").resultClass(Torder.class).list();
-		String orderNo = orders.size() > 0 ? orders.get(0).getOrderNo():null;
-		System.out.println(orderNo);
+//		List<Torder> orders = (List<Torder>)jdbcDao.createNativeExecutor().command("select * from torder where organization_id = 10 order by id desc limit 1").forceNative(true).resultClass(Torder.class).list();
+//		String orderNo = orders.size() > 0 ? orders.get(0).getOrderNo():null;
+//		System.out.println(orderNo);
+		List<String> s = (List<String>)jdbcDao.createNativeExecutor().command("select order_no from torder where organization_id is null order by id desc ").forceNative(true).resultClass(String.class).list();
+		System.out.println(s);
 	}
 
 	@Test
@@ -95,17 +97,17 @@ public class TestJdbcDao {
 
 	@Test
 	public void testSingle3() {
-		List<String> ss = jdbcDao.createSelect(Torder.class).include("orderNo").where("id","<",10).and("organizationId",null).orderById().desc().singleColumnList(String.class);
-		PageList<String> stt = jdbcDao.createSelect(Torder.class).include("orderNo").where("id",">",10).and("organizationId",null).orderBy("id").desc().singleColumnPageList(String.class, 1, 1);
+		List<String> ss = jdbcDao.createSelect(Torder.class).include("orderNo").where("id","<",10).and("organizationId",null).orderById().desc().oneColList(String.class);
+		PageList<String> stt = jdbcDao.createSelect(Torder.class).include("orderNo").where("id",">",10).and("organizationId",null).orderBy("id").desc().oneColPageList(String.class, 1, 1);
 		Torder torder = jdbcDao.createSelect(Torder.class).where("organizationId", null).and("id",54).singleResult();
-		String s = jdbcDao.createSelect(Torder.class).include("orderNo").where("id",120).singleColumnResult(String.class);
+		String s = jdbcDao.createSelect(Torder.class).include("orderNo").where("id",120).oneColFirstResult(String.class);
 		System.out.println(s);
 	}
 
 	@Test
 	public void testNative() {
 		String sql = "select a.*, b.name role_name, b.code role_code from user a left join role b on a.role_id = b.id";
-		List<UserVo> userVos = (List<UserVo>)jdbcDao.createNativeExecutor().command(sql).resultClass(UserVo.class).list();
+		List<UserVo> userVos = (List<UserVo>)jdbcDao.createNativeExecutor().command(sql).forceNative(true).resultClass(UserVo.class).list();
 		for(UserVo vo : userVos) {
 			System.out.println(vo.getName() + ": " + vo.getRoleName());
 		}

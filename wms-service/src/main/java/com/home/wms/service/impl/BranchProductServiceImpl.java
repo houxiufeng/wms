@@ -51,7 +51,7 @@ public class BranchProductServiceImpl implements BranchProductService{
 		}
 		sql.append(" order by a.id desc");
 		return (PageList<BranchProductVo>)jdbcDao.createNativeExecutor().resultClass(BranchProductVo.class)
-				.command(sql.toString()).parameters(paramList.toArray())
+				.command(sql.toString()).parameters(paramList.toArray()).forceNative(true)
 				.pageList(params.getiDisplayStart()/params.getiDisplayLength() + 1, params.getiDisplayLength());
 	}
 
