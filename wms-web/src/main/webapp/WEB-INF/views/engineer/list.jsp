@@ -16,19 +16,19 @@
               <div>
                   <span class="inline">Engineer Name:</span>
                   <input id="name" name="name" type="text" style="width:230px;">
-                  <a href="javascript:Vendor.queryList()" class="dark_green btn" style="margin-left:10px;"><i class="icon-search"></i></a>
-                  <a href="javascript:App.goToPage('vendor/add')" class="dark_green btn"><i class="icon-plus"></i></a>
+                  <a href="javascript:Engineer.queryList()" class="dark_green btn" style="margin-left:10px;"><i class="icon-search"></i></a>
+                  <a href="javascript:App.goToPage('engineer/add')" class="dark_green btn"><i class="icon-plus"></i></a>
               </div>
           </div>
           <!-- end   -->
           
           <div class="dataTables_wrapper">
-            <table id="vendorTable" class="table table-striped table-bordered table-hover datatable"></table>
+            <table id="engineerTable" class="table table-striped table-bordered table-hover datatable"></table>
           </div>
         </div>
     </div>
 </div>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/app/vendor.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/app/engineer.js"></script>
 <script>
-    Vendor.getTableData();
+    Engineer.getTableData();
 </script>

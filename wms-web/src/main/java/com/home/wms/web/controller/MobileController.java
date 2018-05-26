@@ -29,7 +29,7 @@ import java.util.List;
 public class MobileController {
 
 	@Autowired
-	private VendorService vendorService;
+	private EngineerService engineerService;
 	@Autowired
 	private OrderService orderService;
 	@Autowired
@@ -53,15 +53,15 @@ public class MobileController {
 		model.addAttribute("currentUserInfo", JSON.toJSONString(currentUserInfo));
 		return "/mobile/index";
 	}
-	@RequestMapping(value = "/vendor", method = RequestMethod.GET)
-	public String vendor(HttpSession session, Model model) {
+	@RequestMapping(value = "/engineer", method = RequestMethod.GET)
+	public String engineer(HttpSession session, Model model) {
 		Long userId = AppContextManager.getCurrentUserInfo().getId();
-		Vendor vendor = vendorService.getVendorByUserId(userId);
-		if (vendor != null) {
-			model.addAttribute("vendor",vendor);
+		Engineer engineer = engineerService.getEngineerByUserId(userId);
+		if (engineer != null) {
+			model.addAttribute("engineer", engineer);
 			Torder order = new Torder();
 			order.setOrganizationId(AppContextManager.getCurrentUserInfo().getOrganizationId());
-			order.setVendorId(vendor.getId());
+			order.setEngineerId(engineer.getId());
 			List<Torder> torders = orderService.findOrders(order);
 			int checkAmount = 0;
 			int fixAmount = 0;
@@ -79,19 +79,19 @@ public class MobileController {
 			model.addAttribute("fixAmount", fixAmount);
 			model.addAttribute("completeAmount", completeAmount);
 		}
-		return "/mobile/vendor_index";
+		return "/mobile/engineer_index";
 	}
 
-	@RequestMapping(value = "/vendor/order/list", method = RequestMethod.GET)
-	public String vendorOrderCheckList(@RequestParam Integer status,  Model model) {
+	@RequestMapping(value = "/engineer/order/list", method = RequestMethod.GET)
+	public String engineerOrderCheckList(@RequestParam Integer status,  Model model) {
 		Long userId = AppContextManager.getCurrentUserInfo().getId();
-		Vendor vendor = vendorService.getVendorByUserId(userId);
-		model.addAttribute("vendor",vendor);
+		Engineer engineer = engineerService.getEngineerByUserId(userId);
+		model.addAttribute("engineer", engineer);
 		model.addAttribute("status",status);
-		return "mobile/vendor_order_list";
+		return "mobile/engineer_order_list";
 	}
 
-	@RequestMapping(value="/vendor/order/detail/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/engineer/order/detail/{id}", method = RequestMethod.GET)
 	public String orderDetail(@PathVariable Long id, Model model){
 		try {
 			OrderVo order = orderService.getOrderVoById(id);
@@ -103,11 +103,11 @@ public class MobileController {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return "/mobile/vendor_order_detail";
+		return "/mobile/engineer_order_detail";
 	}
 
 	@RequestMapping(value = "/branch/product/{id}", method = RequestMethod.GET)
-	public String vendorOrderCheck(@CookieValue(value="wms_token",required=false) String token, HttpSession session, @PathVariable Long id,Model model,HttpServletResponse res) {
+	public String engineerOrderCheck(@CookieValue(value="wms_token",required=false) String token, HttpSession session, @PathVariable Long id,Model model,HttpServletResponse res) {
 		if (StringUtils.isBlank(token)) {
 			return "redirect:/login?fromUrl=/mobile/branch/product/"+id;
 		}
@@ -167,11 +167,11 @@ public class MobileController {
 		if (StringUtils.equals(currentUserInfo.getRoleCode(), RoleCode.ENGINEER.getCode())) {//如果是维修员角色
 			QueryOrderParams params = new QueryOrderParams();
 			params.setOrganizationId(currentUserInfo.getOrganizationId());
-			Vendor vendor = vendorService.getVendorByUserId(currentUserInfo.getId());
-			if (vendor != null) {
-				params.setVendorId(vendor.getId());
+			Engineer engineer = engineerService.getEngineerByUserId(currentUserInfo.getId());
+			if (engineer != null) {
+				params.setEngineerId(engineer.getId());
 			} else {
-				params.setVendorId(-1L);
+				params.setEngineerId(-1L);
 			}
 			params.setStatus(OrderStatus.CHECKING.getValue());
 			params.setiDisplayLength(Integer.MAX_VALUE);
@@ -184,7 +184,7 @@ public class MobileController {
 				}
 			}
 			model.addAttribute("order", order);
-			page = "/mobile/vendor_order_check";
+			page = "/mobile/engineer_order_check";
 		} else if (StringUtils.equals(currentUserInfo.getRoleCode(), RoleCode.CUSTOMER.getCode())) {
 			Long customerId = bp.getBranch().getCustomerId();
 			Customer customer = customerService.getCustomerById(customerId);
@@ -197,7 +197,7 @@ public class MobileController {
 		return page;
 	}
 
-	@RequestMapping(value="/vendor/order/fixed/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/engineer/order/fixed/{id}", method = RequestMethod.GET)
 	public String orderFixed(@PathVariable Long id, Model model){
 		try {
 			OrderVo order = orderService.getOrderVoById(id);
@@ -209,7 +209,7 @@ public class MobileController {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return "/mobile/vendor_order_fixed";
+		return "/mobile/engineer_order_fixed";
 	}
 
 	@RequestMapping(value = "/branch/list", method = RequestMethod.GET)
@@ -262,8 +262,8 @@ public class MobileController {
 			OrderVo order = orderService.getOrderVoById(id);
 			model.addAttribute("order", order);
 			if (order != null) {
-				Vendor vendor = vendorService.getVendorById(order.getVendorId());
-				model.addAttribute("vendor", vendor);
+				Engineer engineer = engineerService.getEngineerById(order.getEngineerId());
+				model.addAttribute("engineer", engineer);
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -277,8 +277,8 @@ public class MobileController {
 			OrderVo order = orderService.getOrderVoById(id);
 			model.addAttribute("order", order);
 			if (order != null) {
-				Vendor vendor = vendorService.getVendorById(order.getVendorId());
-				model.addAttribute("vendor", vendor);
+				Engineer engineer = engineerService.getEngineerById(order.getEngineerId());
+				model.addAttribute("engineer", engineer);
 			}
 		} catch(Exception e) {
 			e.printStackTrace();

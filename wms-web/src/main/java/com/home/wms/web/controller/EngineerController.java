@@ -2,17 +2,17 @@ package com.home.wms.web.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.home.wms.dto.QueryDictParams;
-import com.home.wms.dto.QueryVendorParams;
-import com.home.wms.dto.VendorVo;
+import com.home.wms.dto.QueryEngineerParams;
+import com.home.wms.dto.EngineerVo;
 import com.home.wms.entity.Dict;
+import com.home.wms.entity.Engineer;
 import com.home.wms.entity.Torder;
 import com.home.wms.entity.User;
-import com.home.wms.entity.Vendor;
 import com.home.wms.enums.DictType;
 import com.home.wms.service.DictService;
 import com.home.wms.service.OrderService;
 import com.home.wms.service.UserService;
-import com.home.wms.service.VendorService;
+import com.home.wms.service.EngineerService;
 import com.home.wms.utils.AppContextManager;
 import com.ktanx.common.model.PageList;
 import org.slf4j.Logger;
@@ -31,10 +31,10 @@ import java.util.List;
  * Created by fitz on 2018/3/4.
  */
 @Controller
-@RequestMapping("/vendor")
-public class VendorController {
+@RequestMapping("/engineer")
+public class EngineerController {
 	@Autowired
-	private VendorService vendorService;
+	private EngineerService engineerService;
 	@Autowired
 	private DictService dictService;
 	@Autowired
@@ -42,19 +42,19 @@ public class VendorController {
 	@Autowired
 	private OrderService orderService;
 
-	private static final Logger LOG = LoggerFactory.getLogger(VendorController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(EngineerController.class);
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(Model model){
-		return "vendor/list";
+		return "engineer/list";
 	}
 
 	@RequestMapping("loadData")
 	@ResponseBody
-	public JSONObject loadData(QueryVendorParams params, Model model){
+	public JSONObject loadData(QueryEngineerParams params, Model model){
 		JSONObject json = new JSONObject();
 		params.setOrganizationId(AppContextManager.getCurrentUserInfo().getOrganizationId());
-		PageList<VendorVo> pageList = vendorService.findPageVendors(params);
+		PageList<EngineerVo> pageList = engineerService.findPageEngineer(params);
 		json.put("aaData", pageList);
 		json.put("iTotalRecords", pageList.getPager().getTotalItems());
 		json.put("iTotalDisplayRecords", pageList.getPager().getTotalItems());
@@ -65,31 +65,31 @@ public class VendorController {
 	public String add(Model model){
 		QueryDictParams dictParams = new QueryDictParams();
 		dictParams.setOrganizationId(AppContextManager.getCurrentUserInfo().getOrganizationId());
-		dictParams.setType(DictType.VENDOR_LEVEL.getValue());
+		dictParams.setType(DictType.ENGINEER_LEVEL.getValue());
 		dictParams.setiDisplayLength(100);
 		List<Dict> customerLevels = dictService.findPageDicts(dictParams);
 		dictParams.setType(DictType.MAINTAIN_SKILL.getValue());
 		List<Dict> maintainSkills = dictService.findPageDicts(dictParams);
-		model.addAttribute("vendorLevels", customerLevels);
+		model.addAttribute("engineerLevels", customerLevels);
 		model.addAttribute("maintainSkills", maintainSkills);
-		model.addAttribute("users", userService.findUsersNotInVendor());
-		return "/vendor/add";
+		model.addAttribute("users", userService.findUsersNotInEngineer());
+		return "/engineer/add";
 	}
 
 	@RequestMapping(value="/create", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject create(Vendor vendor, Model model){
+	public JSONObject create(Engineer engineer, Model model){
 		JSONObject result = new JSONObject();
 		try {
-			if (vendor.getUserId() != null) {
-				Vendor v = vendorService.getVendorByUserId(vendor.getUserId());
+			if (engineer.getUserId() != null) {
+				Engineer v = engineerService.getEngineerByUserId(engineer.getUserId());
 				if (v != null) {
 					result.put("code", 1);
 					result.put("message", "user already bind in " + v.getName());
 					return result;
 				}
 			}
-			vendorService.saveVendor(vendor);
+			engineerService.saveEngineer(engineer);
 			result.put("code", 0);
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -104,37 +104,37 @@ public class VendorController {
 	public String edit(@PathVariable Long id, Model model){
 		QueryDictParams dictParams = new QueryDictParams();
 		dictParams.setOrganizationId(AppContextManager.getCurrentUserInfo().getOrganizationId());
-		dictParams.setType(DictType.VENDOR_LEVEL.getValue());
+		dictParams.setType(DictType.ENGINEER_LEVEL.getValue());
 		dictParams.setiDisplayLength(100);
 		List<Dict> customerLevels = dictService.findPageDicts(dictParams);
 		dictParams.setType(DictType.MAINTAIN_SKILL.getValue());
 		List<Dict> maintainSkills = dictService.findPageDicts(dictParams);
-		model.addAttribute("vendorLevels", customerLevels);
+		model.addAttribute("engineerLevels", customerLevels);
 		model.addAttribute("maintainSkills", maintainSkills);
-		Vendor vendor = vendorService.getVendorById(id);
-		model.addAttribute("vendor", vendor);
-		List<User> users = userService.findUsersNotInVendor();
-		if (vendor.getUserId() != null) {
-			users.add(0, userService.getById(vendor.getUserId()));
+		Engineer engineer = engineerService.getEngineerById(id);
+		model.addAttribute("engineer", engineer);
+		List<User> users = userService.findUsersNotInEngineer();
+		if (engineer.getUserId() != null) {
+			users.add(0, userService.getById(engineer.getUserId()));
 		}
 		model.addAttribute("users", users);
-		return "/vendor/edit";
+		return "/engineer/edit";
 	}
 
 	@RequestMapping(value="/update", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject update(Vendor vendor, Model model){
+	public JSONObject update(Engineer engineer, Model model){
 		JSONObject result = new JSONObject();
 		try {
-			if (vendor.getUserId() != null) {
-				Vendor v = vendorService.getVendorByUserId(vendor.getUserId());
-				if (v != null && v.getId().longValue() != vendor.getId().longValue()) {
+			if (engineer.getUserId() != null) {
+				Engineer v = engineerService.getEngineerByUserId(engineer.getUserId());
+				if (v != null && v.getId().longValue() != engineer.getId().longValue()) {
 					result.put("code", 1);
 					result.put("message", "user already bind in " + v.getName());
 					return result;
 				}
 			}
-			vendorService.updateVendor(vendor);
+			engineerService.updateEngineer(engineer);
 			result.put("code", 0);
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -151,13 +151,13 @@ public class VendorController {
 		JSONObject result = new JSONObject();
 		try {
 			Torder order = new Torder();
-			order.setVendorId(id);
+			order.setEngineerId(id);
 			if(orderService.findOrders(order).size() > 0) {
 				result.put("code", 1);
 				result.put("message", "can't delete, already in used!");
 				return result;
 			}
-			vendorService.deleteVendor(id);
+			engineerService.deleteEngineer(id);
 			result.put("code", 0);
 		} catch(Exception e) {
 			e.printStackTrace();

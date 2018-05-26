@@ -97,18 +97,18 @@ public class FileuploadController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/uploadVendorAvator", method = {RequestMethod.POST })
-	public JSONObject uploadVendorAvator(@RequestParam(value = "vendorAvator") MultipartFile[] vendorAvator, HttpServletRequest request) throws Exception {
+	@RequestMapping(value = "/uploadEngineerAvator", method = {RequestMethod.POST })
+	public JSONObject uploadEngineerAvator(@RequestParam(value = "engineerAvator") MultipartFile[] engineerAvator, HttpServletRequest request) throws Exception {
 		JSONObject result = new JSONObject();
 
-		for(MultipartFile mpf : vendorAvator){
+		for(MultipartFile mpf : engineerAvator){
 			// 文件名称
 			String fileName = mpf.getOriginalFilename();
 			if(StringUtils.isBlank(fileName)){
 				continue;
 			}
 			// 文件路径
-			String filePath = uploadRealPath + AppContextManager.getCurrentUserInfo().getOrganizationId() + File.separator + "vendorAvator" + File.separator;
+			String filePath = uploadRealPath + AppContextManager.getCurrentUserInfo().getOrganizationId() + File.separator + "engineerAvator" + File.separator;
 			// 保存文件
 			File file = new File(filePath, fileName);
 			if (!file.exists()) {
@@ -117,7 +117,7 @@ public class FileuploadController {
 			try {
 				mpf.transferTo(file);
 				result.put("code",0);
-				result.put("avatorPath",uploadPath + AppContextManager.getCurrentUserInfo().getOrganizationId() + File.separator + "vendorAvator" + File.separator + fileName);
+				result.put("avatorPath",uploadPath + AppContextManager.getCurrentUserInfo().getOrganizationId() + File.separator + "engineerAvator" + File.separator + fileName);
 			}catch (IllegalStateException | IOException e) {
 				result.put("code",1);
 				result.put("msg","upload failed.");

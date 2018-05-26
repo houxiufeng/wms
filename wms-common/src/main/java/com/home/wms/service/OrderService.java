@@ -18,5 +18,5 @@ public interface OrderService {
 	OrderVo getOrderVoById(Long id);
 	List<Torder> findOrders(Torder order);
 	void updateWithNull(Torder torder);
-	void feedback(Long orderId, Long vendorId, Integer score, String feedback);
+	void feedback(Long orderId, Long engineerId, Integer score, String feedback);
 }

@@ -73,7 +73,7 @@ var Order = {
             sDefaultContent : "",
             sTitle : "Description"
         },{
-            mData : "vendorName",
+            mData : "engineerName",
             sDefaultContent : "",
             sTitle : "Engineer name"
         }];
@@ -244,12 +244,12 @@ var Order = {
             confirmButton: 'OK',
             cancelButton: 'CLOSE',
             confirm: function(){
-                var checkedObj = jQuery("#vendorTable").find(":checkbox:checked[name='vendorId']");
+                var checkedObj = jQuery("#engineerTable").find(":checkbox:checked[name='engineerId']");
                 if (checkedObj.length == 0) {
                     App.alert("please select one");
                     return false;
                 }
-                var vendorId = checkedObj.val();
+                var engineerId = checkedObj.val();
                 var privateOrder;
                 App.confirm("Private OrderNo:<input id='privateOrder' type='text' maxlength='32'>", function () {
                     if (_isNull(jQuery("#privateOrder").val())) {
@@ -258,9 +258,9 @@ var Order = {
                     } else {
                         privateOrder = jQuery("#privateOrder").val();
                         jQuery.ajax({
-                            url: appCtx + "/order/assign/vendor",
+                            url: appCtx + "/order/assign/engineer",
                             type: 'post',
-                            data: {"orderId":id, "vendorId":vendorId, "privateOrder":privateOrder},
+                            data: {"orderId":id, "engineerId":engineerId, "privateOrder":privateOrder},
                             dataType:'json',
                             success: function(json) {
                                 if (json.code == "0") {
@@ -414,7 +414,7 @@ var Order = {
             sDom: '<"top">rt<"tableFooter"ip<"clear">',
             fnServerParams : function (aoData) {
                 aoData.push({"name": "status", "value":status});
-                aoData.push({"name": "vendorId", "value":jQuery("#vendorId").val()});
+                aoData.push({"name": "engineerId", "value":jQuery("#engineerId").val()});
             },
             aoColumns:[{
                 mData : "orderNo",
@@ -475,7 +475,7 @@ var Order = {
     showMobileOrderDetail: function (id) {
         jQuery.dialog({
             title: 'Order detail',
-            content: 'url:'+appCtx+"/mobile/vendor/order/detail/"+id
+            content: 'url:'+appCtx+"/mobile/engineer/order/detail/"+id
         });
     },
     showPOI: function (poi) {
@@ -506,7 +506,7 @@ var Order = {
             dataType:'json',
             success: function(json) {
                 if (json.code == "0") {
-                    App.goToPage(appCtx + '/mobile/vendor/order/list?status=2');
+                    App.goToPage(appCtx + '/mobile/engineer/order/list?status=2');
                     App.alert("checked");
                 } else {
                     App.alert(json.message);
@@ -522,7 +522,7 @@ var Order = {
         jQuery.confirm({
             title: 'Fixing',
             // columnClass: 'col-md-8 col-md-offset-2',
-            content: 'url:'+appCtx+"/mobile/vendor/order/fixed/"+id,
+            content: 'url:'+appCtx+"/mobile/engineer/order/fixed/"+id,
             confirmButton: 'OK',
             cancelButton: 'Back',
             confirm: function(){
@@ -539,7 +539,7 @@ var Order = {
                     dataType:'json',
                     success: function(json) {
                         if (json.code == "0") {
-                            App.goToPage(appCtx + '/mobile/vendor/order/list?status=2');
+                            App.goToPage(appCtx + '/mobile/engineer/order/list?status=2');
                             App.alert("success");
                         } else {
                             App.alert(json.message);
@@ -648,7 +648,7 @@ var Order = {
     },
     feedback: function () {
         var orderId = jQuery("#orderId").val();
-        var vendorId = jQuery("#vendorId").val();
+        var engineerId = jQuery("#engineerId").val();
         var feedback = jQuery.trim(jQuery("#feedback").val());
         var score = jQuery("#score").val();
         if (_isNull(feedback)) {
@@ -658,7 +658,7 @@ var Order = {
         jQuery.ajax({
             url: appCtx + "/order/feedback",
             type: 'post',
-            data: {"orderId":orderId, "vendorId":vendorId,"score":score, "feedback":feedback},
+            data: {"orderId":orderId, "engineerId":engineerId,"score":score, "feedback":feedback},
             dataType:'json',
             success: function(json) {
                 if (json.code == "0") {

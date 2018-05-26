@@ -16,7 +16,7 @@ public class Torder {
 	private Integer type;
 	private String remark;
 	private Long organizationId;
-	private Long vendorId;
+	private Long engineerId;
 	private String description;
 	private String fixRemark;
 	private Integer score;
@@ -100,12 +100,12 @@ public class Torder {
 		this.organizationId = organizationId;
 	}
 
-	public Long getVendorId() {
-		return vendorId;
+	public Long getEngineerId() {
+		return engineerId;
 	}
 
-	public void setVendorId(Long vendorId) {
-		this.vendorId = vendorId;
+	public void setEngineerId(Long engineerId) {
+		this.engineerId = engineerId;
 	}
 
 	public Long getCreatedBy() {

@@ -7,7 +7,7 @@
 </style>
 <div style="margin-top: 40px; padding: 10px;">
     <input type="hidden" id="orderId" value="${order.id}">
-    <input type="hidden" id="vendorId" value="${order.vendorId}">
+    <input type="hidden" id="engineerId" value="${order.engineerId}">
     <div class="form_row">
         <div class="field">
             <span style="font-size: 14px;font-weight: 600">${CURRENT_USER.organizationName}:happy to serve you!</span>
@@ -55,23 +55,23 @@
             ${order.description}
         </div>
     </div>
-    <c:if test="${vendor.avator != null and vendor.avator != ''}">
+    <c:if test="${engineer.avator != null and engineer.avator != ''}">
         <div class="form_row">
             <div class="field">
-                <img src="${vendor.avator}" style="width: 60%;">
+                <img src="${engineer.avator}" style="width: 60%;">
             </div>
         </div>
     </c:if>
     <div class="form_row">
         <label class="field_name align_right" style="width: 30%;">Engineer name:</label>
         <div class="field" style="margin-left: 31%; margin-top: 5px;">
-            ${vendor.name}
+            ${engineer.name}
         </div>
     </div>
     <div class="form_row">
         <label class="field_name align_right" style="width: 30%;">Engineer code:</label>
         <div class="field" style="margin-left: 31%; margin-top: 5px;">
-            ${vendor.code}
+            ${engineer.code}
         </div>
     </div>
 

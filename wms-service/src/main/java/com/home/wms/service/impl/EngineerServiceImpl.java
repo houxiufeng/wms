@@ -3,15 +3,14 @@ package com.home.wms.service.impl;
 import cn.hutool.core.bean.BeanUtil;
 import com.google.common.collect.Lists;
 import com.google.common.primitives.Longs;
+import com.home.wms.dto.EngineerVo;
 import com.home.wms.dto.QueryDictParams;
-import com.home.wms.dto.QueryVendorParams;
-import com.home.wms.dto.VendorVo;
-import com.home.wms.entity.Branch;
+import com.home.wms.dto.QueryEngineerParams;
 import com.home.wms.entity.Dict;
-import com.home.wms.entity.Vendor;
+import com.home.wms.entity.Engineer;
 import com.home.wms.enums.DictType;
 import com.home.wms.service.DictService;
-import com.home.wms.service.VendorService;
+import com.home.wms.service.EngineerService;
 import com.home.wms.utils.AppContextManager;
 import com.ktanx.common.model.PageList;
 import com.ktanx.jdbc.command.entity.Select;
@@ -26,7 +25,7 @@ import java.util.List;
  * Created by fitz on 2018/3/11.
  */
 @Service
-public class VendorServiceImpl implements VendorService {
+public class EngineerServiceImpl implements EngineerService {
 	@Autowired
 	private JdbcDao jdbcDao;
 
@@ -34,8 +33,8 @@ public class VendorServiceImpl implements VendorService {
 	private DictService dictService;
 
 	@Override
-	public PageList<VendorVo> findPageVendors(QueryVendorParams params) {
-		Select<Vendor> s = jdbcDao.createSelect(Vendor.class);
+	public PageList<EngineerVo> findPageEngineer(QueryEngineerParams params) {
+		Select<Engineer> s = jdbcDao.createSelect(Engineer.class);
 		if (params.getOrganizationId() != null) {
 			s.and("organizationId",params.getOrganizationId());
 		}
@@ -45,18 +44,18 @@ public class VendorServiceImpl implements VendorService {
 		if (params.getStatus() != null) {
 			s.and("status",params.getStatus());
 		}
-		PageList<Vendor> list =  s.orderBy("id").desc().pageList(params.getiDisplayStart()/params.getiDisplayLength() + 1, params.getiDisplayLength());
-	    List<VendorVo> vos = Lists.newArrayListWithCapacity(list.size());
+		PageList<Engineer> list =  s.orderBy("id").desc().pageList(params.getiDisplayStart()/params.getiDisplayLength() + 1, params.getiDisplayLength());
+	    List<EngineerVo> vos = Lists.newArrayListWithCapacity(list.size());
 
 	    QueryDictParams dictParams = new QueryDictParams();
 		dictParams.setOrganizationId(AppContextManager.getCurrentUserInfo().getOrganizationId());
-		dictParams.setType(DictType.VENDOR_LEVEL.getValue());
+		dictParams.setType(DictType.ENGINEER_LEVEL.getValue());
 		dictParams.setiDisplayLength(100);
 		List<Dict> customerLevels = dictService.findPageDicts(dictParams);
 		dictParams.setType(DictType.MAINTAIN_SKILL.getValue());
 		List<Dict> maintainSkills = dictService.findPageDicts(dictParams);
-	    for (Vendor item : list) {
-	    	VendorVo vo = new VendorVo();
+	    for (Engineer item : list) {
+	    	EngineerVo vo = new EngineerVo();
 			BeanUtil.copyProperties(item, vo);
 			vo.setLevelName(findDictName(customerLevels, item.getLevel()));
 			if (StringUtils.isNotBlank(item.getSkill())) {
@@ -74,31 +73,31 @@ public class VendorServiceImpl implements VendorService {
 	}
 
 	@Override
-	public void saveVendor(Vendor vendor) {
-		vendor.setCreatedBy(AppContextManager.getCurrentUserInfo().getId());
-		vendor.setOrganizationId(AppContextManager.getCurrentUserInfo().getOrganizationId());
-        jdbcDao.insert(vendor);
+	public void saveEngineer(Engineer engineer) {
+		engineer.setCreatedBy(AppContextManager.getCurrentUserInfo().getId());
+		engineer.setOrganizationId(AppContextManager.getCurrentUserInfo().getOrganizationId());
+        jdbcDao.insert(engineer);
 	}
 
 	@Override
-	public void updateVendor(Vendor vendor) {
-        jdbcDao.update(vendor);
+	public void updateEngineer(Engineer engineer) {
+        jdbcDao.update(engineer);
 	}
 
 	@Override
-	public void deleteVendor(Long id) {
-        jdbcDao.delete(Vendor.class, id);
+	public void deleteEngineer(Long id) {
+        jdbcDao.delete(Engineer.class, id);
 	}
 
 	@Override
-	public Vendor getVendorById(Long id) {
-		return jdbcDao.get(Vendor.class, id);
+	public Engineer getEngineerById(Long id) {
+		return jdbcDao.get(Engineer.class, id);
 	}
     @Override
-    public Vendor getVendorByUserId(Long userId) {
-		Vendor vendor = new Vendor();
-		vendor.setUserId(userId);
-		return jdbcDao.querySingleResult(vendor);
+    public Engineer getEngineerByUserId(Long userId) {
+		Engineer engineer = new Engineer();
+		engineer.setUserId(userId);
+		return jdbcDao.querySingleResult(engineer);
     }
 
 

@@ -7,7 +7,7 @@ public enum DictType {
 	CUSTOMER_LEVEL((short)1,"Customer degree"),
 	CUSTOMER_CREDIT((short)2,"Customer credit"),
 	PROBLEM_TYPE((short)3,"Problem type"),
-	VENDOR_LEVEL((short)4,"Engineer degree"),
+	ENGINEER_LEVEL((short)4,"Engineer degree"),
 	MAINTAIN_SKILL((short)5,"Maintain capability"),
 	PRODUCT_BRAND((short)6,"Product band");
 

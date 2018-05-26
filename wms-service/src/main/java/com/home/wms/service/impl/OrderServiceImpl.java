@@ -1,19 +1,15 @@
 package com.home.wms.service.impl;
 
-import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.util.StrUtil;
 import com.google.common.collect.Lists;
 import com.home.wms.dto.BranchProductInfo;
 import com.home.wms.dto.OrderVo;
 import com.home.wms.dto.QueryOrderParams;
+import com.home.wms.entity.Engineer;
 import com.home.wms.entity.Torder;
-import com.home.wms.entity.Vendor;
-import com.home.wms.enums.OrderStatus;
 import com.home.wms.service.BranchProductService;
 import com.home.wms.service.OrderService;
 import com.home.wms.utils.AppContextManager;
 import com.ktanx.common.model.PageList;
-import com.ktanx.jdbc.command.simple.ResultHandler;
 import com.ktanx.jdbc.persist.JdbcDao;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -24,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by fitz on 2018/3/13.
@@ -43,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
 		sql.append("(select c.name from customer c where c.id = t.customer_id) customer_name,");
 		sql.append("(select b.name from branch b where b.id = t.branch_id) branch_name,");
 		sql.append("(select d.name from dict d where t.type = d.id) type_name,");
-		sql.append("(select v.name from vendor v where t.vendor_id = v.id) vendor_name,");
+		sql.append("(select v.name from engineer v where t.engineer_id = v.id) engineer_name,");
 		sql.append("(select p.model from product p where bp.product_id = p.id) product_model,");
 		if (params.getOrganizationId() != null) {
 			sql.append("(select ot.hours from order_time ot where ot.order_status = t.status and ot.type = 1 and ot.organization_id = t.organization_id) warn_hours,");
@@ -84,9 +79,9 @@ public class OrderServiceImpl implements OrderService {
 			sql.append(" and t.created_time <= ?");
 			paramList.add(params.getEndTime() + " 23:59:59");
 		}
-		if (params.getVendorId() != null) {
-			sql.append(" and t.vendor_id = ?");
-			paramList.add(params.getVendorId());
+		if (params.getEngineerId() != null) {
+			sql.append(" and t.engineer_id = ?");
+			paramList.add(params.getEngineerId());
 		}
 		if (params.getFlag() != null && params.getFlag() == 2) {//已评价或取消(手机端)
 			sql.append(" and ((t.score > 0 and t.status = 4) or t.status = 5)");
@@ -160,7 +155,7 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	@Transactional
-	public void feedback(Long orderId, Long vendorId, Integer score, String feedback) {
+	public void feedback(Long orderId, Long engineerId, Integer score, String feedback) {
 		Torder params = new Torder();
 		params.setId(orderId);
 		params.setFeedback(feedback);
@@ -168,11 +163,11 @@ public class OrderServiceImpl implements OrderService {
 		params.setUpdatedTime(new Date());
 		jdbcDao.update(params);
 		if (score == 1) {//好评
-			jdbcDao.createUpdate(Vendor.class).set("{{[goodScore]}}","[goodScore]+1").where("id", vendorId).execute();
+			jdbcDao.createUpdate(Engineer.class).set("{{[goodScore]}}","[goodScore]+1").where("id", engineerId).execute();
 		} else if (score == 2) {//中评
-			jdbcDao.createUpdate(Vendor.class).set("{{[moderateScore]}}","[moderateScore]+1").where("id", vendorId).execute();
+			jdbcDao.createUpdate(Engineer.class).set("{{[moderateScore]}}","[moderateScore]+1").where("id", engineerId).execute();
 		} else if (score == 3) {//差评
-			jdbcDao.createUpdate(Vendor.class).set("{{[badScore]}}","[badScore]+1").where("id", vendorId).execute();
+			jdbcDao.createUpdate(Engineer.class).set("{{[badScore]}}","[badScore]+1").where("id", engineerId).execute();
 		}
 
 	}

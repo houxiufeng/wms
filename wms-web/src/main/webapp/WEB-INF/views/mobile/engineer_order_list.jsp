@@ -13,8 +13,8 @@
 </style>
 <div class="content1" style="margin-top: 40px; padding: 10px;">
     <div class="form_row" style="text-align: center;">
-        <span style="font-size: 16px;font-weight: 600">Hi,${vendor.name}</span>
-        <input type="hidden" id="vendorId" value="${vendor.id}">
+        <span style="font-size: 16px;font-weight: 600">Hi,${engineer.name}</span>
+        <input type="hidden" id="engineerId" value="${engineer.id}">
     </div>
 
     <div class="dataTables_wrapper">
@@ -23,10 +23,10 @@
 </div>
 <div class="footer1">
     <div style="margin-left: 10px;padding: 10px;">
-        <a href="javascript:App.goToPage(appCtx + '/mobile/vendor');" class="btn btn-large" style="font-size: 16px;">Home</a>
-        <a href="javascript:App.goToPage(appCtx + '/mobile/vendor/order/list?status=1');" class="btn btn-large <c:if test='${status == 1}'>dark_green</c:if>" style="font-size: 16px;">Checking</a>
-        <a href="javascript:App.goToPage(appCtx + '/mobile/vendor/order/list?status=2');" class="btn btn-large <c:if test='${status == 2}'>dark_green</c:if>" style="font-size: 16px;">Fixing</a>
-        <a href="javascript:App.goToPage(appCtx + '/mobile/vendor/order/list?status=4');" class="btn btn-large <c:if test='${status == 4}'>dark_green</c:if>" style="font-size: 16px;">Complete</a>
+        <a href="javascript:App.goToPage(appCtx + '/mobile/engineer');" class="btn btn-large" style="font-size: 16px;">Home</a>
+        <a href="javascript:App.goToPage(appCtx + '/mobile/engineer/order/list?status=1');" class="btn btn-large <c:if test='${status == 1}'>dark_green</c:if>" style="font-size: 16px;">Checking</a>
+        <a href="javascript:App.goToPage(appCtx + '/mobile/engineer/order/list?status=2');" class="btn btn-large <c:if test='${status == 2}'>dark_green</c:if>" style="font-size: 16px;">Fixing</a>
+        <a href="javascript:App.goToPage(appCtx + '/mobile/engineer/order/list?status=4');" class="btn btn-large <c:if test='${status == 4}'>dark_green</c:if>" style="font-size: 16px;">Complete</a>
     </div>
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/app/order.js"></script>

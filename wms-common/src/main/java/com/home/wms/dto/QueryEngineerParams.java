@@ -3,7 +3,7 @@ package com.home.wms.dto;
 /**
  * Created by fitz on 2018/3/11.
  */
-public class QueryVendorParams {
+public class QueryEngineerParams {
 	private String name;
 	private Integer status;
 	private Long organizationId;

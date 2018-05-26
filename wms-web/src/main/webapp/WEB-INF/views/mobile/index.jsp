@@ -30,7 +30,7 @@
     <jsp:include page="/WEB-INF/views/common/commonJS.jsp" flush="true"/>
     <script>
         if (currentUserInfo.roleCode == 'engineer') {
-            App.goToPage(appCtx + "/mobile/vendor");
+            App.goToPage(appCtx + "/mobile/engineer");
         } else if (currentUserInfo.roleCode == 'register') {
             App.goToPage(appCtx + "/mobile/branch/list");
         } else if (currentUserInfo.roleCode == 'customer') {

@@ -1,13 +1,13 @@
 package com.home.wms.dto;
 
-import com.home.wms.entity.Vendor;
+import com.home.wms.entity.Engineer;
 
 import java.util.List;
 
 /**
  * Created by fitz on 2018/3/11.
  */
-public class VendorVo extends Vendor {
+public class EngineerVo extends Engineer {
 	private String levelName;
 	private List<String> skillList;
 

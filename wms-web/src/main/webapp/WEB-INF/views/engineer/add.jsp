@@ -11,7 +11,7 @@
     </div>
 
     <div class="well-content">
-        <form id="vendorForm">
+        <form id="engineerForm">
 
             <div style="border: solid 1px lightgrey;padding-bottom:10px;margin-bottom:10px;">
                 <div class="well-header" style="min-height: 35px;margin-bottom: 15px; background-color: #f7f7f7">
@@ -54,7 +54,7 @@
                         <label class="field_name align_right">Avator:</label>
                         <div class="field">
                             <input type="file" id="upAvator" style="margin-top: 5px;"/>
-                            <input type="button" value="Upload" onclick="javascript:uploadVendorAvator()"/>
+                            <input type="button" value="Upload" onclick="javascript:uploadEngineerAvator()"/>
                         </div>
                     </div>
                     <div class="span6">
@@ -76,7 +76,7 @@
                         <label class="field_name align_right">Engineer degree:</label>
                         <div class="field">
                             <select name="level" class="span12">
-                                <c:forEach items="${vendorLevels}" var="item">
+                                <c:forEach items="${engineerLevels}" var="item">
                                     <option value="${item.id}">${item.name}</option>
                                 </c:forEach>
                             </select>
@@ -126,8 +126,8 @@
             <div class="form_row">
                 <div class="span6" >
                     <div class="field">
-                        <a href="javascript:Vendor.save();" class="btn red btn-large" style="width: 60px;"><i class="icon-save"></i></a>
-                        <a href="javascript:App.goToPage(appCtx+'/vendor')" class="btn dark_green btn-large" style="width: 60px;"><i class="icon-reply"></i></a>
+                        <a href="javascript:Engineer.save();" class="btn red btn-large" style="width: 60px;"><i class="icon-save"></i></a>
+                        <a href="javascript:App.goToPage(appCtx+'/engineer')" class="btn dark_green btn-large" style="width: 60px;"><i class="icon-reply"></i></a>
                     </div>
                 </div>
             </div>

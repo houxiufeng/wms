@@ -87,9 +87,9 @@ public class UserServiceImpl implements UserService{
     	return jdbcDao.queryList(user);
     }
 
-	public List<User> findUsersNotInVendor() {
+	public List<User> findUsersNotInEngineer() {
 		StringBuffer sql = new StringBuffer("select * from user");
-		sql.append(" where NOT EXISTS (select 1 from vendor where user_id = user.id)");
+		sql.append(" where NOT EXISTS (select 1 from engineer where user_id = user.id)");
 		sql.append(" and user.role_id = (select id from role where code ='engineer' limit 1)");
 		Long organizationId = AppContextManager.getCurrentUserInfo().getOrganizationId();
 		if (organizationId != null) {

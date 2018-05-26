@@ -1,7 +1,7 @@
-var Vendor = {
+var Engineer = {
     getTableData: function(){
-        jQuery('#vendorTable').dataTable({
-            sAjaxSource: appCtx + "/vendor/loadData",
+        jQuery('#engineerTable').dataTable({
+            sAjaxSource: appCtx + "/engineer/loadData",
             // oLanguage: {
             //     sUrl: appCtx + '/flatpoint/js/zh_CN.json',
             // },
@@ -69,8 +69,8 @@ var Vendor = {
                 sDefaultContent : "",
                 sTitle : "Operation",
                 mRender: function(value, type ,data){
-                    return '<a class="btn edit blue" href="javascript:Vendor.edit('+ value + ')"><i class="icon-edit"></i></a>\
-                            <a class="btn edit blue" href="javascript:Vendor.delete('+ value + ')"><i class="icon-trash"></i></a>';
+                    return '<a class="btn edit blue" href="javascript:Engineer.edit('+ value + ')"><i class="icon-edit"></i></a>\
+                            <a class="btn edit blue" href="javascript:Engineer.delete('+ value + ')"><i class="icon-trash"></i></a>';
                 }
 
             }]
@@ -78,8 +78,8 @@ var Vendor = {
     },
 
     getTableDataSimple: function(){
-        jQuery('#vendorTable').dataTable({
-            sAjaxSource: appCtx + "/vendor/loadData",
+        jQuery('#engineerTable').dataTable({
+            sAjaxSource: appCtx + "/engineer/loadData",
             // oLanguage: {
             //     sUrl: appCtx + '/flatpoint/js/zh_CN.json',
             // },
@@ -121,7 +121,7 @@ var Vendor = {
                 sDefaultContent : "",
                 sTitle : "#",
                 mRender: function(value, type ,data){
-                    return '<input type="checkbox" name="vendorId" value="' + value +'">';
+                    return '<input type="checkbox" name="engineerId" value="' + value +'">';
                 }
             }]
         })
@@ -129,24 +129,24 @@ var Vendor = {
 			
     // 查询按钮
     queryList : function(){
-    	jQuery("#vendorTable").dataTable().fnDraw();
+    	jQuery("#engineerTable").dataTable().fnDraw();
     },
     
     save: function() {
-        var data = jQuery("#vendorForm").serialize();
+        var data = jQuery("#engineerForm").serialize();
         var phoneStr = buildPhoneStr(jQuery('#phone_pre').val(), jQuery('#phone').val());
         data += "&phone="+phoneStr;
-        var params = Vendor.buildValidate();
+        var params = Engineer.buildValidate();
         if (params.form.valid()) {
             jQuery.ajax({
-                url: appCtx + "/vendor/create",
+                url: appCtx + "/engineer/create",
                 type: 'post',
                 data:data,
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {
                         App.alert("success!", function(){
-                            App.goToPage(appCtx+"/vendor");
+                            App.goToPage(appCtx+"/engineer");
                         });
                     } else {
                         App.alert(json.message);
@@ -160,24 +160,24 @@ var Vendor = {
     },
     
     edit : function(id){
-        App.goToPage(appCtx + "/vendor/edit/" + id);
+        App.goToPage(appCtx + "/engineer/edit/" + id);
     },
 
     update: function() {
-        var data = jQuery("#vendorForm").serialize();
+        var data = jQuery("#engineerForm").serialize();
         var phoneStr = buildPhoneStr(jQuery('#phone_pre').val(), jQuery('#phone').val());
         data += "&phone="+phoneStr;
-        var params = Vendor.buildValidate();
+        var params = Engineer.buildValidate();
         if (params.form.valid()) {
             jQuery.ajax({
-                url: appCtx + "/vendor/update/",
+                url: appCtx + "/engineer/update/",
                 type: 'post',
                 data:data,
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {
                         App.alert("success!", function(){
-                            App.goToPage(appCtx+"/vendor");
+                            App.goToPage(appCtx+"/engineer");
                         });
                     } else {
                         App.alert(json.message);
@@ -193,12 +193,12 @@ var Vendor = {
     delete: function(id) {
         App.confirm("Are you sure？", function(){
     		jQuery.ajax({
-				url: appCtx + "/vendor/delete/" + id,
+				url: appCtx + "/engineer/delete/" + id,
 				type: 'post',
 				dataType:'json',
 				success: function(json) {
 					if (json.code == "0") {
-						Vendor.queryList();
+						Engineer.queryList();
 					} else {
                         App.alert(json.message);
 					}
@@ -230,7 +230,7 @@ var Vendor = {
                 eng:"invalid code input！"
             }
         }
-        params.form = jQuery("#vendorForm");
+        params.form = jQuery("#engineerForm");
         params.form.validate({
             rules:params.rules,
             messages: params.messages

@@ -9,7 +9,7 @@ public class QueryOrderParams {
 	private String endTime;
 	private Long organizationId;
 	private Integer status;
-	private Long vendorId;
+	private Long engineerId;
 	private Long customerId;
 	private Long branchId;
 	private Integer flag;//主要用来查看客户是否评价完成或取消（手机端）
@@ -73,12 +73,12 @@ public class QueryOrderParams {
 		this.status = status;
 	}
 
-	public Long getVendorId() {
-		return vendorId;
+	public Long getEngineerId() {
+		return engineerId;
 	}
 
-	public void setVendorId(Long vendorId) {
-		this.vendorId = vendorId;
+	public void setEngineerId(Long engineerId) {
+		this.engineerId = engineerId;
 	}
 
 	public Integer getFlag() {

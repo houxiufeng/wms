@@ -251,7 +251,7 @@ function downloadFile(obj) {
     window.open(filepath);
 }
 
-function uploadVendorAvator() {
+function uploadEngineerAvator() {
     if (jQuery("#upAvator").get(0).files.length == 0) {
         App.alert("please select avator!");
         return false;
@@ -271,9 +271,9 @@ function uploadVendorAvator() {
         App.alert("can't include ,&? in image name");
         return false;
     }
-    fd.append("vendorAvator", file);
+    fd.append("engineerAvator", file);
     jQuery.ajax({
-        url: "fileupload/uploadVendorAvator",
+        url: "fileupload/uploadEngineerAvator",
         type: "POST",
         processData: false,
         contentType: false,

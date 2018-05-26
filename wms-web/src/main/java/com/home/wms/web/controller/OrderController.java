@@ -36,7 +36,7 @@ public class OrderController {
 	@Autowired
 	private AsyncService asyncService;
 	@Autowired
-	private VendorService vendorService;
+	private EngineerService engineerService;
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -122,31 +122,31 @@ public class OrderController {
 
 	@RequestMapping(value="/assign/{id}", method = RequestMethod.GET)
 	public String assign(@PathVariable Long id){
-		return "/order/assign_vendor";
+		return "/order/assign_engineer";
 	}
 
-	@RequestMapping(value="/assign/vendor", method = RequestMethod.POST)
+	@RequestMapping(value="/assign/engineer", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject assignVendor(@RequestParam Long orderId,@RequestParam Long vendorId, String privateOrder){
+	public JSONObject assignEngineer(@RequestParam Long orderId,@RequestParam Long engineerId, String privateOrder){
 		JSONObject result = new JSONObject();
 		Torder order = new Torder();
 		order.setStatus(OrderStatus.CHECKING.getValue());
 		order.setCheckTime(new Date());
 		order.setId(orderId);
-		order.setVendorId(vendorId);
+		order.setEngineerId(engineerId);
 		order.setPrivateOrder(privateOrder);
 		try {
 			Torder torder = orderService.getOrderById(orderId);
-			if (torder != null && torder.getVendorId() != null) {
+			if (torder != null && torder.getEngineerId() != null) {
 				result.put("code", 1);
 				result.put("message", "This order has assigned");
 				return result;
 			}
 			orderService.updateOrder(order);
 			result.put("code", 0);
-			Vendor vendor = vendorService.getVendorById(vendorId);
-			if (vendor != null) {//发邮件通知
-				User user = userService.getById(vendor.getUserId());
+			Engineer engineer = engineerService.getEngineerById(engineerId);
+			if (engineer != null) {//发邮件通知
+				User user = userService.getById(engineer.getUserId());
 				Branch branch = branchService.getBranchById(torder.getBranchId());
 				String branchName = "";
 				if (branch != null) {
@@ -248,7 +248,7 @@ public class OrderController {
 		JSONObject result = new JSONObject();
 		Torder order = orderService.getOrderById(id);
 		order.setStatus(OrderStatus.ASSIGNING.getValue());
-		order.setVendorId(null);
+		order.setEngineerId(null);
 		order.setCheckTime(null);
 		try {
 			orderService.updateWithNull(order);
@@ -264,10 +264,10 @@ public class OrderController {
 
 	@RequestMapping(value="/feedback", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject feedback(@RequestParam Long orderId,@RequestParam Long vendorId,@RequestParam Integer score,@RequestParam String feedback){
+	public JSONObject feedback(@RequestParam Long orderId,@RequestParam Long engineerId,@RequestParam Integer score,@RequestParam String feedback){
 		JSONObject result = new JSONObject();
 		try {
-			orderService.feedback(orderId, vendorId, score, feedback);
+			orderService.feedback(orderId, engineerId, score, feedback);
 			result.put("code", 0);
 		} catch(Exception e) {
 			e.printStackTrace();

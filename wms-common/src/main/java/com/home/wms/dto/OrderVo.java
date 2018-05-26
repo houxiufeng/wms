@@ -17,7 +17,7 @@ public class OrderVo extends Torder{
 	private String productName;
 	private String productModel;
 	private String typeName;
-	private String vendorName;
+	private String engineerName;
 	private Integer warnHours;
 	private Integer overHours;
 
@@ -61,12 +61,12 @@ public class OrderVo extends Torder{
 		this.typeName = typeName;
 	}
 
-	public String getVendorName() {
-		return vendorName;
+	public String getEngineerName() {
+		return engineerName;
 	}
 
-	public void setVendorName(String vendorName) {
-		this.vendorName = vendorName;
+	public void setEngineerName(String engineerName) {
+		this.engineerName = engineerName;
 	}
 
 	public Integer getWarnHours() {

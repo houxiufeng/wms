@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Created by fitz on 2018/3/11.
  */
-public class Vendor {
+public class Engineer {
 	private Long id;
 	private String name;
 	private String code;
