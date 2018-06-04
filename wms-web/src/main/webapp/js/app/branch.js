@@ -62,6 +62,7 @@ var Branch = {
     save: function() {
         var params = Branch.buildValidate();
         var data = jQuery("#branchForm").serialize();
+        debugger;
         var contactPhoneStr = buildPhoneStr(jQuery('#contactPhone_pre').val(), jQuery('#contactPhone').val());
         data += "&contactPhone="+contactPhoneStr;
         if (!_isNull(jQuery("#point_x").val()) && !_isNull(jQuery("#point_y").val())) {

@@ -18,4 +18,5 @@ public interface BranchService {
 	Branch getBranchById(Long id);
 	List<Branch> findByConditions(QueryBranchParams params);
 	Branch getBranchByUserId(Long userId);
+	BranchVo getBranchVoById(Long id);
 }

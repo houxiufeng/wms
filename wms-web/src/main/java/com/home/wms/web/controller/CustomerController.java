@@ -1,5 +1,6 @@
 package com.home.wms.web.controller;
 
+import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.home.wms.dto.CustomerVo;
 import com.home.wms.dto.QueryBranchParams;
@@ -19,11 +20,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.util.List;
 
 /**
@@ -133,5 +134,48 @@ public class CustomerController {
 			result.put("message", e.getMessage());
 		}
 		return result;
+	}
+
+	@RequestMapping(value="/downloadTemplate", method = RequestMethod.GET)
+	public String dowloadTemplate(@RequestParam("fileName") String fileName, HttpServletRequest request, HttpServletResponse response){
+		if (fileName != null) {
+			String realPath = request.getSession().getServletContext().getRealPath("/files");
+			File file = new File(realPath, fileName);
+			if (file.exists()) {
+				response.setContentType("application/force-download");// 设置强制下载不打开
+				response.addHeader("Content-Disposition", "attachment;fileName=" + fileName);// 设置文件名
+				byte[] buffer = new byte[1024];
+				FileInputStream fis = null;
+				BufferedInputStream bis = null;
+				try {
+					fis = new FileInputStream(file);
+					bis = new BufferedInputStream(fis);
+					OutputStream os = response.getOutputStream();
+					int i = bis.read(buffer);
+					while (i != -1) {
+						os.write(buffer, 0, i);
+						i = bis.read(buffer);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					if (bis != null) {
+						try {
+							bis.close();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+					if (fis != null) {
+						try {
+							fis.close();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			}
+		}
+		return null;
 	}
 }

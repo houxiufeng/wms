@@ -393,21 +393,21 @@ var Order = {
                 "sUrl": "",
                 "oPaginate": {
                     "sFirst": "<<",
-                    "sPrevious": "<️",
-                    "sNext": ">",
+                    "sPrevious": "Back",
+                    "sNext": "Next",
                     "sLast": ">>"
                 }
             },
             bSort: false,                        // 是否排序功能
             bFilter: false,                       // 过滤功能
             bPaginate: true,                     // 翻页功能
-            bInfo: true,                         // 页脚信息
+            bInfo: false,                         // 页脚信息
             bProcessing: true,                   //显示正在加载中
             bServerSide: true,                   //开启服务器模式
             // sPaginationType: "full_numbers",    //分页策略
             bAutoWidth: false,                  // 是否非自动宽度
             sServerMethod: "POST",              //请求方式为post 主要为了防止中文参数乱码
-            iDisplayLength: 5,
+            iDisplayLength: 4,
             // bRetrieve:true,
             // bDestroy:true,
             //sPaginationType: "bootstrap",
@@ -419,37 +419,28 @@ var Order = {
             aoColumns:[{
                 mData : "orderNo",
                 sDefaultContent : "",
-                sTitle : "Order No"
-            },{
-                mData : "createdTime",
-                sDefaultContent : "",
-                sTitle : "Created time",
-                mRender: function(value, type ,data) {
-                    return moment(value).format("YYYY-MM-DD HH:mm:ss");
-                }
-            },{
-                mData : "typeName",
-                sDefaultContent : "",
-                sTitle : "Problem type"
-            },{
-                mData : "id",
-                sDefaultContent : "",
-                sTitle : "Operation",
+                sTitle : "",
+                sClass : "",
                 mRender: function(value, type ,data){
-                    var opts = [];
-                    if (status == 1) {//检查中
-                        opts.push('<a style="margin: 1px;" class="btn edit" href="javascript:Order.reject('+ value + ')">Reject</a><br>');
-                        opts.push('<a class="btn edit" href="javascript:Order.showMobileOrderDetail('+ value + ')">View</a>');
-                    } else if (status == 2) {//维修中
-                        opts.push('<a class="btn edit" href="javascript:Order.mobileFixed('+ value + ')">Fixed</a>');
-                    } else if (status == 4) {
-                        opts.push('<a class="btn edit" href="javascript:Order.showMobileOrderDetail('+ value + ')">View</a>');
-                    }
-                    return opts.join(" ");
+                    var html = "<div onclick='Order.toOrderPage(" + data.id + "," + status + ");' style='text-align: left; line-height: 15px;background: #0072c6;color: white;margin: -5px;padding: 5px;'><p><span>OrderId:"
+                        + data.orderNo + "</span><span style='float: right; margin-right: 10px;'>Date:"
+                        + moment.unix(data.createdTime/1000).format("YYYY-MM-DD")
+                        +  "</span></p>";
+                    html += "<p>Problem Type:" + data.typeName + "</p>";
+                    html += "<p>City:" + data.branchName + "</p></div>";
+                    return html;
                 }
-
-            }]
+            }
+            ]
         })
+    },
+
+    toOrderPage: function (orderId, status) {
+        if (status == 1) {//checking order
+            App.goToPage(appCtx + "/mobile/engineer/checkingOrder", {"orderId":orderId});
+        } else if (status == 2) {//fixing order
+            App.goToPage(appCtx + "/mobile/engineer/fixingOrder", {"orderId":orderId});
+        }
     },
 
     reject: function(id) {
@@ -460,7 +451,7 @@ var Order = {
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {
-                        jQuery("#orderTable").dataTable().fnDraw();
+                        App.goToPage(appCtx + '/mobile/engineer/order/list', {'status':1});
                     } else {
                         App.alert(json.message);
                     }
@@ -469,13 +460,6 @@ var Order = {
                     alert(errorThrown);
                 }
             });
-        });
-    },
-
-    showMobileOrderDetail: function (id) {
-        jQuery.dialog({
-            title: 'Order detail',
-            content: 'url:'+appCtx+"/mobile/engineer/order/detail/"+id
         });
     },
     showPOI: function (poi) {
@@ -490,6 +474,12 @@ var Order = {
             var myCenter=new google.maps.LatLng(latlng[1],latlng[0]);
             placeMarker(map, myCenter);
         }
+    },
+    showText: function (title, text) {
+        jQuery.dialog({
+            title: title,
+            content: text
+        });
     },
     mobileChecked: function () {
         var orderId = jQuery("#orderId").val();
@@ -507,7 +497,7 @@ var Order = {
             success: function(json) {
                 if (json.code == "0") {
                     App.goToPage(appCtx + '/mobile/engineer/order/list?status=2');
-                    App.alert("checked");
+                    // App.alert("checked");
                 } else {
                     App.alert(json.message);
                 }
@@ -518,42 +508,32 @@ var Order = {
         });
 
     },
-    mobileFixed: function (id) {
-        jQuery.confirm({
-            title: 'Fixing',
-            // columnClass: 'col-md-8 col-md-offset-2',
-            content: 'url:'+appCtx+"/mobile/engineer/order/fixed/"+id,
-            confirmButton: 'OK',
-            cancelButton: 'Back',
-            confirm: function(){
-                var fixRemark = jQuery("#fixRemark").val();
-                if (_isNull(fixRemark)) {
-                    App.alert("Fix remark can't be empty!");
-                    return false;
-                }
-                // var orderId = jQuery("#orderId").val();
-                jQuery.ajax({
-                    url: appCtx + "/order/fixed",
-                    type: 'post',
-                    data: {"orderId":id,"fixRemark":fixRemark},
-                    dataType:'json',
-                    success: function(json) {
-                        if (json.code == "0") {
-                            App.goToPage(appCtx + '/mobile/engineer/order/list?status=2');
-                            App.alert("success");
-                        } else {
-                            App.alert(json.message);
-                        }
-                    },
-                    error: function(xhr, textStatus, errorThrown){
-                        alert(errorThrown);
-                    }
-                });
 
+    mobileFixed: function (id) {
+        var fixRemark = jQuery("#fixRemark").val();
+        if (_isNull(fixRemark)) {
+            App.alert("Fix remark can't be empty!");
+            return false;
+        }
+        jQuery.ajax({
+            url: appCtx + "/order/fixed",
+            type: 'post',
+            data: {"orderId":id,"fixRemark":fixRemark},
+            dataType:'json',
+            success: function(json) {
+                if (json.code == "0") {
+                    App.goToPage(appCtx + '/mobile/engineer/order/list?status=2');
+                    App.alert("success");
+                } else {
+                    App.alert(json.message);
+                }
+            },
+            error: function(xhr, textStatus, errorThrown){
+                alert(errorThrown);
             }
         });
-
     },
+
     getMobileTableData_customer: function (flag) {
         jQuery('#orderTable').dataTable({
             sAjaxSource: appCtx + "/order/loadData",

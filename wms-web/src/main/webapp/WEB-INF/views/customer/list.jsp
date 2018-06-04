@@ -18,6 +18,7 @@
                   <input id="name" name="name" type="text" style="width:230px;">
                   <a id="search" href="javascript:Customer.queryList()" class="dark_green btn" style="margin-left:10px;"><i class="icon-search"></i></a>
                   <a href="javascript:App.goToPage('customer/add')" class="dark_green btn"><i class="icon-plus"></i></a>
+                  <%--<a href="customer/downloadTemplate?fileName=customer.xlsx" class="dark_green btn" target="_blank"><i class="icon-download-alt"></i></a>--%>
               </div>
           </div>
           <!-- end   -->

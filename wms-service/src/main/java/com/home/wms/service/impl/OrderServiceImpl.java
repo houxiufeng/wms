@@ -1,12 +1,14 @@
 package com.home.wms.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.lang.*;
 import com.google.common.collect.Lists;
-import com.home.wms.dto.BranchProductInfo;
-import com.home.wms.dto.OrderVo;
-import com.home.wms.dto.QueryOrderParams;
-import com.home.wms.entity.Engineer;
-import com.home.wms.entity.Torder;
+import com.home.wms.dto.*;
+import com.home.wms.entity.*;
+import com.home.wms.entity.Dict;
 import com.home.wms.service.BranchProductService;
+import com.home.wms.service.BranchService;
+import com.home.wms.service.DictService;
 import com.home.wms.service.OrderService;
 import com.home.wms.utils.AppContextManager;
 import com.ktanx.common.model.PageList;
@@ -31,6 +33,10 @@ public class OrderServiceImpl implements OrderService {
 	private static Logger LOGGER = LoggerFactory.getLogger(OrderServiceImpl.class);
 	@Autowired
 	private BranchProductService branchProductService;
+	@Autowired
+	private BranchService branchService;
+	@Autowired
+	private DictService dictService;
 
 	@Override
 	public PageList<OrderVo> findPageOrders(QueryOrderParams params) {
@@ -170,5 +176,34 @@ public class OrderServiceImpl implements OrderService {
 			jdbcDao.createUpdate(Engineer.class).set("{{[badScore]}}","[badScore]+1").where("id", engineerId).execute();
 		}
 
+	}
+
+	public OrderInfo getOrderInfo(Long id) {
+		Torder order = jdbcDao.get(Torder.class, id);
+		OrderInfo orderInfo = null;
+		if (order != null) {
+			orderInfo = new OrderInfo();
+			OrderVo ordervo = new OrderVo();
+			BeanUtil.copyProperties(order, ordervo);
+			Dict dict = jdbcDao.get(Dict.class, order.getType());
+			if (dict != null) {
+				ordervo.setTypeName(dict.getName());
+			}
+			orderInfo.setOrder(ordervo);
+			orderInfo.setBranch(branchService.getBranchVoById(order.getBranchId()));
+			BranchProduct branchProduct = jdbcDao.get(BranchProduct.class, order.getBranchProductId());
+			if (branchProduct != null) {
+				orderInfo.setBranchProduct(branchProduct);
+				Product product = jdbcDao.get(Product.class, branchProduct.getProductId());
+				if (product != null) {
+					ProductVo productVo = new ProductVo();
+					BeanUtil.copyProperties(product, productVo);
+					productVo.setSparePartListStr(dictService.findDictNamesByIds(product.getSparePartList()));
+					productVo.setCheckListStr(dictService.findDictNamesByIds(product.getCheckList()));
+					orderInfo.setProduct(productVo);
+				}
+			}
+		}
+		return orderInfo;
 	}
 }

@@ -16,6 +16,9 @@ public class Branch {
 	private String contactPerson;
 	private String contactPhone;
 	private String poi;
+	private String province;
+	private String city;
+	private String postCode;
 	private Long createdBy;
 	private Date createdTime;
 
@@ -113,5 +116,29 @@ public class Branch {
 
 	public void setPoi(String poi) {
 		this.poi = poi;
+	}
+
+	public String getProvince() {
+		return province;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getPostCode() {
+		return postCode;
+	}
+
+	public void setPostCode(String postCode) {
+		this.postCode = postCode;
 	}
 }

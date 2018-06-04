@@ -12,6 +12,8 @@ import java.util.List;
 public class ProductVo extends Product{
 	private List<String> imgUrlList;
 	private List<String> fileUrlList;
+	private String sparePartListStr;
+	private String checkListStr;
 
 	public List<String> getImgUrlList() {
 		if (StringUtils.isNotBlank(this.getImgUrl())) {
@@ -25,5 +27,21 @@ public class ProductVo extends Product{
 			fileUrlList = Lists.newArrayList(this.getFileUrl().split(","));
 		}
 		return fileUrlList;
+	}
+
+	public String getSparePartListStr() {
+		return sparePartListStr;
+	}
+
+	public void setSparePartListStr(String sparePartListStr) {
+		this.sparePartListStr = sparePartListStr;
+	}
+
+	public String getCheckListStr() {
+		return checkListStr;
+	}
+
+	public void setCheckListStr(String checkListStr) {
+		this.checkListStr = checkListStr;
 	}
 }

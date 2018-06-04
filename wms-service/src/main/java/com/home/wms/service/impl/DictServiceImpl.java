@@ -9,6 +9,7 @@ import com.home.wms.enums.DictType;
 import com.home.wms.enums.OrderStatus;
 import com.home.wms.service.DictService;
 import com.home.wms.utils.AppContextManager;
+import com.home.wms.utils.MyUtils;
 import com.ktanx.common.model.PageList;
 import com.ktanx.jdbc.command.entity.Select;
 import com.ktanx.jdbc.persist.JdbcDao;
@@ -19,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -133,6 +135,14 @@ public class DictServiceImpl implements DictService{
 			}
 		}
 		return orderTimeSetting;
+	}
+
+	public String findDictNamesByIds(String ids) {
+		if (StringUtils.isBlank(ids)) {
+			return "";
+		}
+		List<String> names = (List<String>)jdbcDao.createNativeExecutor().resultClass(String.class).command("select name from dict where id in (" + ids + ")").forceNative(true).list();
+		return StringUtils.join(names,",");
 	}
 
 	private void settingOrderTime(Integer hours, Integer type, Integer orderStatus, Long organizationId) {

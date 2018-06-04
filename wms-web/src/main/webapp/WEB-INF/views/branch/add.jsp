@@ -70,10 +70,31 @@
 
             <div class="form_row">
                 <div class="span6">
+                    <label class="field_name align_right">Province/State:</label>
+                    <div class="field">
+                        <input name="province" class="span12" type="text" maxlength="64">
+                    </div>
+                </div>
+                <div class="span6">
+                    <label class="field_name align_right">City:</label>
+                    <div class="field">
+                        <input name="city" class="span12" type="text" maxlength="64">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form_row">
+                <div class="span6">
                     <label class="field_name align_right"><span style="color: red">*</span>Branch address:</label>
                     <div class="field">
                         <input id="address" name="address" class="span10" type="text" maxlength="128">
                         <a id="searchPoi" href="javascript:void(0)" class="btn dark_green">Search</a>
+                    </div>
+                </div>
+                <div class="span6">
+                    <label class="field_name align_right">Post code:</label>
+                    <div class="field">
+                        <input name="postCode" class="span12" type="text" maxlength="64">
                     </div>
                 </div>
             </div>

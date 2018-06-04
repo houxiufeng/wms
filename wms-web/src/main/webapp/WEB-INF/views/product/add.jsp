@@ -86,6 +86,24 @@
                         </div>
                     </div>
                 </div>
+                <div class="form_row">
+                    <div class="span5">
+                        <label class="field_name align_right"><span style="color: red">*</span>Spare-part list:</label>
+                        <div class="field" style="margin-top: 5px;">
+                            <c:forEach items="${sparePartList}" var="item">
+                                <input type="checkbox" value="${item.id}" name="sparePartList">${item.name}
+                            </c:forEach>
+                        </div>
+                    </div>
+                    <div class="span5">
+                        <label class="field_name align_right"><span style="color: red">*</span>Check list:</label>
+                        <div class="field" style="margin-top: 5px;">
+                            <c:forEach items="${checkList}" var="item">
+                                <input type="checkbox" value="${item.id}" name="checkList">${item.name}
+                            </c:forEach>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="form_row">
                     <div class="span5">

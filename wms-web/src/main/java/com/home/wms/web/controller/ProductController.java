@@ -57,6 +57,10 @@ public class ProductController {
 		params.setOrganizationId(AppContextManager.getCurrentUserInfo().getOrganizationId());
 		params.setType(DictType.PRODUCT_BRAND.getValue());
 		model.addAttribute("brands",dictService.findPageDicts(params));
+		params.setType(DictType.SPARE_PART_LIST.getValue());
+		model.addAttribute("sparePartList",dictService.findPageDicts(params));
+		params.setType(DictType.CHECK_LIST.getValue());
+		model.addAttribute("checkList",dictService.findPageDicts(params));
 		return "/product/add";
 	}
 
@@ -82,6 +86,10 @@ public class ProductController {
 		params.setOrganizationId(AppContextManager.getCurrentUserInfo().getOrganizationId());
 		params.setType(DictType.PRODUCT_BRAND.getValue());
 		model.addAttribute("brands",dictService.findPageDicts(params));
+		params.setType(DictType.SPARE_PART_LIST.getValue());
+		model.addAttribute("sparePartList",dictService.findPageDicts(params));
+		params.setType(DictType.CHECK_LIST.getValue());
+		model.addAttribute("checkList",dictService.findPageDicts(params));
 		model.addAttribute("product", productService.getVoById(id));
 		return "/product/edit";
 	}

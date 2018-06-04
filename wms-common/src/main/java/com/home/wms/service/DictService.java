@@ -22,4 +22,5 @@ public interface DictService {
     void saveOrUpdateOrderTime(OrderTimeSetting orderTimeSetting);
     List<OrderTime> findAllOrderTimes(Long organizationId);
     OrderTimeSetting findOrderTimeSetting(Long organizationId);
+    String findDictNamesByIds(String ids);
 }

@@ -1,11 +1,13 @@
 package com.home.wms.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
 import com.google.common.collect.Lists;
 import com.home.wms.dto.BranchVo;
 import com.home.wms.dto.CurrentUserInfo;
 import com.home.wms.dto.QueryBranchParams;
 import com.home.wms.entity.Branch;
+import com.home.wms.entity.User;
 import com.home.wms.service.BranchService;
 import com.home.wms.utils.AppContextManager;
 import com.ktanx.common.model.PageList;
@@ -80,5 +82,19 @@ public class BranchServiceImpl implements BranchService{
         Branch branch = new Branch();
         branch.setUserId(userId);
 		return jdbcDao.querySingleResult(branch);
+	}
+
+	public BranchVo getBranchVoById(Long id) {
+		Branch branch = jdbcDao.get(Branch.class, id);
+		if (branch != null) {
+			BranchVo branchVo = new BranchVo();
+			BeanUtil.copyProperties(branch, branchVo);
+			User user = jdbcDao.get(User.class, branch.getUserId());
+			if (user != null) {
+				branchVo.setUserName(user.getName());
+			}
+			return branchVo;
+		}
+        return null;
 	}
 }

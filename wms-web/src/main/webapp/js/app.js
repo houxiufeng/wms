@@ -35,13 +35,17 @@ function _isEmail(value) {
 
 //公用方法goToPage
 var App = {
-	    goToPage: function (url, data) {
+	    goToPage: function (url, data, div) {
             jQuery.ajax({
                 url: url,
                 type: 'get',
                 data: data,
                 success: function(html) {
-                    jQuery("#main").html(html);
+                    if (_isNull(div)) {
+                        jQuery("#main").html(html);
+                    } else {
+                        jQuery("#" + div).html(html);
+                    }
                 },
                 error: function(xhr, textStatus, errorThrown){
                     alert(errorThrown);
@@ -183,6 +187,57 @@ function showImg(obj) {
     jQuery.dialog({
         title: 'Show Image',
         content: '<img src="' + imgPath + '" style="width: 450px;">'
+    });
+};
+function showImgs(imgPaths) {
+    if (_isNull(imgPaths)) {
+        return false;
+    }
+    var imgPathArray = imgPaths.split(",");
+    var i = 0;
+    jQuery.confirm({
+        title: 'Show Image',
+        content: '<img id="_show_img_tag" src="' + imgPathArray[i] + '" style="width: 400px; height: 300px;">',
+        confirmButton: 'Pre',
+        cancelButton: 'Next',
+        closeIcon: true,
+        confirm: function(){
+           if (i <= 0) {
+               i = 0;
+           } else {
+               i--;
+           }
+           jQuery("#_show_img_tag").attr("src",imgPathArray[i]);
+           return false;
+        },
+        cancel: function(){
+            if (i >= imgPathArray.length) {
+                i = imgPathArray.length;
+            } else {
+                i++;
+            }
+            jQuery("#_show_img_tag").attr("src",imgPathArray[i]);
+            return false;
+        }
+    });
+};
+
+function showAttachments(files) {
+    if (_isNull(files)) {
+        return false;
+    }
+    var fileArray = files.split(",");
+    var content = "<table border='1'><tr><th>Attachment</th><th>Download</th></tr>";
+    for (var i = 0; i < fileArray.length; i++) {
+        var file = fileArray[i];
+        var fileName = file.substring(file.lastIndexOf("/")+1,file.length);
+        var downloadTd = '<a href="javascript:void(0);" onclick="downloadFile(this)" data-filepath="' + file + '" class="btn yellow btn-small"><i class="icon-download-alt"></i></a>';
+        content += "<tr><td>" + fileName + "</td><td>" + downloadTd + "</td></tr>"
+    }
+    content += "</table>";
+    jQuery.dialog({
+        title: 'Download Attachments',
+        content: content
     });
 };
 

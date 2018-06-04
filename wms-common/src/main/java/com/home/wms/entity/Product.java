@@ -16,6 +16,8 @@ public class Product {
 	private String remark;
 	private String imgUrl;
 	private String fileUrl;
+	private String sparePartList;
+	private String checkList;
 	private Long organizationId;
 	private Long createdBy;
 	private Date createdTime;
@@ -122,5 +124,21 @@ public class Product {
 
 	public void setFileUrl(String fileUrl) {
 		this.fileUrl = fileUrl;
+	}
+
+	public String getSparePartList() {
+		return sparePartList;
+	}
+
+	public void setSparePartList(String sparePartList) {
+		this.sparePartList = sparePartList;
+	}
+
+	public String getCheckList() {
+		return checkList;
+	}
+
+	public void setCheckList(String checkList) {
+		this.checkList = checkList;
 	}
 }

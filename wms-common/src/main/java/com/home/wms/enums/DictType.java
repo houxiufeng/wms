@@ -9,7 +9,9 @@ public enum DictType {
 	PROBLEM_TYPE((short)3,"Problem type"),
 	ENGINEER_LEVEL((short)4,"Engineer degree"),
 	MAINTAIN_SKILL((short)5,"Maintain capability"),
-	PRODUCT_BRAND((short)6,"Product band");
+	PRODUCT_BRAND((short)6,"Product band"),
+	SPARE_PART_LIST((short)7,"Spare-part list"),
+	CHECK_LIST((short)8,"Check list");
 
 	DictType(Short value, String desc) {
 		this.value = value;

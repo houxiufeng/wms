@@ -197,21 +197,6 @@ public class MobileController {
 		return page;
 	}
 
-	@RequestMapping(value="/engineer/order/fixed/{id}", method = RequestMethod.GET)
-	public String orderFixed(@PathVariable Long id, Model model){
-		try {
-			OrderVo order = orderService.getOrderVoById(id);
-			model.addAttribute("order", order);
-			if (order != null) {
-				BranchProductInfo bp = branchProductService.getBranchProductInfoById(order.getBranchProductId());
-				model.addAttribute("branchProduct", bp);
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		return "/mobile/engineer_order_fixed";
-	}
-
 	@RequestMapping(value = "/branch/list", method = RequestMethod.GET)
 	public String branchList(Model model) {
 		return "/mobile/branch_list";
@@ -284,6 +269,27 @@ public class MobileController {
 			e.printStackTrace();
 		}
 		return "/mobile/order_feedback";
+	}
+
+	@RequestMapping(value="/engineer/checkingOrder", method = RequestMethod.GET)
+	public String checkingOrder(@RequestParam Long orderId, Model model){
+		try {
+			OrderInfo orderInfo = orderService.getOrderInfo(orderId);
+			model.addAttribute("orderInfo", orderInfo);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "mobile/engineer_checking_order";
+	}
+	@RequestMapping(value="/engineer/fixingOrder", method = RequestMethod.GET)
+	public String orderFixed(@RequestParam Long orderId, Model model){
+		try {
+			OrderInfo orderInfo = orderService.getOrderInfo(orderId);
+			model.addAttribute("orderInfo", orderInfo);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "mobile/engineer_fixing_order";
 	}
 
 }
