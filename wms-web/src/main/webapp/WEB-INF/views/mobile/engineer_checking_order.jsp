@@ -9,7 +9,7 @@
         <div class="well-content price-table" style="min-height: 80vh; font-size: 13px;">
             <div style="min-height: 70vh;">
                 <ul>
-                    <li style="line-height:25px;background: #ff8f32; color: white; font-size: 14px;">Please go for check the product and scan the QR-code for confirm the problem or you can reject the job.</li>
+                    <li style="line-height:25px;background: #d24726; color: white; font-size: 13px;">Please go for check the product and scan the QR-code for confirm the problem or you can reject the job.</li>
                     <li style="line-height:30px;font-size: 16px;font-weight: 600;">Detail</li>
                     <li style="line-height:30px;">Branch name: ${orderInfo.branch.name}</li>
                     <li style="line-height:30px;">Branch city: ${orderInfo.branch.city}</li>
