@@ -16,31 +16,15 @@
     <div class="form_row" style="text-align: center;">
         <span style="font-weight: 600">${CURRENT_USER.organizationName}:Hi,${engineer.name}</span>
     </div>
-    <div class="form_row" >
-        <img src="${engineer.avator}" style="width: 40%;">
+    <div class="form_row" style="text-align: left">
+        <input id="startTime" name="startTime" type="text" class="datetimepicker" placeholder="From" style="width:100px;"> --
+        <input id="endTime" name="endTime" type="text" class="datetimepicker" placeholder="To" style="width:100px;">
+        <a href="javascript:Order.refreshMobileOrderSum();" class="btn blue">Search</a>
     </div>
+    <input type="hidden" id="engineerId" value="${engineer.id}">
 
-    <div class="form_row" >
-        <div>
-            <a href="javascript:App.goToPage(appCtx + '/mobile/engineer/order/list', {'status':1});" class="btn blue" style="width: 40%; line-height:30px; font-size: 16px;">
-                Checking orders <br><span style="font-weight: 600; font-size: 20px;">${checkAmount}</span>
-            </a>
-            <a href="javascript:App.goToPage(appCtx + '/mobile/engineer/order/list', {'status':2});" class="btn blue" style="width: 40%; line-height:30px; font-size: 16px;">
-                Fixing orders <br><span style="font-weight: 600; font-size: 20px;">${fixAmount}</span>
-            </a>
-        </div>
-    </div>
-
-    <div class="form_row" style="margin-top: 20px; text-align: left; padding-left: 10px;" >
-        <div>
-            <p><span>Your rate:</span></p>
-            <p>
-                <span style="color: green">Good</span>:${engineer.goodScore}
-                <span style="color: darkslategrey; margin-left:5%;">Normal</span>:${engineer.moderateScore}
-                <span style="color:red; margin-left:5%;">Bad</span>:${engineer.badScore}
-            </p>
-
-        </div>
+    <div class="dataTables_wrapper">
+        <table id="orderSumTable" class="table table-striped table-bordered table-hover datatable" style="font-size: 14px;"></table>
     </div>
 
 </div>
@@ -51,3 +35,18 @@
         <a href="javascript:App.goToPage(appCtx + '/mobile/engineer/me');" class="btn blue" style="font-size: 22px; line-height: 80px; width: 26%">Me <i class="icon-user"></i></a>
     </div>
 </div>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/app/order.js"></script>
+<script>
+    jQuery(".datetimepicker").datetimepicker({
+        format:"yyyy-mm-dd",
+        autoclose: true,
+        pickTime: false,
+        minView: '2',
+        pickerPosition: "bottom-left",
+        todayBtn: true
+    });
+    <%--Order.getMobileTableData(${status});--%>
+    Order.queryMobileOrderSum();
+    jQuery("#orderSumTable_paginate").css("width", "100%");
+    jQuery("#orderSumTable_next").css({"float":"right","margin-right":"30px"});
+</script>

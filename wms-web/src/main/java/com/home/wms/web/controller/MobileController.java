@@ -1,6 +1,7 @@
 package com.home.wms.web.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.home.wms.dto.*;
 import com.home.wms.entity.*;
 import com.home.wms.enums.DictType;
@@ -10,6 +11,7 @@ import com.home.wms.service.*;
 import com.home.wms.utils.AppConstants;
 import com.home.wms.utils.AppContextManager;
 import com.home.wms.utils.MyUtils;
+import com.ktanx.common.model.PageList;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -290,6 +292,125 @@ public class MobileController {
 			e.printStackTrace();
 		}
 		return "mobile/engineer_fixing_order";
+	}
+
+	@RequestMapping(value="/engineer/report", method = RequestMethod.GET)
+	public String report(Model model){
+		Long userId = AppContextManager.getCurrentUserInfo().getId();
+		Engineer engineer = engineerService.getEngineerByUserId(userId);
+		if (engineer != null) {
+			model.addAttribute("engineer", engineer);
+			StatOrderVo vo = orderService.statRecent6MonthsOrders(engineer.getId());
+			model.addAttribute("charData", vo);
+		}
+		return "mobile/engineer_report";
+	}
+
+	@RequestMapping(value="/engineer/report/sum", method = RequestMethod.GET)
+	public String orderSum(Model model){
+		Long userId = AppContextManager.getCurrentUserInfo().getId();
+		Engineer engineer = engineerService.getEngineerByUserId(userId);
+		model.addAttribute("engineer", engineer);
+		return "mobile/engineer_report_sum";
+	}
+
+	@RequestMapping("/engineer/orderSum")
+	@ResponseBody
+	public JSONObject orderSum(QueryEngineerOrderSum params){
+		JSONObject json = new JSONObject();
+		params.setOrganizationId(AppContextManager.getCurrentUserInfo().getOrganizationId());
+		if (StringUtils.isNotBlank(params.getStartTime())) {
+			params.setStartTime(params.getStartTime() + " 00:00:01");
+		}
+		if (StringUtils.isNotBlank(params.getEndTime())) {
+			params.setEndTime(params.getEndTime() + " 23:59:59");
+		}
+		PageList<EngineerOrderSum> pageList = orderService.findEngineerOrderSum(params);
+		json.put("aaData", pageList);
+		json.put("iTotalRecords", pageList.getPager().getTotalItems());
+		json.put("iTotalDisplayRecords", pageList.getPager().getTotalItems());
+		return json;
+	}
+
+	@RequestMapping(value="/engineer/report/monthList", method = RequestMethod.GET)
+	public String monthList(Long engineerId, String monthBegin, String monthEnd, Model model){
+		model.addAttribute("engineerId", engineerId);
+		model.addAttribute("monthBegin", monthBegin);
+		model.addAttribute("monthEnd", monthEnd);
+		return "mobile/engineer_report_month_list";
+	}
+
+
+	@RequestMapping("/engineer/report/monthOrders")
+	@ResponseBody
+	public JSONObject monthOrders(QueryMonthOrderParams params){
+		JSONObject json = new JSONObject();
+		params.setOrganizationId(AppContextManager.getCurrentUserInfo().getOrganizationId());
+		if (StringUtils.isNotBlank(params.getMonthBegin())) {
+			params.setMonthBegin(params.getMonthBegin() + " 00:00:01");
+		}
+		if (StringUtils.isNotBlank(params.getMonthEnd())) {
+			params.setMonthEnd(params.getMonthEnd() + " 23:59:59");
+		}
+		PageList<OrderVo> pageList = orderService.findMonthOrders(params);
+		json.put("aaData", pageList);
+		json.put("iTotalRecords", pageList.getPager().getTotalItems());
+		json.put("iTotalDisplayRecords", pageList.getPager().getTotalItems());
+		return json;
+	}
+
+	@RequestMapping(value="/engineer/reportOrderDetail", method = RequestMethod.GET)
+	public String reportOrderDetail(@RequestParam Long orderId, Long engineerId, String monthBegin, String monthEnd, Model model){
+		try {
+			OrderInfo orderInfo = orderService.getOrderInfo(orderId);
+			model.addAttribute("orderInfo", orderInfo);
+			model.addAttribute("engineerId", engineerId);
+			model.addAttribute("monthBegin", monthBegin);
+			model.addAttribute("monthEnd", monthEnd);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "mobile/engineer_report_order_detail";
+	}
+
+	@RequestMapping(value="/engineer/report/rate", method = RequestMethod.GET)
+	public String orderRate(Model model){
+		Long userId = AppContextManager.getCurrentUserInfo().getId();
+		Engineer engineer = engineerService.getEngineerByUserId(userId);
+		model.addAttribute("engineer", engineer);
+		return "mobile/engineer_report_rate";
+	}
+
+	@RequestMapping("/engineer/orderRate")
+	@ResponseBody
+	public JSONObject orderRate(QueryEngineerOrderSum params){
+		JSONObject json = new JSONObject();
+		params.setOrganizationId(AppContextManager.getCurrentUserInfo().getOrganizationId());
+		if (StringUtils.isNotBlank(params.getStartTime())) {
+			params.setStartTime(params.getStartTime() + " 00:00:01");
+		}
+		if (StringUtils.isNotBlank(params.getEndTime())) {
+			params.setEndTime(params.getEndTime() + " 23:59:59");
+		}
+		PageList<EngineerOrderRate> pageList = orderService.findEngineerOrderRate(params);
+		json.put("aaData", pageList);
+		json.put("iTotalRecords", pageList.getPager().getTotalItems());
+		json.put("iTotalDisplayRecords", pageList.getPager().getTotalItems());
+		return json;
+	}
+
+	@RequestMapping(value="/engineer/me", method = RequestMethod.GET)
+	public String me(Model model){
+		Long userId = AppContextManager.getCurrentUserInfo().getId();
+		User user = userService.getById(userId);
+		if (user != null) {
+			model.addAttribute("user", user);
+		}
+		EngineerVo engineer = engineerService.getEngineerVoByUserId(userId);
+		if (engineer != null) {
+			model.addAttribute("engineer", engineer);
+		}
+		return "mobile/engineer_me";
 	}
 
 }

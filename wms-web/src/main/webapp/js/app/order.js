@@ -378,9 +378,6 @@ var Order = {
     getMobileTableData: function (status) {
         jQuery('#orderTable').dataTable({
             sAjaxSource: appCtx + "/order/loadData",
-            // oLanguage: {
-            //     sUrl: appCtx + '/flatpoint/js/zh_CN.json',
-            // },
             oLanguage: {
                 "sProcessing": "Processing...",
                 "sLengthMenu": "_MENU_ 记录/页",
@@ -435,12 +432,199 @@ var Order = {
         })
     },
 
+    getEngineerMonthOrders: function (status) {
+        jQuery('#m_orderTable'+status).dataTable({
+            sAjaxSource: appCtx + "/mobile/engineer/report/monthOrders",
+            oLanguage: {
+                "sProcessing": "Processing...",
+                "sLengthMenu": "_MENU_ 记录/页",
+                "sZeroRecords": "No records",
+                "sInfo": "total _TOTAL_ ",
+                "sInfoEmpty": "total 0 ",
+                "sInfoFiltered": "(由 _MAX_ 项记录过滤)",
+                "sInfoPostFix": "",
+                "sSearch": "过滤:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "<<",
+                    "sPrevious": "Back",
+                    "sNext": "Next",
+                    "sLast": ">>"
+                }
+            },
+            bSort: false,                        // 是否排序功能
+            bFilter: false,                       // 过滤功能
+            bPaginate: true,                     // 翻页功能
+            bInfo: false,                         // 页脚信息
+            bProcessing: true,                   //显示正在加载中
+            bServerSide: true,                   //开启服务器模式
+            // sPaginationType: "full_numbers",    //分页策略
+            bAutoWidth: false,                  // 是否非自动宽度
+            sServerMethod: "POST",              //请求方式为post 主要为了防止中文参数乱码
+            iDisplayLength: 4,
+            // bRetrieve:true,
+            bDestroy:true,
+            //sPaginationType: "bootstrap",
+            sDom: '<"top">rt<"tableFooter"ip<"clear">',
+            fnServerParams : function (aoData) {
+                aoData.push({"name": "status", "value":status});
+                aoData.push({"name": "engineerId", "value":jQuery("#engineerId").val()});
+                aoData.push({"name": "monthBegin", "value":jQuery("#monthBegin").val()});
+                aoData.push({"name": "monthEnd", "value":jQuery("#monthEnd").val()});
+            },
+            aoColumns:[{
+                mData : "orderNo",
+                sDefaultContent : "",
+                sTitle : "",
+                sClass : "",
+                mRender: function(value, type ,data){
+                    var html = "<div onclick='Order.toReportOrderDetail(" + data.id + ");' style='text-align: left; line-height: 15px;background: #0072c6;color: white;margin: -5px;padding: 5px;'><p><span>OrderId:"
+                        + data.orderNo + "</span><span style='float: right; margin-right: 10px;'>Date:"
+                        + moment.unix(data.createdTime/1000).format("YYYY-MM-DD")
+                        +  "</span></p>";
+                    html += "<p>Problem Type:" + data.typeName + "</p>";
+                    html += "<p>Description:" + data.description + "</p></div>";
+                    return html;
+                }
+            }
+            ]
+        })
+    },
+
+    queryMobileOrderSum : function () {
+        jQuery('#orderSumTable').dataTable({
+            sAjaxSource: appCtx + "/mobile/engineer/orderSum",
+            oLanguage: {
+                "sProcessing": "Processing...",
+                "sLengthMenu": "_MENU_ 记录/页",
+                "sZeroRecords": "No records",
+                "sInfo": "total _TOTAL_ ",
+                "sInfoEmpty": "total 0 ",
+                "sInfoFiltered": "(由 _MAX_ 项记录过滤)",
+                "sInfoPostFix": "",
+                "sSearch": "过滤:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "<<",
+                    "sPrevious": "Back",
+                    "sNext": "Next",
+                    "sLast": ">>"
+                }
+            },
+            bSort: false,                        // 是否排序功能
+            bFilter: false,                       // 过滤功能
+            bPaginate: true,                     // 翻页功能
+            bInfo: false,                         // 页脚信息
+            bProcessing: true,                   //显示正在加载中
+            bServerSide: true,                   //开启服务器模式
+            // sPaginationType: "full_numbers",    //分页策略
+            bAutoWidth: false,                  // 是否非自动宽度
+            sServerMethod: "POST",              //请求方式为post 主要为了防止中文参数乱码
+            iDisplayLength: 4,
+            // bRetrieve:true,
+            // bDestroy:true,
+            //sPaginationType: "bootstrap",
+            sDom: '<"top">rt<"tableFooter"ip<"clear">',
+            fnServerParams : function (aoData) {
+                aoData.push({"name": "engineerId", "value":jQuery("#engineerId").val()});
+                aoData.push({"name": "startTime", "value":jQuery("#startTime").val()});
+                aoData.push({"name": "endTime", "value":jQuery("#endTime").val()});
+            },
+            aoColumns:[{
+                mData : "engineerId",
+                sDefaultContent : "",
+                sTitle : "",
+                sClass : "",
+                mRender: function(value, type ,data){
+                    var html = "<div onclick='javascript:Order.toEngineerMonthList(" + data.engineerId + ",\"" + data.monthBegin +  "\",\"" + data.monthEnd +"\");' style='text-align: left; line-height: 15px;background: #0072c6;color: white;margin: -5px;padding: 5px;'>"
+                        +"<p><span>Month:" +  data.year + "-" + data.month + "</span></p>";
+                    html += "<p style='font-size: 12px;'><span>Checking order:" + data.checkingNum + "</span> <span style='margin-left: 25px;'>Fixing order:" +data.fixingNum + "</span> <span style='margin-left: 25px;'>Complete order:" + data.completeNum +"</span></p></div>";
+                    return html;
+                }
+            }
+            ]
+        })
+    },
+
+    queryMobileOrderRate : function () {
+        jQuery('#orderRateTable').dataTable({
+            sAjaxSource: appCtx + "/mobile/engineer/orderRate",
+            oLanguage: {
+                "sProcessing": "Processing...",
+                "sLengthMenu": "_MENU_ 记录/页",
+                "sZeroRecords": "No records",
+                "sInfo": "total _TOTAL_ ",
+                "sInfoEmpty": "total 0 ",
+                "sInfoFiltered": "(由 _MAX_ 项记录过滤)",
+                "sInfoPostFix": "",
+                "sSearch": "过滤:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "<<",
+                    "sPrevious": "Back",
+                    "sNext": "Next",
+                    "sLast": ">>"
+                }
+            },
+            bSort: false,                        // 是否排序功能
+            bFilter: false,                       // 过滤功能
+            bPaginate: true,                     // 翻页功能
+            bInfo: false,                         // 页脚信息
+            bProcessing: true,                   //显示正在加载中
+            bServerSide: true,                   //开启服务器模式
+            // sPaginationType: "full_numbers",    //分页策略
+            bAutoWidth: false,                  // 是否非自动宽度
+            sServerMethod: "POST",              //请求方式为post 主要为了防止中文参数乱码
+            iDisplayLength: 4,
+            // bRetrieve:true,
+            // bDestroy:true,
+            //sPaginationType: "bootstrap",
+            sDom: '<"top">rt<"tableFooter"ip<"clear">',
+            fnServerParams : function (aoData) {
+                aoData.push({"name": "engineerId", "value":jQuery("#engineerId").val()});
+                aoData.push({"name": "startTime", "value":jQuery("#startTime").val()});
+                aoData.push({"name": "endTime", "value":jQuery("#endTime").val()});
+            },
+            aoColumns:[{
+                mData : "engineerId",
+                sDefaultContent : "",
+                sTitle : "",
+                sClass : "",
+                mRender: function(value, type ,data){
+                    var html = "<div style='text-align: left; line-height: 15px;background: #0072c6;color: white;margin: -5px;padding: 5px;'>"
+                        +"<p><span>Month:" +  data.year + "-" + data.month + "</span></p>";
+                    html += "<p style='font-size: 12px;'><span style='color: darkgreen'>Good:</span>" + data.goodNum + " <span style='margin-left: 25px;color: yellow'>Normal:</span>" +data.normalNum + " <span style='margin-left: 25px; color: red'>Bad:</span>" + data.badNum +"</span></p></div>";
+                    return html;
+                }
+            }
+            ]
+        })
+    },
+
+    refreshMobileOrderSum: function () {
+        jQuery("#orderSumTable").dataTable().fnDraw();
+    },
+    refreshMobileOrderRate: function () {
+        jQuery("#orderRateTable").dataTable().fnDraw();
+    },
+    toEngineerMonthList : function (engineerId,monthBegin,monthEnd) {
+        App.goToPage(appCtx + "/mobile/engineer/report/monthList", {"engineerId":engineerId,"monthBegin":monthBegin,"monthEnd":monthEnd});
+    },
+
     toOrderPage: function (orderId, status) {
         if (status == 1) {//checking order
             App.goToPage(appCtx + "/mobile/engineer/checkingOrder", {"orderId":orderId});
         } else if (status == 2) {//fixing order
             App.goToPage(appCtx + "/mobile/engineer/fixingOrder", {"orderId":orderId});
         }
+    },
+    toReportOrderDetail: function (orderId) {
+        var data = {};
+        data.orderId = orderId;
+        data.engineerId = jQuery("#engineerId").val();
+        data.monthBegin = jQuery("#monthBegin").val();
+        data.monthEnd = jQuery("#monthEnd").val();
+        App.goToPage(appCtx + "/mobile/engineer/reportOrderDetail", data);
     },
 
     reject: function(id) {

@@ -1,8 +1,10 @@
 package com.home.wms.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.lang.*;
+import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.DateUtil;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.home.wms.dto.*;
 import com.home.wms.entity.*;
 import com.home.wms.entity.Dict;
@@ -20,8 +22,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by fitz on 2018/3/13.
@@ -37,6 +41,7 @@ public class OrderServiceImpl implements OrderService {
 	private BranchService branchService;
 	@Autowired
 	private DictService dictService;
+	private static final String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
 	@Override
 	public PageList<OrderVo> findPageOrders(QueryOrderParams params) {
@@ -206,4 +211,109 @@ public class OrderServiceImpl implements OrderService {
 		}
 		return orderInfo;
 	}
+
+
+	public StatOrderVo statRecent6MonthsOrders(Long engineerId) {
+		List<Object[]> tickList = Lists.newArrayList();
+		int nowMonth = DateUtil.thisMonth();
+		for (int i = 5; i >=0; i--)  {
+			tickList.add(new Object[]{i, months[nowMonth]});
+			nowMonth--;
+			if (nowMonth < 0) {
+				nowMonth = months.length - 1;
+			}
+		}
+		Collections.reverse(tickList);
+		Object[][] ticks = tickList.toArray(new Object[2][]);
+		StatOrderVo vo = new StatOrderVo();
+		vo.setTicks(ticks);
+		DateTime checkoutTime = DateUtil.beginOfMonth(DateUtil.offsetMonth(new Date(), -5));
+		List<Torder> torders = jdbcDao.createSelect(Torder.class).where("status",">",0)
+				.and("checkTime",">",checkoutTime)
+				.and("engineerId",engineerId)
+				.and("organizationId",AppContextManager.getCurrentUserInfo().getOrganizationId())
+				.orderBy("checkTime").asc().list();
+		Map<Integer, Integer> monthCountMap = Maps.newHashMap();
+		for (Torder torder : torders) {
+			int month = DateUtil.month(torder.getCheckTime());
+			if (monthCountMap.get(month) != null) {
+				monthCountMap.put(month, monthCountMap.get(month) + 1);
+			} else {
+				monthCountMap.put(month, 1);
+			}
+		}
+
+		int[][] datas = new int[6][2];
+		int month = DateUtil.month(checkoutTime);
+		for (int i = 0; i <=5; i++) {
+			int[] data = new int[2];
+			data[0] = i;
+			data[1] = 0;
+			if (monthCountMap.get(month) != null) {
+				data[1] = monthCountMap.get(month);
+			}
+			datas[i] = data;
+			month++;
+			if (month > 11) {
+				month = 0;
+			}
+		}
+		vo.setData(datas);
+		return vo;
+	}
+
+	public PageList<EngineerOrderSum> findEngineerOrderSum(QueryEngineerOrderSum params) {
+		List<Object> values = Lists.newArrayList();
+		StringBuffer sb = new StringBuffer("select engineer_id, year(check_time) year, month(check_time) month, count(status=1 or null) checking_num, count(status=2 or null) fixing_num, count(status=4 or null) complete_num ");
+		sb.append(" from `torder` where engineer_id = ? ");
+		values.add(params.getEngineerId());
+		if (StringUtils.isNotBlank(params.getStartTime())) {
+			sb.append(" and check_time > ?");
+			values.add(params.getStartTime());
+		}
+		if (StringUtils.isNotBlank(params.getEndTime())) {
+			sb.append(" and check_time < ?");
+			values.add(params.getEndTime());
+		}
+		if (params.getOrganizationId() != null) {
+			sb.append(" and organization_id = ?");
+			values.add(params.getOrganizationId());
+		}
+		sb.append(" group by YEAR(check_time), MONTH(check_time)");
+		return (PageList<EngineerOrderSum>)jdbcDao.createNativeExecutor().resultClass(EngineerOrderSum.class).command(sb.toString()).forceNative(true).parameters(values.toArray())
+		.pageList(params.getiDisplayStart()/params.getiDisplayLength() + 1, params.getiDisplayLength());
+	}
+
+	public PageList<EngineerOrderRate> findEngineerOrderRate(QueryEngineerOrderSum params) {
+		List<Object> values = Lists.newArrayList();
+		StringBuffer sb = new StringBuffer("select engineer_id, year(check_time) year, month(check_time) month, count(score=1 or null) good_num, count(score=2 or null) normal_num, count(score=3 or null) bad_num ");
+		sb.append(" from `torder` where engineer_id = ? ");
+		values.add(params.getEngineerId());
+		if (StringUtils.isNotBlank(params.getStartTime())) {
+			sb.append(" and check_time > ?");
+			values.add(params.getStartTime());
+		}
+		if (StringUtils.isNotBlank(params.getEndTime())) {
+			sb.append(" and check_time < ?");
+			values.add(params.getEndTime());
+		}
+		if (params.getOrganizationId() != null) {
+			sb.append(" and organization_id = ?");
+			values.add(params.getOrganizationId());
+		}
+		sb.append(" group by YEAR(check_time), MONTH(check_time)");
+		return (PageList<EngineerOrderRate>)jdbcDao.createNativeExecutor().resultClass(EngineerOrderRate.class).command(sb.toString()).forceNative(true).parameters(values.toArray())
+				.pageList(params.getiDisplayStart()/params.getiDisplayLength() + 1, params.getiDisplayLength());
+	}
+
+
+	public PageList<OrderVo> findMonthOrders(QueryMonthOrderParams params) {
+		String sql = "select t.*, (select d.name from dict d where t.type = d.id) type_name from torder t" +
+				" where t.check_time > ? and t.check_time < ? and t.organization_id = ? and t.engineer_id = ? and t.status = ?";
+		return (PageList<OrderVo>)jdbcDao.createNativeExecutor().resultClass(OrderVo.class)
+				.command(sql).forceNative(true).parameters(Lists.newArrayList(params.getMonthBegin(), params.getMonthEnd(), params.getOrganizationId(), params.getEngineerId(), params.getStatus()).toArray())
+				.pageList(params.getiDisplayStart()/params.getiDisplayLength() + 1, params.getiDisplayLength());
+
+	}
+
 }

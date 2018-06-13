@@ -16,6 +16,7 @@ import com.ktanx.common.model.PageList;
 import com.ktanx.jdbc.command.entity.Select;
 import com.ktanx.jdbc.persist.JdbcDao;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -98,6 +99,23 @@ public class EngineerServiceImpl implements EngineerService {
 		Engineer engineer = new Engineer();
 		engineer.setUserId(userId);
 		return jdbcDao.querySingleResult(engineer);
+    }
+    public EngineerVo getEngineerVoByUserId(Long userId) {
+		Engineer engineer =  this.getEngineerByUserId(userId);
+	    EngineerVo engineerVo = null;
+		if (engineer != null) {
+			engineerVo = new EngineerVo();
+			BeanUtil.copyProperties(engineer, engineerVo);
+			engineerVo.setLevelName(dictService.findDictNamesByIds(engineer.getLevel().toString()));
+			if (StringUtils.isNotBlank(engineer.getSkill())) {
+				String skillStr = dictService.findDictNamesByIds(engineer.getSkill());
+				if (StringUtils.isNotBlank(skillStr)) {
+					String[] s = skillStr.split(",");
+					engineerVo.setSkillList(Lists.newArrayList(s));
+				}
+			}
+		}
+		return engineerVo;
     }
 
 

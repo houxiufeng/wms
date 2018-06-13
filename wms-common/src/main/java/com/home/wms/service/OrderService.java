@@ -1,8 +1,6 @@
 package com.home.wms.service;
 
-import com.home.wms.dto.OrderInfo;
-import com.home.wms.dto.OrderVo;
-import com.home.wms.dto.QueryOrderParams;
+import com.home.wms.dto.*;
 import com.home.wms.entity.Torder;
 import com.ktanx.common.model.PageList;
 
@@ -21,4 +19,8 @@ public interface OrderService {
 	void updateWithNull(Torder torder);
 	void feedback(Long orderId, Long engineerId, Integer score, String feedback);
 	OrderInfo getOrderInfo(Long id);
+	StatOrderVo statRecent6MonthsOrders(Long engineerId);
+	PageList<EngineerOrderSum> findEngineerOrderSum(QueryEngineerOrderSum params);
+	PageList<EngineerOrderRate> findEngineerOrderRate(QueryEngineerOrderSum params);
+	PageList<OrderVo> findMonthOrders(QueryMonthOrderParams params);
 }

@@ -15,4 +15,5 @@ public interface EngineerService {
 	void deleteEngineer(Long id);
 	Engineer getEngineerById(Long id);
 	Engineer getEngineerByUserId(Long userId);
+	EngineerVo getEngineerVoByUserId(Long userId);
 }
