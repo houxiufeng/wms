@@ -29,6 +29,10 @@ public class Customer {
 	private String contractPosition;
 	private Double contractAmount;
 	private String contractInfo;
+	private String registNo;
+	private String logo;
+	private String groups;
+	private String remark;
 	private Date createdTime;
 
 	public Long getId() {
@@ -189,5 +193,38 @@ public class Customer {
 
 	public void setContractInfo(String contractInfo) {
 		this.contractInfo = contractInfo;
+	}
+
+	public String getRegistNo() {
+		return registNo;
+	}
+
+	public void setRegistNo(String registNo) {
+		this.registNo = registNo;
+	}
+
+	public String getLogo() {
+		return logo;
+	}
+
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
+
+
+	public String getGroups() {
+		return groups;
+	}
+
+	public void setGroups(String groups) {
+		this.groups = groups;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 }

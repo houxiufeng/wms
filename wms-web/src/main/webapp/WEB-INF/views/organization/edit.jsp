@@ -55,6 +55,63 @@
 
 	        <div class="form_row">
 		        <div class="span6" >
+			        <label class="field_name align_right">Company：</label>
+			        <div class="field">
+				        <input name="company" class="span12" type="text" value="${organization.company}" maxlength="60">
+			        </div>
+		        </div>
+	        </div>
+
+	        <div class="form_row">
+		        <div class="span6" >
+			        <label class="field_name align_right">Registration No：</label>
+			        <div class="field">
+				        <input name="registNo" class="span12" type="text" value="${organization.registNo}" maxlength="60">
+			        </div>
+		        </div>
+	        </div>
+
+	        <div class="form_row">
+		        <div class="span6" >
+			        <label class="field_name align_right">Logo：</label>
+			        <div class="field">
+				        <input type="file" id="upImg" style="margin-top: 5px;"/>
+				        <input type="button" value="Upload" onclick="javascript:Organization.uploadLogo()"/>
+				        <img id="logo" src="" style="width: 60px;height: 60px; display: none">
+			        </div>
+		        </div>
+	        </div>
+
+	        <div class="form_row">
+		        <div class="span6" >
+			        <label class="field_name align_right">Address：</label>
+			        <div class="field">
+				        <input name="address" class="span12" type="text" value="${organization.address}" maxlength="100">
+			        </div>
+		        </div>
+	        </div>
+
+	        <div class="form_row">
+		        <div class="span6" >
+			        <label class="field_name align_right">Contact：</label>
+			        <div class="field">
+				        <input name="contact" class="span12" type="text" value="${organization.contact}" maxlength="32">
+			        </div>
+		        </div>
+	        </div>
+
+
+	        <div class="form_row">
+		        <div class="span6" >
+			        <label class="field_name align_right">Established：</label>
+			        <div class="field">
+				        <input name="establishedTime" type="text" class="datetimepicker" value="<fmt:formatDate value="${organization.establishedTime}" pattern="yyyy-MM-dd"/>" readonly>
+			        </div>
+		        </div>
+	        </div>
+
+	        <div class="form_row">
+		        <div class="span6" >
 			        <label class="field_name align_right">Remarks：</label>
 			        <div class="field">
 				        <textarea name="remark" cols="80" rows="10" style="resize:none" maxlength="60">${organization.remark}</textarea>
@@ -82,5 +139,20 @@
         for (var i =0; i < myRoleIds.length; i++) {
             jQuery(":checkbox[name='roleIds'][value='" + myRoleIds[i] +"']").attr("checked",true);
         }
+    }
+
+    jQuery(".datetimepicker").datetimepicker({
+        format:"yyyy-mm-dd",
+        autoclose: true,
+        pickTime: false,
+        minView: '2',
+        todayBtn: true
+    });
+
+    var logo = "${organization.logo}";
+    if (!_isNull(logo)) {
+        var logoObj = jQuery("#logo");
+        logoObj.attr("src", logo);
+        logoObj.show();
     }
 </script>

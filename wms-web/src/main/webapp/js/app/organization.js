@@ -76,10 +76,15 @@ var Organization = {
                 App.alert("please select at least one！")
                 return false;
             }
+            var data = jQuery("#organizationForm").serialize();
+            var logo = jQuery("#logo").attr("src");
+            if (!_isNull(logo)) {
+                data += "&logo=" + logo;
+            }
             jQuery.ajax({
                 url: appCtx + "/organization/create",
                 type: 'post',
-                data:jQuery("#organizationForm").serialize(),
+                data:data,
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {
@@ -123,10 +128,15 @@ var Organization = {
                 App.alert("please select at least one role！")
                 return false;
             }
+            var data = jQuery("#organizationForm").serialize();
+            var logo = jQuery("#logo").attr("src");
+            if (!_isNull(logo)) {
+                data += "&logo=" + logo;
+            }
             jQuery.ajax({
                 url: appCtx + "/organization/update/",
                 type: 'post',
-                data:jQuery("#organizationForm").serialize(),
+                data:data,
                 dataType:'json',
                 success: function(json) {
                     if (json.code == "0") {
@@ -162,6 +172,14 @@ var Organization = {
 				}
 			});
     	});
+    },
+
+    uploadLogo: function () {
+        uploadImg("upImg", function (data) {
+            var $logo = jQuery("#logo");
+            $logo.attr("src", data.imgPath);
+            $logo.show();
+        });
     }
 }
 

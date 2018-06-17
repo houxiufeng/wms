@@ -51,9 +51,66 @@
 
             <div class="form_row">
                 <div class="span6" >
+                    <label class="field_name align_right">Company：</label>
+                    <div class="field">
+                        <input name="company" class="span12" type="text" maxlength="60">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form_row">
+                <div class="span6" >
+                    <label class="field_name align_right">Registration No：</label>
+                    <div class="field">
+                        <input name="registNo" class="span12" type="text" maxlength="60">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form_row">
+                <div class="span6" >
+                    <label class="field_name align_right">Logo：</label>
+                    <div class="field">
+                        <input type="file" id="upImg" style="margin-top: 5px;"/>
+                        <input type="button" value="Upload" onclick="javascript:Organization.uploadLogo()"/>
+                        <img id="logo" src="" style="width: 60px;height: 60px; display: none">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form_row">
+                <div class="span6" >
+                    <label class="field_name align_right">Address：</label>
+                    <div class="field">
+                        <input name="address" class="span12" type="text" maxlength="100">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form_row">
+                <div class="span6" >
+                    <label class="field_name align_right">Contact：</label>
+                    <div class="field">
+                        <input name="contact" class="span12" type="text" maxlength="32">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form_row">
+                <div class="span6" >
+                    <label class="field_name align_right">Established：</label>
+                    <div class="field">
+                        <input name="establishedTime" type="text" class="datetimepicker" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form_row">
+                <div class="span6" >
                     <label class="field_name align_right">Remarks：</label>
                     <div class="field">
-                        <textarea name="remark" cols="80" rows="10" style="resize:none" maxlength="60"></textarea>
+                        <textarea name="remark" cols="80" rows="6" style="resize:none" maxlength="60"></textarea>
                     </div>
                 </div>
             </div>
@@ -70,5 +127,14 @@
         </form>
     </div>
 </div>
+<script>
+    jQuery(".datetimepicker").datetimepicker({
+        format:"yyyy-mm-dd",
+        autoclose: true,
+        pickTime: false,
+        minView: '2',
+        todayBtn: true
+    });
+</script>
 
     

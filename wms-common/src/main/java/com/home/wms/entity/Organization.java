@@ -1,5 +1,7 @@
 package com.home.wms.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -11,6 +13,13 @@ public class Organization {
 	private Integer status;
 	private String roleIds;
 	private String remark;
+	private String company;
+	private String registNo;
+	private String logo;
+	private String address;
+	private String contact;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date establishedTime;
 	private Date createdTime;
 
 	public Long getId() {
@@ -59,5 +68,53 @@ public class Organization {
 
 	public void setRoleIds(String roleIds) {
 		this.roleIds = roleIds;
+	}
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+	public String getRegistNo() {
+		return registNo;
+	}
+
+	public void setRegistNo(String registNo) {
+		this.registNo = registNo;
+	}
+
+	public String getLogo() {
+		return logo;
+	}
+
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getContact() {
+		return contact;
+	}
+
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+
+	public Date getEstablishedTime() {
+		return establishedTime;
+	}
+
+	public void setEstablishedTime(Date establishedTime) {
+		this.establishedTime = establishedTime;
 	}
 }

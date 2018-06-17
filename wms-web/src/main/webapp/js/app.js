@@ -167,6 +167,53 @@ function uploadProductImg(){
 
 }
 
+function uploadImg(div,cbk){
+    if (jQuery("#" + div).get(0).files.length == 0) {
+        App.alert("please chose image!");
+        return false;
+    }
+    var fd = new FormData();
+    var file = jQuery("#upImg").get(0).files[0];
+    if (file.size/1024 > 1024) {//大于1M
+        App.alert('image size can not mare than 1M');
+        return false;
+    }
+    var fileName = file.name;
+    if (fileName.lastIndexOf(".") == -1 || !checkImgExt(fileName.substring(fileName.lastIndexOf(".")).toLowerCase())) {
+        App.alert("invalid suffix");
+        return false;
+    }
+    if (fileName.indexOf(",") != -1 || fileName.indexOf("&") != -1 || fileName.indexOf("?") != -1) {
+        App.alert("can't include,&? in image name");
+        return false;
+    }
+    fd.append("productImg", file);
+    jQuery.ajax({
+        url: "fileupload/uploadProductImg",
+        type: "POST",
+        processData: false,
+        contentType: false,
+        data: fd,
+        dataType: 'json',
+        success: function(d) {
+            if (d.code == 0) {
+                if (cbk) {
+                    cbk(d);
+                }
+            } else {
+                App.alert("upload failed!");
+            }
+        },
+        error : function(err) {
+            App.alert("upload failed!");
+        },
+        complete : function () {
+            jQuery("#" + div).val("");
+        }
+    });
+
+}
+
 function deleteImgRow(obj) {
     jQuery(obj).closest("tr.imgTr").remove();
     var productImgTable = jQuery("#productImgTable");

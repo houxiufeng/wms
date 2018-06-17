@@ -70,6 +70,10 @@ var Customer = {
         data += "&legalPhone="+legalPhoneStr;
         var contactPhoneStr = buildPhoneStr(jQuery('#contactPhone_pre').val(), jQuery('#contactPhone').val());
         data += "&contactPhone="+contactPhoneStr;
+        var logo = jQuery("#logo").attr("src");
+        if (!_isNull(logo)) {
+            data += "&logo=" + logo;
+        }
         if (params.form.valid()) {
             jQuery.ajax({
                 url: appCtx + "/customer/create",
@@ -105,6 +109,10 @@ var Customer = {
         data += "&legalPhone="+legalPhoneStr;
         var contactPhoneStr = buildPhoneStr(jQuery('#contactPhone_pre').val(), jQuery('#contactPhone').val());
         data += "&contactPhone="+contactPhoneStr;
+        var logo = jQuery("#logo").attr("src");
+        if (!_isNull(logo)) {
+            data += "&logo=" + logo;
+        }
         if (params.form.valid()) {
             jQuery.ajax({
                 url: appCtx + "/customer/update/",
@@ -214,6 +222,13 @@ var Customer = {
             messages: params.messages
         });
         return params;
+    },
+    uploadLogo: function () {
+        uploadImg("upImg", function (data) {
+            var $logo = jQuery("#logo");
+            $logo.attr("src", data.imgPath);
+            $logo.show();
+        });
     }
 }
 

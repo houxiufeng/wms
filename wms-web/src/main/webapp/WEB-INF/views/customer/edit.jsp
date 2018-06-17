@@ -53,6 +53,38 @@
 				        </div>
 			        </div>
 		        </div>
+
+		        <div class="form_row">
+			        <div class="span5">
+				        <label class="field_name align_right">Registration No:</label>
+				        <div class="field">
+					        <input name="registNo" class="span12" type="text" maxlength="60" value="${customer.registNo}">
+				        </div>
+			        </div>
+			        <div class="span5">
+				        <label class="field_name align_right">Group:</label>
+				        <div class="field">
+					        <input name="groups" class="span12" type="text" maxlength="60" value="${customer.groups}">
+				        </div>
+			        </div>
+		        </div>
+
+		        <div class="form_row">
+			        <div class="span5">
+				        <label class="field_name align_right">Remarks:</label>
+				        <div class="field">
+					        <textarea name="remark" cols="80" rows="5" style="resize:none" maxlength="255">${customer.remark}</textarea>
+				        </div>
+			        </div>
+			        <div class="span5">
+				        <label class="field_name align_right">Logo:</label>
+				        <div class="field">
+					        <input type="file" id="upImg" style="margin-top: 5px;"/>
+					        <input type="button" value="Upload" onclick="javascript:Customer.uploadLogo()"/>
+					        <img id="logo" src="" style="width: 60px;height: 60px; display: none">
+				        </div>
+			        </div>
+		        </div>
 	        </div>
 
 	        <div style="border: solid 1px lightgrey;padding-bottom:10px;margin-bottom:10px;">
@@ -200,5 +232,11 @@
         $("#legalPhone").val(p2[1]);
         $("#contactPhone_pre").val(p3[0]);
         $("#contactPhone").val(p3[1]);
+        var logo = "${customer.logo}";
+        if (!_isNull(logo)) {
+            var logoObj = $("#logo");
+            logoObj.attr("src", logo);
+            logoObj.show();
+        }
     });
 </script>
