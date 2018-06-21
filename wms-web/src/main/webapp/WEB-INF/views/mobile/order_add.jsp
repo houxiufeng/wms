@@ -76,7 +76,8 @@
                     <div class="form_row">
                         <div class="field">
                             <a href="javascript:Order.save(1);" class="btn dark_green btn-large" style="font-size: 16px;">Save</a>
-                            <a href="javascript:App.goToPage(appCtx + '/mobile/order/list?flag=1');" class="btn  btn-large" style="font-size: 16px;">Back</a>
+                            <%--<a href="javascript:App.goToPage(appCtx + '/mobile/order/list?flag=1');" class="btn  btn-large" style="font-size: 16px;">Back</a>--%>
+                            <a href="javascript:App.goToPage(appCtx + '/mobile/customer');" class="btn  btn-large" style="font-size: 16px;">Back</a>
                         </div>
                     </div>
                 </form>
