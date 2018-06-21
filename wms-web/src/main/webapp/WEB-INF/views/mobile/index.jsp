@@ -34,7 +34,8 @@
         } else if (currentUserInfo.roleCode == 'register') {
             App.goToPage(appCtx + "/mobile/branch/list");
         } else if (currentUserInfo.roleCode == 'customer') {
-            App.goToPage(appCtx + "/mobile/order/list?flag=1");
+//            App.goToPage(appCtx + "/mobile/order/list?flag=1");
+            App.goToPage(appCtx + "/mobile/customer");
         } else {
             App.alert("Sorry，you don't have permission", function () {
                 logout();

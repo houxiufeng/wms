@@ -23,4 +23,6 @@ public interface OrderService {
 	PageList<EngineerOrderSum> findEngineerOrderSum(QueryEngineerOrderSum params);
 	PageList<EngineerOrderRate> findEngineerOrderRate(QueryEngineerOrderSum params);
 	PageList<OrderVo> findMonthOrders(QueryMonthOrderParams params);
+	StatOrderVo statBranchRecent6MonthsOrders(Long branchId);
+	PageList<CustomerOrderSum> findCustomerOrderSum(QueryCustomerOrderSum params);
 }

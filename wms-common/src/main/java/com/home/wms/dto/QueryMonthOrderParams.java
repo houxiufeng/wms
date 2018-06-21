@@ -9,6 +9,7 @@ public class QueryMonthOrderParams implements Serializable{
     private String monthBegin;
     private String monthEnd;
     private Long engineerId;
+    private Long branchId;
     private Integer status;
     private Long organizationId;
     private Integer iDisplayStart = 0;
@@ -68,5 +69,13 @@ public class QueryMonthOrderParams implements Serializable{
 
     public void setiDisplayLength(Integer iDisplayLength) {
         this.iDisplayLength = iDisplayLength;
+    }
+
+    public Long getBranchId() {
+        return branchId;
+    }
+
+    public void setBranchId(Long branchId) {
+        this.branchId = branchId;
     }
 }

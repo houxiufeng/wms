@@ -20,6 +20,7 @@ public class OrderVo extends Torder{
 	private String engineerName;
 	private Integer warnHours;
 	private Integer overHours;
+	private String branchCity;
 
 	public String getCustomerName() {
 		return customerName;
@@ -83,6 +84,14 @@ public class OrderVo extends Torder{
 
 	public void setOverHours(Integer overHours) {
 		this.overHours = overHours;
+	}
+
+	public String getBranchCity() {
+		return branchCity;
+	}
+
+	public void setBranchCity(String branchCity) {
+		this.branchCity = branchCity;
 	}
 
 	public Boolean getWarned() {

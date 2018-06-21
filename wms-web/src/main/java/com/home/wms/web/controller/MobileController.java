@@ -413,4 +413,160 @@ public class MobileController {
 		return "mobile/engineer_me";
 	}
 
+	@RequestMapping(value = "/customer", method = RequestMethod.GET)
+	public String customer(Model model) {
+		Long userId = AppContextManager.getCurrentUserInfo().getId();
+		Branch branch = branchService.getBranchByUserId(userId);
+		if (branch != null) {
+			model.addAttribute("branch", branch);
+			Customer customer = customerService.getCustomerById(branch.getCustomerId());
+			if (customer != null) {
+				model.addAttribute("customer", customer);
+			}
+			Torder torder = new Torder();
+			torder.setOrganizationId(AppContextManager.getCurrentUserInfo().getOrganizationId());
+			torder.setBranchId(branch.getId());
+			List<Torder> torders = orderService.findOrders(torder);
+			int fixingNum = 0;//维修中
+			int needRateNum = 0;//待评价
+			for (Torder item : torders) {
+				if (item.getStatus() == 2) {//fixing status
+					fixingNum++;
+				} else if (item.getStatus() == 4 && item.getScore() == null) {//need rate
+					needRateNum++;
+				}
+			}
+			model.addAttribute("fixingNum",fixingNum);
+			model.addAttribute("needRateNum",needRateNum);
+
+		}
+		return "/mobile/customer_index";
+	}
+
+	@RequestMapping(value = "/customer/order/list", method = RequestMethod.GET)
+	public String customerOrderList(@RequestParam Integer status, Integer feedbackFlag,  Model model) {
+		Long userId = AppContextManager.getCurrentUserInfo().getId();
+		Branch branch = branchService.getBranchByUserId(userId);
+		model.addAttribute("branch",branch);
+		model.addAttribute("status",status);
+		model.addAttribute("feedbackFlag",feedbackFlag);//1.未评价。2.已评价
+		return "mobile/customer_order_list";
+	}
+
+	@RequestMapping(value="/customer/fixingOrder", method = RequestMethod.GET)
+	public String customerFixOrder(@RequestParam Long orderId, Model model){
+		try {
+			OrderInfo orderInfo = orderService.getOrderInfo(orderId);
+			model.addAttribute("orderInfo", orderInfo);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "mobile/customer_fixing_order";
+	}
+
+	@RequestMapping(value="/customer/rateOrder", method = RequestMethod.GET)
+	public String customerRateOrder(@RequestParam Long orderId, Model model){
+		try {
+			OrderInfo orderInfo = orderService.getOrderInfo(orderId);
+			model.addAttribute("orderInfo", orderInfo);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "mobile/customer_rate_order";
+	}
+
+	@RequestMapping(value="/customer/report", method = RequestMethod.GET)
+	public String customerReport(Model model){
+		Long userId = AppContextManager.getCurrentUserInfo().getId();
+		Branch branch = branchService.getBranchByUserId(userId);
+		if (branch != null) {
+			StatOrderVo vo = orderService.statBranchRecent6MonthsOrders(branch.getId());
+			model.addAttribute("charData", vo);
+		}
+		return "mobile/customer_report";
+	}
+
+	@RequestMapping(value="/customer/report/sum", method = RequestMethod.GET)
+	public String customerReportSum(Model model){
+		Long userId = AppContextManager.getCurrentUserInfo().getId();
+		Branch branch = branchService.getBranchByUserId(userId);
+		model.addAttribute("branch", branch);
+		return "mobile/customer_report_sum";
+	}
+
+	@RequestMapping("/customer/orderSum")
+	@ResponseBody
+	public JSONObject customerOrderSum(QueryCustomerOrderSum params){
+		JSONObject json = new JSONObject();
+		params.setOrganizationId(AppContextManager.getCurrentUserInfo().getOrganizationId());
+		if (StringUtils.isNotBlank(params.getStartTime())) {
+			params.setStartTime(params.getStartTime() + " 00:00:01");
+		}
+		if (StringUtils.isNotBlank(params.getEndTime())) {
+			params.setEndTime(params.getEndTime() + " 23:59:59");
+		}
+		PageList<CustomerOrderSum> pageList = orderService.findCustomerOrderSum(params);
+		json.put("aaData", pageList);
+		json.put("iTotalRecords", pageList.getPager().getTotalItems());
+		json.put("iTotalDisplayRecords", pageList.getPager().getTotalItems());
+		return json;
+	}
+
+	@RequestMapping(value="/customer/report/monthList", method = RequestMethod.GET)
+	public String customerMonthList(Long branchId, String monthBegin, String monthEnd, Model model){
+		model.addAttribute("branchId", branchId);
+		model.addAttribute("monthBegin", monthBegin);
+		model.addAttribute("monthEnd", monthEnd);
+		return "mobile/customer_report_month_list";
+	}
+
+	@RequestMapping("/customer/report/monthOrders")
+	@ResponseBody
+	public JSONObject customerMonthOrders(QueryMonthOrderParams params){
+		JSONObject json = new JSONObject();
+		params.setOrganizationId(AppContextManager.getCurrentUserInfo().getOrganizationId());
+		if (StringUtils.isNotBlank(params.getMonthBegin())) {
+			params.setMonthBegin(params.getMonthBegin() + " 00:00:01");
+		}
+		if (StringUtils.isNotBlank(params.getMonthEnd())) {
+			params.setMonthEnd(params.getMonthEnd() + " 23:59:59");
+		}
+		PageList<OrderVo> pageList = orderService.findMonthOrders(params);
+		json.put("aaData", pageList);
+		json.put("iTotalRecords", pageList.getPager().getTotalItems());
+		json.put("iTotalDisplayRecords", pageList.getPager().getTotalItems());
+		return json;
+	}
+
+	@RequestMapping(value="/customer/reportOrderDetail", method = RequestMethod.GET)
+	public String customerReportOrderDetail(@RequestParam Long orderId, Long branchId, String monthBegin, String monthEnd, Model model){
+		try {
+			OrderInfo orderInfo = orderService.getOrderInfo(orderId);
+			model.addAttribute("orderInfo", orderInfo);
+			model.addAttribute("branchId", branchId);
+			model.addAttribute("monthBegin", monthBegin);
+			model.addAttribute("monthEnd", monthEnd);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "mobile/customer_report_detail";
+	}
+
+	@RequestMapping(value="/customer/me", method = RequestMethod.GET)
+	public String customerMe(Model model){
+		Long userId = AppContextManager.getCurrentUserInfo().getId();
+		User user = userService.getById(userId);
+		if (user != null) {
+			model.addAttribute("user", user);
+		}
+		Branch branch = branchService.getBranchByUserId(userId);
+		if (branch != null) {
+			BranchVo branchVo = branchService.getBranchVoById(branch.getId());
+			if (branchVo != null) {
+				model.addAttribute("branch", branchVo);
+			}
+		}
+		return "mobile/customer_me";
+	}
+
 }

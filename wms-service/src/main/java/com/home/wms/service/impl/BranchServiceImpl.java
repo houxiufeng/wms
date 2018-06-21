@@ -7,6 +7,7 @@ import com.home.wms.dto.BranchVo;
 import com.home.wms.dto.CurrentUserInfo;
 import com.home.wms.dto.QueryBranchParams;
 import com.home.wms.entity.Branch;
+import com.home.wms.entity.Customer;
 import com.home.wms.entity.User;
 import com.home.wms.service.BranchService;
 import com.home.wms.utils.AppContextManager;
@@ -92,6 +93,10 @@ public class BranchServiceImpl implements BranchService{
 			User user = jdbcDao.get(User.class, branch.getUserId());
 			if (user != null) {
 				branchVo.setUserName(user.getName());
+			}
+			Customer customer = jdbcDao.get(Customer.class, branch.getCustomerId());
+			if (customer != null) {
+				branchVo.setCustomerName(customer.getName());
 			}
 			return branchVo;
 		}

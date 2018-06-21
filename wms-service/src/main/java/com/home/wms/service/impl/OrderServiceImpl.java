@@ -48,6 +48,7 @@ public class OrderServiceImpl implements OrderService {
 		StringBuffer sql =  new StringBuffer("select t.*,");
 		sql.append("(select c.name from customer c where c.id = t.customer_id) customer_name,");
 		sql.append("(select b.name from branch b where b.id = t.branch_id) branch_name,");
+		sql.append("(select b.city from branch b where b.id = t.branch_id) branch_city,");
 		sql.append("(select d.name from dict d where t.type = d.id) type_name,");
 		sql.append("(select v.name from engineer v where t.engineer_id = v.id) engineer_name,");
 		sql.append("(select p.model from product p where bp.product_id = p.id) product_model,");
@@ -229,6 +230,7 @@ public class OrderServiceImpl implements OrderService {
 		vo.setTicks(ticks);
 		DateTime checkoutTime = DateUtil.beginOfMonth(DateUtil.offsetMonth(new Date(), -5));
 		List<Torder> torders = jdbcDao.createSelect(Torder.class).where("status",">",0)
+				.and("status","!=",5)
 				.and("checkTime",">",checkoutTime)
 				.and("engineerId",engineerId)
 				.and("organizationId",AppContextManager.getCurrentUserInfo().getOrganizationId())
@@ -309,11 +311,91 @@ public class OrderServiceImpl implements OrderService {
 
 	public PageList<OrderVo> findMonthOrders(QueryMonthOrderParams params) {
 		String sql = "select t.*, (select d.name from dict d where t.type = d.id) type_name from torder t" +
-				" where t.check_time > ? and t.check_time < ? and t.organization_id = ? and t.engineer_id = ? and t.status = ?";
+				" where t.check_time > ? and t.check_time < ? and t.organization_id = ? and t.status = ?";
+		List<Object> values = Lists.newArrayList(params.getMonthBegin(), params.getMonthEnd(), params.getOrganizationId(), params.getStatus());
+		if (params.getEngineerId() != null) {
+			sql += " and t.engineer_id = ?";
+			values.add(params.getEngineerId());
+		}
+		if (params.getBranchId() != null) {
+			sql += " and t.branch_id = ?";
+			values.add(params.getBranchId());
+		}
 		return (PageList<OrderVo>)jdbcDao.createNativeExecutor().resultClass(OrderVo.class)
-				.command(sql).forceNative(true).parameters(Lists.newArrayList(params.getMonthBegin(), params.getMonthEnd(), params.getOrganizationId(), params.getEngineerId(), params.getStatus()).toArray())
+				.command(sql).forceNative(true).parameters(values.toArray())
 				.pageList(params.getiDisplayStart()/params.getiDisplayLength() + 1, params.getiDisplayLength());
 
+	}
+
+	public StatOrderVo statBranchRecent6MonthsOrders(Long branchId) {
+		List<Object[]> tickList = Lists.newArrayList();
+		int nowMonth = DateUtil.thisMonth();
+		for (int i = 5; i >=0; i--)  {
+			tickList.add(new Object[]{i, months[nowMonth]});
+			nowMonth--;
+			if (nowMonth < 0) {
+				nowMonth = months.length - 1;
+			}
+		}
+		Collections.reverse(tickList);
+		Object[][] ticks = tickList.toArray(new Object[2][]);
+		StatOrderVo vo = new StatOrderVo();
+		vo.setTicks(ticks);
+		DateTime checkTime = DateUtil.beginOfMonth(DateUtil.offsetMonth(new Date(), -5));
+		List<Torder> torders = jdbcDao.createSelect(Torder.class).where("status",new Object[]{1,2,4})
+				.and("checkTime",">",checkTime)
+				.and("branchId",branchId)
+				.and("organizationId",AppContextManager.getCurrentUserInfo().getOrganizationId())
+				.orderBy("checkTime").asc().list();
+		Map<Integer, Integer> monthCountMap = Maps.newHashMap();
+		for (Torder torder : torders) {
+			int month = DateUtil.month(torder.getCheckTime());
+			if (monthCountMap.get(month) != null) {
+				monthCountMap.put(month, monthCountMap.get(month) + 1);
+			} else {
+				monthCountMap.put(month, 1);
+			}
+		}
+
+		int[][] datas = new int[6][2];
+		int month = DateUtil.month(checkTime);
+		for (int i = 0; i <=5; i++) {
+			int[] data = new int[2];
+			data[0] = i;
+			data[1] = 0;
+			if (monthCountMap.get(month) != null) {
+				data[1] = monthCountMap.get(month);
+			}
+			datas[i] = data;
+			month++;
+			if (month > 11) {
+				month = 0;
+			}
+		}
+		vo.setData(datas);
+		return vo;
+	}
+
+	public PageList<CustomerOrderSum> findCustomerOrderSum(QueryCustomerOrderSum params) {
+		List<Object> values = Lists.newArrayList();
+		StringBuffer sb = new StringBuffer("select branch_id, year(check_time) year, month(check_time) month, count(status=1 or null) checking_num, count(status=2 or null) fixing_num, count(status=4 or null) complete_num ");
+		sb.append(" from `torder` where branch_id = ? ");
+		values.add(params.getBranchId());
+		if (StringUtils.isNotBlank(params.getStartTime())) {
+			sb.append(" and check_time > ?");
+			values.add(params.getStartTime());
+		}
+		if (StringUtils.isNotBlank(params.getEndTime())) {
+			sb.append(" and check_time < ?");
+			values.add(params.getEndTime());
+		}
+		if (params.getOrganizationId() != null) {
+			sb.append(" and organization_id = ?");
+			values.add(params.getOrganizationId());
+		}
+		sb.append(" group by YEAR(check_time), MONTH(check_time)");
+		return (PageList<CustomerOrderSum>)jdbcDao.createNativeExecutor().resultClass(CustomerOrderSum.class).command(sb.toString()).forceNative(true).parameters(values.toArray())
+				.pageList(params.getiDisplayStart()/params.getiDisplayLength() + 1, params.getiDisplayLength());
 	}
 
 }

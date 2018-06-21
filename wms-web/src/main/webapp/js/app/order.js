@@ -424,7 +424,7 @@ var Order = {
                         + moment.unix(data.createdTime/1000).format("YYYY-MM-DD")
                         +  "</span></p>";
                     html += "<p>Problem Type:" + data.typeName + "</p>";
-                    html += "<p>City:" + data.branchName + "</p></div>";
+                    html += "<p>City:" + data.branchCity + "</p></div>";
                     return html;
                 }
             }
@@ -837,6 +837,226 @@ var Order = {
             }
         });
 
+    },
+
+    getMobileCustomerOrder: function (status) {
+        jQuery('#orderTable').dataTable({
+            sAjaxSource: appCtx + "/order/loadData",
+            oLanguage: {
+                "sProcessing": "Processing...",
+                "sLengthMenu": "_MENU_ 记录/页",
+                "sZeroRecords": "No records",
+                "sInfo": "total _TOTAL_ ",
+                "sInfoEmpty": "total 0 ",
+                "sInfoFiltered": "(由 _MAX_ 项记录过滤)",
+                "sInfoPostFix": "",
+                "sSearch": "过滤:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "<<",
+                    "sPrevious": "Back",
+                    "sNext": "Next",
+                    "sLast": ">>"
+                }
+            },
+            bSort: false,                        // 是否排序功能
+            bFilter: false,                       // 过滤功能
+            bPaginate: true,                     // 翻页功能
+            bInfo: false,                         // 页脚信息
+            bProcessing: true,                   //显示正在加载中
+            bServerSide: true,                   //开启服务器模式
+            // sPaginationType: "full_numbers",    //分页策略
+            bAutoWidth: false,                  // 是否非自动宽度
+            sServerMethod: "POST",              //请求方式为post 主要为了防止中文参数乱码
+            iDisplayLength: 4,
+            // bRetrieve:true,
+            // bDestroy:true,
+            //sPaginationType: "bootstrap",
+            sDom: '<"top">rt<"tableFooter"ip<"clear">',
+            fnServerParams : function (aoData) {
+                aoData.push({"name": "status", "value":status});
+                aoData.push({"name": "branchId", "value":jQuery("#branchId").val()});
+                aoData.push({"name": "feedbackFlag", "value":jQuery("#feedbackFlag").val()});
+            },
+            aoColumns:[{
+                mData : "orderNo",
+                sDefaultContent : "",
+                sTitle : "",
+                sClass : "",
+                mRender: function(value, type ,data){
+                    var html = "<div onclick='Order.toCustomerOrder(" + data.id + "," + status + ");' style='text-align: left; line-height: 15px;background: #0072c6;color: white;margin: -5px;padding: 5px;'><p><span>OrderId:"
+                        + data.orderNo + "</span><span style='float: right; margin-right: 10px;'>Date:"
+                        + moment.unix(data.createdTime/1000).format("YYYY-MM-DD")
+                        +  "</span></p>";
+                    html += "<p>Problem Type:" + data.typeName + "</p>";
+                    html += "<p>City:" + data.branchCity + "</p></div>";
+                    return html;
+                }
+            }
+            ]
+        })
+    },
+
+    toCustomerOrder: function (orderId, status) {
+        if (status == 2) {//fixing order
+            App.goToPage(appCtx + "/mobile/customer/fixingOrder", {"orderId":orderId});
+        } else if (status == 4) {//rate order
+            App.goToPage(appCtx + "/mobile/customer/rateOrder", {"orderId":orderId});
+        }
+    },
+
+    mobileFeedback: function () {
+        var orderId = jQuery("#orderId").val();
+        var engineerId = jQuery("#engineerId").val();
+        var feedback = jQuery.trim(jQuery("#feedback").val());
+        var score = jQuery("#score").val();
+        if (_isNull(feedback)) {
+            alert("Feedback can't be empty!");
+            return false;
+        }
+        jQuery.ajax({
+            url: appCtx + "/order/feedback",
+            type: 'post',
+            data: {"orderId":orderId, "engineerId":engineerId,"score":score, "feedback":feedback},
+            dataType:'json',
+            success: function(json) {
+                if (json.code == "0") {
+                    App.goToPage(appCtx + '/mobile/customer/order/list', {'status':4,'feedbackFlag':1});
+                } else {
+                    alert(json.message);
+                }
+            },
+            error: function(xhr, textStatus, errorThrown){
+                alert(errorThrown);
+            }
+        });
+
+    },
+
+    queryMobileCustomerOrderSum : function () {
+        jQuery('#orderSumTable').dataTable({
+            sAjaxSource: appCtx + "/mobile/customer/orderSum",
+            oLanguage: {
+                "sProcessing": "Processing...",
+                "sLengthMenu": "_MENU_ 记录/页",
+                "sZeroRecords": "No records",
+                "sInfo": "total _TOTAL_ ",
+                "sInfoEmpty": "total 0 ",
+                "sInfoFiltered": "(由 _MAX_ 项记录过滤)",
+                "sInfoPostFix": "",
+                "sSearch": "过滤:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "<<",
+                    "sPrevious": "Back",
+                    "sNext": "Next",
+                    "sLast": ">>"
+                }
+            },
+            bSort: false,                        // 是否排序功能
+            bFilter: false,                       // 过滤功能
+            bPaginate: true,                     // 翻页功能
+            bInfo: false,                         // 页脚信息
+            bProcessing: true,                   //显示正在加载中
+            bServerSide: true,                   //开启服务器模式
+            // sPaginationType: "full_numbers",    //分页策略
+            bAutoWidth: false,                  // 是否非自动宽度
+            sServerMethod: "POST",              //请求方式为post 主要为了防止中文参数乱码
+            iDisplayLength: 4,
+            // bRetrieve:true,
+            // bDestroy:true,
+            //sPaginationType: "bootstrap",
+            sDom: '<"top">rt<"tableFooter"ip<"clear">',
+            fnServerParams : function (aoData) {
+                aoData.push({"name": "branchId", "value":jQuery("#branchId").val()});
+                aoData.push({"name": "startTime", "value":jQuery("#startTime").val()});
+                aoData.push({"name": "endTime", "value":jQuery("#endTime").val()});
+            },
+            aoColumns:[{
+                mData : "branchId",
+                sDefaultContent : "",
+                sTitle : "",
+                sClass : "",
+                mRender: function(value, type ,data){
+                    var html = "<div onclick='javascript:Order.toCustomerMonthList(" + data.branchId + ",\"" + data.monthBegin +  "\",\"" + data.monthEnd +"\");' style='text-align: left; line-height: 15px;background: #0072c6;color: white;margin: -5px;padding: 5px;'>"
+                        +"<p><span>Month:" +  data.year + "-" + data.month + "</span></p>";
+                    html += "<p style='font-size: 12px;'><span>Processing order:" + (data.fixingNum + data.checkingNum) + "</span> <span style='margin-left: 25px;'>Complete order:" +data.completeNum + "</span> </p></div>";
+                    return html;
+                }
+            }
+            ]
+        })
+    },
+    toCustomerMonthList : function (branchId,monthBegin,monthEnd) {
+        App.goToPage(appCtx + "/mobile/customer/report/monthList", {"branchId":branchId,"monthBegin":monthBegin,"monthEnd":monthEnd});
+    },
+
+    getCustomerMonthOrders: function (status) {
+        jQuery('#m_orderTable'+status).dataTable({
+            sAjaxSource: appCtx + "/mobile/customer/report/monthOrders",
+            oLanguage: {
+                "sProcessing": "Processing...",
+                "sLengthMenu": "_MENU_ 记录/页",
+                "sZeroRecords": "No records",
+                "sInfo": "total _TOTAL_ ",
+                "sInfoEmpty": "total 0 ",
+                "sInfoFiltered": "(由 _MAX_ 项记录过滤)",
+                "sInfoPostFix": "",
+                "sSearch": "过滤:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "<<",
+                    "sPrevious": "Back",
+                    "sNext": "Next",
+                    "sLast": ">>"
+                }
+            },
+            bSort: false,                        // 是否排序功能
+            bFilter: false,                       // 过滤功能
+            bPaginate: true,                     // 翻页功能
+            bInfo: false,                         // 页脚信息
+            bProcessing: true,                   //显示正在加载中
+            bServerSide: true,                   //开启服务器模式
+            // sPaginationType: "full_numbers",    //分页策略
+            bAutoWidth: false,                  // 是否非自动宽度
+            sServerMethod: "POST",              //请求方式为post 主要为了防止中文参数乱码
+            iDisplayLength: 4,
+            // bRetrieve:true,
+            bDestroy:true,
+            //sPaginationType: "bootstrap",
+            sDom: '<"top">rt<"tableFooter"ip<"clear">',
+            fnServerParams : function (aoData) {
+                aoData.push({"name": "status", "value":status});
+                aoData.push({"name": "branchId", "value":jQuery("#branchId").val()});
+                aoData.push({"name": "monthBegin", "value":jQuery("#monthBegin").val()});
+                aoData.push({"name": "monthEnd", "value":jQuery("#monthEnd").val()});
+            },
+            aoColumns:[{
+                mData : "orderNo",
+                sDefaultContent : "",
+                sTitle : "",
+                sClass : "",
+                mRender: function(value, type ,data){
+                    var html = "<div onclick='Order.toCustomerReportOrderDetail(" + data.id + ");' style='text-align: left; line-height: 15px;background: #0072c6;color: white;margin: -5px;padding: 5px;'><p><span>OrderId:"
+                        + data.orderNo + "</span><span style='float: right; margin-right: 10px;'>Date:"
+                        + moment.unix(data.createdTime/1000).format("YYYY-MM-DD")
+                        +  "</span></p>";
+                    html += "<p>Problem Type:" + data.typeName + "</p>";
+                    html += "<p>Description:" + data.description + "</p></div>";
+                    return html;
+                }
+            }
+            ]
+        })
+    },
+
+    toCustomerReportOrderDetail: function (orderId) {
+        var data = {};
+        data.orderId = orderId;
+        data.branchId = jQuery("#branchId").val();
+        data.monthBegin = jQuery("#monthBegin").val();
+        data.monthEnd = jQuery("#monthEnd").val();
+        App.goToPage(appCtx + "/mobile/customer/reportOrderDetail", data);
     }
 
 }
