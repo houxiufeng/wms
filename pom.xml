@@ -17,7 +17,7 @@
         <module>wms-web</module>
     </modules>
 
-    <!--this is test -->
+    <!--this is testx -->
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
