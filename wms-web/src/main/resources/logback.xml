@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration debug="true">
+<configuration debug="false">
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<!-- encoders are assigned by default the type ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
 		<encoder>
-			<pattern>%d{YYYY-MM-dd HH:mm:ss.SSS} %-5level [%file:%line] - %msg%n</pattern>
+			<pattern>%d{YYYY-MM-dd HH:mm:ss.SSS} %-5level %c [%file:%line] - %msg%n</pattern>
 		</encoder>
 	</appender>
 
@@ -27,7 +27,8 @@
 	<!--按照天数事例-->
 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<encoder>
-			<pattern>%d{YYYY-MM-dd HH:mm:ss.SSS} %-5level [%file:%line] - %msg%n</pattern>
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度, %logger{50}输出日志的类，50代表包名加类名的总长度限制, %msg：日志消息，%n是换行符-->
+			<pattern>%d{YYYY-MM-dd HH:mm:ss.SSS} %-5level %logger{50} [%file:%line] - %msg%n</pattern>
 		</encoder>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<fileNamePattern>${catalina.home}/logs/wms_%d{yyyy-MM-dd}.log</fileNamePattern>
@@ -36,10 +37,18 @@
 		</rollingPolicy>
 	</appender>
 
-    <logger name="com.home" level="INFO" additivity="false">
-        <appender-ref ref="FILE"/>
-	    <appender-ref ref="STDOUT" />
-    </logger>
+    <!--<logger name="com.home" level="INFO" additivity="false">-->
+        <!--<appender-ref ref="FILE"/>-->
+	    <!--<appender-ref ref="STDOUT" />-->
+    <!--</logger>-->
+
+	<!--JdbcTemplate的日志输出器 -->
+	<logger name="org.springframework.jdbc.core.StatementCreatorUtils" additivity="false" level="TRACE"/>
+	<logger name="org.springframework.jdbc.core" additivity="true" level="DEBUG"/>
+	<logger name="java.sql.Connection" additivity="true" level="DEBUG"/>
+	<logger name="java.sql.Statement" additivity="true" level="DEBUG"/>
+	<logger name="java.sql.PreparedStatement" additivity="true" level="DEBUG"/>
+	<logger name="java.sql.ResultSet" additivity="true" level="DEBUG"/>
 
 	<!--JdbcTemplate SQL语句-->
 	<!--<logger name="org.springframework.jdbc.core.JdbcTemplate" level="DEBUG"/>-->
