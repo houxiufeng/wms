@@ -21,6 +21,9 @@ public class BranchProduct {
 	private Date endTime;
 	private Long createdBy;
 	private Date createdTime;
+	private String computerName;
+	private String roles;
+	private String os;
 
 	public Long getId() {
 		return id;
@@ -108,5 +111,29 @@ public class BranchProduct {
 
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
+	}
+
+	public String getComputerName() {
+		return computerName;
+	}
+
+	public void setComputerName(String computerName) {
+		this.computerName = computerName;
+	}
+
+	public String getRoles() {
+		return roles;
+	}
+
+	public void setRoles(String roles) {
+		this.roles = roles;
+	}
+
+	public String getOs() {
+		return os;
+	}
+
+	public void setOs(String os) {
+		this.os = os;
 	}
 }

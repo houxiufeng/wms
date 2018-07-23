@@ -336,6 +336,21 @@ header a.logo_image {
   margin-left: 10px;
 }
 
+header a.logo_image2 {
+  width: 94px;
+  display: block;
+  height: 44px;
+  float: left;
+  line-height: 44px;
+  padding-left: 33px;
+  font-size: 16px;
+  color: #fff;
+  font-weight: 300;
+  text-transform: uppercase;
+  background: url(../img/logo2.png) no-repeat left center;
+  margin-left: 10px;
+}
+
 header .quick_header_actions {
   float: left;
   margin: 0;

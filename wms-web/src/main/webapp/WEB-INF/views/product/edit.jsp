@@ -46,14 +46,35 @@
 							<input name="model" class="span10" type="text" maxlength="32" value="${product.model}">
 						</div>
 					</div>
+					<%--<div class="span5">--%>
+						<%--<label class="field_name align_right">Product type:</label>--%>
+						<%--<div class="field">--%>
+							<%--<select name="type" class="span10">--%>
+								<%--<option value="1" <c:if test="${product.type == 1}">selected</c:if>>Air conditioning</option>--%>
+								<%--<option value="2" <c:if test="${product.type == 2}">selected</c:if>>Lifter</option>--%>
+								<%--<option value="3" <c:if test="${product.type == 3}">selected</c:if>>Fan</option>--%>
+							<%--</select>--%>
+						<%--</div>--%>
+					<%--</div>--%>
 					<div class="span5">
-						<label class="field_name align_right">Product type:</label>
+						<label class="field_name align_right">Processor:</label>
 						<div class="field">
-							<select name="type" class="span10">
-								<option value="1" <c:if test="${product.type == 1}">selected</c:if>>Air conditioning</option>
-								<option value="2" <c:if test="${product.type == 2}">selected</c:if>>Lifter</option>
-								<option value="3" <c:if test="${product.type == 3}">selected</c:if>>Fan</option>
-							</select>
+							<input name="processor" class="span10" type="text" maxlength="64" value="${product.processor}">
+						</div>
+					</div>
+				</div>
+
+				<div class="form_row">
+					<div class="span5">
+						<label class="field_name align_right">Memory:</label>
+						<div class="field">
+							<input name="memory" class="span10" type="text" maxlength="32" value="${product.memory}">
+						</div>
+					</div>
+					<div class="span5">
+						<label class="field_name align_right">Hard Drive:</label>
+						<div class="field">
+							<input name="hardDrive" class="span10" type="text" maxlength="32" value="${product.hardDrive}">
 						</div>
 					</div>
 				</div>

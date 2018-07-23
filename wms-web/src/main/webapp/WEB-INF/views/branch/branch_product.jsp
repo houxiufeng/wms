@@ -25,7 +25,7 @@
                 <input id="branchId" name="branchId" type="hidden" value="${branch.id}">
                 <div class="form_row">
                     <div class="span12">
-                        <label class="field_name align_right"><span style="color: red">*</span>Product name:</label>
+                        <label class="field_name align_right"><span style="color: red">*</span>Manufacturer:</label>
                         <div class="field">
                             <select id="productName" class="span12">
                                 <c:forEach items="${brands}" var="item">
@@ -57,6 +57,30 @@
                         <label class="field_name align_right"><span style="color: red">*</span>Serial number:</label>
                         <div class="field">
                             <input name="sn" class="span12" type="text" maxlength="32">
+                        </div>
+                    </div>
+                </div>
+                <div class="form_row">
+                    <div class="span12">
+                        <label class="field_name align_right">Computer Name:</label>
+                        <div class="field">
+                            <input name="computerName" class="span12" type="text" maxlength="128">
+                        </div>
+                    </div>
+                </div>
+                <div class="form_row">
+                    <div class="span12">
+                        <label class="field_name align_right">Roles:</label>
+                        <div class="field">
+                            <input name="roles" class="span12" type="text" maxlength="128">
+                        </div>
+                    </div>
+                </div>
+                <div class="form_row">
+                    <div class="span12">
+                        <label class="field_name align_right">Operating System:</label>
+                        <div class="field">
+                            <input name="os" class="span12" type="text" maxlength="128">
                         </div>
                     </div>
                 </div>

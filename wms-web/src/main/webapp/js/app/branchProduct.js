@@ -22,7 +22,7 @@ var BranchProduct = {
             aoColumns:[{
                 mData : "productName",
                 sDefaultContent : "",
-                sTitle : "Product name"
+                sTitle : "Manufacturer"
             },{
                 mData : "productModel",
                 sDefaultContent : "",
@@ -42,7 +42,7 @@ var BranchProduct = {
                 sTitle : "Operation",
                 mRender: function(value, type ,data){
                     return '<a class="btn edit blue" href="javascript:BranchProduct.genQrcode('+ value + ')"><i class="icon-qrcode"></i></a>\
-                            <a class="btn edit blue" href="javascript:BranchProduct.edit('+ value + ',' + data.productId + ',\''+data.productName+'\',\''+data.sn+'\',\''+data.position+'\',\'' + data.poi+'\',\''+data.beginTime+'\',\''+data.endTime+'\')"><i class="icon-edit"></i></a>\
+                            <a class="btn edit blue" href="javascript:BranchProduct.edit('+ value + ',' + data.productId + ',\''+data.productName+'\',\''+data.sn+'\',\''+data.position+'\',\'' + data.poi+'\',\''+data.beginTime+'\',\''+data.endTime+'\',\''+data.computerName+'\',\''+data.roles+'\',\''+data.os+'\')"><i class="icon-edit"></i></a>\
                             <a class="btn edit blue" href="javascript:BranchProduct.delete('+ value + ')"><i class="icon-trash"></i></a>';
                 }
 
@@ -97,13 +97,16 @@ var BranchProduct = {
         });
     },
     
-    edit : function(id, productId, productName, sn, position, poi, beginTime, endTime){
+    edit : function(id, productId, productName, sn, position, poi, beginTime, endTime, computerName, roles, os){
         jQuery("#branchProductForm").find(":input[name='id']").val(id);
         jQuery("#branchProductForm").find(":input[name='sn']").val(sn);
         jQuery("#branchProductForm").find(":input[name='position']").val(position);
         jQuery("#branchProductForm").find("#productName").val(productName);
         jQuery("#branchProductForm").find("#productName").trigger("change");
         jQuery("#branchProductForm").find("#productId").val(productId);
+        jQuery("#branchProductForm").find(":input[name='computerName']").val(computerName);
+        jQuery("#branchProductForm").find(":input[name='roles']").val(roles);
+        jQuery("#branchProductForm").find(":input[name='os']").val(os);
         if (!_isNull(beginTime)) {
             var bt = moment.unix(beginTime/1000).format("YYYY-MM-DD");
             jQuery("#branchProductForm").find("#beginTime").val(bt);

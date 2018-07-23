@@ -21,6 +21,9 @@ public class Product {
 	private Long organizationId;
 	private Long createdBy;
 	private Date createdTime;
+	private String processor;
+	private String memory;
+	private String hardDrive;
 
 	public Long getId() {
 		return id;
@@ -140,5 +143,29 @@ public class Product {
 
 	public void setCheckList(String checkList) {
 		this.checkList = checkList;
+	}
+
+	public String getProcessor() {
+		return processor;
+	}
+
+	public void setProcessor(String processor) {
+		this.processor = processor;
+	}
+
+	public String getMemory() {
+		return memory;
+	}
+
+	public void setMemory(String memory) {
+		this.memory = memory;
+	}
+
+	public String getHardDrive() {
+		return hardDrive;
+	}
+
+	public void setHardDrive(String hardDrive) {
+		this.hardDrive = hardDrive;
 	}
 }

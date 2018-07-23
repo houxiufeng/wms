@@ -23,7 +23,7 @@ var Product = {
 		        aoColumns:[{
 		            mData : "name",
 		            sDefaultContent : "",
-		            sTitle : "Product name"
+		            sTitle : "Manufacturer"
 		        },{
 		            mData : "code",
 		            sDefaultContent : "",
@@ -33,22 +33,24 @@ var Product = {
 		            mData : "model",
 		            sDefaultContent : "",
 		            sTitle : "Product model"
-		        },{
-		            mData : "type",
-		            sDefaultContent : "",
-		            sTitle : "Product type",
-                    mRender: function(value, type ,data){
-                        var html = "";
-		                if (value == 1) {
-                            html = 'Air conditioning';
-                        } else if (value == 2) {
-                            html = 'Lifter';
-                        } else if (value == 3) {
-                            html = 'Fan';
-                        }
-                        return html;
-                    }
-		        },{
+		        },
+                // {
+		        //     mData : "type",
+		        //     sDefaultContent : "",
+		        //     sTitle : "Product type",
+                 //    mRender: function(value, type ,data){
+                 //        var html = "";
+		        //         if (value == 1) {
+                 //            html = 'Air conditioning';
+                 //        } else if (value == 2) {
+                 //            html = 'Lifter';
+                 //        } else if (value == 3) {
+                 //            html = 'Fan';
+                 //        }
+                 //        return html;
+                 //    }
+		        // },
+                {
 		            mData : "id",
 		            sDefaultContent : "",
 		            sTitle : "Operation",

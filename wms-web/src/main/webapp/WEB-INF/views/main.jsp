@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>WMS</title>
+    <title>Koperasi Angkatan Tentera Malaysia</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -15,7 +15,7 @@
   <body>
 
     <header class="dark_grey"> <!-- Header start -->
-        <a href="#" class="logo_image"><span class="hidden-480">WMS</span></a>
+        <a href="#" class="logo_image2"><span class="hidden-480">&nbsp;</span></a>
         <ul class="header_actions">
             <li class="dropdown"><a href="javascript:void(0);">${CURRENT_USER.name}</a>
                 <%--<ul>--%>
