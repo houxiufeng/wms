@@ -37,7 +37,9 @@ if (!_isNull('${currentUserInfo}')) {
 </script>
 
 <script type="text/javascript">
-    var google_map_url = "http://maps.googleapis.com/maps/api/js?key=AIzaSyBzE9xAESye6Kde-3hT-6B90nfwUkcS8Yw&sensor=false";
+    var apiKey = 'AIzaSyCSGGRvP6E-ygnhbUDPYhDGQ3wacaGe2Mg';
+//    var google_map_url = "http://maps.googleapis.com/maps/api/js?key=AIzaSyBzE9xAESye6Kde-3hT-6B90nfwUkcS8Yw&sensor=false";
+    var google_map_url = "http://maps.googleapis.com/maps/api/js?key=" + apiKey +"&sensor=false";
     var mapJson;
     var marker;
     jQuery.ajax({
@@ -47,7 +49,7 @@ if (!_isNull('${currentUserInfo}')) {
         async: false,
         success: function(json) {
             if(json.countryCode == 'CN') {
-                google_map_url = "http://ditu.google.cn/maps/api/js?key=AIzaSyBzE9xAESye6Kde-3hT-6B90nfwUkcS8Yw&sensor=false&language=zh-CN";
+                google_map_url = "http://ditu.google.cn/maps/api/js?key=" + apiKey +"&sensor=false&language=zh-CN";
             }
             mapJson = json;
         },
