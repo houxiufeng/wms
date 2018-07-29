@@ -34,6 +34,12 @@
                             <ul>
                                 <li style="line-height:40px;">Product name: ${branchProduct.product.name}</li>
                                 <li style="line-height:40px;">Product model: ${branchProduct.product.model}</li>
+                                <li style="line-height:40px;">Computer name: ${branchProduct.computerName}</li>
+                                <li style="line-height:40px;">Roles: ${branchProduct.roles}</li>
+                                <li style="line-height:40px;">Operating System: ${branchProduct.os}</li>
+                                <li style="line-height:40px;">Processor: ${branchProduct.product.processor}</li>
+                                <li style="line-height:40px;">Memory: ${branchProduct.product.memory}</li>
+                                <li style="line-height:40px;">Hard drive: ${branchProduct.product.hardDrive}</li>
                                 <li style="line-height:40px;">Position: ${branchProduct.position}</li>
                                 <li style="line-height:40px;">Confirm question:
                                     <select id="type" name="type">
