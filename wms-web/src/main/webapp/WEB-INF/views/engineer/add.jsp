@@ -73,7 +73,7 @@
                 </div>
                 <div class="form_row">
                     <div class="span6">
-                        <label class="field_name align_right">Engineer degree:</label>
+                        <label class="field_name align_right">Engineer qualification:</label>
                         <div class="field">
                             <select name="level" class="span12">
                                 <c:forEach items="${engineerLevels}" var="item">
@@ -94,16 +94,16 @@
                     </div>
                 </div>
 
-                <div class="form_row">
-                    <div class="span6">
-                        <label class="field_name align_right">Capability:</label>
-                        <div class="field" style="margin-top: 5px;">
-                            <c:forEach items="${maintainSkills}" var="item">
-                                <input type="checkbox" value="${item.id}" name="skill">${item.name}
-                            </c:forEach>
-                        </div>
-                    </div>
-                </div>
+                <%--<div class="form_row">--%>
+                    <%--<div class="span6">--%>
+                        <%--<label class="field_name align_right">Capability:</label>--%>
+                        <%--<div class="field" style="margin-top: 5px;">--%>
+                            <%--<c:forEach items="${maintainSkills}" var="item">--%>
+                                <%--<input type="checkbox" value="${item.id}" name="skill">${item.name}--%>
+                            <%--</c:forEach>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
             </div>
 
             <div style="border: solid 1px lightgrey;padding-bottom:10px;margin-bottom:10px;">

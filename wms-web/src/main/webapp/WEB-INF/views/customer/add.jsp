@@ -133,7 +133,7 @@
                 </div>
                 <div class="form_row">
                     <div class="span5">
-                        <label class="field_name align_right">Customer degree:</label>
+                        <label class="field_name align_right">Customer reputation:</label>
                         <div class="field">
                             <select name="type">
                                 <c:forEach items="${types}" var="item">

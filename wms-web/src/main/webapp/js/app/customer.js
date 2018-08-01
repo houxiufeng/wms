@@ -34,7 +34,7 @@ var Customer = {
                 },{
                     mData : "typeName",
                     sDefaultContent : "",
-                    sTitle : "Customer degree"
+                    sTitle : "Customer reputation"
                 },{
                     mData : "creditStatusName",
                     sDefaultContent : "",
