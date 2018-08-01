@@ -4,10 +4,10 @@ package com.home.wms.enums;
  * Created by fitz on 2018/3/10.
  */
 public enum DictType {
-	CUSTOMER_LEVEL((short)1,"Customer degree"),
+	CUSTOMER_LEVEL((short)1,"Customer reputation"),
 	CUSTOMER_CREDIT((short)2,"Customer credit"),
 	PROBLEM_TYPE((short)3,"Problem type"),
-	ENGINEER_LEVEL((short)4,"Engineer degree"),
+	ENGINEER_LEVEL((short)4,"Engineer qualification"),
 	MAINTAIN_SKILL((short)5,"Maintain capability"),
 	PRODUCT_BRAND((short)6,"Product band"),
 	SPARE_PART_LIST((short)7,"Spare-part list"),
