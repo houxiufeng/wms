@@ -46,7 +46,7 @@
                 </div>
                 <div class="form_row">
                     <div class="span12">
-                        <label class="field_name align_right">Position:</label>
+                        <label class="field_name align_right">Location:</label>
                         <div class="field">
                             <input name="position" class="span12" type="text" maxlength="128">
                         </div>
@@ -70,7 +70,7 @@
                 </div>
                 <div class="form_row">
                     <div class="span12">
-                        <label class="field_name align_right">Roles:</label>
+                        <label class="field_name align_right">Owner:</label>
                         <div class="field">
                             <input name="roles" class="span12" type="text" maxlength="128">
                         </div>

@@ -35,7 +35,7 @@
                                 <li style="line-height:40px;">Manufacturer: ${branchProduct.product.name}</li>
                                 <li style="line-height:40px;">Product model: ${branchProduct.product.model}</li>
                                 <li style="line-height:40px;">Computer name: ${branchProduct.computerName}</li>
-                                <li style="line-height:40px;">Roles: ${branchProduct.roles}</li>
+                                <li style="line-height:40px;">Owner: ${branchProduct.roles}</li>
                                 <li style="line-height:40px;">Operating System: ${branchProduct.os}</li>
                                 <li style="line-height:40px;">Serial number: ${branchProduct.sn}</li>
                                 <li style="line-height:40px;">Processor: ${branchProduct.product.processor}</li>
