@@ -29,7 +29,7 @@
 
     <div class="login-container">
         <div class="login-header blue">
-            <h4>改革标题要多久？</h4>
+            <h4>WMS</h4>
         </div>
         <form id="loginForm">
             <div class="login-field">
