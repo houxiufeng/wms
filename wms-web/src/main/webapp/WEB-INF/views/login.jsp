@@ -29,7 +29,7 @@
 
     <div class="login-container">
         <div class="login-header blue">
-            <h4>WMSx</h4>
+            <h4>WMS</h4>
         </div>
         <form id="loginForm">
             <div class="login-field">
