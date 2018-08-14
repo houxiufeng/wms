@@ -34,7 +34,7 @@
 					<div class="span5">
 						<label class="field_name align_right"><span style="color: red">*</span>Product code:</label>
 						<div class="field">
-							<input name="code" class="span10" type="text" maxlength="3" value="${product.code}">
+							<input name="code" class="span10" type="text" maxlength="10" value="${product.code}">
 						</div>
 					</div>
 				</div>

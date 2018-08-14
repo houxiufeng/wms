@@ -49,12 +49,12 @@ public class MyUtils {
 	public static void sendMail(String to, String subject, String content, boolean isHtml, File... files) {
 		try {
 			MailAccount account = new MailAccount();
-			account.setHost("mail.tr33-tech.com");
-			account.setPort(25);
+			account.setHost("mail.mtsm.com.my");
+			account.setPort(587);
 			account.setAuth(true);
-			account.setFrom("admin@tr33-tech.com");
-			account.setUser("admin@tr33-tech.com");
-			account.setPass("Q!W@E#R$T%");
+			account.setFrom("kftang@mtsm.com.my");
+			account.setUser("kftang@mtsm.com.my");
+			account.setPass("Mtsm@123456");
 			MailUtil.send(account, CollUtil.newArrayList(to), subject, content, isHtml, files);
 		} catch (Exception e) {
 			System.out.println("Email error:"+e.getMessage());
@@ -81,5 +81,6 @@ public class MyUtils {
 		String s = "1,2,5,6";
 		List<Integer> sss = strToIntList(s);
 		System.out.println(sss.get(0));
+//		sendMail("allen_hou@126.com", "test", "test content", false);
 	}
 }
