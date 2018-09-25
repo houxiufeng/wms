@@ -30,5 +30,5 @@
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/app/engineer.js"></script>
 <script>
-    Engineer.getTableData();
+    Engineer.getTableData(jQuery.cookie("engineer_iDisplayLength"));
 </script>

@@ -68,9 +68,10 @@
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/app/order.js"></script>
 <script>
-    Order.getTableData(0);
+    Order.getTableData(0,jQuery.cookie("order_0_iDisplayLength"));
     jQuery("ul.nav li").on("click",function(){
-        Order.getTableData(jQuery(this).data("status"));
+        var status = jQuery(this).data("status");
+        Order.getTableData(status,jQuery.cookie("order_" + status + "_iDisplayLength"));
     });
     jQuery(".datetimepicker").datetimepicker({
         format:"yyyy-mm-dd",

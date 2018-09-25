@@ -28,5 +28,5 @@
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/app/organization.js"></script>
 <script>
-    Organization.getTableData();
+    Organization.getTableData(jQuery.cookie("organization_iDisplayLength"));
 </script>

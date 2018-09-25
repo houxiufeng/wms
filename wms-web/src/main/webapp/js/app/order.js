@@ -1,5 +1,6 @@
 var Order = {
-    getTableData: function(index){
+    getTableData: function(index,iDisplayLength){
+        iDisplayLength = iDisplayLength || 10;
         jQuery('#orderTable'+index).dataTable({
             sAjaxSource: appCtx + "/order/loadData",
             // oLanguage: {
@@ -17,6 +18,7 @@ var Order = {
             // bRetrieve:true,
             bDestroy:true,
             //sPaginationType: "bootstrap",
+            iDisplayLength: iDisplayLength,
             sDom: '<"top">rt<"tableFooter"lip<"clear">',
             fnServerParams : function (aoData) {
                 aoData.push({"name": "orderNo", "value":jQuery("#orderNo").val()});
@@ -24,6 +26,7 @@ var Order = {
                 aoData.push({"name": "endTime", "value":jQuery("#endTime").val()});
                 aoData.push({"name": "feedbackFlag", "value":jQuery("input[name='feedbackFlag']:checked").val()});
                 aoData.push({"name": "status", "value":index});
+                jQuery.cookie("order_" + index +"_iDisplayLength",aoData[4]["value"]);
             },
             fnRowCallback : function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
                 if (aData.overed) {

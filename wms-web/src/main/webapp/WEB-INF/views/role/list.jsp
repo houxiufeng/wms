@@ -28,5 +28,5 @@
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/app/role.js"></script>
 <script>
-    Role.getTableData();
+    Role.getTableData(jQuery.cookie("role_iDisplayLength"));
 </script>

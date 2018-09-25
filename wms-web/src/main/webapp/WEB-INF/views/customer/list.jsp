@@ -31,5 +31,5 @@
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/app/customer.js"></script>
 <script>
-    Customer.getTableData();
+    Customer.getTableData(jQuery.cookie("customer_iDisplayLength"));
 </script>

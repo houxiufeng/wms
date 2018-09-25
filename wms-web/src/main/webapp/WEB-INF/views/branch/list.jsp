@@ -30,5 +30,5 @@
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/app/branch.js"></script>
 <script>
-    Branch.getTableData();
+    Branch.getTableData(jQuery.cookie("branch_iDisplayLength"));
 </script>

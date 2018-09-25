@@ -34,5 +34,5 @@
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/app/permission.js"></script>
 <script>
-    Permission.getTableData();
+    Permission.getTableData(jQuery.cookie("permission_iDisplayLength"));
 </script>

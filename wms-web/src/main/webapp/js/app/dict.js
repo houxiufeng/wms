@@ -1,5 +1,6 @@
 var Dict = {
-		getTableData: function(){
+		getTableData: function(iDisplayLength){
+            iDisplayLength = iDisplayLength || 10;
 			jQuery('#dictTable').dataTable({
 		        sAjaxSource: appCtx + "/dict/loadData",
 		        // oLanguage: {
@@ -14,9 +15,11 @@ var Dict = {
 		        sPaginationType: "full_numbers",    //分页策略
 		        bAutoWidth: false,                  // 是否非自动宽度
 		        sServerMethod: "POST",              //请求方式为post 主要为了防止中文参数乱码
+                iDisplayLength: iDisplayLength,
 		        sDom: '<"top">rt<"tableFooter"lip<"clear">',
 		        fnServerParams : function (aoData) {
                     aoData.push({"name": "type", "value":jQuery("#type").val()});
+                    jQuery.cookie("dict_iDisplayLength",aoData[4]["value"]);
 		        },
 		        aoColumns:[{
 		            mData : "typeName",

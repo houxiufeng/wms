@@ -38,7 +38,7 @@
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/app/dict.js"></script>
 <script>
-    Dict.getTableData();
+    Dict.getTableData(jQuery.cookie("dict_iDisplayLength"));
 </script>
 
     

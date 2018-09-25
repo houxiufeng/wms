@@ -41,7 +41,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/app/user.js"></script>
 <script>
   jQuery(function($){
-	  User.getTableData();
+	  User.getTableData($.cookie("user_iDisplayLength"));
 	  $("#addUser").click(function(){
 	      App.goToPage('user/add');
 	  });

@@ -1,5 +1,6 @@
 var Customer = {
-		getTableData: function(){
+		getTableData: function(iDisplayLength){
+            iDisplayLength = iDisplayLength || 10;
 			jQuery('#customerTable').dataTable({
 		        sAjaxSource: appCtx + "/customer/loadData",
 		        // oLanguage: {
@@ -14,10 +15,12 @@ var Customer = {
 		        sPaginationType: "full_numbers",    //分页策略
 		        bAutoWidth: false,                  // 是否非自动宽度
 		        sServerMethod: "POST",              //请求方式为post 主要为了防止中文参数乱码
+                iDisplayLength: iDisplayLength,
 		        //sPaginationType: "bootstrap",
 		        sDom: '<"top">rt<"tableFooter"lip<"clear">',
                 fnServerParams : function (aoData) {
                     aoData.push({"name": "name", "value":jQuery("#name").val()});
+                    jQuery.cookie("customer_iDisplayLength",aoData[4]["value"]);
                 },
 		        aoColumns:[{
 		            mData : "name",
