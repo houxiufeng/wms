@@ -64,7 +64,7 @@
             confirmButton: 'OK',
             confirmButtonClass: 'btn red',
             cancelButton: 'CLOSE',
-            content: '<div>New Password：<input type="text" id="newPwd" maxlength="20" value="abc123"></div>',
+            content: '<div>New Password：<input type="text" id="newPwd" maxlength="20" value=""></div>',
             confirm: function(){
                 var newPwd = jQuery.trim(jQuery("#newPwd").val());
                 if (!newPwd) {
