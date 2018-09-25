@@ -53,8 +53,8 @@ var Product = {
 		            sDefaultContent : "",
 		            sTitle : "Operation",
 		            mRender: function(value, type ,data){
-		            	return '<a class="btn edit blue" href="javascript:Product.edit('+ value + ')"><i class="icon-edit"></i></a>\
-		            	        <a class="btn edit blue" href="javascript:Product.delete('+ value + ')"><i class="icon-trash"></i></a>';
+		            	return '<a title="edit product" class="btn edit blue" href="javascript:Product.edit('+ value + ')"><i class="icon-edit"></i></a>\
+		            	        <a title="delete product" class="btn edit blue" href="javascript:Product.delete('+ value + ')"><i class="icon-trash"></i></a>';
 		            }
 		            
 		        }]

@@ -16,8 +16,8 @@
               <div>
                   <span class="inline">Engineer Name:</span>
                   <input id="name" name="name" type="text" style="width:230px;">
-                  <a href="javascript:Engineer.queryList()" class="dark_green btn" style="margin-left:10px;"><i class="icon-search"></i></a>
-                  <a href="javascript:App.goToPage('engineer/add')" class="dark_green btn"><i class="icon-plus"></i></a>
+                  <a title="search engineer" href="javascript:Engineer.queryList()" class="dark_green btn" style="margin-left:10px;"><i class="icon-search"></i></a>
+                  <a title="add engineer" href="javascript:App.goToPage('engineer/add')" class="dark_green btn"><i class="icon-plus"></i></a>
               </div>
           </div>
           <!-- end   -->

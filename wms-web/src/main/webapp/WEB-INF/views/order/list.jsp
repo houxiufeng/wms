@@ -20,8 +20,8 @@
                     <input id="startTime" name="startTime" type="text" class="datetimepicker" style="width:130px;" readonly>
                     <span class="inline">End time:</span>
                     <input id="endTime" name="endTime" type="text" class="datetimepicker" style="width:130px;" readonly>
-                    <a href="javascript:Order.queryList()" class="dark_green btn" style="margin-left:10px;"><i class="icon-search"></i></a>
-                    <a href="javascript:App.goToPage('order/add')" class="dark_green btn"><i class="icon-plus"></i></a>
+                    <a title="search order" href="javascript:Order.queryList()" class="dark_green btn" style="margin-left:10px;"><i class="icon-search"></i></a>
+                    <a title="add order" href="javascript:App.goToPage('order/add')" class="dark_green btn"><i class="icon-plus"></i></a>
                 </div>
             </div>
             <!-- end   -->

@@ -76,8 +76,8 @@
             <div class="form_row">
                 <div class="span4" >
                     <div class="field">
-                        <a href="javascript:Permission.save();" class="btn red btn-large" style="width: 60px;"><i class="icon-save"></i></a>
-                        <a href="javascript:App.goToPage(appCtx+'/permission')" class="btn dark_green btn-large" style="width: 60px;"><i class="icon-reply"></i></a>
+                        <a title="save" href="javascript:Permission.save();" class="btn red btn-large" style="width: 60px;"><i class="icon-save"></i></a>
+                        <a title="back" href="javascript:App.goToPage(appCtx+'/permission')" class="btn dark_green btn-large" style="width: 60px;"><i class="icon-reply"></i></a>
                     </div>
                 </div>
             </div>

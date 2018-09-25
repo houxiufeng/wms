@@ -100,16 +100,16 @@ var Order = {
             sDefaultContent : "",
             sTitle : "Operation",
             mRender: function(value, type ,data){
-                var opts = ['<a class="btn edit blue" href="javascript:Order.detail('+ value + ')"><i class="icon-eye-open"></i></a>'];
+                var opts = ['<a title="order detail" class="btn edit blue" href="javascript:Order.detail('+ value + ')"><i class="icon-eye-open"></i></a>'];
                 if (index == 0) {
-                    opts.push('<a class="btn edit blue" href="javascript:Order.assign('+ value + ')"><i class="icon-group"></i></a>');
-                    opts.push('<a class="btn edit blue" href="javascript:Order.cancel('+ value + ')"><i class="icon-remove"></i></a>');
+                    opts.push('<a title="assign order" class="btn edit blue" href="javascript:Order.assign('+ value + ')"><i class="icon-group"></i></a>');
+                    opts.push('<a title="cancel order" class="btn edit blue" href="javascript:Order.cancel('+ value + ')"><i class="icon-remove"></i></a>');
                 } else if (index == 1) {
-                    opts.push('<a class="btn edit blue" href="javascript:Order.checked('+ value + ')"><i class="icon-ok"></i></a>');
-                    opts.push('<a class="btn edit blue" href="javascript:Order.cancel('+ value + ')"><i class="icon-remove"></i></a>');
+                    opts.push('<a title="checked order" class="btn edit blue" href="javascript:Order.checked('+ value + ')"><i class="icon-ok"></i></a>');
+                    opts.push('<a title="cancel order" class="btn edit blue" href="javascript:Order.cancel('+ value + ')"><i class="icon-remove"></i></a>');
                 } else if (index == 2) {
-                    opts.push('<a class="btn edit blue" href="javascript:Order.fixed('+ value + ')"><i class="icon-ok"></i></a>');
-                    opts.push('<a class="btn edit blue" href="javascript:Order.cancel('+ value + ')"><i class="icon-remove"></i></a>');
+                    opts.push('<a title="fixed order" class="btn edit blue" href="javascript:Order.fixed('+ value + ')"><i class="icon-ok"></i></a>');
+                    opts.push('<a title="cancel order" class="btn edit blue" href="javascript:Order.cancel('+ value + ')"><i class="icon-remove"></i></a>');
                 }
                 // else if (index == 3) {
                 //     opts.push('<a class="btn edit blue" href="javascript:Order.audited('+ value + ')">通过</a>');

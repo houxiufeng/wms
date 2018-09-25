@@ -33,7 +33,7 @@ var Dict = {
 		            sDefaultContent : "",
 		            sTitle : "Operation",
 		            mRender: function(value, type ,data){
-		            	return '<a class="btn edit blue" href="javascript:Dict.delete('+ value + ')"><i class="icon-trash"></i></a>';
+		            	return '<a title="delete" class="btn edit blue" href="javascript:Dict.delete('+ value + ')"><i class="icon-trash"></i></a>';
 		            }
 		            
 		        }]

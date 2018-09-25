@@ -25,8 +25,8 @@
                           </c:forEach>
                       </select>
                   </c:if>
-                  <a id="search" href="javascript:User.queryList()" class="dark_green btn" style="margin-left:10px;"><i class="icon-search"></i></a>
-                  <a id="addUser" href="javascript:void(0);" class="dark_green btn"><i class="icon-plus"></i></a>
+                  <a id="search" title="search users" href="javascript:User.queryList()" class="dark_green btn" style="margin-left:10px;"><i class="icon-search"></i></a>
+                  <a id="addUser" title="add user" href="javascript:void(0);" class="dark_green btn"><i class="icon-plus"></i></a>
                   <%--<a id="refresh" href="javascript:void(0);" class="dark_green btn">刷新</a>--%>
               </div>
           </div>

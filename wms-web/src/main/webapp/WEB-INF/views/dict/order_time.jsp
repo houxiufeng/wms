@@ -62,8 +62,8 @@
             </div>
             <div class="form_row">
                 <div class="span6">
-                    <a id="btn_lock" href="javascript:void(0);" class="gray btn" style="margin-left: 45%"><i class="icon-lock"></i></a>
-                    <a id="btn_unlock" href="javascript:void(0);" class="green btn" style="margin-left: 45%; display: none"><i class="icon-unlock"></i></a>
+                    <a title="locked" id="btn_lock" href="javascript:void(0);" class="gray btn" style="margin-left: 45%"><i class="icon-lock"></i></a>
+                    <a title="unlocked" id="btn_unlock" href="javascript:void(0);" class="green btn" style="margin-left: 45%; display: none"><i class="icon-unlock"></i></a>
                 </div>
             </div>
         </form>

@@ -85,8 +85,8 @@
             <div class="form_row">
                 <div class="span4" >
 	                <div class="field">
-	                    <a id="updateUser" href="javascript:void(0);" class="btn red btn-large" style="width: 60px;"><i class="icon-save"></i></a>
-	                    <a href="javascript:App.goToPage('user')" class="btn dark_green btn-large" style="width: 60px;"><i class="icon-reply"></i></a>
+	                    <a id="updateUser" title="save" href="javascript:void(0);" class="btn red btn-large" style="width: 60px;"><i class="icon-save"></i></a>
+	                    <a title="back" href="javascript:App.goToPage('user')" class="btn dark_green btn-large" style="width: 60px;"><i class="icon-reply"></i></a>
 	                </div>
                 </div>
             </div>

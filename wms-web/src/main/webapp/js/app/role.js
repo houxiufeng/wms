@@ -46,9 +46,9 @@ var Role = {
 		            sDefaultContent : "",
 		            sTitle : "Operation",
 		            mRender: function(value, type ,data){
-		            	return '<a class="btn edit blue" href="javascript:Role.edit('+ value + ')"><i class="icon-edit"></i></a>\
-		            	        <a class="btn edit blue" href="javascript:Role.delete('+ value + ')"><i class="icon-trash"></i></a>\
-		            	        <a class="btn edit blue" href="javascript:Role.editPermission('+ value + ')"><i class="icon-sitemap"></i></a>';
+		            	return '<a title="edit role" class="btn edit blue" href="javascript:Role.edit('+ value + ')"><i class="icon-edit"></i></a>\
+		            	        <a title="delete role" class="btn edit blue" href="javascript:Role.delete('+ value + ')"><i class="icon-trash"></i></a>\
+		            	        <a title="authorize" class="btn edit blue" href="javascript:Role.editPermission('+ value + ')"><i class="icon-sitemap"></i></a>';
 		            }
 		            
 		        }]

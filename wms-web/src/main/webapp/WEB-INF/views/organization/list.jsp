@@ -14,7 +14,7 @@
           <!-- start -->
           <div class="table_options top_options">
               <div>
-                  <a href="javascript:App.goToPage('organization/add')" class="dark_green btn"><i class="icon-plus"></i></a>
+                  <a title="add platform user" href="javascript:App.goToPage('organization/add')" class="dark_green btn"><i class="icon-plus"></i></a>
                   <%--<a href="javascript:App.goToPage('organization')" class="dark_green btn">刷新</a>--%>
               </div>
           </div>

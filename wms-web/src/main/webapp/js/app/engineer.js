@@ -69,8 +69,8 @@ var Engineer = {
                 sDefaultContent : "",
                 sTitle : "Operation",
                 mRender: function(value, type ,data){
-                    return '<a class="btn edit blue" href="javascript:Engineer.edit('+ value + ')"><i class="icon-edit"></i></a>\
-                            <a class="btn edit blue" href="javascript:Engineer.delete('+ value + ')"><i class="icon-trash"></i></a>';
+                    return '<a title="edit engineer" class="btn edit blue" href="javascript:Engineer.edit('+ value + ')"><i class="icon-edit"></i></a>\
+                            <a title="delete engineer" class="btn edit blue" href="javascript:Engineer.delete('+ value + ')"><i class="icon-trash"></i></a>';
                 }
 
             }]

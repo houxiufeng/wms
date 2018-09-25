@@ -172,8 +172,8 @@
 			<div class="form_row">
 				<div class="span5" >
 					<div class="field">
-						<a href="javascript:Product.update();" class="btn red btn-large" style="width: 60px;"><i class="icon-save"></i></a>
-						<a href="javascript:App.goToPage(appCtx+'/product')" class="btn dark_green btn-large" style="width: 60px;"><i class="icon-reply"></i></a>
+						<a title="save" href="javascript:Product.update();" class="btn red btn-large" style="width: 60px;"><i class="icon-save"></i></a>
+						<a title="back" href="javascript:App.goToPage(appCtx+'/product')" class="btn dark_green btn-large" style="width: 60px;"><i class="icon-reply"></i></a>
 					</div>
 				</div>
 			</div>

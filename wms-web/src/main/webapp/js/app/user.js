@@ -49,9 +49,9 @@ var User = {
 		            sDefaultContent : "",
 		            sTitle : "Operation",
 		            mRender: function(value, type ,data){
-		            	return '<a class="btn edit blue" href="javascript:User.editUser('+ value + ')"><i class="icon-edit"></i></a>\
-		            	        <a class="btn edit blue" href="javascript:User.resetPwd('+ value + ')"><i class="icon-keyboard"></i></a>\
-		            	        <a class="btn edit blue" href="javascript:User.deleteUser('+ value + ')"><i class="icon-trash"></i></a>';
+		            	return '<a class="btn edit blue" title="edit user" href="javascript:User.editUser('+ value + ')"><i class="icon-edit"></i></a>\
+		            	        <a class="btn edit blue" title="reset password" href="javascript:User.resetPwd('+ value + ')"><i class="icon-keyboard"></i></a>\
+		            	        <a class="btn edit blue" title="delete user" href="javascript:User.deleteUser('+ value + ')"><i class="icon-trash"></i></a>';
 		            }
 		            
 		        }]

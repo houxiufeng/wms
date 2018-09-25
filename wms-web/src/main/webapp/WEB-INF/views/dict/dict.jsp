@@ -24,8 +24,8 @@
             </div>
             <div class="span2">
                 <%--<a href="javascript:Dict.save();" class="red btn"><i class="icon-save"></i></a>--%>
-                <a href="javascript:Dict.queryList();" class="dark_green btn"><i class="icon-search"></i></a>
-                <a href="javascript:Dict.popupAdd();" class="dark_green btn"><i class="icon-plus"></i></a>
+                <a title="search parameter" href="javascript:Dict.queryList();" class="dark_green btn"><i class="icon-search"></i></a>
+                <a title="add parameter" href="javascript:Dict.popupAdd();" class="dark_green btn"><i class="icon-plus"></i></a>
             </div>
         </div>
 

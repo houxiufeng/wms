@@ -41,8 +41,8 @@ var Organization = {
 		            sDefaultContent : "",
 		            sTitle : "Operation",
 		            mRender: function(value, type ,data){
-		            	return '<a class="btn edit blue" href="javascript:Organization.edit('+ value + ')"><i class="icon-edit"></i></a>\
-		            	        <a class="btn edit blue" href="javascript:Organization.delete('+ value + ')"><i class="icon-trash"></i></a>';
+		            	return '<a title="edit platform user" class="btn edit blue" href="javascript:Organization.edit('+ value + ')"><i class="icon-edit"></i></a>\
+		            	        <a title="delete platform user" class="btn edit blue" href="javascript:Organization.delete('+ value + ')"><i class="icon-trash"></i></a>';
 		            }
 		            
 		        }]
