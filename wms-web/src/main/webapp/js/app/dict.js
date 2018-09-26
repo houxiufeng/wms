@@ -51,6 +51,7 @@ var Dict = {
     popupAdd : function () {
         jQuery.confirm({
             // icon: 'icon-info-sign',
+            keyboardEnabled: true,
             title: 'Add Parameter!',
             columnClass: 'col-md-4 col-md-offset-4',
             confirmButton: 'OK',

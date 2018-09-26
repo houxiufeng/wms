@@ -3,7 +3,7 @@
 
 <div class="well light_gray">
     <div class="well-content">
-        <form id="dictForm" style="margin-bottom: 10px;">
+        <form id="dictForm" style="margin-bottom: 10px;" onkeydown="if(event.keyCode==13){return false;}">
             <div class="form_row">
                 <label class="field_name align_right" style="width: 30%"><span style="color: red">*</span>Parameter type:</label>
                 <div class="field" style="margin-left: 31%">

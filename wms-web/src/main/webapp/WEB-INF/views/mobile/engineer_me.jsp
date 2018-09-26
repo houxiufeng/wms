@@ -60,6 +60,7 @@
 <script>
     jQuery("#resetPwd").click(function () {
         jQuery.confirm({
+            keyboardEnabled: true,
             title: 'Reset password!',
             confirmButton: 'OK',
             confirmButtonClass: 'btn red',

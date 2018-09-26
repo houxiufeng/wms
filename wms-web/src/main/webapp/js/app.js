@@ -57,6 +57,7 @@ var App = {
         },
 		alert: function(content, cbk){
 			jQuery.alert({
+                keyboardEnabled: true,
 				icon: 'icon-ok-sign',
 				confirmButtonClass: 'btn yellow',
 				confirmButton: 'OK',
@@ -69,6 +70,7 @@ var App = {
 		},
 		confirm: function(content,cbk){
 			jQuery.confirm({
+                keyboardEnabled: true,
 				icon: 'icon-warning-sign',
 			    title: 'Confirm!',
 			    confirmButton: 'OK',

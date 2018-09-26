@@ -223,6 +223,7 @@ var Product = {
 
     addBrand : function(id) {
         jQuery.confirm({
+            keyboardEnabled: true,
             title: 'Add Brand!',
             confirmButton: 'OK',
             confirmButtonClass: 'btn red',

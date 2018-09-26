@@ -241,6 +241,7 @@ var Order = {
     },
     assign: function (id) {
         jQuery.confirm({
+            keyboardEnabled: true,
             title: 'Assigning',
             columnClass: 'col-md-8 col-md-offset-2',
             content: 'url:'+appCtx+"/order/assign/"+id,
@@ -285,6 +286,7 @@ var Order = {
     
     checked: function (id) {
         jQuery.confirm({
+            keyboardEnabled: true,
             title: 'Checking',
             columnClass: 'col-md-6 col-md-offset-3',
             content: 'url:'+appCtx+"/order/check/"+id,
@@ -321,6 +323,7 @@ var Order = {
 
     fixed: function (id) {
         jQuery.confirm({
+            keyboardEnabled: true,
             title: 'Fixing',
             columnClass: 'col-md-6 col-md-offset-3',
             content: 'url:'+appCtx+"/order/fix/"+id,
@@ -350,6 +353,7 @@ var Order = {
     },
     audited: function (id) {
         jQuery.confirm({
+            keyboardEnabled: true,
             title: 'Auditing',
             columnClass: 'col-md-6 col-md-offset-3',
             content: 'Remarks:<textarea id="remark" style="resize:none;width: 100%;height: 150px;"></textarea>',
