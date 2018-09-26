@@ -85,6 +85,7 @@ public class BranchServiceImpl implements BranchService{
 		return jdbcDao.querySingleResult(branch);
 	}
 
+	@Override
 	public BranchVo getBranchVoById(Long id) {
 		Branch branch = jdbcDao.get(Branch.class, id);
 		if (branch != null) {

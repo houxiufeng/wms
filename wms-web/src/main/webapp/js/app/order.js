@@ -83,18 +83,19 @@ var Order = {
         var scoreColumn = {
             mData : "score",
             sDefaultContent : "",
-            sTitle : "Rate",
+            sTitle : "Rating",
             mRender: function(value, type ,data){
                 if (_isNull(value)) {
                     return "<span style='color: #bf3f20'>wait for customer rating</span>"
                 } else {
-                    if (value == 1) {
-                        return "positive"
-                    } else if (value == 2) {
-                        return "normal"
-                    } else {
-                        return "negative"
-                    }
+                    // if (value == 1) {
+                    //     return "positive"
+                    // } else if (value == 2) {
+                    //     return "normal"
+                    // } else {
+                    //     return "negative"
+                    // }
+                    return rating(value);
                 }
             }
         };
@@ -917,8 +918,8 @@ var Order = {
         var engineerId = jQuery("#engineerId").val();
         var feedback = jQuery.trim(jQuery("#feedback").val());
         var score = jQuery("#score").val();
-        if (_isNull(feedback)) {
-            alert("Feedback can't be empty!");
+        if (_isNull(score)) {
+            alert("rating can't be empty!");
             return false;
         }
         jQuery.ajax({

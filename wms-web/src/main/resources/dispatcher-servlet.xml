@@ -55,6 +55,7 @@
 	<mvc:resources location="/css/" mapping="/css/**" />
 	<mvc:resources location="/flatpoint/" mapping="/flatpoint/**" />
 	<mvc:resources location="/files/" mapping="/files/**" />
+	<mvc:resources location="/img/" mapping="/img/**" />
 
 	<!-- xml视图，XStreamMarshaller，可以转换任何形式的java对象 -->
     <bean name="xStreamMarshallingView" class="org.springframework.web.servlet.view.xml.MarshallingView">

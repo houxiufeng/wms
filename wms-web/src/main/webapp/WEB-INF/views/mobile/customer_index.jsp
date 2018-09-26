@@ -29,10 +29,10 @@
     <div class="form_row" >
         <div>
             <a href="javascript:App.goToPage(appCtx + '/mobile/customer/order/list', {'status':2});" class="btn blue" style="width: 40%; line-height:30px; font-size: 16px;">
-                Progressing orders <br><span style="font-weight: 600; font-size: 20px;">${fixingNum}</span>
+                Progressing<br><span style="font-weight: 600; font-size: 20px;">${fixingNum}</span>
             </a>
             <a href="javascript:App.goToPage(appCtx + '/mobile/customer/order/list', {'status':4,'feedbackFlag':1});" class="btn blue" style="width: 40%; line-height:30px; font-size: 16px;">
-                Need rate <br><span style="font-weight: 600; font-size: 20px;">${needRateNum}</span>
+                Rating<br><span style="font-weight: 600; font-size: 20px;">${needRateNum}</span>
             </a>
         </div>
     </div>

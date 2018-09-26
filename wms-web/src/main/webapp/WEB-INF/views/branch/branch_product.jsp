@@ -5,7 +5,9 @@
     <div class="top_bar">
         <ul class="breadcrumb">
             <li><a href="javascript:void(0);"style="color: #037dc5;font-size: 15px;">My customer</a> <span class="divider">/</span></li>
-            <li class="active" style="font-weight: 600;font-size: 13px;color: #037dc5;">Add product</li>
+            <li class="active" style="font-weight: 600;font-size: 13px;color: #037dc5;">Add product <span class="divider">/</span></li>
+            <li class="active" style="font-weight: 600;font-size: 13px;color: #037dc5;">${branch.customerName} <span class="divider">/</span></li>
+            <li class="active" style="font-weight: 600;font-size: 13px;color: #037dc5;">${branch.name}</li>
         </ul>
     </div>
 

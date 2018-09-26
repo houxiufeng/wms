@@ -48,9 +48,9 @@ var Branch = {
                 sDefaultContent : "",
                 sTitle : "Operation",
                 mRender: function(value, type ,data){
-                    return '<a class="btn edit blue" href="javascript:Branch.addMaintainProduct('+ value + ')"><i class="icon-wrench"></i></a>\
-                            <a class="btn edit blue" href="javascript:Branch.edit('+ value + ')"><i class="icon-edit"></i></a>\
-                            <a class="btn edit blue" href="javascript:Branch.delete('+ value + ')"><i class="icon-trash"></i></a>';
+                    return '<a title="add maintain product" class="btn edit blue" href="javascript:Branch.addMaintainProduct('+ value + ')"><i class="icon-wrench"></i></a>\
+                            <a title="edit branch" class="btn edit blue" href="javascript:Branch.edit('+ value + ')"><i class="icon-edit"></i></a>\
+                            <a title="delete branch" class="btn edit blue" href="javascript:Branch.delete('+ value + ')"><i class="icon-trash"></i></a>';
                 }
 
             }]

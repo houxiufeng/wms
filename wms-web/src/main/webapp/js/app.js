@@ -449,3 +449,7 @@ function onlyInt(obj) {
         obj.value=obj.value.replace(/(\D)/g,'')
     }
 }
+//评星级
+function rating(rate) {
+    return "★★★★★☆☆☆☆☆".slice(5 - rate, 10 - rate);
+}

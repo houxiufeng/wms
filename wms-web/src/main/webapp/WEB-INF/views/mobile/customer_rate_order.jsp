@@ -24,15 +24,26 @@
                     <li style="line-height:30px;">Confirm problem: ${orderInfo.order.typeName}</li>
                     <li style="line-height:30px;">Confirm Description: ${orderInfo.order.description}</li>
                     <li style="line-height:30px;">
-                        Rate:
-                        <select id="score" name="score">
-                            <option value="1">Good</option>
-                            <option value="2">moderate</option>
-                            <option value="3">Bad</option>
-                        </select>
+                        <%--Rating:--%>
+                        <span>Rating:</span>
+                        <div id="starRating">
+                            <p class="photo">
+                                <span><i class="high"></i><i class="nohigh"></i></span>
+                                <span><i class="high"></i><i class="nohigh"></i></span>
+                                <span><i class="high"></i><i class="nohigh"></i></span>
+                                <span><i class="high"></i><i class="nohigh"></i></span>
+                                <span><i class="high"></i><i class="nohigh"></i></span>
+                            </p>
+                        </div>
+                        <input id="score" type="hidden" value="">
+                        <%--<select id="score" name="score">--%>
+                            <%--<option value="1">Good</option>--%>
+                            <%--<option value="2">moderate</option>--%>
+                            <%--<option value="3">Bad</option>--%>
+                        <%--</select>--%>
                     </li>
                     <li style="line-height:30px;">
-                        Rate Description:
+                        Remark:
                         <textarea id="feedback" name="feedback" style="resize:none;height: 50px; width: 90%;" maxlength="200"></textarea>
                     </li>
                 </ul>
@@ -45,3 +56,32 @@
 
     </div>
 </div>
+<script>
+    jQuery(function ($) {
+        //评分
+        var starRating = 0;
+        $('.photo span').on('mouseenter',function () {
+            // var index = $(this).index()+1;
+            $(this).prevAll().find('.high').css('z-index',1);
+            $(this).find('.high').css('z-index',1);
+            $(this).nextAll().find('.high').css('z-index',0);
+        });
+        $('.photo').on('mouseleave',function () {
+            $(this).find('.high').css('z-index',0);
+            var count = starRating;
+            if(count == 5) {
+                $('.photo span').find('.high').css('z-index',1);
+            } else {
+                $('.photo span').eq(count).prevAll().find('.high').css('z-index',1);
+            }
+        });
+        $('.photo span').on('click',function () {
+            var index = $(this).index()+1;
+            $(this).prevAll().find('.high').css('z-index',1);
+            $(this).find('.high').css('z-index',1);
+            starRating = index;
+            // alert('评分：'+(starRating.toFixed(1)+'分'));
+            $("#score").val(starRating);
+        });
+    })
+</script>

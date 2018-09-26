@@ -38,7 +38,7 @@ public class BranchProductController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(Model model, @RequestParam Long branchId){
-		Branch branch = branchService.getBranchById(branchId);
+		BranchVo branch = branchService.getBranchVoById(branchId);
 		QueryDictParams params = new QueryDictParams();
 		params.setOrganizationId(AppContextManager.getCurrentUserInfo().getOrganizationId());
 		params.setType(DictType.PRODUCT_BRAND.getValue());

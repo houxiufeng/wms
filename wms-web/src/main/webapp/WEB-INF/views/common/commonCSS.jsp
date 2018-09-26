@@ -5,3 +5,4 @@
 <link href="${pageContext.request.contextPath}/flatpoint/icon/font-awesome.css" rel="stylesheet">   
 <link href="${pageContext.request.contextPath}/css/bootstrap.extend.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/jquery-confirm.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/star.css" rel="stylesheet">
