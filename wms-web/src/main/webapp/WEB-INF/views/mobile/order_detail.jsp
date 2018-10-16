@@ -74,9 +74,10 @@
         <div class="form_row">
             <label class="field_name align_right" style="width: 30%;">Score:</label>
             <div class="field" style="margin-left: 31%; margin-top: 5px;">
-                <c:if test="${order.score == 1}">Good</c:if>
-                <c:if test="${order.score == 2}">moderate</c:if>
-                <c:if test="${order.score == 3}">Bad</c:if>
+                <%--<c:if test="${order.score == 1}">Good</c:if>--%>
+                <%--<c:if test="${order.score == 2}">moderate</c:if>--%>
+                <%--<c:if test="${order.score == 3}">Bad</c:if>--%>
+                ${order.score}
             </div>
         </div>
     </c:if>

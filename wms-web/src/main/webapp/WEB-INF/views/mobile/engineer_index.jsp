@@ -35,9 +35,11 @@
         <div>
             <p><span>Your rate:</span></p>
             <p>
-                <span style="color: green">Good</span>:${engineer.goodScore}
-                <span style="color: darkslategrey; margin-left:5%;">Normal</span>:${engineer.moderateScore}
-                <span style="color:red; margin-left:5%;">Bad</span>:${engineer.badScore}
+                <span style="">5 star</span>:${engineer.fiveStar}
+                <span style="margin-left:5%;">4 star</span>:${engineer.fourStar}
+                <span style="margin-left:5%;">3 star</span>:${engineer.threeStar}
+                <span style="margin-left:5%;">2 star</span>:${engineer.twoStar}
+                <span style="margin-left:5%;">1 star</span>:${engineer.oneStar}
             </p>
 
         </div>

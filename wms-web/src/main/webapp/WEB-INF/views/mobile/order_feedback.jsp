@@ -79,9 +79,11 @@
         <label class="field_name align_right" style="width: 30%;">Score:</label>
         <div class="field" style="margin-left: 31%; margin-top: 5px;">
             <select id="score" name="score">
-                <option value="1">Good</option>
-                <option value="2">moderate</option>
-                <option value="3">Bad</option>
+                <option value="1">1 star</option>
+                <option value="2">2 star</option>
+                <option value="3">3 star</option>
+                <option value="4">4 star</option>
+                <option value="5">5 star</option>
             </select>
         </div>
     </div>

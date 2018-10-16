@@ -174,16 +174,21 @@ public class OrderServiceImpl implements OrderService {
 		params.setScore(score);
 		params.setUpdatedTime(new Date());
 		jdbcDao.update(params);
-		if (score == 1) {//好评
-			jdbcDao.createUpdate(Engineer.class).set("{{[goodScore]}}","[goodScore]+1").where("id", engineerId).execute();
-		} else if (score == 2) {//中评
-			jdbcDao.createUpdate(Engineer.class).set("{{[moderateScore]}}","[moderateScore]+1").where("id", engineerId).execute();
-		} else if (score == 3) {//差评
-			jdbcDao.createUpdate(Engineer.class).set("{{[badScore]}}","[badScore]+1").where("id", engineerId).execute();
+		if (score == 1) {
+			jdbcDao.createUpdate(Engineer.class).set("{{[oneStar]}}","[oneStar]+1").where("id", engineerId).execute();
+		} else if (score == 2) {
+			jdbcDao.createUpdate(Engineer.class).set("{{[twoStar]}}","[twoStar]+1").where("id", engineerId).execute();
+		} else if (score == 3) {
+			jdbcDao.createUpdate(Engineer.class).set("{{[threeStar]}}","[threeStar]+1").where("id", engineerId).execute();
+		} else if (score == 4) {
+			jdbcDao.createUpdate(Engineer.class).set("{{[fourStar]}}","[fourStar]+1").where("id", engineerId).execute();
+		} else if (score == 5) {
+			jdbcDao.createUpdate(Engineer.class).set("{{[fiveStar]}}","[fiveStar]+1").where("id", engineerId).execute();
 		}
 
 	}
 
+	@Override
 	public OrderInfo getOrderInfo(Long id) {
 		Torder order = jdbcDao.get(Torder.class, id);
 		OrderInfo orderInfo = null;
@@ -214,6 +219,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 
+	@Override
 	public StatOrderVo statRecent6MonthsOrders(Long engineerId) {
 		List<Object[]> tickList = Lists.newArrayList();
 		int nowMonth = DateUtil.thisMonth();
@@ -264,6 +270,7 @@ public class OrderServiceImpl implements OrderService {
 		return vo;
 	}
 
+	@Override
 	public PageList<EngineerOrderSum> findEngineerOrderSum(QueryEngineerOrderSum params) {
 		List<Object> values = Lists.newArrayList();
 		StringBuffer sb = new StringBuffer("select engineer_id, year(check_time) year, month(check_time) month, count(status=1 or null) checking_num, count(status=2 or null) fixing_num, count(status=4 or null) complete_num ");
@@ -286,6 +293,7 @@ public class OrderServiceImpl implements OrderService {
 		.pageList(params.getiDisplayStart()/params.getiDisplayLength() + 1, params.getiDisplayLength());
 	}
 
+	@Override
 	public PageList<EngineerOrderRate> findEngineerOrderRate(QueryEngineerOrderSum params) {
 		List<Object> values = Lists.newArrayList();
 		StringBuffer sb = new StringBuffer("select engineer_id, year(check_time) year, month(check_time) month, count(score=1 or null) good_num, count(score=2 or null) normal_num, count(score=3 or null) bad_num ");
@@ -309,6 +317,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 
+	@Override
 	public PageList<OrderVo> findMonthOrders(QueryMonthOrderParams params) {
 		String sql = "select t.*, (select d.name from dict d where t.type = d.id) type_name from torder t" +
 				" where t.check_time > ? and t.check_time < ? and t.organization_id = ? and t.status = ?";
@@ -327,6 +336,7 @@ public class OrderServiceImpl implements OrderService {
 
 	}
 
+	@Override
 	public StatOrderVo statBranchRecent6MonthsOrders(Long branchId) {
 		List<Object[]> tickList = Lists.newArrayList();
 		int nowMonth = DateUtil.thisMonth();
@@ -376,6 +386,7 @@ public class OrderServiceImpl implements OrderService {
 		return vo;
 	}
 
+	@Override
 	public PageList<CustomerOrderSum> findCustomerOrderSum(QueryCustomerOrderSum params) {
 		List<Object> values = Lists.newArrayList();
 		StringBuffer sb = new StringBuffer("select branch_id, year(check_time) year, month(check_time) month, count(status=1 or null) checking_num, count(status=2 or null) fixing_num, count(status=4 or null) complete_num ");

@@ -100,6 +100,7 @@ public class EngineerServiceImpl implements EngineerService {
 		engineer.setUserId(userId);
 		return jdbcDao.querySingleResult(engineer);
     }
+    @Override
     public EngineerVo getEngineerVoByUserId(Long userId) {
 		Engineer engineer =  this.getEngineerByUserId(userId);
 	    EngineerVo engineerVo = null;

@@ -15,9 +15,14 @@ public class Engineer {
 	private Long level;
 	private String skill;
 	private Integer status;
-	private Integer goodScore;
-	private Integer moderateScore;
-	private Integer badScore;
+//	private Integer goodScore;
+//	private Integer moderateScore;
+//	private Integer badScore;
+	private Integer oneStar;
+	private Integer twoStar;
+	private Integer threeStar;
+	private Integer fourStar;
+	private Integer fiveStar;
 	private Long userId;
 	private Long organizationId;
 	private Long createdBy;
@@ -95,28 +100,69 @@ public class Engineer {
 		this.status = status;
 	}
 
-	public Integer getGoodScore() {
-		return goodScore;
+//	public Integer getGoodScore() {
+//		return goodScore;
+//	}
+//
+//	public void setGoodScore(Integer goodScore) {
+//		this.goodScore = goodScore;
+//	}
+//
+//	public Integer getModerateScore() {
+//		return moderateScore;
+//	}
+//
+//	public void setModerateScore(Integer moderateScore) {
+//		this.moderateScore = moderateScore;
+//	}
+//
+//	public Integer getBadScore() {
+//		return badScore;
+//	}
+//
+//	public void setBadScore(Integer badScore) {
+//		this.badScore = badScore;
+//	}
+
+
+	public Integer getOneStar() {
+		return oneStar;
 	}
 
-	public void setGoodScore(Integer goodScore) {
-		this.goodScore = goodScore;
+	public void setOneStar(Integer oneStar) {
+		this.oneStar = oneStar;
 	}
 
-	public Integer getModerateScore() {
-		return moderateScore;
+	public Integer getTwoStar() {
+		return twoStar;
 	}
 
-	public void setModerateScore(Integer moderateScore) {
-		this.moderateScore = moderateScore;
+	public void setTwoStar(Integer twoStar) {
+		this.twoStar = twoStar;
 	}
 
-	public Integer getBadScore() {
-		return badScore;
+	public Integer getThreeStar() {
+		return threeStar;
 	}
 
-	public void setBadScore(Integer badScore) {
-		this.badScore = badScore;
+	public void setThreeStar(Integer threeStar) {
+		this.threeStar = threeStar;
+	}
+
+	public Integer getFourStar() {
+		return fourStar;
+	}
+
+	public void setFourStar(Integer fourStar) {
+		this.fourStar = fourStar;
+	}
+
+	public Integer getFiveStar() {
+		return fiveStar;
+	}
+
+	public void setFiveStar(Integer fiveStar) {
+		this.fiveStar = fiveStar;
 	}
 
 	public Long getOrganizationId() {

@@ -54,7 +54,7 @@ var Engineer = {
                 sDefaultContent : "",
                 sTitle : "Cumulative score",
                 mRender: function(value, type ,data){
-                    return 'Good:' + data.goodScore + " Moderate:" + data.moderateScore + " Bad:" + data.badScore;
+                    return '5 star:' + data.fiveStar + " 4 star:" + data.fourStar + " 3 star:" + data.threeStar+ " 2 star:" + data.twoStar+ " 1 star:" + data.oneStar;
                 }
             },{
                 mData : "status",

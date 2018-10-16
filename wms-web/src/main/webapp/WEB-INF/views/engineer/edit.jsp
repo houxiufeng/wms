@@ -130,9 +130,11 @@
 					<div class="span6">
 						<label class="field_name align_right">Cumulative score:</label>
 						<div class="field" style="margin-top: 5px;">
-							<span style="color: green">Good</span>:${engineer.goodScore}
-							<span style="color: darkslategrey;">Moderate</span>:${engineer.moderateScore}
-							<span style="color:red">Bad</span>:${engineer.badScore}
+							<span style="">5 star</span>:${engineer.fiveStar}
+							<span style="">4 star</span>:${engineer.fourStar}
+							<span style="">3 star</span>:${engineer.threeStar}
+							<span style="">2 star</span>:${engineer.twoStar}
+							<span style="">1 star</span>:${engineer.oneStar}
 						</div>
 					</div>
 				</div>
